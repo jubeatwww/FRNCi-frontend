@@ -3,6 +3,7 @@ import Router from 'vue-router';
 
 import Main from '@/components/Main/Main';
 import Home from '@/components/Home/Main';
+import Profile from '@/components/Profile/Main';
 
 import VueMaterial from 'vue-material';
 import 'vue-material/dist/vue-material.css';
@@ -29,6 +30,12 @@ export default new Router({
                 {
                     path: '',
                     component: Home,
+                    name: 'home',
+                },
+                {
+                    path: 'profile/:id',
+                    component: Profile,
+                    name: 'profile',
                 },
             ],
         },

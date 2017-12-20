@@ -7,13 +7,11 @@
 </template>
 <script>
 import FRNCiHeader from './Header';
-import Home from '../Home/Main';
 import FRNCiFooter from './Footer';
 
 export default {
     components: {
         FRNCiHeader,
-        Home,
         FRNCiFooter,
     },
     data() {

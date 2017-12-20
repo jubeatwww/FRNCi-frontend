@@ -1,5 +1,5 @@
 <template>
-    <header :style="headerColor">
+    <header :style="[headerColor, isHome]">
         <div id="logo"></div>
         <nav>
             <md-theme md-name="orange">
@@ -16,6 +16,9 @@ export default {
     computed: {
         headerColor() {
             return this.scrollTop ? { background: 'transparent' } : { background: 'white' };
+        },
+        isHome() {
+            return this.$route.name === 'home' ? { position: 'fixed' } : { position: 'relative' };
         },
     },
 };
