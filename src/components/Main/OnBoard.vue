@@ -74,7 +74,7 @@ export default {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: url('../assets/arrow-pre.png') no-repeat center center;
+    background: url('../../assets/arrow-pre.png') no-repeat center center;
     background-size: cover;
 }
 
@@ -84,7 +84,7 @@ export default {
     top: 50%;
     right: 0;
     transform: translateY(-50%);
-    background: url('../assets/arrow-next.png') no-repeat center center;
+    background: url('../../assets/arrow-next.png') no-repeat center center;
     background-size: cover;
 }
 

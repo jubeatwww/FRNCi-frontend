@@ -35,7 +35,7 @@ header{
     #logo{
         height: 30px;
         width: 105px;
-        background: url('../assets/logo_frnci.png') no-repeat center center;
+        background: url('../../assets/logo_frnci.png') no-repeat center center;
         background-size: cover;
 
         align-self: center;
