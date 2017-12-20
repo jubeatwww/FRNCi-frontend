@@ -1,28 +1,19 @@
 <template>
     <div>
         <FRNCiHeader :scrollTop="scrollTop"></FRNCiHeader>
-        <OnBoard></OnBoard>
-        <SearchForm></SearchForm>
-        <HowTo></HowTo>
-        <Feedback></Feedback>
+        <router-view></router-view>
         <FRNCiFooter></FRNCiFooter>
     </div>
 </template>
 <script>
 import FRNCiHeader from './Header';
-import OnBoard from './OnBoard';
-import SearchForm from './SearchForm';
-import Feedback from './Feedback';
-import HowTo from './HowTo';
+import Home from '../Home/Main';
 import FRNCiFooter from './Footer';
 
 export default {
     components: {
         FRNCiHeader,
-        OnBoard,
-        SearchForm,
-        Feedback,
-        HowTo,
+        Home,
         FRNCiFooter,
     },
     data() {
