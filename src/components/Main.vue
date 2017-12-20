@@ -5,6 +5,7 @@
         <SearchForm></SearchForm>
         <HowTo></HowTo>
         <Feedback></Feedback>
+        <FRNCiFooter></FRNCiFooter>
     </div>
 </template>
 <script>
@@ -13,6 +14,7 @@ import OnBoard from './OnBoard';
 import SearchForm from './SearchForm';
 import Feedback from './Feedback';
 import HowTo from './HowTo';
+import FRNCiFooter from './Footer';
 
 export default {
     components: {
@@ -21,6 +23,7 @@ export default {
         SearchForm,
         Feedback,
         HowTo,
+        FRNCiFooter,
     },
     data() {
         return {
