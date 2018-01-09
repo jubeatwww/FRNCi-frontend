@@ -3,7 +3,7 @@
         <div id="logo"></div>
         <nav>
             <md-theme md-name="orange">
-                <md-button class="md-raised md-primary">Search Locals</md-button>
+                <md-button class="md-raised md-primary">Find Buddies</md-button>
                 <md-button class="md-raised md-primary">Sign Up/Login</md-button>
             </md-theme>
         </nav>
