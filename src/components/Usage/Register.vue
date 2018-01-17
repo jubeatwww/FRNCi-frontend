@@ -1,7 +1,7 @@
 <template>
     <div class="form-wrapper">
         <p>Sign up with <a href="">Facebook</a> or <a href="">Google</a></p>
-        <div>
+        <div class="or-separator">
             <hr><span>or</span>
         </div>
         <div>
