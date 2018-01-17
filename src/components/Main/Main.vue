@@ -1,6 +1,6 @@
 <template>
     <div>
-        <FRNCiHeader :scrollTop="scrollTop"></FRNCiHeader>
+        <FRNCiHeader></FRNCiHeader>
         <router-view></router-view>
         <FRNCiFooter></FRNCiFooter>
     </div>
@@ -13,22 +13,6 @@ export default {
     components: {
         FRNCiHeader,
         FRNCiFooter,
-    },
-    data() {
-        return {
-            scrollTop: window.scrollY === 0,
-        };
-    },
-    methods: {
-        handleScroll() {
-            this.scrollTop = window.scrollY === 0;
-        },
-    },
-    created() {
-        window.addEventListener('scroll', this.handleScroll);
-    },
-    destroyed() {
-        window.removeEventListener('scroll', this.handleScroll);
     },
 };
 </script>

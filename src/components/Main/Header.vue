@@ -14,9 +14,6 @@
 export default {
     props: ['scrollTop'],
     computed: {
-        headerColor() {
-            return this.scrollTop ? { background: 'transparent' } : { background: 'white' };
-        },
         isHome() {
             return this.$route.name === 'home' ? { position: 'fixed' } : { position: 'relative' };
         },
@@ -42,6 +39,7 @@ header{
     height: 80px;
     width: 100vw;
     transition: all .2s linear;
+    background-color: white;
 
     #logo{
         height: 36px;
