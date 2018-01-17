@@ -46,6 +46,7 @@ export default {
 
 .login-btn {
     font-size: 20px;
+    text-transform: none;
     i {
         position: absolute;
         left: 10px;
@@ -70,27 +71,6 @@ export default {
         padding: 2%;
         color: #707070;
     }
-}
-
-.login-input {
-    label {
-        font-size: 10px;
-        padding-left: 28px;
-    }
-
-    .md-input-focused {
-        label {
-            padding-left: 0;
-        }
-    }
-
-    input {
-        border: 1px solid rgba(0, 0, 0, .2);
-        border-radius: 4px;
-        padding: 12px 25px 11px;
-        height: 40px;
-    }
-
 }
 
 #forgot-pwd-btn {
