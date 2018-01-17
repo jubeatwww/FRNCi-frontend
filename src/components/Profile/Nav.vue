@@ -2,6 +2,8 @@
     <nav :style="bgStyle">
         <figure><img :src="avatar"/></figure>
         <h2>{{name}}</h2>
+        <h2>{{position}}</h2>
+        <h2>{{nationality}}</h2>
         <button></button>
     </nav>
 </template>
@@ -20,6 +22,14 @@ export default {
         name: {
             type: String,
             default: 'FRNCi',
+        },
+        nationality: {
+            type: String,
+            default: '',
+        },
+        position: {
+            type: String,
+            default: '',
         },
     },
     computed: {
