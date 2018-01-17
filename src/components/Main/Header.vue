@@ -44,9 +44,9 @@ header{
     transition: all .2s linear;
 
     #logo{
-        height: 30px;
-        width: 105px;
-        background: url('../../assets/logo_frnci.png') no-repeat center center;
+        height: 36px;
+        width: 216px;
+        background: url('../../assets/logo_glocal.png') no-repeat center center;
         background-size: cover;
         align-self: center;
         margin-left: 5%;
