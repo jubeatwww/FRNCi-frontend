@@ -1,10 +1,10 @@
 <template>
     <header :style="[headerColor, isHome]">
-        <div id="logo"></div>
+        <div id="logo" @click="home"></div>
         <nav>
             <md-theme md-name="orange">
                 <md-button class="md-raised md-primary">Find Buddies</md-button>
-                <md-button class="md-raised md-primary">Sign Up/Login</md-button>
+                <md-button class="md-dense" @click="loginClick">Sign Up/Login</md-button>
             </md-theme>
         </nav>
     </header>
@@ -19,6 +19,14 @@ export default {
         },
         isHome() {
             return this.$route.name === 'home' ? { position: 'fixed' } : { position: 'relative' };
+        },
+    },
+    methods: {
+        home() {
+            this.$router.push({ path: '/' });
+        },
+        loginClick() {
+            this.$router.push({ path: 'login' });
         },
     },
 };
@@ -40,10 +48,9 @@ header{
         width: 105px;
         background: url('../../assets/logo_frnci.png') no-repeat center center;
         background-size: cover;
-
         align-self: center;
-
         margin-left: 5%;
+        cursor: pointer;
     }
 
     nav{

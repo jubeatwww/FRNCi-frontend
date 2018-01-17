@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="form-wrapper">
         <p>Sign up with <a href="">Facebook</a> or <a href="">Google</a></p>
         <div>
             <hr><span>or</span>
@@ -21,7 +21,12 @@
                 <label>Password</label>
                 <md-input v-model="password" type="password" required></md-input>
             </md-input-container>
-            <md-button class="md-raised md-primary">Log in</md-button>
+            <md-checkbox>I agree to the Glocal Click 
+                <router-link to="termsofservice">terms of service</router-link>
+                and
+                <router-link to="privacypolicy">privacy policy</router-link>
+            </md-checkbox>
+            <md-button class="md-raised md-primary">Sign up</md-button>
         </div>
         <p>Already have an Glocal Click account? <router-link to="login">Log in.</router-link></p>
     </div>
