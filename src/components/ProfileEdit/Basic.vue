@@ -1,6 +1,6 @@
 <template>
-    <md-step md-label="Dunder Miflin">
-        <p>This seems something basic I need to do first before the next step.</p>
+    <md-step md-label="Basic Info">
+        <h3>Upload Your Profile Photo</h3>
     </md-step>
 </template>
 
