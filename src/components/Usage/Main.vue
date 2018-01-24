@@ -6,10 +6,8 @@
             md-flex-medium="50"
             md-flex-large="50"
             style="padding: 0 4%">
-            <form :style="$route.name === 'forgotpassword' ? 'padding: 0' : ''">
-                <Login v-if="$route.name === 'login'" id="login-form"></Login>
-                <Register v-else-if="$route.name === 'register'" id="signup-form"></Register>
-                <ForgotPassword id="forgot-form" v-else></ForgotPassword>
+            <form :style="$route.name === 'ForgotPassword' ? 'padding: 0' : ''">
+                <component :is="contentView"></component>
             </form>
         </md-layout>
     </md-layout>
@@ -21,6 +19,14 @@ import ForgotPassword from './ForgotPassword';
 
 export default {
     components: { Login, Register, ForgotPassword },
+    data() {
+        return {
+            contentView: this.$route.name,
+        };
+    },
+    beforeUpdate() {
+        this.contentView = this.$route.name;
+    },
 };
 </script>
 <style lang="scss" scoped>

@@ -43,17 +43,17 @@ export default new Router({
                 {
                     path: 'login',
                     component: Usage,
-                    name: 'login',
+                    name: 'Login',
                 },
                 {
                     path: 'register',
                     component: Usage,
-                    name: 'register',
+                    name: 'Register',
                 },
                 {
                     path: 'forgotpassword',
                     component: Usage,
-                    name: 'forgotpassword',
+                    name: 'ForgotPassword',
                 },
                 {
                     path: 'profileedit',

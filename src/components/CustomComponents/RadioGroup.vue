@@ -23,6 +23,9 @@ export default {
             default: 0,
         },
     },
+    created() {
+        this.$emit('update:value', this.selected);
+    },
     data() {
         const d = this.default < this.options.length ? this.default : this.options.length - 1;
         return {
@@ -41,6 +44,7 @@ export default {
     methods: {
         clicked(e) {
             this.selected = e.target.previousElementSibling.value;
+            this.$emit('update:value', this.selected);
         },
     },
 };
