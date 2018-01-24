@@ -1,6 +1,11 @@
 <template>
-    <md-layout md-gutter md-align="center">
-        <md-layout md-flex="50" style="max-width: 550px; padding: 0 4%">
+    <md-layout md-align="center">
+        <md-layout
+            md-flex-xsmall="85"
+            md-flex-small="85"
+            md-flex-medium="50"
+            md-flex-large="50"
+            style="padding: 0 4%">
             <form :style="$route.name === 'forgotpassword' ? 'padding: 0' : ''">
                 <Login v-if="$route.name === 'login'" id="login-form"></Login>
                 <Register v-else-if="$route.name === 'register'" id="signup-form"></Register>
@@ -20,7 +25,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 form {
-    max-width: 550px;
     width: 100%;
     margin: 10% 0;
     padding: 40px;

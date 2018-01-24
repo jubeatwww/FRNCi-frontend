@@ -54,9 +54,9 @@ input[type="radio"] {
         color: #60bc90;
     }
 
-    &:checked ~ button {
+    &:checked ~ button.md-button:not([disabled]):not(.md-raised) {
         color: white;
-        background-color: #60bc90 !important;
+        background-color: #60bc90;
     }
 }
 </style>
