@@ -26,7 +26,7 @@
                 and
                 <router-link to="privacypolicy">privacy policy</router-link>
             </md-checkbox>
-            <md-button class="md-raised md-primary">Sign up</md-button>
+            <md-button class="md-raised md-primary" @click="signup">Sign up</md-button>
         </div>
         <p>Already have an Glocal Click account? <router-link to="login">Log in.</router-link></p>
     </div>
@@ -40,6 +40,10 @@ export default {
             email: '',
             password: '',
         };
+    },
+    methods: {
+        signup() {
+        },
     },
 };
 </script>

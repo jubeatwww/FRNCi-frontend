@@ -1,12 +1,17 @@
 <template>
     <md-step md-label="Basic Info">
-        <h3>Upload Your Profile Photo</h3>
+        <form-field title="Upload Your Profile Photo">
+            <md-input-container>
+                <md-file v-model="photo" accept="image/*"></md-file>
+            </md-input-container>
+        </form-field>
         <form-field 
             title="Contact Email"
             description="Your email address will not be displayed on the site and shared with other users.">
               <md-input-container>
-                <label>A valid e-mail address you check regularly</label>
-                <md-input v-model="email"></md-input>
+                <md-input 
+                    placeholder="A valid e-mail address you check regularly"
+                    v-model="email"></md-input>
             </md-input-container>
         </form-field>
         <form-field title="Gender">
@@ -31,8 +36,9 @@
         <form-field 
             title="Current Location">
               <md-input-container>
-                <label>The city you are living in</label>
-                <md-input v-model="location"></md-input>
+                <md-input 
+                    placeholder="The city you are living in"    
+                    v-model="location"></md-input>
             </md-input-container>
         </form-field>
     </md-step>
@@ -46,6 +52,7 @@ export default {
     components: { RadioGroup, FormField },
     data() {
         return {
+            photo: '',
             email: '',
             gender: '',
             nationality: 'tw',
