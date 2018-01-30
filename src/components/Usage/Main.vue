@@ -1,9 +1,13 @@
 <template>
-    <md-layout md-gutter md-align="center">
-        <md-layout md-flex="40" style="max-width: 600px">
-            <form>
-                <Login v-if="$route.name === 'login'"></Login>
-                <Register v-else></Register>
+    <md-layout md-align="center">
+        <md-layout
+            md-flex-xsmall="85"
+            md-flex-small="85"
+            md-flex-medium="50"
+            md-flex-large="50"
+            style="padding: 0 4%">
+            <form :style="$route.name === 'ForgotPassword' ? 'padding: 0' : ''">
+                <component :is="contentView"></component>
             </form>
         </md-layout>
     </md-layout>
@@ -11,14 +15,22 @@
 <script>
 import Login from './Login';
 import Register from './Register';
+import ForgotPassword from './ForgotPassword';
 
 export default {
-    components: { Login, Register },
+    components: { Login, Register, ForgotPassword },
+    data() {
+        return {
+            contentView: this.$route.name,
+        };
+    },
+    beforeUpdate() {
+        this.contentView = this.$route.name;
+    },
 };
 </script>
 <style lang="scss" scoped>
 form {
-    max-width: 600px;
     width: 100%;
     margin: 10% 0;
     padding: 40px;

@@ -20,7 +20,7 @@
                 <md-input v-model="password" type="password" required></md-input>
             </md-input-container>
         </div>
-        <a href="" id="forgot-pwd-btn">Forgot password?</a>
+        <router-link to="forgotpassword" id="forgot-pwd-btn">Forgot password?</router-link>
         <md-button class="md-raised md-primary">Log in</md-button>
         <p>Don't have an account? <router-link to="register">Sign up now!</router-link></p>
     </md-layout>

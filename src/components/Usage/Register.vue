@@ -1,7 +1,7 @@
 <template>
     <div class="form-wrapper">
         <p>Sign up with <a href="">Facebook</a> or <a href="">Google</a></p>
-        <div>
+        <div class="or-separator">
             <hr><span>or</span>
         </div>
         <div>
@@ -26,7 +26,7 @@
                 and
                 <router-link to="privacypolicy">privacy policy</router-link>
             </md-checkbox>
-            <md-button class="md-raised md-primary">Sign up</md-button>
+            <md-button class="md-raised md-primary" @click="signup">Sign up</md-button>
         </div>
         <p>Already have an Glocal Click account? <router-link to="login">Log in.</router-link></p>
     </div>
@@ -40,6 +40,10 @@ export default {
             email: '',
             password: '',
         };
+    },
+    methods: {
+        signup() {
+        },
     },
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <header :style="[headerColor, isHome]">
+    <header :style="isHome">
         <div id="logo" @click="home"></div>
         <nav>
             <md-theme md-name="orange">
@@ -12,7 +12,6 @@
 
 <script>
 export default {
-    props: ['scrollTop'],
     computed: {
         isHome() {
             return this.$route.name === 'home' ? { position: 'fixed' } : { position: 'relative' };
@@ -40,6 +39,7 @@ header{
     width: 100vw;
     transition: all .2s linear;
     background-color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 
     #logo{
         height: 36px;
