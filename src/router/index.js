@@ -11,6 +11,9 @@ import VueMaterial from 'vue-material';
 import 'vue-material/dist/vue-material.css';
 import 'font-awesome/css/font-awesome.css';
 
+import { API_URL } from '../config';
+
+
 Vue.use(VueMaterial);
 Vue.use(Router);
 
@@ -24,7 +27,7 @@ Vue.material.registerTheme({
     },
 });
 
-export default new Router({
+const router = new Router({
     routes: [
         {
             path: '/',
@@ -39,6 +42,9 @@ export default new Router({
                     path: 'profile/:id',
                     component: Profile,
                     name: 'profile',
+                    meta: {
+                        requireAuth: true,
+                    },
                 },
                 {
                     path: 'login',
@@ -64,3 +70,42 @@ export default new Router({
         },
     ],
 });
+
+router.beforeEach(async (to, from, next) => {
+    console.log(to, from);
+    const [userid, token] = [
+        localStorage.getItem('_id'),
+        localStorage.getItem('_token'),
+    ];
+    if (userid && token) {
+        const info = await fetch(`${API_URL}/users/${userid}`, {
+            mode: 'cors',
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                Authorization: token,
+            }),
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            throw res;
+        }).catch((err) => {
+            console.log(err);
+            if (to.meta.requireAuth) {
+                next('login');
+            }
+        });
+        console.log(info);
+        // eslint-disable-next-line
+        to.params.isLogin = true;
+        next();
+    }
+
+    if (to.meta.requireAuth) {
+        next('login');
+    }
+    next();
+});
+
+export default router;

@@ -1,10 +1,26 @@
 <template>
-    <header :style="[headerColor, isHome]">
-        <div id="logo" @click="home"></div>
+    <header :style="isHome">
+        <div id="logo" @click="homeLink"></div>
         <nav>
             <md-theme md-name="orange">
                 <md-button class="md-raised md-primary">Find Buddies</md-button>
-                <md-button class="md-dense" @click="loginClick">Sign Up/Login</md-button>
+                <md-menu md-direction="bottom left" v-if="$route.params.isLogin">
+                    <md-avatar class="md-avatar-icon" md-menu-trigger>
+                        <md-icon>folder</md-icon>
+                    </md-avatar>
+                    <md-menu-content>
+                        <md-menu-item>My Account</md-menu-item>
+                        <md-menu-item>My Profile Page</md-menu-item>
+                        <md-menu-item>Get Verfied</md-menu-item>
+                        <md-menu-item @selected="logout">Log Out</md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+                <md-button 
+                    class="md-dense" 
+                    @click="loginLink" 
+                    v-else>
+                    Sign Up/Login
+                </md-button>
             </md-theme>
         </nav>
     </header>
@@ -19,12 +35,19 @@ export default {
         },
     },
     methods: {
-        home() {
+        homeLink() {
             this.$router.push({ path: '/' });
         },
-        loginClick() {
+        loginLink() {
             this.$router.push({ path: 'login' });
         },
+        logout() {
+            localStorage.clear();
+            this.$router.go(0);
+        },
+    },
+    created() {
+        console.log(this.$route);
     },
 };
 </script>

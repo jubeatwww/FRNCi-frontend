@@ -33,6 +33,45 @@ export default {
             password: '',
         };
     },
+    methods: {
+        async login() {
+            const { email, password } = this;
+            const loginInfo = await fetch(`${API_URL}/auth/login`, {
+                mode: 'cors',
+                method: 'POST',
+                body: JSON.stringify({ email, password }),
+                headers: new Headers({
+                    'Content-Type': 'application/json',
+                }),
+            }).then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                throw res;
+            }).catch((err) => {
+                console.log(err);
+                switch (err.status) {
+                case 401:
+                    break;
+                default:
+                    break;
+                }
+            });
+
+            if (loginInfo) {
+                const { _id } = loginInfo.user;
+                localStorage.setItem('_token', loginInfo.token);
+                localStorage.setItem('_id', _id);
+                this.$router.go(-1);
+            }
+        },
+        checkInput() {
+
+        },
+        setErrorMsg() {
+
+        },
+    },
 };
 </script>
 <style lang="scss" scoped>
