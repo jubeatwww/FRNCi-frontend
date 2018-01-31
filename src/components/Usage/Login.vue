@@ -20,12 +20,14 @@
                 <md-input v-model="password" type="password" required></md-input>
             </md-input-container>
         </div>
-        <a href="" id="forgot-pwd-btn">Forgot password?</a>
-        <md-button class="md-raised md-primary">Log in</md-button>
+        <router-link to="forgotpassword" id="forgot-pwd-btn">Forgot password?</router-link>
+        <md-button class="md-raised md-primary" @click="login">Log in</md-button>
         <p>Don't have an account? <router-link to="register">Sign up now!</router-link></p>
     </md-layout>
 </template>
 <script>
+import { API_URL } from '../../config';
+
 export default {
     data() {
         return {
@@ -85,6 +87,7 @@ export default {
 
 .login-btn {
     font-size: 20px;
+    text-transform: none;
     i {
         position: absolute;
         left: 10px;
@@ -109,27 +112,6 @@ export default {
         padding: 2%;
         color: #707070;
     }
-}
-
-.login-input {
-    label {
-        font-size: 10px;
-        padding-left: 28px;
-    }
-
-    .md-input-focused {
-        label {
-            padding-left: 0;
-        }
-    }
-
-    input {
-        border: 1px solid rgba(0, 0, 0, .2);
-        border-radius: 4px;
-        padding: 12px 25px 11px;
-        height: 40px;
-    }
-
 }
 
 #forgot-pwd-btn {

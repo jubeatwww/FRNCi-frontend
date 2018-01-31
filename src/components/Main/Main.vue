@@ -17,5 +17,12 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+body {
+    font-family: "Microsoft JhengHei", PMingLiU, MingLiu, "Segoe UI", "Helvetica", Garuda, Arial, sans-serif;
+
+    .md-button {
+        text-transform: none;
+    }
+}
 </style>

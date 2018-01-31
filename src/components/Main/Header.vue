@@ -28,7 +28,6 @@
 
 <script>
 export default {
-    props: ['scrollTop'],
     computed: {
         isHome() {
             return this.$route.name === 'home' ? { position: 'fixed' } : { position: 'relative' };
@@ -59,10 +58,11 @@ header{
     justify-content: space-between;
     z-index: 2;
     top: 0;
-    height: 80px;
+    height: 11vh;
     width: 100vw;
     transition: all .2s linear;
     background-color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 
     #logo{
         height: 36px;

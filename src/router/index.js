@@ -6,17 +6,16 @@ import Home from '@/components/Home/Main';
 import Profile from '@/components/Profile/Main';
 import Usage from '@/components/Usage/Main';
 import Policy from '@/components/Policy/Main';
+import ProfileEdit from '@/components/ProfileEdit/Main';
 
 import VueMaterial from 'vue-material';
 import 'vue-material/dist/vue-material.css';
-import 'font-awesome/css/font-awesome.css';
 
 import { API_URL } from '../config';
 
 
 Vue.use(VueMaterial);
 Vue.use(Router);
-
 
 Vue.material.registerTheme({
     black: {
@@ -49,12 +48,22 @@ const router = new Router({
                 {
                     path: 'login',
                     component: Usage,
-                    name: 'login',
+                    name: 'Login',
                 },
                 {
                     path: 'register',
                     component: Usage,
-                    name: 'register',
+                    name: 'Register',
+                },
+                {
+                    path: 'forgotpassword',
+                    component: Usage,
+                    name: 'ForgotPassword',
+                },
+                {
+                    path: 'profileedit',
+                    component: ProfileEdit,
+                    name: 'profileedit',
                 },
                 {
                     path: 'termsofservice',
