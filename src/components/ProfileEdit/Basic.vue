@@ -54,7 +54,7 @@ export default {
         return {
             photo: '',
             email: '',
-            gender: '',
+            gender: 'male',
             nationality: 'tw',
             location: '',
             genderOpt: [{ label: 'male', value: 'male' }, { label: 'female', value: 'female' }],

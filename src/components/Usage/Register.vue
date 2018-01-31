@@ -21,6 +21,10 @@
                 <label>Password</label>
                 <md-input v-model="password" type="password" required></md-input>
             </md-input-container>
+            <md-input-container md-has-password>
+                <label>Repeat Password</label>
+                <md-input v-model="repeatPassword" type="password" required></md-input>
+            </md-input-container>
             <md-checkbox>I agree to the Glocal Click 
                 <router-link to="termsofservice">terms of service</router-link>
                 and
@@ -32,6 +36,8 @@
     </div>
 </template>
 <script>
+import { API_URL } from '../../config';
+
 export default {
     data() {
         return {
@@ -39,10 +45,39 @@ export default {
             lastname: '',
             email: '',
             password: '',
+            repeatPassword: '',
         };
     },
     methods: {
-        signup() {
+        async signup() {
+            const { firstname, lastname, email, password } = this;
+            const signupInfo = fetch(`${API_URL}/auth/signup`, {
+                mode: 'cors',
+                method: 'POST',
+                body: JSON.stringify({ email, password, firstname, lastname }),
+                headers: new Headers({
+                    'Content-Type': 'application/json',
+                }),
+            }).then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                throw res;
+            }).catch((err) => {
+                console.log(err);
+                switch (err.status) {
+                case 400:
+                    break;
+                case 401:
+                    break;
+                default:
+                    break;
+                }
+            });
+
+            const { _id } = signupInfo.user;
+            localStorage.setItem('_token', signupInfo.token);
+            localStorage.setItem('_id', _id);
         },
     },
 };

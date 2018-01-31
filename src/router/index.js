@@ -14,7 +14,6 @@ import 'vue-material/dist/vue-material.css';
 Vue.use(VueMaterial);
 Vue.use(Router);
 
-
 Vue.material.registerTheme({
     black: {
         primary: 'black',
