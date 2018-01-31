@@ -45,9 +45,6 @@ export default {
             this.$router.go(0);
         },
     },
-    created() {
-        console.log(this.$route);
-    },
 };
 </script>
 

@@ -4,9 +4,9 @@
         <md-button id="fb-login" class="md-raised md-primary login-btn">
             <i class="fa fa-facebook"></i> Log in with Facebook
         </md-button>
-        <md-button id="google-login" class="md-raised md-primary login-btn">
+        <!--<md-button id="google-login" class="md-raised md-primary login-btn">
             <i class="fa fa-google"></i> Log in with Google
-        </md-button>
+        </md-button>-->
         <div class="or-separator">
             <hr><span>or</span>
         </div>
@@ -73,6 +73,11 @@ export default {
         setErrorMsg() {
 
         },
+    },
+    created() {
+        if (this.$route.params.isLogin) {
+            this.$router.go(-1);
+        }
     },
 };
 </script>
