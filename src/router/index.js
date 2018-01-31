@@ -102,17 +102,14 @@ router.beforeEach(async (to, from, next) => {
         }).catch((err) => {
             console.log(err);
             if (to.meta.requireAuth) {
-                next('login');
+                next({ path: 'login' });
             }
         });
-        console.log(info);
         // eslint-disable-next-line
         to.params.isLogin = true;
         next();
-    }
-
-    if (to.meta.requireAuth) {
-        next('login');
+    } else if (to.meta.requireAuth) {
+        next({ path: 'login' });
     }
     next();
 });

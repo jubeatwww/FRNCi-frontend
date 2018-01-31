@@ -74,6 +74,11 @@ export default {
 
         },
     },
+    created() {
+        if (this.$route.params.isLogin) {
+            this.$router.go(-1);
+        }
+    },
 };
 </script>
 <style lang="scss" scoped>
