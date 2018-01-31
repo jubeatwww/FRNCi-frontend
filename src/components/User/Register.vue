@@ -1,6 +1,8 @@
 <template>
     <div class="form-wrapper">
-        <p>Sign up with <a href="">Facebook</a> or <a href="">Google</a></p>
+        <md-button id="fb-signup" class="md-raised md-primary login-btn">
+            <i class="fa fa-facebook"></i> Sign up with Facebook
+        </md-button>
         <div class="or-separator">
             <hr><span>or</span>
         </div>

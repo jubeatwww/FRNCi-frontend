@@ -26,7 +26,10 @@
             <md-input-container>
                 <label for="nationality">Nationality</label>
                 <md-select name="nationality" id="nationality" v-model="nationality">
-                    <md-option value="tw">Taiwan</md-option>
+                    <md-option v-for="nation in nationalities" :value="nation.value" :key="nation.value">
+                        {{nation.label}}
+                    </md-option>
+                    <md-option value="">Taiwan</md-option>
                     <md-option value="us">United States</md-option>
                     <md-option value="jp">Japan</md-option>
                     <md-option value="kr">Korea</md-option>
@@ -47,6 +50,7 @@
 <script>
 import RadioGroup from '../CustomComponents/RadioGroup';
 import FormField from '../CustomComponents/FormField';
+import { nationalities } from '../../config';
 
 export default {
     components: { RadioGroup, FormField },
@@ -58,6 +62,7 @@ export default {
             nationality: 'tw',
             location: '',
             genderOpt: [{ label: 'male', value: 'male' }, { label: 'female', value: 'female' }],
+            nationalities,
         };
     },
 };

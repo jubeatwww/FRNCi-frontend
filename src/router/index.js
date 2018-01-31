@@ -13,7 +13,6 @@ import 'vue-material/dist/vue-material.css';
 
 import { API_URL } from '../config';
 
-
 Vue.use(VueMaterial);
 Vue.use(Router);
 
@@ -27,6 +26,7 @@ Vue.material.registerTheme({
 });
 
 const router = new Router({
+    mode: 'history',
     routes: [
         {
             path: '/',
@@ -64,6 +64,9 @@ const router = new Router({
                     path: 'profileedit',
                     component: ProfileEdit,
                     name: 'profileedit',
+                    meta: {
+                        requireAuth: true,
+                    },
                 },
                 {
                     path: 'termsofservice',
@@ -106,7 +109,7 @@ router.beforeEach(async (to, from, next) => {
             }
         });
         // eslint-disable-next-line
-        to.params.isLogin = true;
+        to.params.isLogin = info ? true : false;
         next();
     } else if (to.meta.requireAuth) {
         next({ path: 'login' });
