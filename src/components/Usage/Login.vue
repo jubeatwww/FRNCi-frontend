@@ -21,17 +21,55 @@
             </md-input-container>
         </div>
         <router-link to="forgotpassword" id="forgot-pwd-btn">Forgot password?</router-link>
-        <md-button class="md-raised md-primary">Log in</md-button>
+        <md-button class="md-raised md-primary" @click="login">Log in</md-button>
         <p>Don't have an account? <router-link to="register">Sign up now!</router-link></p>
     </md-layout>
 </template>
 <script>
+import { API_URL } from '../../config';
+
 export default {
     data() {
         return {
             email: '',
             password: '',
         };
+    },
+    methods: {
+        async login() {
+            const { email, password } = this;
+            const loginInfo = await fetch(`${API_URL}/auth/login`, {
+                mode: 'cors',
+                method: 'POST',
+                body: JSON.stringify({ email, password }),
+                headers: new Headers({
+                    'Content-Type': 'application/json',
+                }),
+            }).then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                throw res;
+            }).catch((err) => {
+                console.log(err);
+                switch (err.status) {
+                case 401:
+                    break;
+                default:
+                    break;
+                }
+            });
+
+            const { _id } = loginInfo.user;
+            localStorage.setItem('_token', loginInfo.token);
+            localStorage.setItem('_id', _id);
+        },
+        checkInput() {
+
+        },
+        setErrorMsg() {
+
+        },
     },
 };
 </script>

@@ -35,7 +35,7 @@ header{
     justify-content: space-between;
     z-index: 2;
     top: 0;
-    height: 80px;
+    height: 11vh;
     width: 100vw;
     transition: all .2s linear;
     background-color: white;
