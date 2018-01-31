@@ -4,7 +4,7 @@ import Router from 'vue-router';
 import Main from '@/components/Main/Main';
 import Home from '@/components/Home/Main';
 import Profile from '@/components/Profile/Main';
-import Usage from '@/components/Usage/Main';
+import User from '@/components/User/Main';
 import Policy from '@/components/Policy/Main';
 import ProfileEdit from '@/components/ProfileEdit/Main';
 
@@ -47,17 +47,17 @@ const router = new Router({
                 },
                 {
                     path: 'login',
-                    component: Usage,
+                    component: User,
                     name: 'Login',
                 },
                 {
                     path: 'register',
-                    component: Usage,
+                    component: User,
                     name: 'Register',
                 },
                 {
                     path: 'forgotpassword',
-                    component: Usage,
+                    component: User,
                     name: 'ForgotPassword',
                 },
                 {
