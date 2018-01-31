@@ -60,9 +60,12 @@ export default {
                 }
             });
 
-            const { _id } = loginInfo.user;
-            localStorage.setItem('_token', loginInfo.token);
-            localStorage.setItem('_id', _id);
+            if (loginInfo) {
+                const { _id } = loginInfo.user;
+                localStorage.setItem('_token', loginInfo.token);
+                localStorage.setItem('_id', _id);
+                this.$router.go(-1);
+            }
         },
         checkInput() {
 
