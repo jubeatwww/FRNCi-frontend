@@ -41,13 +41,17 @@
               <md-input-container>
                 <md-input 
                     placeholder="The city you are living in"    
-                    v-model="location"></md-input>
+                    v-model="location"
+                    class="location"
+                    ref="location"></md-input>
             </md-input-container>
         </form-field>
     </md-step>
 </template>
 
 <script>
+import jQuery from 'jquery';
+import 'geocomplete';
 import RadioGroup from '../CustomComponents/RadioGroup';
 import FormField from '../CustomComponents/FormField';
 import { nationalities } from '../../config';
@@ -64,6 +68,14 @@ export default {
             genderOpt: [{ label: 'male', value: 'male' }, { label: 'female', value: 'female' }],
             nationalities,
         };
+    },
+    mounted() {
+        /*  Set up geocomplete, since geocomplete won't trigger the v-model event,
+         *  bind the geocode:result event to sync the data of this template.
+         */
+        jQuery('.location').geocomplete().bind('geocode:result', () => {
+            this.location = this.$refs.location.$el.value;
+        });
     },
 };
 </script>

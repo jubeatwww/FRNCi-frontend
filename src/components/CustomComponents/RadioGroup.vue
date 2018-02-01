@@ -51,16 +51,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-input[type="radio"] {
-    display: none;
-    
-    & ~ button {
-        color: #60bc90;
-    }
+.radio-group {
+    display: flex;
 
-    &:checked ~ button.md-button:not([disabled]):not(.md-raised) {
-        color: white;
-        background-color: #60bc90;
+    input[type="radio"] {
+        display: none;
+        
+        & ~ button {
+            color: #60bc90;
+        }
+
+        &:checked ~ button.md-button:not([disabled]):not(.md-raised) {
+            color: white;
+            background-color: #60bc90;
+        }
     }
 }
 </style>
