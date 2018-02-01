@@ -27,5 +27,6 @@ export default {
     border: 1px solid #B5B2B2;
     border-radius: 40px;
     box-shadow: none;
+    text-align: left;
 }
 </style>
