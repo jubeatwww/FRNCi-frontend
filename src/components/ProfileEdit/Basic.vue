@@ -5,7 +5,7 @@
                 <md-file v-model="photo" accept="image/*"></md-file>
             </md-input-container>
         </form-field>
-        <form-field 
+        <form-field
             title="Contact Email"
             description="Your email address will not be displayed on the site and shared with other users.">
               <md-input-container>
@@ -22,6 +22,11 @@
             </radio-group>
         </form-field>
         <form-field
+            title="Birthday"
+            description="Only your age will be displayed on your profile.">
+            <date-picker v-model="birthday" class="md-input-container"></date-picker>
+        </form-field>
+        <form-field
             title="Nationality">
             <md-input-container>
                 <label for="nationality">Nationality</label>
@@ -29,10 +34,6 @@
                     <md-option v-for="nation in nationalities" :value="nation.value" :key="nation.value">
                         {{nation.label}}
                     </md-option>
-                    <md-option value="">Taiwan</md-option>
-                    <md-option value="us">United States</md-option>
-                    <md-option value="jp">Japan</md-option>
-                    <md-option value="kr">Korea</md-option>
                 </md-select>
             </md-input-container>
         </form-field>
@@ -52,17 +53,20 @@
 <script>
 import jQuery from 'jquery';
 import 'geocomplete';
+import DatePicker from 'vuejs-datepicker';
+
 import RadioGroup from '../CustomComponents/RadioGroup';
 import FormField from '../CustomComponents/FormField';
 import { nationalities } from '../../config';
 
 export default {
-    components: { RadioGroup, FormField },
+    components: { RadioGroup, FormField, DatePicker },
     data() {
         return {
             photo: '',
             email: '',
             gender: 'male',
+            birthday: '',
             nationality: 'tw',
             location: '',
             genderOpt: [{ label: 'male', value: 'male' }, { label: 'female', value: 'female' }],

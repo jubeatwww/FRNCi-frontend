@@ -21,10 +21,9 @@
             <md-input-container>
                 <label for="language">Language</label>
                 <md-select name="language" id="language" v-model="language">
-                    <md-option value="chinese">Chinese</md-option>
-                    <md-option value="english">English</md-option>
-                    <md-option value="japanese">Japanese</md-option>
-                    <md-option value="korean">Korean</md-option>
+                    <md-option v-for="lang in languages" :value="lang.value" :key="lang.value">
+                        {{lang.label}}
+                    </md-option>
                 </md-select>
             </md-input-container>
         </form-field>
@@ -34,10 +33,9 @@
             <md-input-container>
                 <label for="learning">Language</label>
                 <md-select name="learning" id="learning" v-model="learning">
-                    <md-option value="chinese">Chinese</md-option>
-                    <md-option value="english">English</md-option>
-                    <md-option value="japanese">Japanese</md-option>
-                    <md-option value="korean">Korean</md-option>
+                    <md-option v-for="lang in languages" :value="lang.value" :key="lang.value">
+                        {{lang.label}}
+                    </md-option>
                 </md-select>
             </md-input-container>
         </form-field>
@@ -48,15 +46,28 @@
                 name="level">
             </radio-group>
         </form-field>
+        <form-field
+            title="Your Favorite Topics (Select 5 at most)"
+            description="Pick a few topics you are interested in chatting with people so we can find the most matched buddies for you.">
+            <check-box-group
+                name="hobbies"
+                :options="_hobbies"
+                :value.sync="hobby"
+                :limit="5"
+                :columns="2">
+            </check-box-group>
+        </form-field>
     </md-step>
 </template>
 
 <script>
 import RadioGroup from '../CustomComponents/RadioGroup';
 import FormField from '../CustomComponents/FormField';
+import CheckBoxGroup from '../CustomComponents/CheckBoxGroup';
+import { languages, hobbies } from '../../config';
 
 export default {
-    components: { RadioGroup, FormField },
+    components: { RadioGroup, FormField, CheckBoxGroup },
     data() {
         return {
             preferToMeet: [
@@ -78,7 +89,21 @@ export default {
             learning: '',
             meet: '',
             interact: '',
+            hobby: [],
+            languages,
+            hobbies,
         };
+    },
+    computed: {
+        _hobbies() {
+            return this.hobbies.map((hobby) => {
+                const value = hobby.label.replace(/ \/ /g, '_').replace(/ & /g, '_n_');
+                return {
+                    label: hobby.label,
+                    value,
+                };
+            });
+        },
     },
 };
 </script>
