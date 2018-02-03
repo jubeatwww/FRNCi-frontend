@@ -1,8 +1,8 @@
 <template>
-    <md-step md-label="Basic Info">
+    <md-step md-label="Basic Info" :md-disabled="mdDisabled">
         <form-field title="Upload Your Profile Photo">
             <md-input-container>
-                <md-file v-model="photo" accept="image/*"></md-file>
+                <md-file v-model="info.photo" accept="image/*"></md-file>
             </md-input-container>
         </form-field>
         <form-field
@@ -11,26 +11,26 @@
               <md-input-container>
                 <md-input 
                     placeholder="A valid e-mail address you check regularly"
-                    v-model="email"></md-input>
+                    v-model="info.email"></md-input>
             </md-input-container>
         </form-field>
         <form-field title="Gender">
             <radio-group 
                 :options="genderOpt" 
-                :value.sync="gender"
+                :value.sync="info.gender"
                 name="gender">
             </radio-group>
         </form-field>
         <form-field
             title="Birthday"
             description="Only your age will be displayed on your profile.">
-            <date-picker v-model="birthday" class="md-input-container"></date-picker>
+            <date-picker v-model="info.birthday" class="md-input-container"></date-picker>
         </form-field>
         <form-field
             title="Nationality">
             <md-input-container>
                 <label for="nationality">Nationality</label>
-                <md-select name="nationality" id="nationality" v-model="nationality">
+                <md-select name="nationality" id="nationality" v-model="info.nationality">
                     <md-option v-for="nation in nationalities" :value="nation.value" :key="nation.value">
                         {{nation.label}}
                     </md-option>
@@ -42,7 +42,7 @@
               <md-input-container>
                 <md-input 
                     placeholder="The city you are living in"    
-                    v-model="location"
+                    v-model="info.location"
                     class="location"
                     ref="location"></md-input>
             </md-input-container>
@@ -60,18 +60,30 @@ import FormField from '../CustomComponents/FormField';
 import { nationalities } from '../../config';
 
 export default {
+    props: ['mdDisabled'],
     components: { RadioGroup, FormField, DatePicker },
     data() {
         return {
-            photo: '',
-            email: '',
-            gender: 'male',
-            birthday: '',
-            nationality: 'tw',
-            location: '',
+            info: {
+                photo: '',
+                email: '',
+                gender: 'male',
+                birthday: '',
+                nationality: 'tw',
+                location: '',
+            },
             genderOpt: [{ label: 'male', value: 'male' }, { label: 'female', value: 'female' }],
             nationalities,
         };
+    },
+    watch: {
+        info: {
+            handler(preData, nextData) {
+                const status = Object.values(nextData).every(val => val !== '');
+                this.$emit('update:completed', status);
+            },
+            deep: true,
+        },
     },
     mounted() {
         /*  Set up geocomplete, since geocomplete won't trigger the v-model event,

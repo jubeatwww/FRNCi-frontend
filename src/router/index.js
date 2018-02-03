@@ -84,7 +84,6 @@ const router = new Router({
 });
 
 router.beforeEach(async (to, from, next) => {
-    console.log(to, from);
     const [userid, token] = [
         localStorage.getItem('_id'),
         localStorage.getItem('_token'),
