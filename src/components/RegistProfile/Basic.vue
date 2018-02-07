@@ -81,6 +81,7 @@ export default {
             handler(preData, nextData) {
                 const status = Object.values(nextData).every(val => val !== '');
                 this.$emit('update:completed', status);
+                this.$emit('update:info', nextData);
             },
             deep: true,
         },
@@ -90,7 +91,7 @@ export default {
          *  bind the geocode:result event to sync the data of this template.
          */
         jQuery('.location').geocomplete().bind('geocode:result', () => {
-            this.location = this.$refs.location.$el.value;
+            this.info.location = this.$refs.location.$el.value;
         });
     },
 };

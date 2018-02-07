@@ -60,6 +60,9 @@
         <form-field
             title="Share More About Yourself"
             description="Tell something about your background and your passion! Help other members get to know you better!">
+            <md-input-container>
+                <md-textarea v-model="info.selfIntro"></md-textarea>
+            </md-input-container>
         </form-field>
     </md-step>
 </template>
@@ -96,6 +99,7 @@ export default {
                 learning: '',
                 level: 2,
                 hobby: [],
+                selfIntro: '',
             },
             languages,
             hobbies,
@@ -106,6 +110,7 @@ export default {
             handler(preData, nextData) {
                 const status = Object.values(nextData).every(val => val !== '') && nextData.hobby.length > 0;
                 this.$emit('update:completed', status);
+                this.$emit('update:info', nextData);
             },
             deep: true,
         },

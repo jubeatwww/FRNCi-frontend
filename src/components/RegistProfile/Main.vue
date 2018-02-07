@@ -3,12 +3,14 @@
         <md-layout
             md-flex="75"
             style="padding: 5% 4%">
-            <md-stepper>
+            <md-stepper @change="stepChanged" ref="stepper">
                 <Basic 
-                    :completed.sync="basicCompleted"></Basic>
+                    :completed.sync="basicCompleted"
+                    :info.sync="basicInfo"></Basic>
                 <Preference 
                     :completed.sync="preferenceCompleted" 
-                    :md-continue="continued"></Preference>
+                    :md-continue="continued"
+                    :info.sync="preferInfo"></Preference>
                 <md-step md-label="Payment" :md-disabled="!continued">
                 </md-step>
             </md-stepper>
@@ -27,6 +29,8 @@ export default {
             basicCompleted: false,
             preferenceCompleted: false,
             paymentEntered: false,
+            basicInfo: {},
+            preferInfo: {},
         };
     },
     computed: {
@@ -35,6 +39,12 @@ export default {
         },
     },
     methods: {
+        stepChanged(nextStep) {
+            if (nextStep === 2) {
+                console.log(this.basicInfo);
+                console.log(this.preferInfo);
+            }
+        },
     },
 };
 </script>
