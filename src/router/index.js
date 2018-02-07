@@ -6,7 +6,7 @@ import Home from '@/components/Home/Main';
 import Profile from '@/components/Profile/Main';
 import User from '@/components/User/Main';
 import Policy from '@/components/Policy/Main';
-import ProfileEdit from '@/components/ProfileEdit/Main';
+import RegistProfile from '@/components/RegistProfile/Main';
 
 import VueMaterial from 'vue-material';
 import 'vue-material/dist/vue-material.css';
@@ -61,9 +61,9 @@ const router = new Router({
                     name: 'ForgotPassword',
                 },
                 {
-                    path: 'profileedit',
-                    component: ProfileEdit,
-                    name: 'profileedit',
+                    path: 'registprofile',
+                    component: RegistProfile,
+                    name: 'registprofile',
                     meta: {
                         requireAuth: true,
                     },
@@ -84,7 +84,6 @@ const router = new Router({
 });
 
 router.beforeEach(async (to, from, next) => {
-    console.log(to, from);
     const [userid, token] = [
         localStorage.getItem('_id'),
         localStorage.getItem('_token'),
