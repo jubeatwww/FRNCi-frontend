@@ -89,10 +89,16 @@ const router = new Router({
                         {
                             path: 'account',
                             component: CtrlAccount,
+                            meta: {
+                                requireAuth: true,
+                            },
                         },
                         {
                             path: 'profile',
                             component: CtrlProfile,
+                            meta: {
+                                requireAuth: true,
+                            },
                         },
                     ],
                 },
