@@ -1,15 +1,15 @@
 <template>
     <md-step md-label="Preferences" :md-continue="mdContinue" :md-disabled="mdDisabled">
         <form-field title="Who You Prefer To Meet">
-            <radio-group 
-                :options="preferToMeet" 
+            <radio-group
+                :options="preferToMeet"
                 :value.sync="info.meet"
                 name="meet">
             </radio-group>
         </form-field>
         <form-field title="How You Prefer to Interact">
-            <radio-group 
-                :options="preferToInteract" 
+            <radio-group
+                :options="preferToInteract"
                 :value.sync="info.interact"
                 name="interact">
             </radio-group>
@@ -39,8 +39,8 @@
             </md-input-container>
         </form-field>
         <form-field title="Select Your Language Level">
-            <radio-group 
-                :options="level" 
+            <radio-group
+                :options="level"
                 :default="2"
                 :value.sync="info.level"
                 name="level">
@@ -51,7 +51,7 @@
             description="Pick a few topics you are interested in chatting with people so we can find the most matched buddies for you.">
             <check-box-group
                 name="hobbies"
-                :options="_hobbies"
+                :options="hobbies"
                 :value.sync="info.hobby"
                 :limit="5"
                 :columns="2">
@@ -113,17 +113,6 @@ export default {
                 this.$emit('update:info', nextData);
             },
             deep: true,
-        },
-    },
-    computed: {
-        _hobbies() {
-            return this.hobbies.map((hobby) => {
-                const value = hobby.label.replace(/ \/ /g, '_').replace(/ & /g, '_n_');
-                return {
-                    label: hobby.label,
-                    value,
-                };
-            });
         },
     },
 };
