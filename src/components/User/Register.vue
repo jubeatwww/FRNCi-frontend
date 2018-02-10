@@ -9,11 +9,11 @@
         <div>
             <md-input-container>
                 <label>First name</label>
-                <md-input v-model="firstname" required></md-input>
+                <md-input v-model="firstName" required></md-input>
             </md-input-container>
             <md-input-container>
                 <label>Last name</label>
-                <md-input v-model="lastname" required></md-input>
+                <md-input v-model="lastName" required></md-input>
             </md-input-container>
             <md-input-container>
                 <label>Email address</label>
@@ -27,7 +27,7 @@
                 <label>Repeat Password</label>
                 <md-input v-model="repeatPassword" type="password" required></md-input>
             </md-input-container>
-            <md-checkbox>I agree to the Glocal Click 
+            <md-checkbox>I agree to the Glocal Click
                 <router-link to="termsofservice">terms of service</router-link>
                 and
                 <router-link to="privacypolicy">privacy policy</router-link>
@@ -43,8 +43,8 @@ import { API_URL } from '../../config';
 export default {
     data() {
         return {
-            firstname: '',
-            lastname: '',
+            firstName: '',
+            lastName: '',
             email: '',
             password: '',
             repeatPassword: '',
@@ -52,11 +52,11 @@ export default {
     },
     methods: {
         async signup() {
-            const { firstname, lastname, email, password } = this;
+            const { firstName, lastName, email, password } = this;
             const signupInfo = fetch(`${API_URL}/auth/signup`, {
                 mode: 'cors',
                 method: 'POST',
-                body: JSON.stringify({ email, password, firstname, lastname }),
+                body: JSON.stringify({ email, password, firstName, lastName }),
                 headers: new Headers({
                     'Content-Type': 'application/json',
                 }),
