@@ -20,27 +20,11 @@
 </template>
 
 <script>
-import { API_URL } from '../../config';
 
 import Basic from './Basic';
 import Preference from './Preference';
 import Payment from './Payment';
-
-function loadProducts(nationality) {
-    const tags = nationality === 'tw' ? ['201803', 'tw_only'] : ['201803', 'fn_only'];
-    return fetch(`${API_URL}/products?tags=${tags}`, {
-        mode: 'cors',
-        method: 'GET',
-        headers: new Headers({
-            'Content-Type': 'application/json',
-        }),
-    }).then((res) => {
-        if (res.ok) {
-            return res.json();
-        }
-        throw res;
-    });
-}
+import loadProducts from '../../actions/products';
 
 export default {
     components: { Basic, Preference, Payment },

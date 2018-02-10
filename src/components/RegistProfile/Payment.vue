@@ -27,20 +27,73 @@
                 </div>
             </div>
             <button>Next: Confirm &amp; Pay</button>
+            <div id="gc-ecpay-checkout-form" style="display:none"></div>
         </div>
     </md-step>
 </template>
 
 <script>
 
+import jQuery from 'jquery';
+import { API_URL } from '../../config';
+
 export default {
     props: ['mdDisabled', 'paymentInfo'],
     data() {
-        return {};
+        return {
+            meta: {},
+        };
     },
     watch: {
     },
-    mounted() {
+    methods: {
+        selectProduct(product) {
+            this.product = product._id;
+        },
+        selectSession(event, session) {
+            this.meta[event._id] = { session: session.key };
+        },
+        async orderAndCheckout() {
+            const token = localStorage.getItem('_token');
+
+            const order = await fetch(`${API_URL}/orders`, {
+                mode: 'cors',
+                method: 'POST',
+                body: JSON.stringify({
+                    products: {
+                        [this.product]: 1,
+                    },
+                    meta: this.meta,
+                }),
+                headers: new Headers({
+                    'Content-Type': 'application/json',
+                    Authorization: token,
+                }),
+            }).then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                throw res;
+            });
+
+            const formHtml = await fetch(`${API_URL}/orders/${order._id}/checkout`, {
+                mode: 'cors',
+                method: 'POST',
+                headers: new Headers({
+                    'Content-Type': 'text/html',
+                    Authorization: token,
+                }),
+            }).then((res) => {
+                if (res.ok) {
+                    return res.text();
+                }
+                throw res;
+            });
+
+            const formContainer = document.getElementById('gc-ecpay-checkout-form');
+            formContainer.appendChild(jQuery.parseHTML(formHtml)[0]);
+            document.getElementById('_allpayForm').submit();
+        },
     },
 };
 </script>
