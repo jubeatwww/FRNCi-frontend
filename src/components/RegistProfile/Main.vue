@@ -12,6 +12,7 @@
                     :md-continue="continued"
                     :info.sync="preferInfo"></Preference>
                 <Payment
+                    :paymentInfo="paymentInfo"
                     :md-disabled="!continued"></Payment>
             </md-stepper>
         </md-layout>
@@ -19,9 +20,27 @@
 </template>
 
 <script>
+import { API_URL } from '../../config';
+
 import Basic from './Basic';
 import Preference from './Preference';
 import Payment from './Payment';
+
+function loadProducts(nationality) {
+    const tags = nationality === 'tw' ? ['201803', 'tw_only'] : ['201803', 'fn_only'];
+    return fetch(`${API_URL}/products?tags=${tags}`, {
+        mode: 'cors',
+        method: 'GET',
+        headers: new Headers({
+            'Content-Type': 'application/json',
+        }),
+    }).then((res) => {
+        if (res.ok) {
+            return res.json();
+        }
+        throw res;
+    });
+}
 
 export default {
     components: { Basic, Preference, Payment },
@@ -32,6 +51,9 @@ export default {
             paymentEntered: false,
             basicInfo: {},
             preferInfo: {},
+            paymentInfo: {
+                loading: true,
+            },
         };
     },
     computed: {
@@ -44,6 +66,14 @@ export default {
             if (nextStep === 2) {
                 console.log(this.basicInfo);
                 console.log(this.preferInfo);
+                if (!this.paymentInfo.products && this.basicInfo.nationality) {
+                    loadProducts(this.basicInfo.nationality).then((products) => {
+                        this.paymentInfo = Object.assign({}, this.paymentInfo, {
+                            products,
+                            loading: false,
+                        });
+                    });
+                }
             }
         },
     },
