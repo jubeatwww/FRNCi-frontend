@@ -24,7 +24,7 @@
 import Basic from './Basic';
 import Preference from './Preference';
 import Payment from './Payment';
-import loadProducts from '../../actions/products';
+import { loadProducts } from '../../actions/products';
 
 export default {
     components: { Basic, Preference, Payment },
@@ -52,10 +52,11 @@ export default {
                 console.log(this.preferInfo);
                 if (!this.paymentInfo.products && this.basicInfo.nationality) {
                     loadProducts(this.basicInfo.nationality).then((products) => {
-                        this.paymentInfo = Object.assign({}, this.paymentInfo, {
+                        this.paymentInfo = {
+                            ...this.paymentInfo,
                             products,
                             loading: false,
-                        });
+                        };
                     });
                 }
             }
