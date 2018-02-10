@@ -30,8 +30,7 @@
             description="Only your age will be displayed on your profile.">
             <date-picker v-model="info.birthday" class="md-input-container"></date-picker>
         </form-field>
-        <form-field
-            title="Nationality">
+        <form-field title="Nationality">
             <md-input-container>
                 <label for="nationality">Nationality</label>
                 <md-select name="nationality" id="nationality" v-model="info.nationality">
@@ -41,9 +40,8 @@
                 </md-select>
             </md-input-container>
         </form-field>
-        <form-field
-            title="Current Location">
-              <md-input-container>
+        <form-field title="Current Location">
+            <md-input-container>
                 <md-input
                     placeholder="The city you are living in"
                     v-model="info.location"
@@ -51,20 +49,14 @@
                     ref="location"></md-input>
             </md-input-container>
         </form-field>
-        <form-field
-            title="Occupation">
-              <md-input-container>
-                <md-input
-                    v-model="info.occupation"
-                    ref="location"></md-input>
+        <form-field title="Occupation">
+            <md-input-container>
+                <md-input v-model="info.occupation"></md-input>
             </md-input-container>
         </form-field>
-        <form-field
-            title="Major / Profession">
-              <md-input-container>
-                <md-input
-                    v-model="info.major"
-                    ref="location"></md-input>
+        <form-field title="Major / Profession">
+            <md-input-container>
+                <md-input v-model="info.major"></md-input>
             </md-input-container>
         </form-field>
         <md-button class="md-raised md-primary">Save</md-button>
