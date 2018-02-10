@@ -7,6 +7,9 @@ import Profile from '@/components/Profile/Main';
 import User from '@/components/User/Main';
 import Policy from '@/components/Policy/Main';
 import RegistProfile from '@/components/RegistProfile/Main';
+import ControlPanel from '@/components/ControlPanel/Main';
+import CtrlAccount from '@/components/ControlPanel/Account/Main';
+import CtrlProfile from '@/components/ControlPanel/Profile/Main';
 
 import VueMaterial from 'vue-material';
 import 'vue-material/dist/vue-material.css';
@@ -77,6 +80,21 @@ const router = new Router({
                     path: 'privacypolicy',
                     component: Policy,
                     name: 'Privacy Policy',
+                },
+                {
+                    path: 'controlpanel',
+                    component: ControlPanel,
+                    name: 'Control Panel',
+                    children: [
+                        {
+                            path: 'account',
+                            component: CtrlAccount,
+                        },
+                        {
+                            path: 'profile',
+                            component: CtrlProfile,
+                        },
+                    ],
                 },
             ],
         },

@@ -3,7 +3,7 @@
         <div id="frnci-info">
             <div id="qr-code">
                 <h5>SUBSCRIBE FOR LATEST NEWS</h5>
-                <img src="static/img/line.png" />
+                <img src="/static/img/line.png" />
             </div>
             <div id="links">
                 <div class="services">
@@ -45,7 +45,7 @@
                     <h5>Press</h5>
                     <ul>
                         <a v-for="i in 8" :key="i">
-                            <img :src="'static/img/press' + i + '.png'" />
+                            <img :src="'/static/img/press' + i + '.png'" />
                         </a>
                     </ul>
                 </div>
@@ -53,7 +53,7 @@
         </div>
         <div id="copyright">
             <div class="text">FRNCI.© ALL RIGHTS RESERVED.</div>
-            <a><img src="static/img/logowhite.png" /></a>
+            <a><img src="/static/img/logowhite.png" /></a>
         </div>
     </footer>
 </template>
