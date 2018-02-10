@@ -8,8 +8,8 @@ import User from '@/components/User/Main';
 import Policy from '@/components/Policy/Main';
 import RegistProfile from '@/components/RegistProfile/Main';
 import ControlPanel from '@/components/ControlPanel/Main';
-import CtrlAccount from '@/components/ControlPanel/Account/Main';
-import CtrlProfile from '@/components/ControlPanel/Profile/Main';
+import CtrlAccount from '@/components/ControlPanel/Account';
+import CtrlProfile from '@/components/ControlPanel/Profile';
 
 import VueMaterial from 'vue-material';
 import 'vue-material/dist/vue-material.css';

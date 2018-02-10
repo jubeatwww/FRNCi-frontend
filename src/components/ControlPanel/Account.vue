@@ -68,9 +68,9 @@ import jQuery from 'jquery';
 import 'geocomplete';
 import DatePicker from 'vuejs-datepicker';
 
-import RadioGroup from '../../CustomComponents/RadioGroup';
-import FormField from '../../CustomComponents/FormField';
-import { nationalities } from '../../../config';
+import RadioGroup from '../CustomComponents/RadioGroup';
+import FormField from '../CustomComponents/FormField';
+import { nationalities } from '../../config';
 
 export default {
     components: { FormField, RadioGroup, DatePicker },
