@@ -27,7 +27,7 @@
                 <label>Repeat Password</label>
                 <md-input v-model="repeatPassword" type="password" required></md-input>
             </md-input-container>
-            <md-checkbox>I agree to the Glocal Click 
+            <md-checkbox>I agree to the Glocal Click
                 <router-link to="termsofservice">terms of service</router-link>
                 and
                 <router-link to="privacypolicy">privacy policy</router-link>
@@ -56,7 +56,12 @@ export default {
             const signupInfo = fetch(`${API_URL}/auth/signup`, {
                 mode: 'cors',
                 method: 'POST',
-                body: JSON.stringify({ email, password, firstname, lastname }),
+                body: JSON.stringify({
+                  email,
+                  password,
+                  firstName: firstname,
+                  lastName: lastname
+                }),
                 headers: new Headers({
                     'Content-Type': 'application/json',
                 }),
