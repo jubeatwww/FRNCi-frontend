@@ -4,15 +4,15 @@
             md-flex="75"
             style="padding: 5% 4%">
             <md-stepper @change="stepChanged" ref="stepper">
-                <Basic 
+                <Basic
                     :completed.sync="basicCompleted"
                     :info.sync="basicInfo"></Basic>
-                <Preference 
-                    :completed.sync="preferenceCompleted" 
+                <Preference
+                    :completed.sync="preferenceCompleted"
                     :md-continue="continued"
                     :info.sync="preferInfo"></Preference>
-                <md-step md-label="Payment" :md-disabled="!continued">
-                </md-step>
+                <Payment
+                    :md-disabled="!continued"></Payment>
             </md-stepper>
         </md-layout>
     </md-layout>
@@ -21,9 +21,10 @@
 <script>
 import Basic from './Basic';
 import Preference from './Preference';
+import Payment from './Payment';
 
 export default {
-    components: { Basic, Preference },
+    components: { Basic, Preference, Payment },
     data() {
         return {
             basicCompleted: false,
