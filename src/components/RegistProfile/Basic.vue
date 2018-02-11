@@ -42,7 +42,7 @@
               <md-input-container>
                 <md-input 
                     placeholder="The city you are living in"    
-                    v-model="info.location"
+                    v-model="info.localCity"
                     class="location"
                     ref="location"></md-input>
             </md-input-container>
@@ -70,9 +70,9 @@ export default {
                 gender: 'male',
                 birthday: '',
                 nationality: 'tw',
-                location: '',
+                localCity: '',
             },
-            genderOpt: [{ label: 'male', value: 'male' }, { label: 'female', value: 'female' }],
+            genderOpt: [{ label: 'male', value: 'm' }, { label: 'female', value: 'f' }],
             nationalities,
         };
     },
