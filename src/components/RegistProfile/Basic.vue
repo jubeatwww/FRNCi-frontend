@@ -44,7 +44,7 @@
                     placeholder="The city you are living in"    
                     v-model="info.localCity"
                     class="location"
-                    ref="location"></md-input>
+                    ref="localCity"></md-input>
             </md-input-container>
         </form-field>
     </md-step>
@@ -91,7 +91,7 @@ export default {
          *  bind the geocode:result event to sync the data of this template.
          */
         jQuery('.location').geocomplete().bind('geocode:result', () => {
-            this.info.location = this.$refs.location.$el.value;
+            this.info.localCity = this.$refs.localCity.$el.value;
         });
     },
 };

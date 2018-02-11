@@ -21,6 +21,7 @@
 <script>
 import Basic from './Basic';
 import Preference from './Preference';
+import { API_URL } from '../../config';
 
 export default {
     components: { Basic, Preference },
@@ -39,10 +40,39 @@ export default {
         },
     },
     methods: {
-        stepChanged(nextStep) {
+        async stepChanged(nextStep) {
             if (nextStep === 2) {
-                console.log(this.basicInfo);
-                console.log(this.preferInfo);
+                const [userid, token] = [
+                    localStorage.getItem('_id'),
+                    localStorage.getItem('_token'),
+                ];
+                const userInfo = {
+                    ...this.basicInfo,
+                    ...this.preferInfo,
+                };
+
+                const ret = await fetch(`${API_URL}/users/${userid}`, {
+                    mode: 'cors',
+                    method: 'PUT',
+                    body: JSON.stringify(userInfo),
+                    headers: new Headers({
+                        'Content-Type': 'application/json',
+                        Authorization: token,
+                    }),
+                }).then((res) => {
+                    if (res.ok) {
+                        return res.json();
+                    }
+                    throw res;
+                }).catch((err) => {
+                    console.error(err);
+                    switch (err.status) {
+                    case 401:
+                        break;
+                    default:
+                        break;
+                    }
+                });
             }
         },
     },

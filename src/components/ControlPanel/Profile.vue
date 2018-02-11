@@ -29,7 +29,7 @@
             <check-box-group
                 name="hobbies"
                 :options="hobbies"
-                :value.sync="info.hobby"
+                :value.sync="info.interests"
                 :limit="5"
                 :columns="2">
             </check-box-group>
@@ -86,7 +86,7 @@ export default {
             info: {
                 meet: '',
                 interact: '',
-                hobby: [],
+                interests: [],
                 hobbyDetail: '',
                 learningGoal: '',
                 buddyExpectation: '',

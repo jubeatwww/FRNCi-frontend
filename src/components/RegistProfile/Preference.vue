@@ -52,7 +52,7 @@
             <check-box-group
                 name="hobbies"
                 :options="hobbies"
-                :value.sync="info.hobby"
+                :value.sync="info.interests"
                 :limit="5"
                 :columns="2">
             </check-box-group>
@@ -98,7 +98,7 @@ export default {
                 nativeLanguages: '',
                 studyLanguages: '',
                 level: 2,
-                hobby: [],
+                interests: [],
                 introduction: '',
             },
             languages,
@@ -108,7 +108,7 @@ export default {
     watch: {
         info: {
             handler(preData, nextData) {
-                const status = Object.values(nextData).every(val => val !== '') && nextData.hobby.length > 0;
+                const status = Object.values(nextData).every(val => val !== '') && nextData.interests.length > 0;
                 this.$emit('update:completed', status);
                 this.$emit('update:info', nextData);
             },
