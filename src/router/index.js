@@ -7,6 +7,7 @@ import Profile from '@/components/Profile/Main';
 import User from '@/components/User/Main';
 import Policy from '@/components/Policy/Main';
 import RegistProfile from '@/components/RegistProfile/Main';
+import EmailVerification from '@/components/EmailVerification/Main';
 import ControlPanel from '@/components/ControlPanel/Main';
 import CtrlAccount from '@/components/ControlPanel/Account';
 import CtrlProfile from '@/components/ControlPanel/Profile';
@@ -62,6 +63,43 @@ const router = new Router({
                     path: 'forgotpassword',
                     component: User,
                     name: 'ForgotPassword',
+                },
+                {
+                    path: 'email-verification',
+                    component: EmailVerification,
+                    name: 'Email Verification',
+                    beforeEnter(to, from, next) {
+                        const { token } = to.query;
+                        const userId = localStorage.getItem('_id');
+                        const verifyInfo = { userId, token };
+
+                        fetch(`${API_URL}/users/${userId}/confirm-verify`, {
+                            mode: 'cors',
+                            method: 'POST',
+                            body: JSON.stringify(verifyInfo),
+                            headers: new Headers({
+                                'Content-Type': 'application/json',
+                                Authorization: token,
+                            }),
+                        }).then((res) => {
+                            if (res.ok) {
+                                next('registprofile');
+                                return res.json();
+                            }
+                            throw res;
+                        }).catch((err) => {
+                            console.log(err);
+                            switch (err.status) {
+                            case 400:
+                                break;
+                            case 401:
+                                break;
+                            default:
+                                break;
+                            }
+                        });
+                        next();
+                    },
                 },
                 {
                     path: 'registprofile',
