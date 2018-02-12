@@ -2,7 +2,9 @@
     <md-step md-label="Basic Info" :md-disabled="mdDisabled">
         <form-field title="Upload Your Profile Photo">
             <md-input-container>
-                <md-file v-model="info.photo" accept="image/*"></md-file>
+                <md-file v-model="info.photo" accept="image/*"
+                    @input="fileInput"
+                    ref="fileUploader"></md-file>
             </md-input-container>
         </form-field>
         <form-field
@@ -42,9 +44,9 @@
               <md-input-container>
                 <md-input 
                     placeholder="The city you are living in"    
-                    v-model="info.location"
+                    v-model="info.localCity"
                     class="location"
-                    ref="location"></md-input>
+                    ref="localCity"></md-input>
             </md-input-container>
         </form-field>
     </md-step>
@@ -57,7 +59,7 @@ import DatePicker from 'vuejs-datepicker';
 
 import RadioGroup from '../CustomComponents/RadioGroup';
 import FormField from '../CustomComponents/FormField';
-import { nationalities } from '../../config';
+import { API_URL, nationalities } from '../../config';
 
 export default {
     props: ['mdDisabled'],
@@ -70,9 +72,9 @@ export default {
                 gender: 'male',
                 birthday: '',
                 nationality: 'tw',
-                location: '',
+                localCity: '',
             },
-            genderOpt: [{ label: 'male', value: 'male' }, { label: 'female', value: 'female' }],
+            genderOpt: [{ label: 'male', value: 'm' }, { label: 'female', value: 'f' }],
             nationalities,
         };
     },
@@ -86,12 +88,45 @@ export default {
             deep: true,
         },
     },
+    methods: {
+        async fileInput() {
+            const file = this.$refs.fileUploader.$refs.fileInput.files[0];
+            const [userid, token] = [
+                localStorage.getItem('_id'),
+                localStorage.getItem('_token'),
+            ];
+
+            const formdata = new FormData();
+            formdata.append('image', file);
+            await fetch(`${API_URL}/users/${userid}/profile-photo`, {
+                mode: 'cors',
+                method: 'POST',
+                body: formdata,
+                headers: new Headers({
+                    Authorization: token,
+                }),
+            }).then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                throw res;
+            }).catch((err) => {
+                console.error(err);
+                switch (err.status) {
+                case 401:
+                    break;
+                default:
+                    break;
+                }
+            });
+        },
+    },
     mounted() {
         /*  Set up geocomplete, since geocomplete won't trigger the v-model event,
          *  bind the geocode:result event to sync the data of this template.
          */
         jQuery('.location').geocomplete().bind('geocode:result', () => {
-            this.info.location = this.$refs.location.$el.value;
+            this.info.localCity = this.$refs.localCity.$el.value;
         });
     },
 };

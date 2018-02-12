@@ -25,6 +25,7 @@ import Basic from './Basic';
 import Preference from './Preference';
 import Payment from './Payment';
 import { loadProducts } from '../../actions/products';
+import { API_URL } from '../../config';
 
 export default {
     components: { Basic, Preference, Payment },
@@ -46,11 +47,48 @@ export default {
         },
     },
     methods: {
-        stepChanged(nextStep) {
+        async stepChanged(nextStep) {
             if (nextStep === 2) {
-                console.log(this.basicInfo);
-                console.log(this.preferInfo);
-                if (!this.paymentInfo.products && this.basicInfo.nationality) {
+                const [userid, token] = [
+                    localStorage.getItem('_id'),
+                    localStorage.getItem('_token'),
+                ];
+                const userInfo = this.parseUserInfo({
+                    ...this.basicInfo,
+                    ...this.preferInfo,
+                });
+
+                const uploadResult = await fetch(`${API_URL}/users/${userid}`, {
+                    mode: 'cors',
+                    method: 'PUT',
+                    body: JSON.stringify(userInfo),
+                    headers: new Headers({
+                        'Content-Type': 'application/json',
+                        Authorization: token,
+                    }),
+                }).then((res) => {
+                    if (res.ok) {
+                        return res.json();
+                    }
+                    throw res;
+                }).catch((err) => {
+                    console.error(err);
+                    switch (err.status) {
+                    case 401:
+                        break;
+                    default:
+                        break;
+                    }
+                    /* Return to previous step when update user data failed from api.
+                     * We have to do this because vuematerial 0.8.2 doesn't provide the method
+                     * to prevent stepper from stepping forward,
+                     * and there is only a listener method that is able to know which step we are.
+                     * This should be fixed when vuematerial will have updated.
+                     */
+                    this.$refs.stepper.movePreviousStep();
+                });
+
+                if (uploadResult && !this.paymentInfo.products && this.basicInfo.nationality) {
                     loadProducts(this.basicInfo.nationality).then((products) => {
                         this.paymentInfo = {
                             ...this.paymentInfo,
@@ -60,6 +98,22 @@ export default {
                     });
                 }
             }
+        },
+        parseUserInfo(info) {
+            const userInfo = info;
+            userInfo.studyLanguages = [{
+                language: userInfo.studyLanguages,
+                level: userInfo.level,
+            }];
+            userInfo.nativeLanguages = [{
+                languages: userInfo.nativeLanguages,
+                level: 'native',
+            }];
+            delete userInfo.level;
+            delete userInfo.email;
+            delete userInfo.photo;
+
+            return userInfo;
         },
     },
 };

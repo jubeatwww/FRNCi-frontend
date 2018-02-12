@@ -1,7 +1,7 @@
 <template>
     <md-layout md-column>
         <div style="margin-bottom: 10%">Please log in to start your adventure.</div>
-        <md-button id="fb-login" class="md-raised md-primary login-btn">
+        <md-button id="fb-login" class="md-raised md-primary login-btn" @click="fbLogin">
             <i class="fa fa-facebook"></i> Log in with Facebook
         </md-button>
         <!--<md-button id="google-login" class="md-raised md-primary login-btn">
@@ -51,7 +51,7 @@ export default {
                 }
                 throw res;
             }).catch((err) => {
-                console.log(err);
+                console.error(err);
                 switch (err.status) {
                 case 401:
                     break;
@@ -66,6 +66,41 @@ export default {
                 localStorage.setItem('_id', _id);
                 this.$router.go(-1);
             }
+        },
+        async fbLogin() {
+            window.FB.login(async (fbres) => {
+                if (fbres.status === 'connected') {
+                    const { accessToken } = fbres.authResponse;
+                    const loginInfo = await fetch(`${API_URL}/auth/facebook`, {
+                        mode: 'cors',
+                        method: 'POST',
+                        body: JSON.stringify({ access_token: accessToken }),
+                        headers: new Headers({
+                            'Content-Type': 'application/json',
+                        }),
+                    }).then((res) => {
+                        if (res.ok) {
+                            return res.json();
+                        }
+                        throw res;
+                    }).catch((err) => {
+                        console.error(err);
+                        switch (err.status) {
+                        case 401:
+                            break;
+                        default:
+                            break;
+                        }
+                    });
+
+                    if (loginInfo) {
+                        const { _id } = loginInfo.user;
+                        localStorage.setItem('_token', loginInfo.token);
+                        localStorage.setItem('_id', _id);
+                        this.$router.go(-1);
+                    }
+                }
+            }, { scope: 'public_profile,email' });
         },
         checkInput() {
 
