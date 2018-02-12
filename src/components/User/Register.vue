@@ -53,7 +53,7 @@ export default {
     methods: {
         async signup() {
             const { firstName, lastName, email, password } = this;
-            const signupInfo = fetch(`${API_URL}/auth/signup`, {
+            const signupInfo = await fetch(`${API_URL}/auth/signup`, {
                 mode: 'cors',
                 method: 'POST',
                 body: JSON.stringify({ email, password, firstName, lastName }),
@@ -76,10 +76,11 @@ export default {
                     break;
                 }
             });
-
-            const { _id } = signupInfo.user;
-            localStorage.setItem('_token', signupInfo.token);
-            localStorage.setItem('_id', _id);
+            if (signupInfo) {
+                const { _id } = signupInfo.user;
+                localStorage.setItem('_token', signupInfo.token);
+                localStorage.setItem('_id', _id);
+            }
         },
     },
 };

@@ -27,7 +27,12 @@
 </template>
 
 <script>
+import { API_URL } from '../../config';
+
 export default {
+    data() {
+        return { avatar: '' };
+    },
     computed: {
         isHome() {
             return this.$route.name === 'home' ? { position: 'fixed' } : { position: 'relative' };
@@ -44,6 +49,37 @@ export default {
             localStorage.clear();
             this.$router.go(0);
         },
+    },
+    async created() {
+        const [userid, token, avatar] = [
+            localStorage.getItem('_id'),
+            localStorage.getItem('_token'),
+            localStorage.getItem('_avatar'),
+        ];
+
+        if (userid && token && !avatar) {
+            const info = await fetch(`${API_URL}/users/${userid}`, {
+                mode: 'cors',
+                method: 'GET',
+                headers: new Headers({
+                    'Content-Type': 'application/json',
+                    Authorization: token,
+                }),
+            }).then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                throw res;
+            }).catch((err) => {
+                console.error(err);
+                this.$router.push('login');
+            });
+
+            localStorage.setItem('_avatar', info.photo);
+            this.avatar = info.photo;
+        } else {
+            this.avatar = avatar;
+        }
     },
 };
 </script>

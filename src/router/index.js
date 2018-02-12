@@ -154,7 +154,7 @@ router.beforeEach(async (to, from, next) => {
         localStorage.getItem('_token'),
     ];
     if (userid && token) {
-        const info = await fetch(`${API_URL}/users/${userid}`, {
+        const response = await fetch(`${API_URL}/users/${userid}/integrity`, {
             mode: 'cors',
             method: 'GET',
             headers: new Headers({
@@ -173,12 +173,17 @@ router.beforeEach(async (to, from, next) => {
             }
         });
         // eslint-disable-next-line
-        to.params.isLogin = info ? true : false;
-        next();
+        to.params.isLogin = response ? true : false;
+        if (!response.integrity && to.name !== 'registprofile') {
+            next({ path: 'registprofile' });
+        } else {
+            next();
+        }
     } else if (to.meta.requireAuth) {
         next({ path: 'login' });
+    } else {
+        next();
     }
-    next();
 });
 
 export default router;
