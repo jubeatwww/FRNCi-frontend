@@ -46,10 +46,10 @@ export default {
                     localStorage.getItem('_id'),
                     localStorage.getItem('_token'),
                 ];
-                const userInfo = {
+                const userInfo = this.parseUserInfo({
                     ...this.basicInfo,
                     ...this.preferInfo,
-                };
+                });
 
                 await fetch(`${API_URL}/users/${userid}`, {
                     mode: 'cors',
@@ -81,6 +81,22 @@ export default {
                     this.$refs.stepper.movePreviousStep();
                 });
             }
+        },
+        parseUserInfo(info) {
+            const userInfo = info;
+            userInfo.studyLanguages = [{
+                language: userInfo.studyLanguages,
+                level: userInfo.level,
+            }];
+            userInfo.nativeLanguages = [{
+                languages: userInfo.nativeLanguages,
+                level: 'native',
+            }];
+            delete userInfo.level;
+            delete userInfo.email;
+            delete userInfo.photo;
+
+            return userInfo;
         },
     },
 };

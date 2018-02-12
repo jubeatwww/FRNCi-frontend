@@ -51,7 +51,7 @@ export default {
                 }
                 throw res;
             }).catch((err) => {
-                console.log(err);
+                console.error(err);
                 switch (err.status) {
                 case 401:
                     break;
@@ -84,7 +84,7 @@ export default {
                         }
                         throw res;
                     }).catch((err) => {
-                        console.log(err);
+                        console.error(err);
                         switch (err.status) {
                         case 401:
                             break;
