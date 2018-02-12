@@ -97,7 +97,7 @@ export default {
                 interact: '',
                 nativeLanguages: '',
                 studyLanguages: '',
-                level: 2,
+                level: 'intermediate',
                 interests: [],
                 introduction: '',
             },

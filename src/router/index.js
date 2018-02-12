@@ -70,7 +70,10 @@ const router = new Router({
                     name: 'Email Verification',
                     beforeEnter(to, from, next) {
                         const { token } = to.query;
-                        const userId = localStorage.getItem('_id');
+                        const [userId, authToken] = [
+                            localStorage.getItem('_id'),
+                            localStorage.getItem('_token'),
+                        ];
                         const verifyInfo = { userId, token };
 
                         fetch(`${API_URL}/users/${userId}/confirm-verify`, {
@@ -79,7 +82,7 @@ const router = new Router({
                             body: JSON.stringify(verifyInfo),
                             headers: new Headers({
                                 'Content-Type': 'application/json',
-                                Authorization: token,
+                                Authorization: authToken,
                             }),
                         }).then((res) => {
                             if (res.ok) {
@@ -88,7 +91,7 @@ const router = new Router({
                             }
                             throw res;
                         }).catch((err) => {
-                            console.log(err);
+                            console.error(err);
                             switch (err.status) {
                             case 400:
                                 break;
@@ -164,7 +167,7 @@ router.beforeEach(async (to, from, next) => {
             }
             throw res;
         }).catch((err) => {
-            console.log(err);
+            console.error(err);
             if (to.meta.requireAuth) {
                 next({ path: 'login' });
             }
