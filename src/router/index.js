@@ -174,6 +174,7 @@ router.beforeEach(async (to, from, next) => {
         });
         // eslint-disable-next-line
         to.params.isLogin = response ? true : false;
+
         if (!response.integrity && to.name !== 'registprofile') {
             next({ path: 'registprofile' });
         } else {
