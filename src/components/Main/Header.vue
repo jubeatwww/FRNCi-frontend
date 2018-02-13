@@ -6,8 +6,8 @@
                 <md-button class="md-raised md-primary">Find Buddies</md-button>
                 <md-menu md-direction="bottom left" v-if="$route.params.isLogin">
                     <md-avatar class="md-avatar-icon" md-menu-trigger>
-                        <md-icon v-if="avatar === ''">person</md-icon>
-                        <img :src="avatar" alt="Avatar" v-else>
+                        <md-icon v-if="showDefaultAvatar">person</md-icon>
+                        <img :src="$route.params.avatar" alt="Avatar" v-else>
                     </md-avatar>
                     <md-menu-content>
                         <md-menu-item>My Account</md-menu-item>
@@ -28,8 +28,6 @@
 </template>
 
 <script>
-import { API_URL } from '../../config';
-
 export default {
     data() {
         return { avatar: '' };
@@ -37,6 +35,9 @@ export default {
     computed: {
         isHome() {
             return this.$route.name === 'home' ? { position: 'fixed' } : { position: 'relative' };
+        },
+        showDefaultAvatar() {
+            return !this.$route.params.avatar;
         },
     },
     methods: {
@@ -48,39 +49,8 @@ export default {
         },
         logout() {
             localStorage.clear();
-            this.$router.go(0);
+            this.$router.push({ path: 'login' });
         },
-    },
-    async created() {
-        const [userid, token, avatar] = [
-            localStorage.getItem('_id'),
-            localStorage.getItem('_token'),
-            localStorage.getItem('_avatar'),
-        ];
-
-        if (userid && token && !avatar) {
-            const info = await fetch(`${API_URL}/users/${userid}`, {
-                mode: 'cors',
-                method: 'GET',
-                headers: new Headers({
-                    'Content-Type': 'application/json',
-                    Authorization: token,
-                }),
-            }).then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                throw res;
-            }).catch((err) => {
-                console.error(err);
-                this.$router.push('login');
-            });
-
-            localStorage.setItem('_avatar', info.photo);
-            this.avatar = info.photo;
-        } else {
-            this.avatar = avatar;
-        }
     },
 };
 </script>

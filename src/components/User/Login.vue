@@ -62,6 +62,8 @@ export default {
 
             if (loginInfo) {
                 const { _id } = loginInfo.user;
+                localStorage.clear();
+                localStorage.setItem('_email', loginInfo.email);
                 localStorage.setItem('_token', loginInfo.token);
                 localStorage.setItem('_id', _id);
                 this.$router.go(-1);
@@ -94,7 +96,10 @@ export default {
                     });
 
                     if (loginInfo) {
+                        console.log('fblogin', loginInfo);
                         const { _id } = loginInfo.user;
+                        localStorage.clear();
+                        localStorage.setItem('_email', loginInfo.email);
                         localStorage.setItem('_token', loginInfo.token);
                         localStorage.setItem('_id', _id);
                         this.$router.go(-1);
