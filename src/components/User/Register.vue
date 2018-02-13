@@ -78,8 +78,11 @@ export default {
             });
             if (signupInfo) {
                 const { _id } = signupInfo.user;
+                localStorage.clear();
                 localStorage.setItem('_token', signupInfo.token);
                 localStorage.setItem('_id', _id);
+                localStorage.setItem('_email', email);
+                this.$router.push('email-verify-notice');
             }
         },
     },

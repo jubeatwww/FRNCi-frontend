@@ -65,6 +65,11 @@ const router = new Router({
                     name: 'ForgotPassword',
                 },
                 {
+                    path: 'email-verify-notice',
+                    component: User,
+                    name: 'EmailVerifyNotice',
+                },
+                {
                     path: 'email-verification',
                     component: EmailVerification,
                     name: 'Email Verification',
@@ -154,6 +159,24 @@ router.beforeEach(async (to, from, next) => {
         localStorage.getItem('_token'),
     ];
     if (userid && token) {
+        const userInfo = await fetch(`${API_URL}/users/${userid}`, {
+            mode: 'cors',
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                Authorization: token,
+            }),
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            throw res;
+        }).catch((err) => {
+            console.error(err);
+            if (to.meta.requireAuth) {
+                next({ path: 'login' });
+            }
+        });
         const response = await fetch(`${API_URL}/users/${userid}/integrity`, {
             mode: 'cors',
             method: 'GET',
@@ -172,13 +195,26 @@ router.beforeEach(async (to, from, next) => {
                 next({ path: 'login' });
             }
         });
-        // eslint-disable-next-line
-        to.params.isLogin = response ? true : false;
-        if (!response.integrity && to.name !== 'registprofile') {
-            next({ path: 'registprofile' });
-        } else {
+        /* eslint-disable */
+        to.params.isLogin = response;
+        to.params.avatar = userInfo ? userInfo.photo : '';
+        /* eslint-enable */
+        if (to.name === 'registprofile' || to.name === 'EmailVerifyNotice') {
             next();
         }
+
+        if (userInfo && response) {
+            // eslint-disable-next-line
+            if (!userInfo.verification.email) {
+                localStorage.setItem('_email', userInfo.email);
+                next({ path: 'email-verify-notice' });
+            } else if (!response.integrity) {
+                next({ path: 'registprofile' });
+            }
+        } else if (to.meta.requireAuth) {
+            next({ path: 'login' });
+        }
+        next();
     } else if (to.meta.requireAuth) {
         next({ path: 'login' });
     } else {
