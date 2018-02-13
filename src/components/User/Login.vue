@@ -96,7 +96,6 @@ export default {
                     });
 
                     if (loginInfo) {
-                        console.log('fblogin', loginInfo);
                         const { _id } = loginInfo.user;
                         localStorage.clear();
                         localStorage.setItem('_email', loginInfo.email);
