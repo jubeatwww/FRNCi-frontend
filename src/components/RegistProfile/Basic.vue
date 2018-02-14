@@ -59,7 +59,7 @@ import DatePicker from 'vuejs-datepicker';
 
 import RadioGroup from '../CustomComponents/RadioGroup';
 import FormField from '../CustomComponents/FormField';
-import { API_URL, nationalities } from '../../config';
+import { nationalities } from '../../config';
 
 export default {
     props: ['mdDisabled'],
@@ -69,7 +69,7 @@ export default {
             info: {
                 photo: '',
                 email: '',
-                gender: 'male',
+                gender: 'm',
                 birthday: '',
                 nationality: 'tw',
                 localCity: '',
@@ -96,29 +96,10 @@ export default {
                 localStorage.getItem('_token'),
             ];
 
-            const formdata = new FormData();
-            formdata.append('image', file);
-            await fetch(`${API_URL}/users/${userid}/profile-photo`, {
-                mode: 'cors',
-                method: 'POST',
-                body: formdata,
-                headers: new Headers({
-                    Authorization: token,
-                }),
-            }).then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                throw res;
-            }).catch((err) => {
-                console.error(err);
-                switch (err.status) {
-                case 401:
-                    break;
-                default:
-                    break;
-                }
-            });
+            const result = await this.api.users.uploadPhoto(userid, token, file);
+            if (!result.ok) {
+                this.photo = '';
+            }
         },
     },
     mounted() {

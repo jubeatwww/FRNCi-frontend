@@ -12,13 +12,18 @@ import ControlPanel from '@/components/ControlPanel/Main';
 import CtrlAccount from '@/components/ControlPanel/Account';
 import CtrlProfile from '@/components/ControlPanel/Profile';
 
+import api from '@/actions/api/index';
+
 import VueMaterial from 'vue-material';
 import 'vue-material/dist/vue-material.css';
 
-import { API_URL } from '../config';
-
 Vue.use(VueMaterial);
 Vue.use(Router);
+Vue.mixin({
+    data() {
+        return { api };
+    },
+});
 
 Vue.material.registerTheme({
     black: {
@@ -68,44 +73,32 @@ const router = new Router({
                     path: 'email-verify-notice',
                     component: User,
                     name: 'EmailVerifyNotice',
+                    meta: {
+                        requireAuth: true,
+                    },
                 },
                 {
                     path: 'email-verification',
                     component: EmailVerification,
                     name: 'Email Verification',
-                    beforeEnter(to, from, next) {
-                        const { token } = to.query;
+                    meta: {
+                        requireAuth: true,
+                    },
+                    async beforeEnter(to, from, next) {
+                        const { token: verifyToken } = to.query;
                         const [userId, authToken] = [
                             localStorage.getItem('_id'),
                             localStorage.getItem('_token'),
                         ];
-                        const verifyInfo = { userId, token };
 
-                        fetch(`${API_URL}/users/${userId}/confirm-verify`, {
-                            mode: 'cors',
-                            method: 'POST',
-                            body: JSON.stringify(verifyInfo),
-                            headers: new Headers({
-                                'Content-Type': 'application/json',
-                                Authorization: authToken,
-                            }),
-                        }).then((res) => {
-                            if (res.ok) {
-                                next('registprofile');
-                                return res.json();
-                            }
-                            throw res;
-                        }).catch((err) => {
-                            console.error(err);
-                            switch (err.status) {
-                            case 400:
-                                break;
-                            case 401:
-                                break;
-                            default:
-                                break;
-                            }
-                        });
+                        const result = await api.user.confirmEmailVerify(
+                            userId,
+                            authToken,
+                            verifyToken,
+                        );
+                        if (result.ok) {
+                            next('registprofile');
+                        }
                         next();
                     },
                 },
@@ -159,60 +152,26 @@ router.beforeEach(async (to, from, next) => {
         localStorage.getItem('_token'),
     ];
     if (userid && token) {
-        const userInfo = await fetch(`${API_URL}/users/${userid}`, {
-            mode: 'cors',
-            method: 'GET',
-            headers: new Headers({
-                'Content-Type': 'application/json',
-                Authorization: token,
-            }),
-        }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            throw res;
-        }).catch((err) => {
-            console.error(err);
-            if (to.meta.requireAuth) {
-                next({ path: 'login' });
-            }
-        });
-        const response = await fetch(`${API_URL}/users/${userid}/integrity`, {
-            mode: 'cors',
-            method: 'GET',
-            headers: new Headers({
-                'Content-Type': 'application/json',
-                Authorization: token,
-            }),
-        }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            throw res;
-        }).catch((err) => {
-            console.error(err);
-            if (to.meta.requireAuth) {
-                next({ path: 'login' });
-            }
-        });
+        const userInfo = await api.users.get(userid, token);
+        const userIntegrity = await api.users.integrity(userid, token);
+
+        if ((!userIntegrity.ok || !userInfo.ok) && to.meta.requireAuth) {
+            next({ path: 'login' });
+        }
+
         /* eslint-disable */
-        to.params.isLogin = response;
+        to.params.isLogin = userInfo.ok;
         to.params.avatar = userInfo ? userInfo.photo : '';
         /* eslint-enable */
         if (to.name === 'registprofile' || to.name === 'EmailVerifyNotice') {
             next();
         }
 
-        if (userInfo && response) {
-            // eslint-disable-next-line
-            if (!userInfo.verification.email) {
-                localStorage.setItem('_email', userInfo.email);
-                next({ path: 'email-verify-notice' });
-            } else if (!response.integrity) {
-                next({ path: 'registprofile' });
-            }
-        } else if (to.meta.requireAuth) {
-            next({ path: 'login' });
+        if (!userInfo.verification.email) {
+            localStorage.setItem('_email', userInfo.email);
+            next({ path: 'email-verify-notice' });
+        } else if (!userIntegrity.integrity) {
+            next({ path: 'registprofile' });
         }
         next();
     } else if (to.meta.requireAuth) {

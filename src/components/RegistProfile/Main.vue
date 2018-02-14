@@ -21,7 +21,6 @@
 <script>
 import Basic from './Basic';
 import Preference from './Preference';
-import { API_URL } from '../../config';
 
 export default {
     components: { Basic, Preference },
@@ -51,35 +50,16 @@ export default {
                     ...this.preferInfo,
                 });
 
-                await fetch(`${API_URL}/users/${userid}`, {
-                    mode: 'cors',
-                    method: 'PUT',
-                    body: JSON.stringify(userInfo),
-                    headers: new Headers({
-                        'Content-Type': 'application/json',
-                        Authorization: token,
-                    }),
-                }).then((res) => {
-                    if (res.ok) {
-                        return res.json();
-                    }
-                    throw res;
-                }).catch((err) => {
-                    console.error(err);
-                    switch (err.status) {
-                    case 401:
-                        break;
-                    default:
-                        break;
-                    }
+                const result = await this.api.users.update(userid, token, userInfo);
+                if (!result.ok) {
                     /* Return to previous step when update user data failed from api.
-                     * We have to do this because vuematerial 0.8.2 doesn't provide the method
-                     * to prevent stepper from stepping forward,
-                     * and there is only a listener method that is able to know which step we are.
-                     * This should be fixed when vuematerial will have updated.
-                     */
+                    * We have to do this because vuematerial 0.8.2 doesn't provide the method
+                    * to prevent stepper from stepping forward,
+                    * and there is only a listener method that is able to know which step we are.
+                    * This should be fixed when vuematerial will have updated.
+                    */
                     this.$refs.stepper.movePreviousStep();
-                });
+                }
             }
         },
         parseUserInfo(info) {
