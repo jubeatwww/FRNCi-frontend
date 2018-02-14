@@ -38,5 +38,8 @@ p {
     text-align: left;
     line-height: 22px;
 }
+.md-theme-default a:not(.md-button) {
+    color: #f8b62c;
+}
 </style>
 
