@@ -163,17 +163,23 @@ router.beforeEach(async (to, from, next) => {
         to.params.isLogin = userInfo.ok;
         to.params.avatar = userInfo ? userInfo.photo : '';
         /* eslint-enable */
-        if (to.name === 'registprofile' || to.name === 'EmailVerifyNotice') {
+
+        localStorage.setItem('_email', userInfo.email);
+
+        if (to.name === 'EmailVerifyNotice' || to.name === 'registprofile') {
+            if (userInfo.verification.email && userIntegrity.integrity) {
+                next('/');
+            } else {
+                next();
+            }
+        } else {
+            if (!(userInfo.verification.email || userInfo.verification.facebook)) {
+                next({ path: 'email-verify-notice' });
+            } else if (!userIntegrity.integrity) {
+                next({ path: 'registprofile' });
+            }
             next();
         }
-
-        if (!userInfo.verification.email) {
-            localStorage.setItem('_email', userInfo.email);
-            next({ path: 'email-verify-notice' });
-        } else if (!userIntegrity.integrity) {
-            next({ path: 'registprofile' });
-        }
-        next();
     } else if (to.meta.requireAuth) {
         next({ path: 'login' });
     } else {
