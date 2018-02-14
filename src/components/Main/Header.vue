@@ -121,8 +121,8 @@ header{
         }
 
         button.md-theme-orange.md-button:not([disabled]).md-primary.md-raised:hover {
-            background-color: transparent;
-            color: #f8b62c;
+            background-color: #f8b62c;
+            color: white;
         }
     }
 }
