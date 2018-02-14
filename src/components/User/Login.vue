@@ -54,13 +54,11 @@ export default {
                     const result = await this.api.auth.fbLogin(fbres.authResponse.accessToken);
 
                     if (result.ok) {
-                        const { _id } = result.user;
+                        const { user: { _id }, email, token } = result;
                         localStorage.clear();
-                        localStorage.setItem('_email', result.email);
-                        localStorage.setItem('_token', result.token);
+                        localStorage.setItem('_email', email);
+                        localStorage.setItem('_token', token);
                         localStorage.setItem('_id', _id);
-                        const info = await this.api.users.get(_id, result.token);
-                        console.log(info);
                         this.$router.go(-1);
                     }
                 }
