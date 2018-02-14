@@ -113,16 +113,16 @@ header{
 
         button.md-theme-orange.md-button:not([disabled]).md-primary.md-raised {
             margin: 0 20px;
-            background: #e6af2a;
+            background: #f8b62c;
             padding: 0 10px;
-            border: 2px solid #e6af2a;
+            border: 2px solid #f8b62c;
             border-radius: 4px;
             color: white;
         }
 
         button.md-theme-orange.md-button:not([disabled]).md-primary.md-raised:hover {
             background-color: transparent;
-            color: #e6af2a;
+            color: #f8b62c;
         }
     }
 }

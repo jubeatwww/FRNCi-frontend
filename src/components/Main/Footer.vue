@@ -124,7 +124,7 @@ footer{
                 }
 
                 button.md-theme-orange.md-icon-button:not([disabled]).md-raised {
-                    background: #e6af2a;
+                    background: #f8b62c;
                     float: left;
                     color: white;
                 }

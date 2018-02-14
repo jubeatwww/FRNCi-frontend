@@ -64,5 +64,32 @@ export default {
         box-shadow: none;
     }
 }
-</style>
 
+.md-theme-default.md-stepper .md-step-header.md-active .md-step-number, .md-theme-default.md-stepper .md-step-header.md-primary .md-step-icon {
+    background-color: #60bc90;
+}
+
+.md-theme-default.md-button:not([disabled]).md-primary.md-raised {
+    background-color: #60bc90;
+    &:hover {
+        background-color: #60bc90;
+    }
+}
+
+.md-theme-default.md-input-container.md-input-focused:after {
+    background-color: #60bc90;
+}
+
+.md-stepper .md-steps-navigation {
+    border-bottom: #B5B2B2 2.3px solid;
+}
+
+.md-whiteframe-1dp {
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0);
+}
+
+.md-step-content > p {
+    text-align: left;
+    font-size: 16px;
+}
+</style>
