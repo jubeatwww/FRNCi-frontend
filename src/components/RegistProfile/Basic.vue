@@ -1,6 +1,7 @@
 <template>
     <md-step md-label="Basic Info" :md-disabled="mdDisabled">
         <form-field title="Upload Your Profile Photo">
+            <img :src="uploadImg">
             <md-input-container>
                 <md-file v-model="info.photo" accept="image/*"
                     @input="fileInput"
@@ -74,6 +75,7 @@ export default {
                 nationality: 'tw',
                 localCity: '',
             },
+            uploadImg: '',
             genderOpt: [{ label: 'male', value: 'm' }, { label: 'female', value: 'f' }],
             nationalities,
         };
@@ -97,8 +99,16 @@ export default {
             ];
 
             const result = await this.api.users.uploadPhoto(userid, token, file);
+            if (result.ok) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    this.uploadImg = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
             if (!result.ok) {
                 this.photo = '';
+                this.uploadImg = '';
             }
         },
     },
