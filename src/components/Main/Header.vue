@@ -10,8 +10,8 @@
                         <img :src="$route.params.avatar" alt="Avatar" v-else>
                     </md-avatar>
                     <md-menu-content>
-                        <md-menu-item>My Account</md-menu-item>
-                        <md-menu-item>My Profile Page</md-menu-item>
+                        <md-menu-item @selected="account">My Account</md-menu-item>
+                        <md-menu-item @selected="profile">My Profile Page</md-menu-item>
                         <md-menu-item>Get Verfied</md-menu-item>
                         <md-menu-item @selected="logout">Log Out</md-menu-item>
                     </md-menu-content>
@@ -45,11 +45,17 @@ export default {
             this.$router.push({ path: '/' });
         },
         loginLink() {
-            this.$router.push({ path: 'login' });
+            this.$router.push({ path: '/login' });
+        },
+        account() {
+            this.$router.push({ path: '/controlpanel/account' });
+        },
+        profile() {
+            this.$router.push({ path: '/controlpanel/profile' });
         },
         logout() {
             localStorage.clear();
-            this.$router.push({ path: 'login' });
+            this.$router.push({ path: '/login' });
         },
     },
 };
