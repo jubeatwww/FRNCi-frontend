@@ -1,6 +1,7 @@
 <template>
     <md-step md-label="Basic Info" :md-disabled="mdDisabled">
         <form-field title="Upload Your Profile Photo">
+            <img :src="uploadImg">
             <md-input-container>
                 <md-file v-model="info.photo" accept="image/*"
                     @input="fileInput"
@@ -59,7 +60,7 @@ import DatePicker from 'vuejs-datepicker';
 
 import RadioGroup from '../CustomComponents/RadioGroup';
 import FormField from '../CustomComponents/FormField';
-import { API_URL, nationalities } from '../../config';
+import { nationalities } from '../../config';
 
 export default {
     props: ['mdDisabled'],
@@ -69,11 +70,12 @@ export default {
             info: {
                 photo: '',
                 email: '',
-                gender: 'male',
+                gender: 'm',
                 birthday: '',
                 nationality: 'tw',
                 localCity: '',
             },
+            uploadImg: '',
             genderOpt: [{ label: 'male', value: 'm' }, { label: 'female', value: 'f' }],
             nationalities,
         };
@@ -96,29 +98,18 @@ export default {
                 localStorage.getItem('_token'),
             ];
 
-            const formdata = new FormData();
-            formdata.append('image', file);
-            await fetch(`${API_URL}/users/${userid}/profile-photo`, {
-                mode: 'cors',
-                method: 'POST',
-                body: formdata,
-                headers: new Headers({
-                    Authorization: token,
-                }),
-            }).then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                throw res;
-            }).catch((err) => {
-                console.error(err);
-                switch (err.status) {
-                case 401:
-                    break;
-                default:
-                    break;
-                }
-            });
+            const result = await this.api.users.uploadPhoto(userid, token, file);
+            if (result.ok) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    this.uploadImg = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+            if (!result.ok) {
+                this.photo = '';
+                this.uploadImg = '';
+            }
         },
     },
     mounted() {

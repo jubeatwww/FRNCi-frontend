@@ -6,8 +6,6 @@
 </template>
 
 <script>
-import { API_URL } from '../../config';
-
 export default {
     methods: {
         async resend() {
@@ -16,33 +14,11 @@ export default {
                 localStorage.getItem('_token'),
             ];
 
-            const result = await fetch(`${API_URL}/users/${userid}/resend-verify`, {
-                mode: 'cors',
-                method: 'POST',
-                body: JSON.stringify({ uesrId: userid }),
-                headers: new Headers({
-                    'Content-Type': 'application/json',
-                    Authorization: token,
-                }),
-            }).then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                throw res;
-            }).catch((err) => {
-                console.error(err);
-                switch (err.status) {
-                case 401:
-                    break;
-                default:
-                    break;
-                }
-            });
-            console.log(result);
+            const result = await this.api.users.resendVerifyEmail(userid, token);
+            if (!result.ok) {
+                this.$router.push('login');
+            }
         },
-    },
-    created() {
-        console.log(this.$route);
     },
 };
 </script>

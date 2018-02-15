@@ -38,8 +38,6 @@
     </div>
 </template>
 <script>
-import { API_URL } from '../../config';
-
 export default {
     data() {
         return {
@@ -53,33 +51,16 @@ export default {
     methods: {
         async signup() {
             const { firstName, lastName, email, password } = this;
-            const signupInfo = fetch(`${API_URL}/auth/signup`, {
-                mode: 'cors',
-                method: 'POST',
-                body: JSON.stringify({ email, password, firstName, lastName }),
-                headers: new Headers({
-                    'Content-Type': 'application/json',
-                }),
-            }).then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                throw res;
-            }).catch((err) => {
-                console.error(err);
-                switch (err.status) {
-                case 400:
-                    break;
-                case 401:
-                    break;
-                default:
-                    break;
-                }
-            });
+            const result = await this.api.auth.signup({ firstName, lastName, email, password });
 
-            const { _id } = signupInfo.user;
-            localStorage.setItem('_token', signupInfo.token);
-            localStorage.setItem('_id', _id);
+            if (result.ok) {
+                const { _id } = result.user;
+                localStorage.clear();
+                localStorage.setItem('_token', result.token);
+                localStorage.setItem('_id', _id);
+                localStorage.setItem('_email', result.email);
+                this.$router.push('email-verify-notice');
+            }
         },
     },
 };

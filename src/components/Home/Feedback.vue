@@ -11,10 +11,6 @@
                     </md-avatar>
                 </md-card-media>
                 <md-card-content>
-                    fhoijfoemvvewioevjioewjfoifjiwjfilfjlkddnvkkjnk flkdsjlk djf jj lj ldl
-                    fds fsdf s
-                    dfsda fas ad fdsa fsd fsda fdsa fds fs fsdfsg fhfdgsa g g
-                    gd dfgfd 
                 </md-card-content>
                 <md-card-header>
                     name
