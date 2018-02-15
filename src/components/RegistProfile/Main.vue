@@ -24,8 +24,6 @@
 import Basic from './Basic';
 import Preference from './Preference';
 import Payment from './Payment';
-import productActions from '../../actions/products';
-import { API_URL } from '../../config';
 
 export default {
     components: { Basic, Preference, Payment },
@@ -67,12 +65,11 @@ export default {
                     * This should be fixed when vuematerial will have updated.
                     */
                     this.$refs.stepper.movePreviousStep();
-                } else {
-                    if (!this.paymentInfo.products && this.basicInfo.nationality) {
-                        const products = await productActions.loadProducts(this.basicInfo.nationality);
-                        this.paymentInfo.products = products;
-                        this.paymentInfo.loading = false;
-                    }
+                } else if (!this.paymentInfo.products && this.basicInfo.nationality) {
+                    const products = await this.api.products
+                        .loadProducts(this.basicInfo.nationality);
+                    this.paymentInfo.products = products;
+                    this.paymentInfo.loading = false;
                 }
             }
         },

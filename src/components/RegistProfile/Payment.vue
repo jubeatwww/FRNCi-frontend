@@ -36,8 +36,6 @@
 <script>
 
 import jQuery from 'jquery';
-// import { API_URL } from '../../config';
-import productActions from '../../actions/products';
 
 export default {
     props: ['mdDisabled', 'paymentInfo'],
@@ -46,8 +44,6 @@ export default {
             meta: {},
             product: null,
         };
-    },
-    watch: {
     },
     methods: {
         selectProduct(product) {
@@ -58,8 +54,8 @@ export default {
         },
         async orderAndCheckout() {
             const token = localStorage.getItem('_token');
-            const order = await productActions.createOrder(this.product, this.meta, token);
-            const formHtml = await productActions.checkoutOrder(order._id, token);
+            const order = await this.api.products.createOrder(this.product, this.meta, token);
+            const formHtml = await this.api.products.checkoutOrder(order._id, token);
             document.getElementById('gc-ecpay-checkout-form').appendChild(jQuery.parseHTML(formHtml)[0]);
             document.getElementById('_allpayForm').submit();
         },
