@@ -1,7 +1,8 @@
 import { API_URL } from '../config';
 
 function loadProducts(nationality) {
-    const tags = nationality === 'tw' ? ['201803', 'tw_only'] : ['201803', 'fn_only'];
+    const n = `${nationality || 'tw'}`.toLowerCase();
+    const tags = n === 'tw' ? ['201803', 'tw_only'] : ['201803', 'fn_only'];
     return fetch(`${API_URL}/products?tags=${tags}`, {
         mode: 'cors',
         method: 'GET',

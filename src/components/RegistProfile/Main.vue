@@ -24,7 +24,7 @@
 import Basic from './Basic';
 import Preference from './Preference';
 import Payment from './Payment';
-import { loadProducts } from '../../actions/products';
+import productActions from '../../actions/products';
 import { API_URL } from '../../config';
 
 export default {
@@ -89,13 +89,9 @@ export default {
                 });
 
                 if (uploadResult && !this.paymentInfo.products && this.basicInfo.nationality) {
-                    loadProducts(this.basicInfo.nationality).then((products) => {
-                        this.paymentInfo = {
-                            ...this.paymentInfo,
-                            products,
-                            loading: false,
-                        };
-                    });
+                    const products = await productActions.loadProducts(this.basicInfo.nationality);
+                    this.paymentInfo.products = products;
+                    this.paymentInfo.loading = false;
                 }
             }
         },

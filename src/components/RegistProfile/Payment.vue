@@ -5,7 +5,7 @@
         <md-progress
             v-if="paymentInfo.loading"
             :md-indeterminate="true"></md-progress>
-        <div v-if="paymentInfo.products && !paymentInfo.loading">
+        <div v-if="paymentInfo.products && !paymentInfo.loading" class="price-radio-group d-flex flex-column">
             <div v-for="product in paymentInfo.products" :key="product._id">
                 <div>
                     <div class="col-md col-sm-12 order-2 order-md-1">
@@ -27,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            <button>Next: Confirm &amp; Pay</button>
+            <button v-on:click="orderAndCheckout">Next: Confirm &amp; Pay</button>
             <div id="gc-ecpay-checkout-form" style="display:none"></div>
         </div>
     </md-step>
@@ -37,13 +37,14 @@
 
 import jQuery from 'jquery';
 // import { API_URL } from '../../config';
-import { createOrder, checkoutOrder } from '../../actions/products';
+import productActions from '../../actions/products';
 
 export default {
     props: ['mdDisabled', 'paymentInfo'],
     data() {
         return {
             meta: {},
+            product: null,
         };
     },
     watch: {
@@ -57,8 +58,8 @@ export default {
         },
         async orderAndCheckout() {
             const token = localStorage.getItem('_token');
-            const order = await createOrder(this.product, this.meta, token);
-            const formHtml = await checkoutOrder(order._id, token);
+            const order = await productActions.createOrder(this.product, this.meta, token);
+            const formHtml = await productActions.checkoutOrder(order._id, token);
             document.getElementById('gc-ecpay-checkout-form').appendChild(jQuery.parseHTML(formHtml)[0]);
             document.getElementById('_allpayForm').submit();
         },
