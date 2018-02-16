@@ -59,7 +59,7 @@ export default {
                 localStorage.setItem('_token', result.token);
                 localStorage.setItem('_id', _id);
                 localStorage.setItem('_email', result.email);
-                this.$router.push('email-verify-notice');
+                this.$router.push('/email-verify-notice');
             }
         },
     },

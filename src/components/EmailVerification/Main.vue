@@ -16,7 +16,7 @@ export default {
 
             const result = await this.api.users.resendVerifyEmail(userid, token);
             if (!result.ok) {
-                this.$router.push('login');
+                this.$router.push('/login');
             }
         },
     },

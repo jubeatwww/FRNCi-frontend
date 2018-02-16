@@ -105,9 +105,8 @@ export default {
                     this.uploadImg = e.target.result;
                 };
                 reader.readAsDataURL(file);
-            }
-            if (!result.ok) {
-                this.photo = '';
+            } else {
+                this.info.photo = '';
                 this.uploadImg = '';
             }
         },
