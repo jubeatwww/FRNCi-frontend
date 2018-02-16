@@ -89,10 +89,12 @@ export default {
         };
     },
     watch: {
-        'paymentInfo.products': function (newProducts) {
-            if (newProducts && newProducts.length) {
-                this.selectProduct(findFeaturedProduct(newProducts));
-            }
+        'paymentInfo.products': {
+            handler(oldProducts, newProducts) {
+                if (newProducts && newProducts.length) {
+                    this.selectProduct(findFeaturedProduct(newProducts));
+                }
+            },
         },
     },
     methods: {
