@@ -162,6 +162,7 @@ router.beforeEach(async (to, from, next) => {
         /* eslint-disable */
         to.params.isLogin = userInfo.ok;
         to.params.avatar = userInfo ? userInfo.photo : '';
+        to.params.user = userInfo;
         /* eslint-enable */
 
         localStorage.setItem('_email', userInfo.email);

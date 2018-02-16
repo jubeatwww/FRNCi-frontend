@@ -106,7 +106,7 @@ export default {
                 };
                 reader.readAsDataURL(file);
             } else {
-                this.photo = '';
+                this.info.photo = '';
                 this.uploadImg = '';
             }
         },

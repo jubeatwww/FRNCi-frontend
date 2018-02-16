@@ -38,10 +38,14 @@ export default {
             type: Number,
             default: 1,
         },
+        default: {
+            type: Array,
+            default: [],
+        },
     },
     data() {
         return {
-            selected: [],
+            selected: this.default,
             disabledList: [...Array(this.options.length)].map(() => true),
         };
     },

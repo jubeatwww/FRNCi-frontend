@@ -19,7 +19,7 @@ export default {
             required: true,
         },
         default: {
-            type: Number,
+            type: [Number, String],
             default: 0,
         },
     },
@@ -27,9 +27,21 @@ export default {
         this.$emit('update:value', this.selected);
     },
     data() {
-        const d = this.default < this.options.length ? this.default : this.options.length - 1;
+        if (typeof this.default === 'string') {
+            const i = this.options.findIndex(opt => (
+                this.default === opt.value || this.default === opt.label
+            ));
+            return {
+                selected: this.options[i].value,
+            };
+        } else if (this.default instanceof Number) {
+            const d = this.default < this.options.length ? this.default : this.options.length - 1;
+            return {
+                selected: this.options[d].value,
+            };
+        }
         return {
-            selected: this.options[d].value,
+            selected: this.options[0].value,
         };
     },
     computed: {

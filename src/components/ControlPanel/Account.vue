@@ -75,14 +75,16 @@ import { nationalities } from '../../config';
 export default {
     components: { FormField, RadioGroup, DatePicker },
     data() {
+        const { user } = this.$route.params;
+        console.log(user);
         return {
             info: {
-                email: '',
+                email: user.email,
                 phone: '',
-                gender: 'male',
-                birthday: '',
-                nationality: 'tw',
-                localCity: '',
+                gender: user.gender,
+                birthday: user.birthday,
+                nationality: user.nationality.toUpperCase(),
+                localCity: user.localCity,
                 occupation: '',
                 major: '',
             },
