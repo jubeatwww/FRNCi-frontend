@@ -22,7 +22,8 @@
             <radio-group
                 :options="genderOpt"
                 :value.sync="info.gender"
-                name="gender">
+                name="gender"
+                :default="info.gender">
             </radio-group>
         </form-field>
         <form-field
@@ -59,7 +60,7 @@
                 <md-input v-model="info.major"></md-input>
             </md-input-container>
         </form-field>
-        <md-button class="md-raised md-primary">Save</md-button>
+        <md-button class="md-raised md-primary" @click="save">Save</md-button>
     </form>
 </template>
 
@@ -88,12 +89,22 @@ export default {
                 occupation: '',
                 major: '',
             },
-            genderOpt: [{ label: 'male', value: 'male' }, { label: 'female', value: 'female' }],
+            genderOpt: [{ label: 'male', value: 'm' }, { label: 'female', value: 'f' }],
             nationalities,
         };
     },
-    created() {
-        // get user info before mounted
+    methods: {
+        async save() {
+            const [userid, token] = [
+                localStorage.getItem('_id'),
+                localStorage.getItem('_token'),
+            ];
+
+            const result = await this.api.users.update(userid, token, this.info);
+            if (!result.ok) {
+                console.error(result);
+            }
+        },
     },
     mounted() {
         /*  Set up geocomplete, since geocomplete won't trigger the v-model event,

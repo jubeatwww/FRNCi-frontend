@@ -66,6 +66,7 @@
                 <md-textarea v-model="info.introduction"></md-textarea>
             </md-input-container>
         </form-field>
+        <md-button class="md-raised md-primary" @click="save">Save</md-button>
     </form>
 </template>
 
@@ -121,6 +122,17 @@ export default {
             } else {
                 this.photo = '';
                 this.uploadImg = '';
+            }
+        },
+        async save() {
+            const [userid, token] = [
+                localStorage.getItem('_id'),
+                localStorage.getItem('_token'),
+            ];
+
+            const result = await this.api.users.update(userid, token, this.info);
+            if (!result.ok) {
+                console.error(result);
             }
         },
     },

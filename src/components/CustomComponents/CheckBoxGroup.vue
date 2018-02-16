@@ -40,7 +40,7 @@ export default {
         },
         default: {
             type: Array,
-            default: [],
+            default: () => [],
         },
     },
     data() {

@@ -128,6 +128,7 @@ const router = new Router({
                         {
                             path: 'account',
                             component: CtrlAccount,
+                            name: 'ControlPanelAccount',
                             meta: {
                                 requireAuth: true,
                             },
@@ -135,6 +136,7 @@ const router = new Router({
                         {
                             path: 'profile',
                             component: CtrlProfile,
+                            name: 'ControlPanelProfile',
                             meta: {
                                 requireAuth: true,
                             },
@@ -178,6 +180,8 @@ router.beforeEach(async (to, from, next) => {
                 next({ path: 'email-verify-notice' });
             } else if (!userIntegrity.integrity) {
                 next({ path: 'registprofile' });
+            } else {
+                next();
             }
             next();
         }

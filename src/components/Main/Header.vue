@@ -48,10 +48,10 @@ export default {
             this.$router.push({ path: '/login' });
         },
         account() {
-            this.$router.push({ path: '/controlpanel/account' });
+            this.$router.push('/controlpanel/account');
         },
         profile() {
-            this.$router.push({ path: '/controlpanel/profile' });
+            this.$router.push('/controlpanel/profile');
         },
         logout() {
             localStorage.clear();
