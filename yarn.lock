@@ -6524,9 +6524,9 @@ vue-loader@^13.0.4:
     vue-style-loader "^3.0.0"
     vue-template-es2015-compiler "^1.6.0"
 
-vue-material@0.8.1:
+vue-material@teaualune/vue-material#50be3163d05e2183242d1943c39de12ee0dc5625:
   version "0.8.1"
-  resolved "https://registry.yarnpkg.com/vue-material/-/vue-material-0.8.1.tgz#8f54666f52ef07b546ca0da93fbcd71574c599b2"
+  resolved "https://codeload.github.com/teaualune/vue-material/tar.gz/50be3163d05e2183242d1943c39de12ee0dc5625"
   dependencies:
     vue "^2.4.4"
 
