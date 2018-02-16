@@ -8,7 +8,7 @@
         <div v-if="paymentInfo.products && !paymentInfo.loading" class="price-radio-group d-flex flex-column">
             <div v-for="product in paymentInfo.products" :key="product._id">
                 <div v-on:click="() => selectProduct(product)" class="plan-check">
-                    <input type="radio" :id="product._id" name="plan" :checked="() => isSelectedProduct(product)">
+                    <input type="radio" :id="product._id" name="plan" :checked="isSelectedProduct(product)">
                     <label :for="product._id">
                         <div class="d-flex flex-wrap">
                             <div class="col-md col-sm-12 order-2 order-md-1">
@@ -34,7 +34,7 @@
                                 <template v-for="session in event.sessions">
                                     <input
                                         type="radio"
-                                        :checked="() => isSelectedSession(event, session)"
+                                        :checked="isSelectedSession(event, session)"
                                         :id="`${product._id}_s_${session.key}`"
                                         :name="`${product._id}_session`"
                                         :key="`${session.key}_input`">
@@ -89,12 +89,14 @@ export default {
         };
     },
     watch: {
-        'paymentInfo.products': {
-            handler(oldProducts, newProducts) {
-                if (newProducts && newProducts.length) {
-                    this.selectProduct(findFeaturedProduct(newProducts));
+        paymentInfo: {
+            handler(oldPaymentInfo, newPaymentInfo) {
+                const products = newPaymentInfo.products;
+                if (products && products.length) {
+                    this.selectProduct(findFeaturedProduct(products));
                 }
             },
+            deep: true,
         },
     },
     methods: {
@@ -125,5 +127,58 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.price-radio-group{
+    position:relative;
+}
+.plan-check label{
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    padding:3% 6%;
+    color:#707070;
+    cursor: pointer
+}
+.plan-check input[type=radio] {
+    display: none;
+}
+.plan-check input[type=radio]:checked + label {
+    border:2px solid #60bc90;
+    color:#000;
+    background:transparent;
 
+}
+div.plan-check input[type=radio]:disabled + label{
+    cursor:not-allowed;
+}
+
+div.plan-check input[type=radio]:checked + label::after {
+    color: #f8b62c;
+    font-family: FontAwesome;
+    border: 2px solid #f8b62c;
+    content: "\f00c";
+    font-size: 24px;
+    position: absolute;
+    top: 35%;
+    left: 0%;
+    transform: translateX(-50%);
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0px 2px 5px -2px hsla(0, 0%, 0%, 0.25);
+    z-index: 100;
+}
 </style>
