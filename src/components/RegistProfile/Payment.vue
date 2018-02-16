@@ -1,6 +1,5 @@
 <template>
-    <!-- <md-step md-label="Payment" :md-disabled="mdDisabled"> -->
-    <md-step md-label="Payment" :md-disabled="false">
+    <md-step md-label="Payment" :md-disabled="false" :md-show-actions="false">
         <h3>Choose Your Plan</h3>
         <md-progress
             v-if="paymentInfo.loading"
@@ -50,7 +49,7 @@
                     </template>
                 </template>
             </div>
-            <button v-on:click="orderAndCheckout">Next: Confirm &amp; Pay</button>
+            <a v-on:click="orderAndCheckout" class="btn highlight-button-default" href="javascript:void(0)">Next: Confirm &amp; Pay</a>
             <div id="gc-ecpay-checkout-form" style="display:none"></div>
         </div>
     </md-step>
