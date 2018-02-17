@@ -193,16 +193,14 @@ router.beforeEach(async (to, from, next) => {
             }
         } else {
             if (!(userInfo.verification.email || userInfo.verification.facebook)) {
-                next({ path: 'email-verify-notice' });
+                next({ path: '/email-verify-notice' });
             } else if (!userIntegrity.integrity) {
-                next({ path: 'registprofile' });
-            } else {
-                next();
+                next({ path: '/registprofile' });
             }
             next();
         }
     } else if (to.meta.requireAuth) {
-        next({ path: 'login' });
+        next({ path: '/login' });
     } else {
         next();
     }

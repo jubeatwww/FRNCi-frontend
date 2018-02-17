@@ -16,9 +16,9 @@
                         <md-menu-item @selected="logout">Log Out</md-menu-item>
                     </md-menu-content>
                 </md-menu>
-                <md-button 
-                    class="md-dense" 
-                    @click="loginLink" 
+                <md-button
+                    class="md-dense"
+                    @click="loginLink"
                     v-else>
                     Sign Up/Login
                 </md-button>
