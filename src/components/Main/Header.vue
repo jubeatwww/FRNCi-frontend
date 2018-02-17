@@ -4,10 +4,10 @@
         <nav>
             <md-theme md-name="orange">
                 <md-button class="md-raised md-primary">Find Buddies</md-button>
-                <md-menu md-direction="bottom left" v-if="$route.params.isLogin">
+                <md-menu md-direction="bottom left" v-if="$route.meta.isLogin">
                     <md-avatar class="md-avatar-icon" md-menu-trigger>
                         <md-icon v-if="showDefaultAvatar">person</md-icon>
-                        <img :src="$route.params.avatar" alt="Avatar" v-else>
+                        <img :src="$route.meta.avatar" alt="Avatar" v-else>
                     </md-avatar>
                     <md-menu-content>
                         <md-menu-item @selected="account">My Account</md-menu-item>
@@ -37,7 +37,7 @@ export default {
             return this.$route.name === 'home' ? { position: 'fixed' } : { position: 'relative' };
         },
         showDefaultAvatar() {
-            return !this.$route.params.avatar;
+            return !this.$route.meta.avatar;
         },
     },
     methods: {

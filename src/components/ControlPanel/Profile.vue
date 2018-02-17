@@ -98,7 +98,7 @@ import { languages, hobbies } from '../../config';
 export default {
     components: { RadioGroup, FormField, CheckBoxGroup, LanguageGroup },
     data() {
-        const { user } = this.$route.params;
+        const { user } = this.$route.meta;
         return {
             preferToMeet: [
                 { label: 'Find Language partners', value: 'language' },

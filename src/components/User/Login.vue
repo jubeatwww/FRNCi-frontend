@@ -72,7 +72,7 @@ export default {
         },
     },
     created() {
-        if (this.$route.params.isLogin) {
+        if (this.$route.meta.isLogin) {
             this.$router.go(-1);
         }
     },

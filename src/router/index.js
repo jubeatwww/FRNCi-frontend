@@ -178,9 +178,9 @@ router.beforeEach(async (to, from, next) => {
         }
 
         /* eslint-disable */
-        to.params.isLogin = userInfo.ok;
-        to.params.avatar = userInfo ? userInfo.photo : '';
-        to.params.user = userInfo;
+        to.meta.isLogin = userInfo.ok;
+        to.meta.avatar = userInfo ? userInfo.photo : '';
+        to.meta.user = userInfo;
         /* eslint-enable */
 
         localStorage.setItem('_email', userInfo.email);
