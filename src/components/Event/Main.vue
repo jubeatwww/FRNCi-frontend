@@ -92,8 +92,16 @@ export default {
             return p.featured ? 'card mt-3 border-select' : 'card';
         },
         buy(product) {
-            // TODO
-            console.log('buying product', product);
+            const [userId, token] = [
+                localStorage.getItem('_id'),
+                localStorage.getItem('_token'),
+            ];
+            if (userId && token) {
+                console.log(userId, token, product);
+                // TODO payment
+            } else {
+                this.$router.push('/login');
+            }
         },
     },
 };

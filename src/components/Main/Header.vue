@@ -16,9 +16,9 @@
                         <md-menu-item @selected="logout">Log Out</md-menu-item>
                     </md-menu-content>
                 </md-menu>
-                <md-button 
-                    class="md-dense" 
-                    @click="loginLink" 
+                <md-button
+                    class="md-dense"
+                    @click="loginLink"
                     v-else>
                     Sign Up/Login
                 </md-button>
@@ -45,11 +45,11 @@ export default {
             this.$router.push({ path: '/' });
         },
         loginLink() {
-            this.$router.push({ path: 'login' });
+            this.$router.push({ path: '/login' });
         },
         logout() {
             localStorage.clear();
-            this.$router.push({ path: 'login' });
+            this.$router.push({ path: '/login' });
         },
     },
 };
