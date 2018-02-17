@@ -83,7 +83,6 @@ export default {
     created() {
         this.default.map((val) => {
             const idx = this.options.findIndex(opt => opt.value === val);
-            console.log(idx);
             this.disabledList[idx] = false;
             return false;
         });

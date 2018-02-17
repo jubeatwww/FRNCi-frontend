@@ -14,6 +14,7 @@
             <radio-group
                 :options="preferToMeet"
                 :value.sync="info.meet"
+                :default="info.meet"
                 name="meet">
             </radio-group>
         </form-field>
@@ -23,7 +24,8 @@
             <radio-group
                 :options="preferToInteract"
                 :value.sync="info.interact"
-                name="interact">
+                name="interact"
+                :default="info.interact">
             </radio-group>
         </form-field>
         <form-field
