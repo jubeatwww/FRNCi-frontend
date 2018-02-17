@@ -4,26 +4,29 @@
             md-flex="75"
             style="padding: 5% 4%">
             <md-stepper @change="stepChanged" ref="stepper">
-                <Basic 
+                <Basic
                     :completed.sync="basicCompleted"
                     :info.sync="basicInfo"></Basic>
-                <Preference 
-                    :completed.sync="preferenceCompleted" 
+                <Preference
+                    :completed.sync="preferenceCompleted"
                     :md-continue="continued"
                     :info.sync="preferInfo"></Preference>
-                <md-step md-label="Payment" :md-disabled="!continued">
-                </md-step>
+                <Payment
+                    :paymentInfo="paymentInfo"
+                    :md-disabled="!continued"></Payment>
             </md-stepper>
         </md-layout>
     </md-layout>
 </template>
 
 <script>
+
 import Basic from './Basic';
 import Preference from './Preference';
+import Payment from './Payment';
 
 export default {
-    components: { Basic, Preference },
+    components: { Basic, Preference, Payment },
     data() {
         return {
             basicCompleted: false,
@@ -31,6 +34,9 @@ export default {
             paymentEntered: false,
             basicInfo: {},
             preferInfo: {},
+            paymentInfo: {
+                loading: true,
+            },
         };
     },
     computed: {
@@ -59,6 +65,11 @@ export default {
                     * This should be fixed when vuematerial will have updated.
                     */
                     this.$refs.stepper.movePreviousStep();
+                } else if (!this.paymentInfo.products && this.basicInfo.nationality) {
+                    const products = await this.api.products
+                        .loadProducts(this.basicInfo.nationality);
+                    this.paymentInfo.products = products;
+                    this.paymentInfo.loading = false;
                 }
             }
         },

@@ -2,7 +2,7 @@
     <div class="checkbox-group"
         style="display: flex">
         <div v-for="(optCol, colIdx) in _optionsColumns" 
-            :key="`${name}-checkbox-group-col-${optCol}`"
+            :key="`${name}-checkbox-group-col-${colIdx}`"
             :style="columnStyle">
             <md-checkbox
                 v-for="(opt, idx) in optCol"
@@ -38,10 +38,14 @@ export default {
             type: Number,
             default: 1,
         },
+        default: {
+            type: Array,
+            default: () => [],
+        },
     },
     data() {
         return {
-            selected: [],
+            selected: this.default,
             disabledList: [...Array(this.options.length)].map(() => true),
         };
     },
@@ -75,6 +79,13 @@ export default {
             this.disabledList[idx] = !this.disabledList[idx];
             this.$emit('update:value', this.selected);
         },
+    },
+    created() {
+        this.default.map((val) => {
+            const idx = this.options.findIndex(opt => opt.value === val);
+            this.disabledList[idx] = false;
+            return false;
+        });
     },
 };
 </script>
