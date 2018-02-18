@@ -170,35 +170,39 @@ router.beforeEach(async (to, from, next) => {
         localStorage.getItem('_id'),
         localStorage.getItem('_token'),
     ];
-    if (userid && token && !to.meta.static) {
-        const userInfo = await api.users.get(userid, token);
-        const userIntegrity = await api.users.integrity(userid, token);
-
-        if ((!userIntegrity.ok || !userInfo.ok) && to.meta.requireAuth) {
-            next({ path: 'login' });
-        }
-
-        /* eslint-disable */
-        to.meta.isLogin = userInfo.ok;
-        to.meta.avatar = userInfo ? userInfo.photo : '';
-        to.meta.user = userInfo;
-        /* eslint-enable */
-
-        localStorage.setItem('_email', userInfo.email);
-
-        if (to.name === 'EmailVerifyNotice' || to.name === 'registprofile') {
-            if (userInfo.verification.email && userIntegrity.integrity) {
-                next('/');
-            } else {
-                next();
-            }
-        } else {
-            if (!(userInfo.verification.email || userInfo.verification.facebook)) {
-                next({ path: '/email-verify-notice' });
-            } else if (!userIntegrity.integrity) {
-                next({ path: '/registprofile' });
-            }
+    if (userid && token) {
+        if (to.meta.static) {
             next();
+        } else {
+            const userInfo = await api.users.get(userid, token);
+            const userIntegrity = await api.users.integrity(userid, token);
+
+            if ((!userIntegrity.ok || !userInfo.ok) && to.meta.requireAuth) {
+                next({ path: 'login' });
+            } else {
+                /* eslint-disable */
+                to.meta.isLogin = userInfo.ok;
+                to.meta.avatar = userInfo ? userInfo.photo : '';
+                to.meta.user = userInfo;
+                /* eslint-enable */
+
+                localStorage.setItem('_email', userInfo.email);
+
+                if (to.name === 'EmailVerifyNotice' || to.name === 'registprofile') {
+                    if (userInfo.verification.email && userIntegrity.integrity) {
+                        next('/');
+                    } else {
+                        next();
+                    }
+                } else {
+                    if (!(userInfo.verification.email || userInfo.verification.facebook)) {
+                        next({ path: '/email-verify-notice' });
+                    } else if (!userIntegrity.integrity) {
+                        next({ path: '/registprofile' });
+                    }
+                    next();
+                }
+            }
         }
     } else if (to.meta.requireAuth) {
         next({ path: '/login' });
