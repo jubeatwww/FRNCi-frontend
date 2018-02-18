@@ -65,6 +65,7 @@ export default {
 <style lang="scss" scoped>
 .radio-group {
     display: flex;
+    flex-wrap: wrap;
 
     input[type="radio"] {
         display: none;

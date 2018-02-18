@@ -28,19 +28,36 @@
                 :default="info.interact">
             </radio-group>
         </form-field>
-        <form-field>
+        <form-field title="Time You Prefer to Meet">
+            <check-box-group
+                name="time"
+                :options="times"
+                :value.sync="info.time"
+                :columns="1">
+            </check-box-group>
+        </form-field>
+        <form-field title="How Frequent You Like to Meet">
+            <radio-group
+                :options="frequency"
+                :value.sync="info.frequency"
+                name="frequency">
+            </radio-group>
+        </form-field>
+        <form-field title="The Language You Speak Fluently">
             <language-group
                 name="nativeLanguage"
                 :level="nativeLevel"
                 :default="info.nativeLanguages"
+                :limit="3"
                 :value.sync="info.nativeLanguages">
             </language-group>
         </form-field>
-        <form-field>
+        <form-field title="Language You Are Learning">
             <language-group
                 name="studyLanguage"
                 :level="studyLevel"
                 :default="info.studyLanguages"
+                :limit="2"
                 :value.sync="info.studyLanguages">
             </language-group>
         </form-field>
@@ -118,12 +135,27 @@ export default {
                 { label: 'Intermediate', value: 'intermediate' },
                 { label: 'Fluent', value: 'fluent' },
             ],
+            times: [
+                { label: 'Weekday morning', value: 'weekday_morning' },
+                { label: 'Weekday afternoon', value: 'weekday_afternoon' },
+                { label: 'Weekday evening', value: 'weekday_evening' },
+                { label: 'Weekend morning', value: 'weekend_morning' },
+                { label: 'Weekend afternoon', value: 'weekend_afternoon' },
+                { label: 'Weekend evening', value: 'weekend_evening' },
+            ],
+            frequency: [
+                { label: 'More than once a week', value: 'week_gt' },
+                { label: 'Around once a week', value: 'week_eq' },
+                { label: 'Around once a month', value: 'month_eq' },
+                { label: 'Less than once a month', value: 'month_lt' },
+            ],
             info: {
                 photo: '',
                 meet: user.meet,
                 nativeLanguages: user.nativeLanguages,
                 studyLanguages: user.studyLanguages,
                 interact: user.interact,
+                time: [],
                 interests: user.interests,
                 hobbyDetail: '',
                 learningGoal: '',

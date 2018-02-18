@@ -32,7 +32,7 @@ export default {
         },
         limit: {
             type: Number,
-            default: 5,
+            default: Number.MAX_VALUE,
         },
         columns: {
             type: Number,

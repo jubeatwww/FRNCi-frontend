@@ -125,6 +125,7 @@ const router = new Router({
                     path: 'controlpanel',
                     component: ControlPanel,
                     name: 'Control Panel',
+                    redirect: '/controlpanel/account',
                     children: [
                         {
                             path: 'account',
