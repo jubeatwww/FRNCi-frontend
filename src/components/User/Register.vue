@@ -123,19 +123,26 @@ export default {
     }
 }
 
-.md-theme-default.md-button:not([disabled]).md-primary.md-raised {
+.md-theme-default {
+.md-button:not([disabled]).md-primary.md-raised {
     background-color: #f8b62c;
     width: 100%;
     height: 15%;
 }
 
-.md-theme-default.md-input-container.md-input-focused:after {
-    background-color: #f8b62c;
+.md-input-container.md-input-focused:after {
+    background-color: #60bc90;
 }
 
-.md-theme-default a:not(.md-button) {
-    color: #707070;
-    text-decoration: underline
+     a:not(.md-button) {
+        color: #707070;
+        text-decoration: underline
+    }
+
+     a:not(.md-button).loginLink {
+        color: #f8b62c;
+        text-decoration: none;
+    }
 }
 
 .md-checkbox:not(.md-disabled) {
@@ -150,19 +157,17 @@ export default {
     }
 }
 
-.md-theme-default a:not(.md-button).loginLink {
-    color: #f8b62c;
-    text-decoration: none;
-}
-
 </style>
 <style lang="scss">
-.md-theme-default.md-checkbox.md-checked .md-checkbox-container  {
+.md-theme-default {
+.md-checkbox.md-checked .md-checkbox-container  {
     background-color: #60bc90;
     border-color: #60bc90;
 }
 
-.md-theme-default.md-checkbox .md-ink-ripple {
+.md-checkbox .md-ink-ripple {
     color: #60bc90;
 }
+}
+
 </style>
