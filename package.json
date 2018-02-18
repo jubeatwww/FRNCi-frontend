@@ -18,6 +18,7 @@
     "geocomplete": "^1.7.0",
     "jquery": "^3.3.1",
     "vue": "^2.4.2",
+    "vue-alertify": "^1.0.4",
     "vue-material": "teaualune/vue-material#50be3163d05e2183242d1943c39de12ee0dc5625",
     "vue-router": "^2.7.0",
     "vuejs-datepicker": "^0.9.25"
