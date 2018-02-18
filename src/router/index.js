@@ -17,13 +17,15 @@ import Purchase from '@/components/Product/Purchase';
 import api from '@/actions/api/index';
 
 import VueMaterial from 'vue-material';
+import alertify from 'alertifyjs';
 import 'vue-material/dist/vue-material.css';
+import 'alertifyjs/build/css/alertify.min.css';
 
 Vue.use(VueMaterial);
 Vue.use(Router);
 Vue.mixin({
     data() {
-        return { api };
+        return { api, alertify };
     },
 });
 

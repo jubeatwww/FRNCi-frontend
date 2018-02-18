@@ -76,6 +76,14 @@ export default {
     },
     methods: {
         changed(idx) {
+            if (this.selected.length >= this.limit) {
+                this.alertify.notify(
+                    `You can only select ${this.limit} at most`,
+                    'warning',
+                    2,
+                );
+            }
+
             this.disabledList[idx] = !this.disabledList[idx];
             this.$emit('update:value', this.selected);
         },
