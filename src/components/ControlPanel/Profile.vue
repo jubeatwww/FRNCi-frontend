@@ -77,28 +77,28 @@
             title="Your Interests / Hobbies"
             description="Tell anything you like to do in your free time.">
             <md-input-container>
-                <md-textarea v-model="info.hobbyDetail"></md-textarea>
+                <md-textarea v-model="info.hobbyDetail" maxlength="500"></md-textarea>
             </md-input-container>
         </form-field>
         <form-field
             title="Your Learning Language Goal"
             description="What are the specific outcomes you want to achieve in a limited time? Please tell specific things you plan to learn or to focus on. And share why you want to learn the language.">
             <md-input-container>
-                <md-textarea v-model="info.learningGoal"></md-textarea>
+                <md-textarea v-model="info.learningGoal" naxlength="500"></md-textarea>
             </md-input-container>
         </form-field>
         <form-field
             title="The Expectation on Your Buddy"
             description="What are the things you expect him/her to share with you?">
             <md-input-container>
-                <md-textarea v-model="info.buddyExpectation"></md-textarea>
+                <md-textarea v-model="info.buddyExpectation" maxlength="500"></md-textarea>
             </md-input-container>
         </form-field>
         <form-field
             title="Share More About Yourself"
             description="Tell something about your background and your passion! Help other members get to know you better!">
             <md-input-container>
-                <md-textarea v-model="info.introduction"></md-textarea>
+                <md-textarea v-model="info.introduction" maxlength="500"></md-textarea>
             </md-input-container>
         </form-field>
         <md-button class="md-raised md-primary" @click="save">Save</md-button>
@@ -156,6 +156,7 @@ export default {
                 studyLanguages: user.studyLanguages,
                 interact: user.interact,
                 time: [],
+                frequency: '',
                 interests: user.interests,
                 hobbyDetail: '',
                 learningGoal: '',
