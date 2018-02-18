@@ -67,14 +67,6 @@ function findFeaturedProduct(products) {
                 featured = product;
             }
         });
-        // for (const p in products) {
-        //     if (Object.prototype.hasOwnProperty.call(products, p)) {
-        //         const product = products[p];
-        //         if (product.tags && product.tags.indexOf('featured') >= 0) {
-        //             return product;
-        //         }
-        //     }
-        // }
     }
     return featured;
 }

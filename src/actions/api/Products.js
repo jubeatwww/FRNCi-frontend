@@ -19,6 +19,21 @@ export default {
         });
     },
 
+    loadProduct(productId) {
+        return fetch(`${API_URL}/products/${productId}`, {
+            mode: 'cors',
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+            }),
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            throw res;
+        });
+    },
+
     createOrder(productId, meta, token) {
         return fetch(`${API_URL}/orders`, {
             mode: 'cors',

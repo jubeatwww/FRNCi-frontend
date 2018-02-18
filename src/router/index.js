@@ -12,6 +12,7 @@ import ControlPanel from '@/components/ControlPanel/Main';
 import CtrlAccount from '@/components/ControlPanel/Account';
 import CtrlProfile from '@/components/ControlPanel/Profile';
 import EventPage from '@/components/Event/Main';
+import Purchase from '@/components/Product/Purchase';
 
 import api from '@/actions/api/index';
 
@@ -152,13 +153,14 @@ const router = new Router({
                     meta: {
                         static: true,
                     },
-                    // async beforeEnter(to, from, next) {
-                    //     const result = await api.events.getEvent(to.params.slug);
-                    //     if (result.ok) {
-                    //         next('registprofile');
-                    //     }
-                    //     next();
-                    // },
+                },
+                {
+                    path: 'purchase/:productId',
+                    component: Purchase,
+                    name: 'Purchase',
+                    meta: {
+                        requireAuth: true,
+                    },
                 },
             ],
         },
