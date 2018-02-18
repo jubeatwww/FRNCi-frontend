@@ -135,12 +135,14 @@ export default {
     border: solid 1px #f8b62c;
 }
 
-.md-theme-default.md-checkbox.md-checked .md-checkbox-container {
+.md-theme-default {
+.md-checkbox .md-ink-ripple {
+    color: #60bc90;
+}
+.md-checkbox.md-checked .md-checkbox-container {
     background-color: #60bc90;
     border-color: #60bc90;
 }
-
-.md-theme-default.md-checkbox .md-ink-ripple {
-    color: #60bc90;
 }
+
 </style>

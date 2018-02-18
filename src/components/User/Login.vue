@@ -122,7 +122,8 @@ export default {
     text-align: right;
 }
 
-.md-theme-default.md-button:not([disabled]).md-primary.md-raised {
+.md-theme-default {
+.md-button:not([disabled]).md-primary.md-raised {
     background-color: #f8b62c;
     border-radius: 3.6px;
         
@@ -131,12 +132,16 @@ export default {
     }
 }
 
+.md-input-container.md-input-focused:after {
+    background-color: #60bc90;
+}
+
+a:not(.md-button) {
+    color: #f8b62c;
+}
+}
+
 #forgot-pwd-btn {
     color: #707070;
 }
-
-.md-theme-default a:not(.md-button) {
-    color: #f8b62c;
-}
-
 </style>

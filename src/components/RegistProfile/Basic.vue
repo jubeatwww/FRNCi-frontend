@@ -26,7 +26,7 @@
             <radio-group 
                 :options="genderOpt" 
                 :value.sync="info.gender"
-                name="gender"  class="test">
+                name="gender">
             </radio-group>
         </form-field>
         <form-field
@@ -146,18 +146,6 @@ section {
     margin-bottom: 5%;
 }
 
-.md-stepper .md-steps-navigation {
-    border-bottom: #B5B2B2 2.3px solid;
-}
-
-.md-theme-default.md-stepper .md-step-header.md-active .md-step-number, .md-theme-default.md-stepper .md-step-header.md-primary .md-step-icon {
-    background-color: #60bc90;
-}
-
-.md-theme-default.md-input-container.md-input-focused:after {
-    background-color: #60bc90;
-}
-
 .md-whiteframe-1dp {
     box-shadow: 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0);
 }
@@ -166,12 +154,36 @@ section {
     border: solid 1px #60bc90;
 }
 
-.md-theme-default.md-button:not([disabled]).md-primary.md-raised {
+.md-theme-default {
+.md-button:not([disabled]).md-primary.md-raised {
     background-color: #f8b62c;
     
     &:hover {
         background-color: #f8b62c;
     }
+}
+
+.md-input-container.md-input-focused:after {
+    background-color: #60bc90;
+}
+
+.md-input-container.md-input-focused:after {
+    background-color: #60bc90;
+}
+
+.md-stepper {
+    .md-step-header.md-active .md-step-number {
+        background-color: #60bc90;
+    }
+
+    .md-step-header.md-primary .md-step-icon {
+        background-color: #60bc90;
+    }
+
+    .md-steps-navigation {
+        border-bottom: #B5B2B2 2.3px solid;
+    }
+}
 }
 
 .md-button[disabled] {
