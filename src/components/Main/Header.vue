@@ -4,20 +4,21 @@
         <nav>
             <md-theme md-name="orange">
                 <md-button class="md-raised md-primary">Find Buddies</md-button>
-                <md-menu md-direction="bottom left" v-if="$route.params.isLogin">
+                <md-menu md-direction="bottom left" v-if="$route.meta.isLogin">
                     <md-avatar class="md-avatar-icon" md-menu-trigger>
-                        <md-icon>folder</md-icon>
+                        <md-icon v-if="showDefaultAvatar">person</md-icon>
+                        <img :src="$route.meta.avatar" alt="Avatar" v-else>
                     </md-avatar>
                     <md-menu-content>
-                        <md-menu-item>My Account</md-menu-item>
-                        <md-menu-item>My Profile Page</md-menu-item>
+                        <md-menu-item @selected="account">My Account</md-menu-item>
+                        <md-menu-item @selected="profile">My Profile Page</md-menu-item>
                         <md-menu-item>Get Verfied</md-menu-item>
                         <md-menu-item @selected="logout">Log Out</md-menu-item>
                     </md-menu-content>
                 </md-menu>
-                <md-button 
-                    class="md-dense" 
-                    @click="loginLink" 
+                <md-button
+                    class="md-dense"
+                    @click="loginLink"
                     v-else>
                     Sign Up/Login
                 </md-button>
@@ -27,8 +28,6 @@
 </template>
 
 <script>
-import { API_URL } from '../../config';
-
 export default {
     data() {
         return { avatar: '' };
@@ -37,49 +36,27 @@ export default {
         isHome() {
             return this.$route.name === 'home' ? { position: 'fixed' } : { position: 'relative' };
         },
+        showDefaultAvatar() {
+            return !this.$route.meta.avatar;
+        },
     },
     methods: {
         homeLink() {
             this.$router.push({ path: '/' });
         },
         loginLink() {
-            this.$router.push({ path: 'login' });
+            this.$router.push({ path: '/login' });
+        },
+        account() {
+            this.$router.push('/controlpanel/account');
+        },
+        profile() {
+            this.$router.push('/controlpanel/profile');
         },
         logout() {
             localStorage.clear();
-            this.$router.go(0);
+            this.$router.push({ path: '/login' });
         },
-    },
-    async created() {
-        const [userid, token, avatar] = [
-            localStorage.getItem('_id'),
-            localStorage.getItem('_token'),
-            localStorage.getItem('_avatar'),
-        ];
-
-        if (userid && token && !avatar) {
-            const info = await fetch(`${API_URL}/users/${userid}`, {
-                mode: 'cors',
-                method: 'GET',
-                headers: new Headers({
-                    'Content-Type': 'application/json',
-                    Authorization: token,
-                }),
-            }).then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                throw res;
-            }).catch((err) => {
-                console.error(err);
-                this.$router.push('login');
-            });
-
-            localStorage.setItem('_avatar', info.photo);
-            this.avatar = info.photo;
-        } else {
-            this.avatar = avatar;
-        }
     },
 };
 </script>

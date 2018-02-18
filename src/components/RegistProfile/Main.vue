@@ -4,27 +4,29 @@
             md-flex="75"
             style="padding: 5% 4%">
             <md-stepper @change="stepChanged" ref="stepper">
-                <Basic 
+                <Basic
                     :completed.sync="basicCompleted"
                     :info.sync="basicInfo"></Basic>
-                <Preference 
-                    :completed.sync="preferenceCompleted" 
+                <Preference
+                    :completed.sync="preferenceCompleted"
                     :md-continue="continued"
                     :info.sync="preferInfo"></Preference>
-                <md-step md-label="Payment" :md-disabled="!continued">
-                </md-step>
+                <Payment
+                    :paymentInfo="paymentInfo"
+                    :md-disabled="!continued"></Payment>
             </md-stepper>
         </md-layout>
     </md-layout>
 </template>
 
 <script>
+
 import Basic from './Basic';
 import Preference from './Preference';
-import { API_URL } from '../../config';
+import Payment from './Payment';
 
 export default {
-    components: { Basic, Preference },
+    components: { Basic, Preference, Payment },
     data() {
         return {
             basicCompleted: false,
@@ -32,6 +34,9 @@ export default {
             paymentEntered: false,
             basicInfo: {},
             preferInfo: {},
+            paymentInfo: {
+                loading: true,
+            },
         };
     },
     computed: {
@@ -51,35 +56,21 @@ export default {
                     ...this.preferInfo,
                 });
 
-                await fetch(`${API_URL}/users/${userid}`, {
-                    mode: 'cors',
-                    method: 'PUT',
-                    body: JSON.stringify(userInfo),
-                    headers: new Headers({
-                        'Content-Type': 'application/json',
-                        Authorization: token,
-                    }),
-                }).then((res) => {
-                    if (res.ok) {
-                        return res.json();
-                    }
-                    throw res;
-                }).catch((err) => {
-                    console.error(err);
-                    switch (err.status) {
-                    case 401:
-                        break;
-                    default:
-                        break;
-                    }
+                const result = await this.api.users.update(userid, token, userInfo);
+                if (!result.ok) {
                     /* Return to previous step when update user data failed from api.
-                     * We have to do this because vuematerial 0.8.2 doesn't provide the method
-                     * to prevent stepper from stepping forward,
-                     * and there is only a listener method that is able to know which step we are.
-                     * This should be fixed when vuematerial will have updated.
-                     */
+                    * We have to do this because vuematerial 0.8.2 doesn't provide the method
+                    * to prevent stepper from stepping forward,
+                    * and there is only a listener method that is able to know which step we are.
+                    * This should be fixed when vuematerial will have updated.
+                    */
                     this.$refs.stepper.movePreviousStep();
-                });
+                } else if (!this.paymentInfo.products && this.basicInfo.nationality) {
+                    const products = await this.api.products
+                        .loadProducts(this.basicInfo.nationality);
+                    this.paymentInfo.products = products;
+                    this.paymentInfo.loading = false;
+                }
             }
         },
         parseUserInfo(info) {

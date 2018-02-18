@@ -16,9 +16,10 @@
 import Login from './Login';
 import Register from './Register';
 import ForgotPassword from './ForgotPassword';
+import EmailVerifyNotice from './EmailVerifyNotice';
 
 export default {
-    components: { Login, Register, ForgotPassword },
+    components: { Login, Register, ForgotPassword, EmailVerifyNotice },
     data() {
         return {
             contentView: this.$route.name,

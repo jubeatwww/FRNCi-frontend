@@ -61,7 +61,7 @@
             title="Share More About Yourself"
             description="Tell something about your background and your passion! Help other members get to know you better!">
             <md-input-container>
-                <md-textarea v-model="info.introduction"></md-textarea>
+                <md-textarea v-model="info.introduction" maxlength="500"></md-textarea>
             </md-input-container>
         </form-field>
     </md-step>
@@ -108,7 +108,11 @@ export default {
     watch: {
         info: {
             handler(preData, nextData) {
-                const status = Object.values(nextData).every(val => val !== '') && nextData.interests.length > 0;
+                const status =
+                    Object.values(nextData).every(val => val !== '') &&
+                    nextData.interests.length > 0 &&
+                    nextData.introduction.length > 5 &&
+                    nextData.introduction.length <= 500;
                 this.$emit('update:completed', status);
                 this.$emit('update:info', nextData);
             },

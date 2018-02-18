@@ -26,8 +26,6 @@
     </md-layout>
 </template>
 <script>
-import { API_URL } from '../../config';
-
 export default {
     data() {
         return {
@@ -37,32 +35,15 @@ export default {
     },
     methods: {
         async login() {
-            const { email, password } = this;
-            const loginInfo = await fetch(`${API_URL}/auth/login`, {
-                mode: 'cors',
-                method: 'POST',
-                body: JSON.stringify({ email, password }),
-                headers: new Headers({
-                    'Content-Type': 'application/json',
-                }),
-            }).then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                throw res;
-            }).catch((err) => {
-                console.error(err);
-                switch (err.status) {
-                case 401:
-                    break;
-                default:
-                    break;
-                }
+            const result = await this.api.auth.login({
+                email: this.email,
+                password: this.password,
             });
-
-            if (loginInfo) {
-                const { _id } = loginInfo.user;
-                localStorage.setItem('_token', loginInfo.token);
+            if (result.ok) {
+                const { _id } = result.user;
+                localStorage.clear();
+                localStorage.setItem('_email', result.email);
+                localStorage.setItem('_token', result.token);
                 localStorage.setItem('_id', _id);
                 this.$router.go(-1);
             }
@@ -70,32 +51,13 @@ export default {
         async fbLogin() {
             window.FB.login(async (fbres) => {
                 if (fbres.status === 'connected') {
-                    const { accessToken } = fbres.authResponse;
-                    const loginInfo = await fetch(`${API_URL}/auth/facebook`, {
-                        mode: 'cors',
-                        method: 'POST',
-                        body: JSON.stringify({ access_token: accessToken }),
-                        headers: new Headers({
-                            'Content-Type': 'application/json',
-                        }),
-                    }).then((res) => {
-                        if (res.ok) {
-                            return res.json();
-                        }
-                        throw res;
-                    }).catch((err) => {
-                        console.error(err);
-                        switch (err.status) {
-                        case 401:
-                            break;
-                        default:
-                            break;
-                        }
-                    });
+                    const result = await this.api.auth.fbLogin(fbres.authResponse.accessToken);
 
-                    if (loginInfo) {
-                        const { _id } = loginInfo.user;
-                        localStorage.setItem('_token', loginInfo.token);
+                    if (result.ok) {
+                        const { user: { _id }, email, token } = result;
+                        localStorage.clear();
+                        localStorage.setItem('_email', email);
+                        localStorage.setItem('_token', token);
                         localStorage.setItem('_id', _id);
                         this.$router.go(-1);
                     }
@@ -110,7 +72,7 @@ export default {
         },
     },
     created() {
-        if (this.$route.params.isLogin) {
+        if (this.$route.meta.isLogin) {
             this.$router.go(-1);
         }
     },
