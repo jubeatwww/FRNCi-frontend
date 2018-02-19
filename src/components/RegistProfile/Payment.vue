@@ -48,6 +48,14 @@
                         </div>
                     </template>
                 </template>
+                <div v-if="product.use_coupon && isSelectedProduct(product)" class="form-group">
+                  <!-- label -->
+                  <label for="payment-coupon">Promotion / Coupon Code</label>
+                  <!-- end label -->
+                  <!-- input -->
+                  <input v-model="coupon" type="text" id="payment-coupon" name="coupon" class="form-control" placeholder="enter your code to save up to NTD.500" />
+                  <!-- end input -->
+                </div>
             </div>
             <a v-on:click="orderAndCheckout" class="btn highlight-button-default" href="javascript:void(0)">Next: Confirm &amp; Pay</a>
             <div id="gc-ecpay-checkout-form" style="display:none"></div>
@@ -76,7 +84,8 @@ export default {
     data() {
         return {
             meta: {},
-            product: null,
+            productId: null,
+            coupon: '',
         };
     },
     watch: {
@@ -93,14 +102,14 @@ export default {
     methods: {
         selectProduct(product) {
             if (product && product.quantity > 0) {
-                this.product = product._id;
+                this.productId = product._id;
             }
         },
         selectSession(event, session) {
             this.meta[event._id] = { session: session.key };
         },
         isSelectedProduct(product) {
-            return this.product === product._id;
+            return this.productId === product._id;
         },
         isSelectedSession(event, session) {
             const m = this.meta[event._id];
@@ -108,7 +117,8 @@ export default {
         },
         async orderAndCheckout() {
             const token = localStorage.getItem('_token');
-            const order = await this.api.products.createOrder(this.product, this.meta, token);
+            const order = await this.api.products.createOrder(this.productId,
+                this.meta, token, this.coupon);
             const formHtml = await this.api.products.checkoutOrder(order._id, token);
             document.getElementById('gc-ecpay-checkout-form').appendChild(jQuery.parseHTML(formHtml)[0]);
             document.getElementById('_allpayForm').submit();
