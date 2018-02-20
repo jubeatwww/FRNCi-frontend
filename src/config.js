@@ -1,7 +1,9 @@
 export const API_URL = process.env.API_URL ||
     (process.env.NODE_ENV === 'development' ?
     'http://ec2-13-115-14-171.ap-northeast-1.compute.amazonaws.com/api/v1' :
-    '');
+    'https://api.glocalclick.com');
+
+export const FB_ID = '187063031875385'; // dev: 210224009543527
 
 export const PORT = '6843';
 
