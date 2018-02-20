@@ -192,19 +192,25 @@ router.beforeEach(async (to, from, next) => {
 
                 localStorage.setItem('_email', userInfo.email);
 
-                if (to.name === 'EmailVerifyNotice' || to.name === 'registprofile') {
-                    if (userInfo.verification.email && userIntegrity.integrity) {
+                if (to.name === 'EmailVerifyNotice') {
+                    if (userInfo.verification.email) {
                         next('/');
                     } else {
                         next();
                     }
-                } else {
-                    if (!(userInfo.verification.email || userInfo.verification.facebook)) {
-                        next({ path: '/email-verify-notice' });
-                    } else if (!userIntegrity.integrity) {
-                        next({ path: '/registprofile' });
-                    }
+                } else if (to.name === 'registprofile') {
                     next();
+                } else if (!(userInfo.verification.email || userInfo.verification.facebook)) {
+                    next({ path: '/email-verify-notice' });
+                } else if (!userIntegrity.integrity) {
+                    next({ path: '/registprofile' });
+                } else {
+                    const paid = await api.users.paid(userid, token);
+                    if (paid) {
+                        next();
+                    } else {
+                        next({ path: '/registprofile', query: { tab: 'payment' } });
+                    }
                 }
             }
         }

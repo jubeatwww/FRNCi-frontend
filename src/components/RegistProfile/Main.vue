@@ -3,7 +3,7 @@
         <md-layout
             md-flex="75"
             style="padding: 5% 4%">
-            <md-stepper @change="stepChanged" ref="stepper">
+            <md-stepper @change="stepChanged" ref="stepper" :md-disable-header-nav="true">
                 <Basic
                     :completed.sync="basicCompleted"
                     :info.sync="basicInfo"></Basic>
@@ -44,6 +44,16 @@ export default {
             return this.basicCompleted && this.preferenceCompleted;
         },
     },
+    mounted() {
+        const { query } = this.$route;
+        if (query && query.tab === 'payment') {
+            this.$nextTick(() => {
+                const { stepper } = this.$refs;
+                stepper.setActiveStep(stepper.getStepByIndex(2), true);
+                this.loadProducts().then();
+            });
+        }
+    },
     methods: {
         async stepChanged(nextStep) {
             if (nextStep === 2) {
@@ -57,7 +67,9 @@ export default {
                 });
 
                 const result = await this.api.users.update(userid, token, userInfo);
-                if (!result.ok) {
+                if (result.ok) {
+                    await this.loadProducts();
+                } else {
                     /* Return to previous step when update user data failed from api.
                     * We have to do this because vuematerial 0.8.2 doesn't provide the method
                     * to prevent stepper from stepping forward,
@@ -65,12 +77,18 @@ export default {
                     * This should be fixed when vuematerial will have updated.
                     */
                     this.$refs.stepper.movePreviousStep();
-                } else if (!this.paymentInfo.products && this.basicInfo.nationality) {
-                    const products = await this.api.products
-                        .loadProducts(this.basicInfo.nationality);
-                    this.paymentInfo.products = products;
-                    this.paymentInfo.loading = false;
                 }
+            }
+        },
+        async loadProducts() {
+            const nationality = this.basicInfo.nationality ||
+                this.$route.meta.user.nationality;
+            if (nationality) {
+                const products = await this.api.products.loadProducts(nationality);
+                this.paymentInfo.products = products;
+                this.paymentInfo.loading = false;
+            } else {
+                this.$refs.stepper.movePreviousStep();
             }
         },
         parseUserInfo(info) {
