@@ -14,7 +14,8 @@
               <md-input-container>
                 <md-input 
                     placeholder="A valid e-mail address you check regularly"
-                    v-model="info.email"></md-input>
+                    v-model="info.email"
+                    disabled></md-input>
             </md-input-container>
         </form-field>
         <form-field title="Gender">
@@ -66,16 +67,17 @@ export default {
     props: ['mdDisabled'],
     components: { RadioGroup, FormField, DatePicker },
     data() {
+        const { photo, email } = this.$route.meta.user;
         return {
             info: {
-                photo: this.$route.meta.user.photo,
-                email: '',
+                photo,
+                email,
                 gender: 'm',
                 birthday: '',
                 nationality: 'TW',
                 localCity: '',
             },
-            uploadImg: this.$route.meta.user.photo,
+            uploadImg: photo,
             genderOpt: [{ label: 'male', value: 'm' }, { label: 'female', value: 'f' }],
             nationalities,
         };
