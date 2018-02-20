@@ -44,6 +44,12 @@ export default {
             return this.basicCompleted && this.preferenceCompleted;
         },
     },
+    async mounted() {
+        const { query } = this.$route;
+        if (query.tab === 'payment') {
+            await this.stepChanged(2);
+        }
+    },
     methods: {
         async stepChanged(nextStep) {
             if (nextStep === 2) {

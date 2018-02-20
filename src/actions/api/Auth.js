@@ -8,6 +8,7 @@ import { API_URL, FB_ID } from '../../config';
     js.src = `https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&autoLogAppEvents=1&version=v2.12&appId=${FB_ID}`;
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
+/* eslint-enable */
 
 export default {
     async signup(signupInfo = { firstName: '', lastName: '', email: '', password: '' }) {
