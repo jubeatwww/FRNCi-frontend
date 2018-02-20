@@ -68,14 +68,14 @@ export default {
     data() {
         return {
             info: {
-                photo: '',
+                photo: this.$route.meta.user.photo,
                 email: '',
                 gender: 'm',
                 birthday: '',
-                nationality: 'tw',
+                nationality: 'TW',
                 localCity: '',
             },
-            uploadImg: '',
+            uploadImg: this.$route.meta.user.photo,
             genderOpt: [{ label: 'male', value: 'm' }, { label: 'female', value: 'f' }],
             nationalities,
         };
