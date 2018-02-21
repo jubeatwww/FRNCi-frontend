@@ -51,6 +51,13 @@
             </div>
             <a v-on:click="orderAndCheckout" class="btn highlight-button-default" href="javascript:void(0)">Next: Confirm &amp; Pay</a>
             <div id="gc-ecpay-checkout-form" style="display:none"></div>
+            <div class="text-policy">
+                <h5>Refund Policy:</h5>
+                <ol>
+                    <li>Tickets for the March 03rd and March 10th events are fully refundable up to 5 days before the events, subject to conditions.</li>
+                    <li>If the purchaser or user makes use of all or any portion of the special offer package (bonus offers) the ticket(s) for the event are non-refundable and the above condition (1) is no longer valid.</li>
+                </ol>
+            </div>
         </div>
     </md-step>
 </template>
@@ -121,55 +128,96 @@ export default {
 .price-radio-group{
     position:relative;
 }
-.plan-check label{
-    position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 0.25rem;
-    padding:3% 6%;
-    color:#707070;
-    cursor: pointer
-}
-.plan-check input[type=radio] {
-    display: none;
-}
-.plan-check input[type=radio]:checked + label {
-    border:2px solid #60bc90;
-    color:#000;
-    background:transparent;
 
-}
-div.plan-check input[type=radio]:disabled + label{
-    cursor:not-allowed;
+.plan-check {
+    label{
+        position: relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        border-radius: 0.5rem;
+        padding:3% 6%;
+        color:#707070;
+        cursor: pointer;
+        margin: 2% 0;
+    }
+
+    h6, p {
+        font-size: 16px;
+        line-height: 5px;
+        font-weight: 600;
+        .text-price {
+            color: #e45915;
+        }
+    }
+
+    input[type=radio] {
+        display: none;
+    }
+
+    input[type=radio]:checked + label {
+        border:2px solid #60bc90;
+        color:#000;
+        background:transparent;
+
+    }
+
+    input[type=radio]:disabled + label{
+        cursor:not-allowed;
+    }
+
+    input[type=radio]:checked + label::after {
+        color: #f8b62c;
+        font-family: FontAwesome;
+        border: 2px solid #f8b62c;
+        content: "\f00c";
+        font-size: 24px;
+        position: absolute;
+        top: 35%;
+        left: 0%;
+        transform: translateX(-50%);
+        height: 50px;
+        width: 50px;
+        line-height: 50px;
+        text-align: center;
+        border-radius: 50%;
+        background: white;
+        box-shadow: 0px 2px 5px -2px hsla(0, 0%, 0%, 0.25);
+        z-index: 100;
+    }
 }
 
-div.plan-check input[type=radio]:checked + label::after {
-    color: #f8b62c;
-    font-family: FontAwesome;
-    border: 2px solid #f8b62c;
-    content: "\f00c";
-    font-size: 24px;
-    position: absolute;
-    top: 35%;
-    left: 0%;
-    transform: translateX(-50%);
-    height: 50px;
-    width: 50px;
-    line-height: 50px;
+.md-step-content h3 {
     text-align: center;
-    border-radius: 50%;
-    background: white;
-    box-shadow: 0px 2px 5px -2px hsla(0, 0%, 0%, 0.25);
-    z-index: 100;
+    font-size: 24px;
+    margin-bottom: 5%;
+}
+
+.highlight-button-default {
+    padding: 10px 20px;
+    color: #fff !important;
+    letter-spacing: 1px;
+    border: 2px solid #f8b62c;
+    background-color: #f8b62c;
+    border-radius: 0.35rem;
+    position: absolute;
+}
+
+.text-policy {
+    margin-top: 15%;
+
+    h5 {
+        font-size: 16px;
+        line-height: 2px;
+    }
 }
 </style>

@@ -59,3 +59,18 @@
         <p>The explanation and application of Service terms in this website and the controversy related to this website, should obey all related laws and regulations of Taiwan R.O.C republic of China as well as all international conventions related to use of the internet. If there is any discrepancy or conflict between the content of the Chinese and English version of this agreement, the Chinese version shall prevail. The Chinese version of this agreement holds the highest level of validity.</p>
     </div>  
 </template>
+
+<style lang="scss" scoped>
+section {
+    h4 {
+       margin-bottom: 2%;
+        margin-top: 5%;
+    }
+
+    p {
+        line-height: 30px;
+        letter-spacing: .3px;
+        text-align: left;
+    }
+}
+</style>

@@ -27,8 +27,18 @@ export default {
 };
 </script>
 
-
 <style lang="scss" scoped>
+h4 {
+    font-size: 22px;
+}
 
+p {
+    font-size: 15px;
+    text-align: left;
+    line-height: 22px;
+}
+.md-theme-default a:not(.md-button) {
+    color: #f8b62c;
+}
 </style>
 

@@ -124,3 +124,14 @@ export default {
 
 <style lang="scss" scoped>
 </style>
+
+<style lang="scss">
+.md-button[disabled].md-raised {
+    background-color: #f8b62c;
+    color: rgba(255, 255, 255, .87);
+}
+
+.md-step-actions .md-button {
+    border: solid 1px #f8b62c;
+} 
+</style>
