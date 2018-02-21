@@ -9,25 +9,34 @@
         <!-- introduction -->
         <section class="mt-5">
             <div class="container">
-                <div class="row justify-content-around">
-                    <div v-if="introduction" v-html="introduction" class="col-md-8 col-sm-12 col-12 "></div>
+                <md-layout md-column>
+                    <md-layout md-flex="66" md-flex-small="100" md-flex-medium="66">
+                        <div v-if="introduction" v-html="introduction"></div>
+                    </md-layout>
                     <!-- plan -->
-                    <div class="col-md-4 col-sm-12 col-12">
-                        <div v-for="p in products" :key="p.product._id" :class="productClassName(p)">
-                            <div class="card-body">
-                                <h5 class="card-title text-center text-price">{{p.product.currency}}$. {{p.product.price}}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted text-center">{{p.name}}</h6>
-                                <hr>
-                                <p class="mb-0 text-center"><i class="em em-gift"></i> 加碼送：</p>
-                                <ul>
-                                    <li v-for="(item, i) in p.product.items" :key="i">{{item}}</li>
-                                </ul>
-                                <a v-on:click="buy(p.product)" href="javascript:void(0)" class="card-link btn btn-block highlight-button-default">我要報名</a>
-                            </div>
-                        </div>
-                    </div>
+                    <md-layout md-flex="33" md-flex-small="100" md-flex-medium="33">
+                        <md-layout md-row>
+                            <md-card v-for="p in products" :key="p.product._id" :class="productClassName(p)">
+                                <md-card-header>
+                                    <div class="md-title text-center text-price">{{p.product.currency}}$. {{p.product.price}}</div>
+                                    <div class="md-subhead text-muted text-center">{{p.name}}</div>
+                                </md-card-header>
+                                <md-card-content>
+                                    <p class="mb-0 text-center"><i class="em em-gift"></i> 加碼送：</p>
+                                    <ul>
+                                        <li v-for="(item, i) in p.product.items" :key="i">{{item}}</li>
+                                    </ul>
+                                </md-card-content>
+                                <md-card-actions>
+                                    <md-button
+                                        v-on:click="buy(p.product)"
+                                        class="card-link btn btn-block highlight-button-default">我要報名</md-button>
+                                </md-card-actions>
+                            </md-card>
+                        </md-layout>
+                    </md-layout>
                     <!-- end plan -->
-                </div>
+                </md-layout>
             </div>
         </section>
         <!-- end introduction -->
@@ -99,6 +108,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.bg-default-green {
+    background: #60bc90;
+    color: #fff;
+}
 .page-header {
     height: 400px;
     background-position: center center;
@@ -106,5 +119,37 @@ export default {
 }
 .border-select{
     border:3px solid #60bc90;
+}
+.embed-responsive {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+
+  &::before {
+    display: block;
+    content: "";
+  }
+
+  .embed-responsive-item,
+  iframe,
+  embed,
+  object,
+  video {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+}
+
+.embed-responsive-21by9 {
+  &::before {
+    padding-top: percentage(9 / 21);
+  }
 }
 </style>
