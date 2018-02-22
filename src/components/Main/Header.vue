@@ -1,5 +1,5 @@
 <template>
-    <header :style="isHome">
+    <header>
         <div id="logo" @click="homeLink"></div>
         <nav>
             <md-theme md-name="orange">
@@ -33,9 +33,6 @@ export default {
         return { avatar: '' };
     },
     computed: {
-        isHome() {
-            return this.$route.name === 'home' ? { position: 'fixed' } : { position: 'relative' };
-        },
         showDefaultAvatar() {
             return !this.$route.meta.avatar;
         },
@@ -63,7 +60,6 @@ export default {
 
 <style lang="scss" scoped>
 header{
-    position: fixed;
     display: flex;
     justify-content: space-between;
     z-index: 2;

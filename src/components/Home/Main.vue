@@ -1,26 +1,33 @@
 <template>
     <div>
-        <OnBoard></OnBoard>
-        <SearchForm></SearchForm>
-        <HowTo></HowTo>
-        <Feedback></Feedback>
+        <Board></Board>
+        <Introduction></Introduction>
+        <Schedule></Schedule>
+        <Memories></Memories>
+        <Feature></Feature>
+        <Cooperation></Cooperation>
     </div>
 </template>
 <script>
-import OnBoard from './OnBoard';
-import SearchForm from './SearchForm';
-import Feedback from './Feedback';
-import HowTo from './HowTo';
+import Board from './Board';
+import Introduction from './Introduction';
+import Schedule from './Schedule';
+import Memories from './Memories';
+import Feature from './Feature';
+import Cooperation from './Cooperation';
 
 export default {
     components: {
-        OnBoard,
-        SearchForm,
-        Feedback,
-        HowTo,
+        Board,
+        Introduction,
+        Schedule,
+        Memories,
+        Feature,
+        Cooperation,
     },
 };
 </script>
 
 <style>
+
 </style>
