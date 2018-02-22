@@ -4,6 +4,8 @@
             <aside>
                 <router-link to="/controlpanel/account">My Account</router-link>
                 <router-link to="/controlpanel/profile">My Profile</router-link>
+                <router-link to="/controlpanel/orders">My Orders</router-link>
+                <router-link to="/controlpanel/attendees">My Attended Events</router-link>
             </aside>
         </md-layout>
         <md-layout md-flex="66" md-align="center">

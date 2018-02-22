@@ -11,6 +11,8 @@ import EmailVerification from '@/components/EmailVerification/Main';
 import ControlPanel from '@/components/ControlPanel/Main';
 import CtrlAccount from '@/components/ControlPanel/Account';
 import CtrlProfile from '@/components/ControlPanel/Profile';
+import CtrlOrders from '@/components/ControlPanel/Orders';
+import CtrlAttendees from '@/components/ControlPanel/Attendees';
 import EventPage from '@/components/Event/Main';
 import Purchase from '@/components/Product/Purchase';
 
@@ -142,6 +144,22 @@ const router = new Router({
                             path: 'profile',
                             component: CtrlProfile,
                             name: 'ControlPanelProfile',
+                            meta: {
+                                requireAuth: true,
+                            },
+                        },
+                        {
+                            path: 'orders',
+                            component: CtrlOrders,
+                            name: 'ControlPanelOrders',
+                            meta: {
+                                requireAuth: true,
+                            },
+                        },
+                        {
+                            path: 'attendees',
+                            component: CtrlAttendees,
+                            name: 'ControlPanelAttendees',
                             meta: {
                                 requireAuth: true,
                             },
