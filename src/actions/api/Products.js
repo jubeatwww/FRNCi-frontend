@@ -65,7 +65,7 @@ export default {
             mode: 'cors',
             method: 'POST',
             headers: new Headers({
-                'Content-Type': 'text/html',
+                'Content-Type': 'text/plain',
                 Authorization: token,
             }),
         }).then((res) => {

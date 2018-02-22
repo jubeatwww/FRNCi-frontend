@@ -120,8 +120,12 @@ export default {
             const order = await this.api.products.createOrder(this.productId,
                 this.meta, token, this.coupon);
             const formHtml = await this.api.products.checkoutOrder(order._id, token);
-            document.getElementById('gc-ecpay-checkout-form').appendChild(jQuery.parseHTML(formHtml)[0]);
-            document.getElementById('_allpayForm').submit();
+            if (formHtml === 'done') {
+                this.$router.push('/controlpanel/account');
+            } else {
+                document.getElementById('gc-ecpay-checkout-form').appendChild(jQuery.parseHTML(formHtml)[0]);
+                document.getElementById('_allpayForm').submit();
+            }
         },
     },
 };
