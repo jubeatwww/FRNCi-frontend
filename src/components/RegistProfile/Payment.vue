@@ -24,7 +24,7 @@
                 </div>
                 <template v-if="product.events" >
                     <template v-for="event in product.events">
-                        <div v-if="event.sessions" class="form-group ml-md-5 ml-sm-0" :key="event._id">
+                        <div v-if="event.sessions && event.sessions.length" class="form-group ml-md-5 ml-sm-0" :key="event._id">
                             <label>
                                 <span class="fa fa-hand-o-right"></span>
                                 Please choose your session of "{{ event.name }}"
