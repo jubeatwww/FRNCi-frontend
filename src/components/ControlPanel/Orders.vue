@@ -2,7 +2,7 @@
     <div>
         <h3>My Orders</h3>
         <md-progress v-if="loading" :md-indeterminate="true"></md-progress>
-        <button v-if="error" v-on:click="loadOrders">Try Again</button>
+        <button v-if="error && !loading" v-on:click="loadOrders">Try Again</button>
         <table v-if="!loading && !error && orders && orders.length">
             <tr v-for="order in orders" :key="order._id">
                 <td>{{order.tradeDate}}</td>
@@ -33,7 +33,9 @@ export default {
         loadOrders() {
             const token = localStorage.getItem('_token');
             const userId = localStorage.getItem('_id');
+            this.loading = true;
             this.api.products.getOrders(userId, token).then((orders) => {
+                this.error = false;
                 this.loading = false;
                 this.orders = orders;
             }, () => {

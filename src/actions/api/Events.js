@@ -18,4 +18,19 @@ export default {
             ...res,
         }));
     },
+    getAttendees(userId, token) {
+        return fetch(`${API_URL}/users/${userId}/attendees`, {
+            mode: 'cors',
+            method: 'GET',
+            header: new Headers({
+                'Content-Type': 'application/json',
+                Authorization: token,
+            }),
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            throw res;
+        });
+    },
 };
