@@ -9,13 +9,13 @@
         <!-- introduction -->
         <section class="mt-5">
             <div class="container">
-                <md-layout md-column>
-                    <md-layout md-flex="66" md-flex-small="100" md-flex-medium="66">
+                <md-layout md-row>
+                    <md-layout class="col-md-8 col-sm-12" md-flex="66" md-flex-small="100" md-flex-medium="66">
                         <div v-if="introduction" v-html="introduction"></div>
                     </md-layout>
                     <!-- plan -->
-                    <md-layout md-flex="33" md-flex-small="100" md-flex-medium="33">
-                        <md-layout md-row>
+                    <md-layout class="col-md-4 col-sm-12" md-flex="33" md-flex-small="100" md-flex-medium="33">
+                        <md-layout md-column>
                             <md-card v-for="p in products" :key="p.product._id" :class="productClassName(p)">
                                 <md-card-header>
                                     <div class="md-title text-center text-price">{{p.product.currency}}$. {{p.product.price}}</div>
