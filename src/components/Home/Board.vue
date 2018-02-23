@@ -6,7 +6,7 @@
                     <h2>【Glocal Click 前導活動 】限量報名中！</h2>
                     <h5>自在說外語 x 跨文化交流 x 你的國際交友圈</h5>
                 </md-layout>
-                <md-layout md-flex="50" md-align="center" md-column="true">
+                <md-layout md-flex="50" md-align="center" md-column>
                     <p>截 止 倒 數</p>
                     <md-layout>
                         <div>

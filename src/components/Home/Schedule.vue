@@ -1,7 +1,7 @@
 <template>
     <section>
         <md-layout md-align="center">
-            <md-layout md-column="true" md-align="center">
+            <md-layout md-column md-align="center">
                 <img src="/static/img/gc_schedule_zh.jpg">
             </md-layout>
         </md-layout>

@@ -1,7 +1,7 @@
 <template>
     <section>
         <md-layout md-align="center">
-            <md-layout md-column="true" md-align="center">
+            <md-layout md-column md-align="center">
             <h3>Glocal Click 是什麼？</h3>
                 <p>
                     Glocal Click 是 FRNCi 將推出的全新平台，主打<b>「與跨文化朋友自在說外語」的全方位體驗</b><br>

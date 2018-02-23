@@ -1,7 +1,7 @@
 <template>
     <section>
-        <md-layout md-column="true" md-align="center">
-            <md-layout md-column="true" md-align="center">
+        <md-layout md-column md-align="center">
+            <md-layout md-column md-align="center">
                 <h3>活動回顧</h3>
                 <h6>
                     我們辦過不同的交流活動，包含 SpeakEasy 麻將和桌遊、台灣熱炒夜、<br>
@@ -9,7 +9,7 @@
                     都可以在活動中自在開口、輕鬆交流！
                 </h6>
             </md-layout>
-            <md-layout md-column="true" md-align="center">
+            <md-layout md-column md-align="center">
                 <md-layout style="flex-wrap: nowrap"> 
                     <figure>
                         <div class="gallery-img">
