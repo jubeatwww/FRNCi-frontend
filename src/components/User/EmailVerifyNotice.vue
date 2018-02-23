@@ -7,7 +7,7 @@
            to verify your email address. 
            <br>
            <br>
-           You must click the link we sent to use all the features of GlocalClick.
+           You must click the link we sent to use all the features of Glocal Click.
            <br>
            <br>
            PS. If you can't find it, please look for it in your junk mail folder. 
@@ -27,8 +27,18 @@ export default {
 };
 </script>
 
-
 <style lang="scss" scoped>
+h4 {
+    font-size: 22px;
+}
 
+p {
+    font-size: 15px;
+    text-align: left;
+    line-height: 22px;
+}
+.md-theme-default a:not(.md-button) {
+    color: #f8b62c;
+}
 </style>
 

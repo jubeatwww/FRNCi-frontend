@@ -7,7 +7,7 @@
                 name="meet">
             </radio-group>
         </form-field>
-        <form-field title="How You Prefer to Interact">
+        <form-field title="How You Prefer to Interact" description="You can also change this setting anytime.">
             <radio-group
                 :options="preferToInteract"
                 :value.sync="info.interact"
@@ -123,4 +123,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+</style>
+
+<style lang="scss">
+.md-button[disabled].md-raised {
+    background-color: #f8b62c;
+    color: rgba(255, 255, 255, .87);
+}
+
+.md-step-actions .md-button {
+    border: solid 1px #f8b62c;
+} 
 </style>

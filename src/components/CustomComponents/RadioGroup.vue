@@ -72,6 +72,7 @@ export default {
         
         & ~ button {
             color: #60bc90;
+            border: solid 1px #60bc90;
         }
 
         &:checked ~ button.md-button:not([disabled]):not(.md-raised) {
