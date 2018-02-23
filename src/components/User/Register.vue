@@ -137,23 +137,6 @@ export default {
         font-size: 18px;
     }
 }
-<<<<<<< HEAD
-
-</style>
-<style lang="scss">
-.md-theme-default {
-.md-checkbox.md-checked .md-checkbox-container  {
-    background-color: #60bc90;
-    border-color: #60bc90;
-}
-
-.md-checkbox .md-ink-ripple {
-    color: #60bc90;
-}
-}
-
-=======
->>>>>>> f577299551bf1618e0bb6e0336c8d9641c2b407a
 </style>
 
 <style lang="scss">
