@@ -1,6 +1,6 @@
 <template>
     <md-layout md-column>
-        <div style="margin-bottom: 3%">Log in to Glocal Click</div>
+        <div style="margin-bottom: 10%">Log in to Glocal Click</div>
         <md-button id="fb-login" class="md-raised md-primary login-btn" @click="fbLogin">
             <i class="fa fa-facebook"></i> Log in with Facebook
         </md-button>
@@ -78,6 +78,7 @@ export default {
     },
 };
 </script>
+
 <style lang="scss" scoped>
 #fb-login {
     background-color: #3B5998;
@@ -123,6 +124,7 @@ export default {
 }
 
 .md-theme-default {
+<<<<<<< HEAD
 .md-button:not([disabled]).md-primary.md-raised {
     background-color: #f8b62c;
     border-radius: 3.6px;
@@ -139,6 +141,24 @@ export default {
 a:not(.md-button) {
     color: #f8b62c;
 }
+=======
+    .md-button:not([disabled]).md-primary.md-raised {
+        background-color: #f8b62c;
+        border-radius: 3.6px;
+            
+        &:hover {
+            background-color: #f8b62c;
+        }
+    }
+
+    .md-input-container.md-input-focused:after {
+        background-color: #60bc90;
+    }
+
+    a:not(.md-button) {
+        color: #f8b62c;
+    }
+>>>>>>> f577299551bf1618e0bb6e0336c8d9641c2b407a
 }
 
 #forgot-pwd-btn {

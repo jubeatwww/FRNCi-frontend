@@ -27,7 +27,6 @@ export default {
 };
 </script>
 
-
 <style lang="scss" scoped>
 h4 {
     font-size: 22px;

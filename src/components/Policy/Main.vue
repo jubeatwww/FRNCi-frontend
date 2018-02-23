@@ -30,3 +30,14 @@ article{
 }
 </style>
 
+<style lang="scss" scoped>
+article{
+    header {
+        margin-top: 5%;
+    }
+    section {
+        width: 85%;
+        margin: 0 auto;
+    }
+}
+</style>

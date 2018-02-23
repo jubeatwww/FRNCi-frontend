@@ -32,6 +32,7 @@
         <p>If you have any questions about this Privacy Policy, please contact us by emailing to contactus@frnci.com</p>
     </div>
 </template>
+
 <style lang="scss" scoped>
 section {
     h4 {

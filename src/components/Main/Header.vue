@@ -87,6 +87,7 @@ header{
     nav{
         display: flex;
         align-items: center;
+        margin-right: 2%;
 
         button.md-theme-orange.md-button:not([disabled]).md-primary.md-raised {
             margin: 0 20px;

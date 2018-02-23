@@ -66,6 +66,7 @@ export default {
     },
 };
 </script>
+
 <style lang="scss" scoped>
 #fb-signup {
     background-color: #3B5998;
@@ -104,15 +105,15 @@ export default {
 }
 
 .md-theme-default {
-.md-button:not([disabled]).md-primary.md-raised {
-    background-color: #f8b62c;
-    width: 100%;
-    height: 15%;
-}
+    .md-button:not([disabled]).md-primary.md-raised {
+        background-color: #f8b62c;
+        width: 100%;
+        height: 15%;
+    }
 
-.md-input-container.md-input-focused:after {
-    background-color: #60bc90;
-}
+    .md-input-container.md-input-focused:after {
+        background-color: #60bc90;
+    }
 
      a:not(.md-button) {
         color: #707070;
@@ -136,6 +137,7 @@ export default {
         font-size: 18px;
     }
 }
+<<<<<<< HEAD
 
 </style>
 <style lang="scss">
@@ -150,4 +152,19 @@ export default {
 }
 }
 
+=======
+>>>>>>> f577299551bf1618e0bb6e0336c8d9641c2b407a
+</style>
+
+<style lang="scss">
+.md-theme-default {
+    .md-checkbox.md-checked .md-checkbox-container  {
+        background-color: #60bc90;
+        border-color: #60bc90;
+    }
+
+    .md-checkbox .md-ink-ripple {
+        color: #60bc90;
+    }
+}
 </style>

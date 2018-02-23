@@ -51,10 +51,8 @@ export default {
     },
 };
 </script>
-<style lang="scss" scoped>
-</style>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #forgot-form {
     .md-steps-navigation{
         display: none;
@@ -65,21 +63,9 @@ export default {
     }
 }
 
-.md-theme-default {
-    .md-stepper .md-step-header.md-active .md-step-number, .md-stepper .md-step-header.md-primary .md-step-icon {
-        background-color: #60bc90;
-    }
-
-.md-button:not([disabled]).md-primary.md-raised {
-    background-color: #60bc90;
-    &:hover {
-        background-color: #60bc90;
-    }
-}
-
-.md-input-container.md-input-focused:after {
-    background-color: #60bc90;
-}
+.md-step-content > p {
+    text-align: left;
+    font-size: 16px;
 }
 
 .md-stepper .md-steps-navigation {
@@ -89,9 +75,23 @@ export default {
 .md-whiteframe-1dp {
     box-shadow: 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0);
 }
+</style>
 
-.md-step-content > p {
-    text-align: left;
-    font-size: 16px;
+<style lang="scss">
+.md-theme-default {
+    .md-stepper .md-step-header.md-active .md-step-number, .md-stepper .md-step-header.md-primary .md-step-icon {
+        background-color: #60bc90;
+    }
+
+    .md-button:not([disabled]).md-primary.md-raised {
+        background-color: #60bc90;
+        &:hover {
+            background-color: #60bc90;
+        }
+    }
+
+    .md-input-container.md-input-focused:after {
+        background-color: #60bc90;
+    }
 }
 </style>

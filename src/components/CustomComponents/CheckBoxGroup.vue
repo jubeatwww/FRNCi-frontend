@@ -103,3 +103,16 @@ export default {
     width: 100%;
 }
 </style>
+
+<style lang="scss">
+.md-theme-default {
+    .md-checkbox.md-checked .md-checkbox-container  {
+        background-color: #60bc90;
+        border-color: #60bc90;
+    }
+
+    .md-checkbox .md-ink-ripple {
+        color: #60bc90;
+    }
+}
+</style>
