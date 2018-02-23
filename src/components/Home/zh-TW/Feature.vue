@@ -1,7 +1,7 @@
 <template>
     <section>
-        <md-layout md-column="column" md-align="center">
-            <md-layout md-column="column" md-align="center">
+        <md-layout md-column md-align="center">
+            <md-layout md-column md-align="center">
                 <h3 class="text-dark-gray">Glocal Click 特色</h3>
                 <h5>練習外語，有更自在、有趣、有效的方法</h5>
             </md-layout>

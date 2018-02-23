@@ -3,11 +3,10 @@
        <div class="mask">
             <md-layout md-align="center">
                 <md-layout md-flex="70" md-align="center">
-                    <h2>【Glocal Click 前導活動 】限量報名中！</h2>
-                    <h5>自在說外語 x 跨文化交流 x 你的國際交友圈</h5>
+                    <h2>Where Language Exchange Meet Local Friends</h2>
                 </md-layout>
                 <md-layout md-flex="50" md-align="center" md-column>
-                    <p>截 止 倒 數</p>
+                    <p>New Platform Coming Soon!</p>
                     <md-layout>
                         <div>
                             <span class="counter-num">134</span><br><span>days</span>
@@ -39,7 +38,7 @@ export default {
 
 <style lang="scss" scoped>
 section {
-    background-image: url(../../assets/stock-image-144856145-l-2015.jpg);
+    background-image: url(../../../assets/stock-image-144856145-l-2015.jpg);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;

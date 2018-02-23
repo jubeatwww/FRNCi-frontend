@@ -1,6 +1,6 @@
 <template>
     <section>
-        <md-layout md-column="column" md-align="center">
+        <md-layout md-column md-align="center">
             <h3 class="text-dark-gray">合作學校</h3>
             <md-layout md-align="center">
                 <a href="http://mandarin.nccu.edu.tw/"
