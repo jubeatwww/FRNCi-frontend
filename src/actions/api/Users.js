@@ -137,4 +137,19 @@ export default {
         });
         return result;
     },
+    paid(userId, authToken) {
+        return fetch(`${API_URL}/users/${userId}/paid`, {
+            mode: 'cors',
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                Authorization: authToken,
+            }),
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            throw res;
+        }).then(result => result.paid);
+    },
 };

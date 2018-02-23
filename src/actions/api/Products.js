@@ -34,11 +34,15 @@ export default {
         });
     },
 
-    createOrder(productId, meta, token) {
+    createOrder(productId, meta, token, coupon) {
+        const coupons = coupon && coupon.length ? {
+            [productId]: coupon,
+        } : undefined;
         return fetch(`${API_URL}/orders`, {
             mode: 'cors',
             method: 'POST',
             body: JSON.stringify({
+                coupons,
                 meta,
                 products: {
                     [productId]: 1,
@@ -61,7 +65,7 @@ export default {
             mode: 'cors',
             method: 'POST',
             headers: new Headers({
-                'Content-Type': 'text/html',
+                'Content-Type': 'text/plain',
                 Authorization: token,
             }),
         }).then((res) => {

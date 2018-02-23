@@ -20,7 +20,10 @@
                                 <md-card-header>
                                     <div class="md-title text-center text-price">{{p.product.currency}}$. {{p.product.price}}</div>
                                     <div class="md-subhead text-muted text-center">{{p.name}}</div>
+<<<<<<< HEAD
                                     <hr>
+=======
+>>>>>>> develop
                                 </md-card-header>
                                 <md-card-content>
                                     <p class="mb-0 text-center"><i class="em em-gift"></i> 加碼送：</p>
@@ -250,6 +253,38 @@ hr {
     &::before {
         padding-top: percentage(9 / 21);
     }
+}
+.embed-responsive {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+
+  &::before {
+    display: block;
+    content: "";
+  }
+
+  .embed-responsive-item,
+  iframe,
+  embed,
+  object,
+  video {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+}
+
+.embed-responsive-21by9 {
+  &::before {
+    padding-top: percentage(9 / 21);
+  }
 }
 </style>
 
