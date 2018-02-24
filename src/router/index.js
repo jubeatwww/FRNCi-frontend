@@ -210,6 +210,10 @@ router.beforeEach(async (to, from, next) => {
 
                 localStorage.setItem('_email', userInfo.email);
 
+                if (to.name === 'Email Verification') {
+                    next();
+                }
+
                 if (to.name === 'EmailVerifyNotice') {
                     if (userInfo.verification.email) {
                         next('/');
