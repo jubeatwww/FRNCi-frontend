@@ -97,7 +97,7 @@ const router = new Router({
                             localStorage.getItem('_token'),
                         ];
 
-                        const result = await api.user.confirmEmailVerify(
+                        const result = await api.users.confirmEmailVerify(
                             userId,
                             authToken,
                             verifyToken,
