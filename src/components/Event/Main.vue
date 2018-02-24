@@ -20,10 +20,7 @@
                                 <md-card-header>
                                     <div class="md-title text-center text-price">{{p.product.currency}}$. {{p.product.price}}</div>
                                     <div class="md-subhead text-muted text-center">{{p.name}}</div>
-<<<<<<< HEAD
                                     <hr>
-=======
->>>>>>> develop
                                 </md-card-header>
                                 <md-card-content>
                                     <p class="mb-0 text-center"><i class="em em-gift"></i> 加碼送：</p>

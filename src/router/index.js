@@ -200,7 +200,7 @@ router.beforeEach(async (to, from, next) => {
             const userIntegrity = await api.users.integrity(userid, token);
 
             if ((!userIntegrity.ok || !userInfo.ok) && to.meta.requireAuth) {
-                next({ path: 'login' });
+                next({ path: '/login' });
             } else {
                 /* eslint-disable */
                 to.meta.isLogin = userInfo.ok;
@@ -212,9 +212,7 @@ router.beforeEach(async (to, from, next) => {
 
                 if (to.name === 'Email Verification') {
                     next();
-                }
-
-                if (to.name === 'EmailVerifyNotice') {
+                } else if (to.name === 'EmailVerifyNotice') {
                     if (userInfo.verification.email) {
                         next('/');
                     } else {
