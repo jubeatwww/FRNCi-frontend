@@ -23,7 +23,7 @@
                         </p>
                         </div>
                         <div class="card-footer">
-                        <a href="lex-tips-sharing.html">想看更多</a>
+                        <router-link to="/events/2018-03-03-lex-tips-sharing">想看更多</router-link>
                     </div>
                 </div>
                 <div class="card">
@@ -43,7 +43,7 @@
                         </p>
                         </div>
                         <div class="card-footer">
-                        <a href="taipei-exploration-scavenger-hunt.html">想看更多</a>
+                        <router-link to="/events/2018-03-10-taipei-exploration-scavenger-hunt">想看更多</router-link>
                     </div>
                 </div>
             </md-layout>

@@ -22,7 +22,7 @@
                     </div>
                     <div class="card-footer">
                         <p><span>NT$. 50</span></p>
-                        <a href="international-picnic_en.html">Check More</a>
+                        <a href="http://www.frnci.com/glocalclick/international-picnic_en.html">Check More</a>
                     </div>
                 </div>
                 <div class="card">
@@ -38,7 +38,7 @@
                     </div>
                     <div class="card-footer">
                         <p><span>NT$. 450</span></p>
-                        <a href="taipei-exploration-scavenger-hunt_en.html">Check More</a>
+                        <router-link to="/events/2018-03-10-taipei-exploration-scavenger-hunt-en">Check More</router-link>
                     </div>
                 </div>
                 <div class="card">
@@ -54,7 +54,7 @@
                     </div>
                     <div class="card-footer">
                         <p><span>NT$. 350</span></p>
-                        <a href="top-tips-for-mandarin-practice.html">Check More</a>
+                        <router-link to="/events/2018-03-17-top-tips-for-mandarin-practice">Check More</router-link>
                     </div>
                 </div>
             </md-layout>
