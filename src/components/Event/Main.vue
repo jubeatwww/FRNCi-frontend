@@ -72,6 +72,7 @@
 export default {
     data() {
         return {
+            eventId: null,
             products: [],
             bannerUrl: null,
             name: '',
@@ -84,6 +85,7 @@ export default {
     mounted() {
         const { slug } = this.$route.params;
         this.api.events.getEvent(slug).then((event) => {
+            this.eventId = event._id;
             this.products = event.products;
             if (event.banner) {
                 this.bannerUrl = event.banner.url;
@@ -102,6 +104,15 @@ export default {
             return p.featured ? 'card mt-3 border-select' : 'card';
         },
         async buy(product) {
+            const token = localStorage.getItem('_token');
+            const userId = localStorage.getItem('_id');
+            if (token && userId) {
+                const attendees = await this.api.events.getAttendees(userId, token, this.eventId);
+                if (attendees && attendees.length > 0) {
+                    alert('You have already signed up for this event!');
+                    return;
+                }
+            }
             this.$router.push(`/purchase/${product._id}`);
         },
     },
