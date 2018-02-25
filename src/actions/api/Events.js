@@ -22,7 +22,7 @@ export default {
         return fetch(`${API_URL}/users/${userId}/attendees`, {
             mode: 'cors',
             method: 'GET',
-            header: new Headers({
+            headers: new Headers({
                 'Content-Type': 'application/json',
                 Authorization: token,
             }),
