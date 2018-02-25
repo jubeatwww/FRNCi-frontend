@@ -235,8 +235,12 @@ router.beforeEach(async (to, from, next) => {
             }
         }
     } else if (to.meta.requireAuth) {
+        // eslint-disable-next-line
+        to.meta.isLogin = false;
         next({ path: '/login' });
     } else {
+        // eslint-disable-next-line
+        to.meta.isLogin = false;
         next();
     }
 });
