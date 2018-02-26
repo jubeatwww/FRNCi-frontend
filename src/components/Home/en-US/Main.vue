@@ -1,5 +1,5 @@
 <template>
-    <div id="home">
+    <div>
         <Board></Board>
         <Introduction></Introduction>
         <Events></Events>
