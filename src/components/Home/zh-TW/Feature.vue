@@ -5,7 +5,7 @@
                 <h3 class="text-dark-gray">Glocal Click 特色</h3>
                 <h5>練習外語，有更自在、有趣、有效的方法</h5>
             </md-layout>
-            <md-layout md-align="center" style="flex-wrap: nowrap">
+            <md-layout class="mt-4" md-align="center" style="flex-wrap: nowrap">
                 <div class="col">
                     <img src="/static/img/feature1.png" style="width:150px;">
                     <h5 class="mt-3 text-black">完善的個人檔案</h5>
@@ -14,11 +14,11 @@
                     </p>
                 </div>
                 <div class="col">
-                <img src="/static/img/feature2.png" style="width:150px;">
-                <h5 class="mt-3 text-black">多元的驗證機制</h5>
-                <p class="med-text">
-                    運用回報系統與多面向的驗證機制，包含社群帳號、資料完整度與付費會員認證，讓社群用戶間的互動更安心、更有信任感。
-                </p>
+                    <img src="/static/img/feature2.png" style="width:150px;">
+                    <h5 class="mt-3 text-black">多元的驗證機制</h5>
+                    <p class="med-text">
+                        運用回報系統與多面向的驗證機制，包含社群帳號、資料完整度與付費會員認證，讓社群用戶間的互動更安心、更有信任感。
+                    </p>
                 </div>
                 <div class="col">
                     <img src="/static/img/feature3.png" style="width:150px;">
@@ -46,5 +46,37 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+section {
+    padding-bottom: 10%;
 
+    h3 {
+        color: #343d3c;
+        font-size: 1.8rem;
+        letter-spacing: 0px;
+    }
+
+    h5 {
+        margin-top: 0;
+        font-size: 1.3rem;
+        line-height: 1.2;
+    }
+
+    .mt-4 {
+        margin-left: 5%;
+        margin-right: 5%;
+
+        .col {
+            margin: 0 1.2%;
+
+            .text-black {
+                color: #000;
+                margin: 5% 0;
+            }
+
+            .med-text {
+                line-height: 1.5;
+            }
+        }
+    }
+}
 </style>

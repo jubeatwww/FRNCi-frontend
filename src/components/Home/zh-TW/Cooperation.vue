@@ -38,5 +38,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+section {
+    padding-bottom: 10%;
 
+    h3 {
+        color: #343d3c;
+        margin-bottom: 1.3rem;
+        font-size: 1.8rem;
+        font-weight: 500;
+        line-height: 1.2;
+    }
+
+    h3.text-dark-gray {
+        margin-top: 5%;
+    }
+}
 </style>
