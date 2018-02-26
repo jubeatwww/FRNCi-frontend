@@ -46,6 +46,10 @@
 
 import jQuery from 'jquery';
 
+function checkMeta(meta, events) {
+    return events.filter(e => e.sessions && e.sessions.length).every(e => !!meta[e._id]);
+}
+
 export default {
     data() {
         return {
@@ -69,14 +73,17 @@ export default {
             return m && m.session === session.key;
         },
         async orderAndCheckout() {
-            const token = localStorage.getItem('_token');
-            const order = await this.api.products.createOrder(this.product._id, this.meta, token);
-            const formHtml = await this.api.products.checkoutOrder(order._id, token);
-            if (formHtml === 'done') {
-                this.$router.push('/controlpanel/account');
-            } else {
-                document.getElementById('gc-ecpay-checkout-form').appendChild(jQuery.parseHTML(formHtml)[0]);
-                document.getElementById('_allpayForm').submit();
+            const { product, meta } = this;
+            if (product && checkMeta(meta, product.events)) {
+                const token = localStorage.getItem('_token');
+                const order = await this.api.products.createOrder(product._id, meta, token);
+                const formHtml = await this.api.products.checkoutOrder(order._id, token);
+                if (formHtml === 'done') {
+                    this.$router.push('/controlpanel/account');
+                } else {
+                    document.getElementById('gc-ecpay-checkout-form').appendChild(jQuery.parseHTML(formHtml)[0]);
+                    document.getElementById('_allpayForm').submit();
+                }
             }
         },
     },
