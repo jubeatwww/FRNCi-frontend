@@ -23,7 +23,8 @@
                                     <hr>
                                 </md-card-header>
                                 <md-card-content>
-                                    <p class="mb-0 text-center"><i class="em em-gift"></i> 加碼送：</p>
+                                    <p v-if="tags.indexOf('fn_only') >= 0" class="mb-0 text-center"><i class="em em-gift"></i> Bonus:</p>
+                                    <p v-else class="mb-0 text-center"><i class="em em-gift"></i> 加碼送：</p>
                                     <ul>
                                         <li v-for="(item, i) in p.product.items" :key="i">{{item}}</li>
                                     </ul>
@@ -31,7 +32,9 @@
                                 <md-card-actions>
                                     <md-button
                                         v-on:click="buy(p.product)"
-                                        class="card-link btn btn-block highlight-button-default">我要報名</md-button>
+                                        class="card-link btn btn-block highlight-button-default">{{
+                                            tags.indexOf('fn_only') >=0  ? 'Sign Up Now' : '我要報名'
+                                        }}</md-button>
                                 </md-card-actions>
                             </md-card>
                         </md-layout>
@@ -80,6 +83,7 @@ export default {
             gmap: null,
             introduction: '',
             note: '',
+            tags: [],
         };
     },
     mounted() {
@@ -95,6 +99,7 @@ export default {
             this.gmap = event.place.gmap;
             this.introduction = event.introduction;
             this.note = event.note;
+            this.tags = event.tags;
         }, (err) => {
             console.error(err);
         });
