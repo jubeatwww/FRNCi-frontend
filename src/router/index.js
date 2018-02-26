@@ -194,15 +194,15 @@ router.beforeEach(async (to, from, next) => {
     ];
     if (userid && token) {
         if (to.meta.static) {
+            /* eslint-disable */
             try {
                 const userInfo = await api.users.get(userid, token);
-                /* eslint-disable */
                 to.meta.isLogin = userInfo.ok;
                 to.meta.avatar = userInfo ? userInfo.photo : '';
                 to.meta.user = userInfo;
-                /* eslint-enable */
                 localStorage.setItem('_email', userInfo.email);
             } catch (ignored) {}
+            /* eslint-enable */
             next();
         } else {
             const userInfo = await api.users.get(userid, token);
