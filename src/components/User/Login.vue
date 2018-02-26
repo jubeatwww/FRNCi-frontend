@@ -1,9 +1,7 @@
 <template>
     <md-layout md-column>
         <div style="margin-bottom: 10%">Log in to Glocal Click</div>
-        <md-button id="fb-login" class="md-raised md-primary login-btn" @click="fbLogin">
-            <i class="fa fa-facebook"></i> Log in with Facebook
-        </md-button>
+        <fb-button button-id="fb-login" button-text="Log in with Facebook"></fb-button>
         <!--<md-button id="google-login" class="md-raised md-primary login-btn">
             <i class="fa fa-google"></i> Log in with Google
         </md-button>-->
@@ -26,7 +24,10 @@
     </md-layout>
 </template>
 <script>
+import FbButton from './FbButton';
+
 export default {
+    components: { FbButton },
     data() {
         return {
             email: '',
@@ -47,22 +48,6 @@ export default {
                 localStorage.setItem('_id', _id);
                 this.$router.go(-1);
             }
-        },
-        async fbLogin() {
-            window.FB.login(async (fbres) => {
-                if (fbres.status === 'connected') {
-                    const result = await this.api.auth.fbLogin(fbres.authResponse.accessToken);
-
-                    if (result.ok) {
-                        const { user: { _id }, email, token } = result;
-                        localStorage.clear();
-                        localStorage.setItem('_email', email);
-                        localStorage.setItem('_token', token);
-                        localStorage.setItem('_id', _id);
-                        this.$router.go(-1);
-                    }
-                }
-            }, { scope: 'public_profile,email' });
         },
         checkInput() {
 
@@ -127,7 +112,7 @@ export default {
     .md-button:not([disabled]).md-primary.md-raised {
         background-color: #f8b62c;
         border-radius: 3.6px;
-            
+
         &:hover {
             background-color: #f8b62c;
         }

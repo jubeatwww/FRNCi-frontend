@@ -1,9 +1,10 @@
 <template>
     <div class="form-wrapper">
         <div style="margin-bottom: 3%">Sign up to Glocal Click</div>
-        <md-button id="fb-signup" class="md-raised md-primary login-btn" @click="fbSignup"> 
+        <fb-button button-id="fb-signup" button-text="Sign up with Facebook"></fb-button>
+        <!-- <md-button id="fb-signup" class="md-raised md-primary login-btn" @click="fbSignup">
             <i class="fa fa-facebook"></i> Sign up with Facebook
-        </md-button>
+        </md-button> -->
         <div class="or-separator">
             <hr><span>or</span>
         </div>
@@ -39,7 +40,10 @@
     </div>
 </template>
 <script>
+import FbButton from './FbButton';
+
 export default {
+    components: { FbButton },
     data() {
         return {
             firstName: '',
@@ -62,22 +66,6 @@ export default {
                 localStorage.setItem('_email', result.email);
                 this.$router.push('/email-verify-notice');
             }
-        },
-        async fbSignup() {
-            window.FB.login(async (fbres) => {
-                if (fbres.status === 'connected') {
-                    const result = await this.api.auth.fbLogin(fbres.authResponse.accessToken);
-
-                    if (result.ok) {
-                        const { user: { _id }, email, token } = result;
-                        localStorage.clear();
-                        localStorage.setItem('_email', email);
-                        localStorage.setItem('_token', token);
-                        localStorage.setItem('_id', _id);
-                        this.$router.go(-1);
-                    }
-                }
-            }, { scope: 'public_profile,email' });
         },
     },
 };
