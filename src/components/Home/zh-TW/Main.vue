@@ -2,7 +2,7 @@
     <div>
         <Board></Board>
         <Introduction></Introduction>
-        <Schedule></Schedule>
+        <!-- <Schedule></Schedule> -->
         <Timeline></Timeline>
         <Events></Events>
         <Products></Products>

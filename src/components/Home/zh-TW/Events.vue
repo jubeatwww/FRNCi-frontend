@@ -21,14 +21,14 @@
                             覺得語言交換好難持續的你<br>
                             好奇外語練習創新玩法的你<br>
                         </p>
-                        </div>
-                        <div class="card-footer">
-                        <router-link to="/events/2018-03-03-lex-tips-sharing">想看更多</router-link>
+                    </div>
+                    <div class="card-footer">
+                        <a href="lex-tips-sharing.html" class="highlight-button-default">想看更多</a>
                     </div>
                 </div>
                 <div class="card">
                     <a title="【去膩的台北?】與外國人的城市大冒險" href="taipei-exploration-scavenger-hunt.html">
-                    <img src="/static/img/a3.jpg" alt="Card image cap">
+                        <img src="/static/img/a3.jpg" alt="Card image cap">
                     </a>
                     <div class="card-body">
                         <h6 class="mb-2 font-weight-300">2018.03.10(六)</h6>
@@ -41,9 +41,9 @@
                             對於語言交換有點猶豫但心癢癢的你<br>
                             說很久要練外語但一直沒機會的你<br>
                         </p>
-                        </div>
-                        <div class="card-footer">
-                        <router-link to="/events/2018-03-10-taipei-exploration-scavenger-hunt">想看更多</router-link>
+                    </div>
+                    <div class="card-footer">
+                        <a href="taipei-exploration-scavenger-hunt.html" class="highlight-button-default">想看更多</a>
                     </div>
                 </div>
             </md-layout>
@@ -59,5 +59,98 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+section {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-bottom: 10%;
 
+    h5 {
+        margin: 0;
+        font-size: 1.3rem;
+        line-height: 1.3;
+    }
+
+    h3 {
+        color: #343d3c;
+        font-size: 1.7rem;
+    }
+
+    .card {
+        margin-right: 15px;
+        margin-bottom: 0;
+        margin-left: 15px;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        border-radius: 0.25rem;
+        padding-bottom: 1%;
+
+        .card-body {
+            h6.font-weight-300 {
+                margin: 0;
+                padding-top: 20px;
+                font-size: 1.1rem;
+                font-weight: 300;
+                margin-bottom: 0.5rem;
+            }
+
+            h5{
+                font-size: 1.4rem;
+                font-weight: 600;
+            }
+
+            h6.card-title {
+                margin: 0;
+                margin-bottom: 0.75rem;
+                font-size: 1rem;
+                font-weight: 600;
+            }
+
+            p {
+                font-size: 1rem;
+                line-height: 1.5;
+
+                .badge-default-green {
+                    font-size: 18px;
+                    font-weight: 500;
+                    background: #60bc90;
+                    color: #fff;
+                    padding: .25em .6em;
+                    display: inline-block;
+                    line-height: 1;
+                    text-align: center;
+                    white-space: nowrap;
+                    vertical-align: baseline;
+                    border-radius: 0.25rem;
+                }
+            }
+        }
+
+        .card-footer {
+            a.highlight-button-default {
+                width: 95%;
+                display: inline-block;
+                border: 2px solid #f8b62c;
+                background-color: #f8b62c;
+                padding: 4px 20px;
+                color: #fff;
+                letter-spacing: 1px;
+                font-size: 1rem;
+                font-weight: 600;
+                line-height: 1.5;
+                border-radius: 0.25rem;
+                transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                white-space: nowrap;
+                vertical-align: middle;
+
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}
 </style>
