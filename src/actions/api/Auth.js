@@ -77,11 +77,11 @@ export default {
         });
         return result;
     },
-    fbSignupWithEmail(email, access_token) {
+    fbSignupWithEmail(email, accessToken) {
         return fetch(`${API_URL}/auth/fb-no-email`, {
             mode: 'cors',
             method: 'POST',
-            body: JSON.stringify({ access_token, email }),
+            body: JSON.stringify({ access_token: accessToken, email }),
             headers: new Headers({
                 'Content-Type': 'application/json',
             }),
@@ -97,5 +97,5 @@ export default {
             console.error(err);
             return err;
         });
-    }
+    },
 };
