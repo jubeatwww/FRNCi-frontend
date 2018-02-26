@@ -11,7 +11,7 @@
                 <img title="Sold out" src="images/soldout.png">
             </div>
         </div>
-        <template v-if="product && product.events">
+        <template v-if="product && product.events && product.events.length">
             <template v-for="event in product.events">
                 <div v-if="event.sessions && event.sessions.length" class="form-group ml-md-5 ml-sm-0" :key="event._id">
                     <label>
@@ -76,6 +76,12 @@ export default {
             const { product, meta } = this;
             if (product && checkMeta(meta, product.events)) {
                 const token = localStorage.getItem('_token');
+                const userId = localStorage.getItem('_id');
+                const attendees = await this.api.events.getAttendees(userId, token, product.events.map(e => e._id).join(','));
+                if (attendees && attendees.length > 0) {
+                    this.alertify.notify('You have already signed up for this event!');
+                    return;
+                }
                 const order = await this.api.products.createOrder(product._id, meta, token);
                 const formHtml = await this.api.products.checkoutOrder(order._id, token);
                 if (formHtml === 'done') {
