@@ -95,7 +95,7 @@ export default {
             info: {
                 meet: '',
                 interact: '',
-                nativeLanguages: '',
+                nativeLanguage: '',
                 studyLanguages: '',
                 level: 'intermediate',
                 interests: [],

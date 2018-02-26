@@ -98,7 +98,7 @@ export default {
                 level: userInfo.level,
             }];
             userInfo.nativeLanguages = [{
-                languages: userInfo.nativeLanguages,
+                language: userInfo.nativeLanguage,
                 level: 'native',
             }];
             delete userInfo.level;
