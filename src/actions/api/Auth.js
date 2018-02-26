@@ -81,7 +81,10 @@ export default {
         return fetch(`${API_URL}/auth/fb-no-email`, {
             mode: 'cors',
             method: 'POST',
-            body: JSON.stringify({ access_token: accessToken, email }),
+            body: JSON.stringify({
+                email,
+                access_token: accessToken,
+            }),
             headers: new Headers({
                 'Content-Type': 'application/json',
             }),
