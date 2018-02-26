@@ -18,7 +18,7 @@
                             <li>Glocal Click 網站點數 100 點</li>
                             <li>語言交換大補帖(環保e版)</li>
                         </ul>
-                        <a href="">我要報名</a>
+                        <router-link to="/purchase/5a8d5b435338706a60070d79">我要報名</router-link>
                     </div>
                 </div>
                 <!-- plan 3 -->
@@ -34,7 +34,7 @@
                             <li>語言交換大補帖(環保e版)</li>
                             <li class="default-green-text">換日線季刊1本</li>
                         </ul>
-                        <a href="">我要報名</a>
+                        <router-link to="/purchase/5a8d5b435338706a60070d7e">我要報名</router-link>
                     </div>
                 </div>
                 <!-- plan 2 -->
@@ -49,7 +49,7 @@
                             <li>Glocal Click 網站點數 100 點</li>
                             <li>語言交換大補帖(環保e版)</li>
                         </ul>
-                        <a href="https://m.me/1604262479817205?ref=S1OD57-PG">我要報名</a>
+                        <router-link to="/purchase/5a8d5b435338706a60070d7c">我要報名</router-link>
                     </div>
                 </div>
                 <!-- end plan 2 -->
