@@ -15,5 +15,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+section {
+    padding-top: 8%;
+    padding-bottom: 10%;
+}
 </style>

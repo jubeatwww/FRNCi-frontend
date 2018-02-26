@@ -5,6 +5,8 @@ export const API_URL = process.env.API_URL ||
 
 export const FB_ID = '187063031875385'; // dev: 210224009543527
 
+export const GTAG_ID = 'UA-114772678-1';
+
 export const PORT = '6843';
 
 export const nationalities = [

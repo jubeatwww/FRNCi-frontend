@@ -5,7 +5,7 @@
                 <h3 class="text-dark-gray">Why Glocal Click?</h3>
                 <h5>Find your idea language buddy and make like-minded local friends at the same time!</h5>
             </md-layout>
-            <md-layout md-align="center" style="flex-wrap: nowrap">
+            <md-layout class="mt-4" md-align="center" style="flex-wrap: nowrap">
                 <div class="col">
                     <img src="/static/img/feature5.png" style="width:150px;">
                     <h5 class="mt-3 text-black">Efficient Search</h5>
@@ -39,5 +39,37 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+section {
+    padding-bottom: 10%;
 
+    h3 {
+        color: #343d3c;
+        font-size: 1.8rem;
+        letter-spacing: 0px;
+    }
+
+    h5 {
+        margin-top: 0;
+        font-size: 1.3rem;
+        line-height: 1.2;
+    }
+
+    .mt-4 {
+        margin-left: 5%;
+        margin-right: 5%;
+
+        .col {
+            margin: 0 1.2%;
+
+            .text-black {
+                color: #000;
+                margin: 5% 0;
+            }
+
+            .med-text {
+                line-height: 1.5;
+            }
+        }
+    }
+}
 </style>
