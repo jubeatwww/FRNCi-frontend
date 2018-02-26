@@ -22,5 +22,7 @@ export default {
 </script>
 
 <style>
-
+#home > section {
+    margin-bottom: 0;
+}
 </style>
