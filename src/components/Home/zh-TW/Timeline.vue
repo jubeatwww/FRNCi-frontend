@@ -7,7 +7,7 @@
             <md-layout class="timeline-section">
                 <md-layout>
                     <div class="timeline-img">
-                        <a title="【國際野餐趣】搶先體驗場" href="international-picnic.html">
+                        <a title="【國際野餐趣】搶先體驗場" href="https://www.frnci.com/glocalclick/international-picnic_en.html" target="_blank">
                             <img src="/static/img/a1.jpg" alt="Timeline image cap">
                         </a>
                     </div>
@@ -23,7 +23,7 @@
                         分享彼此的點心飲料，也分享自己的文化和生活
                     </p>
                     <p>交流體驗價 <span class="text-price">NT$ 50</span></p>
-                    <a href="international-picnic.html" class="highlight-button-default">想看更多</a>
+                    <a href="https://www.frnci.com/glocalclick/international-picnic_en.html" target="_blank" class="highlight-button-default">想看更多</a>
                 </md-layout>
             </md-layout>
         </md-layout>

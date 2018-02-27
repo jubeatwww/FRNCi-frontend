@@ -40,6 +40,7 @@ export default {
 
 <style lang="scss" scoped>
 section {
+    padding-top: 10%;
     padding-bottom: 10%;
 
     h3 {

@@ -10,8 +10,8 @@
             </md-layout>
             <md-layout md-align="center" style="flex-wrap: nowrap">
                 <div class="card">
-                    <a href="taipei-exploration-scavenger-hunt.html">
-                    <img src="/static/img/a1.jpg" alt="Card image cap">
+                    <a href="https://www.frnci.com/glocalclick/international-picnic_en.html" target="_blank">
+                        <img src="/static/img/a1.jpg" alt="Card image cap">
                     </a>
                     <div class="card-body">
                         <h6 class="mb-2 font-weight-300">Feb.28 (Wed.)</h6>
@@ -22,13 +22,13 @@
                     </div>
                     <div class="card-footer">
                         <p><span>NT$. 50</span></p>
-                        <a href="http://www.frnci.com/glocalclick/international-picnic_en.html">Check More</a>
+                        <a href="https://www.frnci.com/glocalclick/international-picnic_en.html" target="_blank" class="highlight-button-default">Check More</a>
                     </div>
                 </div>
                 <div class="card">
-                    <a href="taipei-exploration-scavenger-hunt.html">
-                    <img src="/static/img/a3.jpg" alt="Card image cap">
-                    </a>
+                    <router-link to="/events/2018-03-10-taipei-exploration-scavenger-hunt-en">
+                        <img src="/static/img/a3.jpg" alt="Card image cap">
+                    </router-link>
                     <div class="card-body">
                         <h6 class="mb-2 font-weight-300">Mar.10 (Sat.)</h6>
                         <h5 class="card-title font-weight-600 mb-1">Taipei Exploration Scavenger Hunt</h5>
@@ -38,13 +38,13 @@
                     </div>
                     <div class="card-footer">
                         <p><span>NT$. 450</span></p>
-                        <router-link to="/events/2018-03-10-taipei-exploration-scavenger-hunt-en">Check More</router-link>
+                        <router-link to="/events/2018-03-10-taipei-exploration-scavenger-hunt-en" class="highlight-button-default">Check More</router-link>
                     </div>
                 </div>
                 <div class="card">
-                    <a href="lex-tips-sharing.html">
+                    <router-link to="/events/2018-03-17-top-tips-for-mandarin-practice">
                         <img src="/static/img/a2.jpg" alt="Card image cap">
-                    </a>
+                    </router-link>
                     <div class="card-body">
                         <h6 class="mb-2 font-weight-300">Mar.17 (Sat.)</h6>
                         <h5 class="card-title font-weight-600 mb-1">Top Tips for Mandarin Practice</h5>
@@ -54,7 +54,7 @@
                     </div>
                     <div class="card-footer">
                         <p><span>NT$. 350</span></p>
-                        <router-link to="/events/2018-03-17-top-tips-for-mandarin-practice">Check More</router-link>
+                        <router-link to="/events/2018-03-17-top-tips-for-mandarin-practice" class="highlight-button-default">Check More</router-link>
                     </div>
                 </div>
             </md-layout>
@@ -71,6 +71,7 @@ export default {
 <style lang="scss" scoped>
 section {
     width: 100%;
+    margin-top: 7%;
     padding-right: 15px;
     padding-left: 15px;
     padding-bottom: 10%;
@@ -79,6 +80,7 @@ section {
         margin: 0;
         font-size: 1.3rem;
         line-height: 1.3;
+        margin-bottom: 1.2rem;
     }
 
     h3 {
@@ -116,12 +118,13 @@ section {
                 margin: 0;
                 margin-bottom: 0.75rem;
                 font-size: 1rem;
-                font-weight: 600;
+                font-weight: 700;
             }
 
             p {
                 font-size: 1rem;
                 line-height: 1.5;
+                padding: 0 5%;
 
                 .badge-default-green {
                     font-size: 18px;
@@ -140,6 +143,13 @@ section {
         }
 
         .card-footer {
+            margin-top: 2rem;
+
+            span {
+                color: #e45915;
+                font-size: 1.5rem;
+                font-weight: 600;
+            }
             a.highlight-button-default {
                 width: 95%;
                 display: inline-block;

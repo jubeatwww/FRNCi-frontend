@@ -13,7 +13,7 @@
                 <md-layout class="work-3col" style="flex-wrap: nowrap"> 
                     <figure>
                         <div class="gallery-img">
-                            <a href="https://www.facebook.com/media/set/?set=a.1901004900142960.1073741844.1604262479817205&amp;type=1&amp;l=df3c981b04"
+                            <a href="https://www.facebook.com/media/set/?set=a.1901004900142960.1073741844.1604262479817205&amp;type=1&amp;l=df3c981b04" target="_blank"
                                 title="台灣精釀啤酒國際交流夜 | Facebook 相簿" >
                                 <img class="rounded" src="/static/img/gallery1.jpg" alt="">
                             </a>
@@ -25,7 +25,7 @@
                     </figure>
                     <figure>
                         <div class="gallery-img">
-                            <a href="https://www.facebook.com/media/set/?set=a.1937818546461595.1073741848.1604262479817205&amp;type=1&amp;l=44b88fcd60"
+                            <a href="https://www.facebook.com/media/set/?set=a.1937818546461595.1073741848.1604262479817205&amp;type=1&amp;l=44b88fcd60" target="_blank"
                                 title="SpeakEasy 語言輕鬆說麻將桌遊場 | Facebook 相簿">
                                 <img class="rounded" src="/static/img/gallery5.jpg" alt="">
                             </a>
@@ -37,7 +37,7 @@
                     </figure>
                     <figure>
                         <div class="gallery-img">
-                            <a href="https://www.facebook.com/media/set/?set=a.1930485910528192.1073741847.1604262479817205&amp;type=1&amp;l=6b3d557c77"
+                            <a href="https://www.facebook.com/media/set/?set=a.1930485910528192.1073741847.1604262479817205&amp;type=1&amp;l=6b3d557c77" target="_blank"
                                 title="國際野餐趣 | Facebook 相簿">
                                 <img class="rounded" src="/static/img/gallery7.jpg" alt="">
                             </a>
@@ -49,7 +49,7 @@
                     </figure>
                 </md-layout>
                 <a title="FRNCi Themed Events | FRNCi-Friends&amp;City" 
-                    href="http://www.frnci.com/events/" target="_blank" class="highlight-button-default-green">
+                    href="https://www.frnci.com/events/" target="_blank" class="highlight-button-default-green">
                     未來還有更多主題式交流活動，就等你來參加囉！
                 </a>
             </md-layout>

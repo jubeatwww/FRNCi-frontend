@@ -25,7 +25,7 @@ export default {
 
 <style lang="scss" scoped>
 section {
-    padding: 48px 0;
+    padding: 55px 0;
     background-color: #f8b62c;
     color: white;
 
@@ -37,7 +37,8 @@ section {
 
     p {
         font-size: 1.1rem;
-        line-height: 1.4;
+        line-height: 1.6;
+        margin: 0 10%;
     }
 }
 </style>
