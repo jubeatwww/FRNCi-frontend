@@ -114,7 +114,7 @@ export default {
             if (token && userId) {
                 const attendees = await this.api.events.getAttendees(userId, token, this.eventId);
                 if (attendees && attendees.length > 0) {
-                    alert('You have already signed up for this event!');
+                    this.alertify.notify('You have already signed up for this event!');
                     return;
                 }
             }
