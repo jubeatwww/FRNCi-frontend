@@ -22,8 +22,8 @@
                         </div>
                     </label>
                 </div>
-                <template v-if="product.events" >
-                    <template v-for="event in product.events && product.events.length">
+                <template v-if="product.events && product.events.length && isSelectedProduct(product)">
+                    <template v-for="event in product.events">
                         <div v-if="event.sessions && event.sessions.length" class="form-group ml-md-5 ml-sm-0" :key="event._id">
                             <label>
                                 <span class="fa fa-hand-o-right"></span>
@@ -33,6 +33,7 @@
                                 <template v-for="session in event.sessions">
                                     <input
                                         type="radio"
+                                        v-on:change="() => selectSession(event, session)"
                                         :checked="isSelectedSession(event, session)"
                                         :id="`${product._id}_s_${session.key}`"
                                         :name="`${product._id}_session`"
