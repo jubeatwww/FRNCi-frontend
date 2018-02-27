@@ -10,16 +10,16 @@
                     <p>截 止 倒 數</p>
                     <md-layout md-align="center">
                         <div class="col-4">
-                            <span class="counter-num">134</span><br><span>days</span>
+                            <span class="counter-num">{{date}}</span><br><span>days</span>
                         </div> 
                         <div class="col-4">
-                            <span class="counter-num">12 </span><br><span>hours</span>
+                            <span class="counter-num">{{hours}} </span><br><span>hours</span>
                         </div>
                         <div class="col-4">
-                            <span class="counter-num">50 </span><br><span>minutes</span>
+                            <span class="counter-num">{{minutes}} </span><br><span>minutes</span>
                         </div>
                         <div class="col-4">
-                            <span class="counter-num">33 </span><br><span>seconds</span>
+                            <span class="counter-num">{{seconds}} </span><br><span>seconds</span>
                         </div>
                     </md-layout>
                 </md-layout>
@@ -32,7 +32,31 @@
 export default {
     data() {
         return {
+            dueDate: new Date('2018-03-08T00:00:00Z').getTime(),
+            now: new Date(Date.now()).getTime(),
         };
+    },
+    created() {
+        setInterval(() => {
+            this.now = new Date(Date.now()).getTime();
+        }, 1000);
+    },
+    computed: {
+        diff() {
+            return this.dueDate - this.now > 0 ? new Date(this.dueDate - this.now) : new Date(0);
+        },
+        date() {
+            return this.diff.getDate();
+        },
+        hours() {
+            return this.diff.getHours();
+        },
+        minutes() {
+            return this.diff.getMinutes();
+        },
+        seconds() {
+            return this.diff.getSeconds();
+        },
     },
 };
 </script>
