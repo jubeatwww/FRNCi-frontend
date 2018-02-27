@@ -26,14 +26,15 @@ export default {
 
 <style lang="scss" scoped>
 section {
-    padding-bottom: 10%;
+    color: #404645;
+    padding-bottom: 5%;
     background-color: #60bc90;
 
     .text-dark-gray {
         h3 {
-            margin: 0;
-            color: #343d3c;
+            margin-top: 2.5rem;
             margin-bottom: 1rem;
+            color: #343d3c;
             font-size: 1.7rem;
             font-weight: 600;
             line-height: 1.2;
@@ -50,8 +51,8 @@ section {
     }
 
     .mt-5 {
-        margin-top: 5rem;
-        margin-bottom: 3.8rem;
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
 
         ul {
             margin: 0;

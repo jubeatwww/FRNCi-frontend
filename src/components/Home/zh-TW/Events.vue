@@ -7,9 +7,9 @@
             </md-layout>
             <md-layout md-align="center" style="flex-wrap: nowrap">
                 <div class="card">
-                    <a href="lex-tips-sharing.html" title="【語言交換零死角】攻略分享會">
+                    <router-link to="/events/2018-03-03-lex-tips-sharing">
                         <img src="/static/img/a2.jpg" alt="Card image cap">
-                    </a>
+                    </router-link>
                     <div class="card-body">
                         <h6 class="mb-2 font-weight-300">2018.03.03(六)</h6>
                         <h5 class="card-title font-weight-600 mb-1">【語言交換零死角】<br>攻略分享會</h5>
@@ -23,13 +23,13 @@
                         </p>
                     </div>
                     <div class="card-footer">
-                        <router-link to="/events/2018-03-03-lex-tips-sharing">想看更多</router-link>
+                        <router-link to="/events/2018-03-03-lex-tips-sharing" class="highlight-button-default">想看更多</router-link>
                     </div>
                 </div>
                 <div class="card">
-                    <a title="【去膩的台北?】與外國人的城市大冒險" href="taipei-exploration-scavenger-hunt.html">
+                    <router-link to="/events/2018-03-10-taipei-exploration-scavenger-hunt">
                         <img src="/static/img/a3.jpg" alt="Card image cap">
-                    </a>
+                    </router-link>
                     <div class="card-body">
                         <h6 class="mb-2 font-weight-300">2018.03.10(六)</h6>
                         <h5 class="card-title font-weight-600 mb-1">【去膩的台北?】<br>與外國人的城市大冒險</h5>
@@ -43,7 +43,7 @@
                         </p>
                     </div>
                     <div class="card-footer">
-                        <router-link to="/events/2018-03-10-taipei-exploration-scavenger-hunt">想看更多</router-link>
+                        <router-link to="/events/2018-03-10-taipei-exploration-scavenger-hunt" class="highlight-button-default">想看更多</router-link>
                     </div>
                 </div>
             </md-layout>

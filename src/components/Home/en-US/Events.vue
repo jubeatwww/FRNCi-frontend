@@ -22,7 +22,7 @@
                     </div>
                     <div class="card-footer">
                         <p><span>NT$. 50</span></p>
-                        <a href="http://www.frnci.com/glocalclick/international-picnic_en.html">Check More</a>
+                        <a href="https://www.frnci.com/glocalclick/international-picnic_en.html" target="_blank" class="highlight-button-default">Check More</a>
                     </div>
                 </div>
                 <div class="card">
@@ -38,7 +38,7 @@
                     </div>
                     <div class="card-footer">
                         <p><span>NT$. 450</span></p>
-                        <router-link to="/events/2018-03-10-taipei-exploration-scavenger-hunt-en">Check More</router-link>
+                        <router-link to="/events/2018-03-10-taipei-exploration-scavenger-hunt-en" class="highlight-button-default">Check More</router-link>
                     </div>
                 </div>
                 <div class="card">
@@ -54,7 +54,7 @@
                     </div>
                     <div class="card-footer">
                         <p><span>NT$. 350</span></p>
-                        <router-link to="/events/2018-03-17-top-tips-for-mandarin-practice">Check More</router-link>
+                        <router-link to="/events/2018-03-17-top-tips-for-mandarin-practice" class="highlight-button-default">Check More</router-link>
                     </div>
                 </div>
             </md-layout>
@@ -71,6 +71,7 @@ export default {
 <style lang="scss" scoped>
 section {
     width: 100%;
+    margin-top: 7%;
     padding-right: 15px;
     padding-left: 15px;
     padding-bottom: 10%;
@@ -79,6 +80,7 @@ section {
         margin: 0;
         font-size: 1.3rem;
         line-height: 1.3;
+        margin-bottom: 1.2rem;
     }
 
     h3 {
@@ -116,12 +118,13 @@ section {
                 margin: 0;
                 margin-bottom: 0.75rem;
                 font-size: 1rem;
-                font-weight: 600;
+                font-weight: 700;
             }
 
             p {
                 font-size: 1rem;
                 line-height: 1.5;
+                padding: 0 5%;
 
                 .badge-default-green {
                     font-size: 18px;
@@ -140,6 +143,13 @@ section {
         }
 
         .card-footer {
+            margin-top: 2rem;
+
+            span {
+                color: #e45915;
+                font-size: 1.5rem;
+                font-weight: 600;
+            }
             a.highlight-button-default {
                 width: 95%;
                 display: inline-block;

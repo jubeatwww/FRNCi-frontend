@@ -287,7 +287,7 @@ export default {
     background: #60bc90;
     color: #fff;
     padding-top: 5%;
-    padding-bottom: 3%;
+    padding-bottom: 10%;
 }
 </style>
 

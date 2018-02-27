@@ -3,9 +3,9 @@
        <div class="mask">
             <md-layout md-align="center">
                 <md-layout md-flex="70" md-align="center">
-                    <h2>Where Language Exchange Meet Local Friends</h2>
+                    <h2>Where Language Exchange <br> Meet Local Friends</h2>
                 </md-layout>
-                <md-layout md-flex="50" md-align="center" md-column>
+                <!-- <md-layout md-flex="50" md-align="center" md-column>
                     <p>New Platform Coming Soon!</p>
                     <md-layout md-align="center">
                         <div class="col-4">
@@ -21,7 +21,7 @@
                             <span class="counter-num">33 </span><br><span>seconds</span>
                         </div>
                     </md-layout>
-                </md-layout>
+                </md-layout> -->
            </md-layout>
        </div> 
     </section>
@@ -46,7 +46,7 @@ section {
     background-attachment: fixed;
 
     .mask {
-        padding: 5% 0;
+        padding: 7% 0;
         background: rgba(0,0,0,0.4);
         height: 100%;
         color: #fff;
