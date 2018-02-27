@@ -10,8 +10,8 @@
             </md-layout>
             <md-layout md-align="center" style="flex-wrap: nowrap">
                 <div class="card">
-                    <a href="taipei-exploration-scavenger-hunt.html">
-                    <img src="/static/img/a1.jpg" alt="Card image cap">
+                    <a href="https://www.frnci.com/glocalclick/international-picnic_en.html" target="_blank">
+                        <img src="/static/img/a1.jpg" alt="Card image cap">
                     </a>
                     <div class="card-body">
                         <h6 class="mb-2 font-weight-300">Feb.28 (Wed.)</h6>
@@ -26,9 +26,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <a href="taipei-exploration-scavenger-hunt.html">
-                    <img src="/static/img/a3.jpg" alt="Card image cap">
-                    </a>
+                    <router-link to="/events/2018-03-10-taipei-exploration-scavenger-hunt-en">
+                        <img src="/static/img/a3.jpg" alt="Card image cap">
+                    </router-link>
                     <div class="card-body">
                         <h6 class="mb-2 font-weight-300">Mar.10 (Sat.)</h6>
                         <h5 class="card-title font-weight-600 mb-1">Taipei Exploration Scavenger Hunt</h5>
@@ -42,9 +42,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <a href="lex-tips-sharing.html">
+                    <router-link to="/events/2018-03-17-top-tips-for-mandarin-practice">
                         <img src="/static/img/a2.jpg" alt="Card image cap">
-                    </a>
+                    </router-link>
                     <div class="card-body">
                         <h6 class="mb-2 font-weight-300">Mar.17 (Sat.)</h6>
                         <h5 class="card-title font-weight-600 mb-1">Top Tips for Mandarin Practice</h5>
