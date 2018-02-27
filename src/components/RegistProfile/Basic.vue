@@ -30,11 +30,11 @@
                 name="gender">
             </radio-group>
         </form-field>
-        <!-- <form-field
+        <form-field
             title="Birthday"
             description="Only your age will be displayed on your profile.">
             <date-picker v-model="info.birthday" class="md-input-container"></date-picker>
-        </form-field> -->
+        </form-field>
         <form-field
             title="Nationality">
             <md-input-container>
@@ -78,7 +78,7 @@ export default {
                 photo,
                 email,
                 gender: 'm',
-                // birthday: '',
+                birthday: '',
                 nationality: 'TW',
                 localCity: '',
             },
@@ -181,4 +181,15 @@ export default {
 .md-button[disabled] {
     border: solid 1px #f8b62c;
 }
+
+// fix input text not show problem on safari browser
+.vdp-datepicker {
+    > div:first-child {
+        width: 100%;
+        input {
+            font-size: 15px;
+        }
+    }
+}
+
 </style>
