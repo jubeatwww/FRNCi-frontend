@@ -38,6 +38,14 @@
                 </div>
             </template>
         </template>
+        <div v-if="product && product.use_coupon" class="form-group">
+            <!-- label -->
+            <label for="payment-coupon">Promotion / Coupon Code</label>
+            <!-- end label -->
+            <!-- input -->
+            <input v-model="coupon" type="text" id="payment-coupon" name="coupon" class="form-control" placeholder="enter your code to save up to NTD.500" />
+            <!-- end input -->
+        </div>
         <a v-on:click="orderAndCheckout" class="btn highlight-button-default" href="javascript:void(0)">Confirm &amp; Pay</a>
         <div id="gc-ecpay-checkout-form" style="display:none"></div>
     </div>
@@ -56,6 +64,7 @@ export default {
         return {
             product: null,
             meta: {},
+            coupon: '',
         };
     },
     mounted() {
@@ -78,12 +87,14 @@ export default {
             if (product && checkMeta(meta, product.events)) {
                 const token = localStorage.getItem('_token');
                 const userId = localStorage.getItem('_id');
-                const attendees = await this.api.events.getAttendees(userId, token, product.events.map(e => e._id).join(','));
+                const attendees = await this.api.events.getAttendees(userId, token,
+                    product.events.map(e => e._id).join(','));
                 if (attendees && attendees.length > 0) {
                     this.alertify.notify('You have already signed up for this event!');
                     return;
                 }
-                const order = await this.api.products.createOrder(product._id, meta, token);
+                const order = await this.api.products.createOrder(product._id, meta, token,
+                    this.coupon);
                 const formHtml = await this.api.products.checkoutOrder(order._id, token);
                 if (formHtml === 'done') {
                     this.$router.push('/controlpanel/account');
