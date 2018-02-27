@@ -79,6 +79,7 @@ export default {
                     this.$refs.stepper.movePreviousStep();
                 }
             }
+            window.scrollTo(0, 0);
         },
         async loadProducts() {
             const nationality = this.basicInfo.nationality ||
