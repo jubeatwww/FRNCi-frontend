@@ -22,6 +22,7 @@
                         <template v-for="session in event.sessions">
                             <input
                                 type="radio"
+                                v-on:change="() => selectSession(event, session)"
                                 :checked="isSelectedSession(event, session)"
                                 :id="`${product._id}_s_${session.key}`"
                                 :name="`${product._id}_session`"
