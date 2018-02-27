@@ -30,11 +30,11 @@
                 name="gender">
             </radio-group>
         </form-field>
-        <form-field
+        <!-- <form-field
             title="Birthday"
             description="Only your age will be displayed on your profile.">
             <date-picker v-model="info.birthday" class="md-input-container"></date-picker>
-        </form-field>
+        </form-field> -->
         <form-field
             title="Nationality">
             <md-input-container>
@@ -78,7 +78,7 @@ export default {
                 photo,
                 email,
                 gender: 'm',
-                birthday: '',
+                // birthday: '',
                 nationality: 'TW',
                 localCity: '',
             },
