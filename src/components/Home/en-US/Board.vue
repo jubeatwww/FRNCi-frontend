@@ -5,23 +5,6 @@
                 <md-layout md-flex="70" md-align="center">
                     <h2>Where Language Exchange Meet Local Friends</h2>
                 </md-layout>
-                <md-layout md-flex="50" md-align="center" md-column>
-                    <p>New Platform Coming Soon!</p>
-                    <md-layout md-align="center">
-                        <div class="col-4">
-                            <span class="counter-num">134</span><br><span>days</span>
-                        </div> 
-                        <div class="col-4">
-                            <span class="counter-num">12 </span><br><span>hours</span>
-                        </div>
-                        <div class="col-4">
-                            <span class="counter-num">50 </span><br><span>minutes</span>
-                        </div>
-                        <div class="col-4">
-                            <span class="counter-num">33 </span><br><span>seconds</span>
-                        </div>
-                    </md-layout>
-                </md-layout>
            </md-layout>
        </div> 
     </section>
