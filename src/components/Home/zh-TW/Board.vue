@@ -79,13 +79,28 @@ section {
 
         h2 {
             font-weight: 600;
-            line-height: 1.2;
+            line-height: 1.6;
             margin-bottom: 1rem;
             font-size: 48px;
         }
 
         h5 {
             font-size: 30px;
+            margin: 0;
+            margin-bottom: 5%;
+        }
+
+        .md-flex-50 {
+            .col-4 {
+                margin: 0 6%;
+                margin-top: 5%;
+
+                .counter-num {
+                    font-size: 50px;
+                    font-weight: 600;
+                    color: #fff;
+                }
+            }
         }
     }
 }

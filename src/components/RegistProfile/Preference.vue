@@ -19,7 +19,7 @@
             description="You can add more languages you speak fluently later.">
             <md-input-container>
                 <label for="language">Language</label>
-                <md-select name="language" id="language" v-model="info.nativeLanguages">
+                <md-select name="language" id="language" v-model="info.nativeLanguage">
                     <md-option v-for="lang in languages" :value="lang.value" :key="lang.value">
                         {{lang.label}}
                     </md-option>
@@ -31,7 +31,7 @@
             description="Please pick the main language you are learning now. You can add more languages later.">
             <md-input-container>
                 <label for="learning">Language</label>
-                <md-select name="learning" id="learning" v-model="info.studyLanguages">
+                <md-select name="learning" id="learning" v-model="info.studyLanguage">
                     <md-option v-for="lang in languages" :value="lang.value" :key="lang.value">
                         {{lang.label}}
                     </md-option>
@@ -95,8 +95,8 @@ export default {
             info: {
                 meet: '',
                 interact: '',
-                nativeLanguages: '',
-                studyLanguages: '',
+                nativeLanguage: '',
+                studyLanguage: '',
                 level: 'intermediate',
                 interests: [],
                 introduction: '',
@@ -133,5 +133,5 @@ export default {
 
 .md-step-actions .md-button {
     border: solid 1px #f8b62c;
-} 
+}
 </style>

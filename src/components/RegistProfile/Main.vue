@@ -94,11 +94,11 @@ export default {
         parseUserInfo(info) {
             const userInfo = info;
             userInfo.studyLanguages = [{
-                language: userInfo.studyLanguages,
+                language: userInfo.studyLanguage,
                 level: userInfo.level,
             }];
             userInfo.nativeLanguages = [{
-                languages: userInfo.nativeLanguages,
+                language: userInfo.nativeLanguage,
                 level: 'native',
             }];
             delete userInfo.level;

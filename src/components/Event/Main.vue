@@ -20,13 +20,11 @@
                                 <md-card-header>
                                     <div class="md-title text-center text-price">{{p.product.currency}}$. {{p.product.price}}</div>
                                     <div class="md-subhead text-muted text-center">{{p.name}}</div>
-<<<<<<< HEAD
                                     <hr>
-=======
->>>>>>> develop
                                 </md-card-header>
                                 <md-card-content>
-                                    <p class="mb-0 text-center"><i class="em em-gift"></i> 加碼送：</p>
+                                    <p v-if="tags.indexOf('fn_only') >= 0" class="mb-0 text-center"><i class="em em-gift"></i> Bonus:</p>
+                                    <p v-else class="mb-0 text-center"><i class="em em-gift"></i> 加碼送：</p>
                                     <ul>
                                         <li v-for="(item, i) in p.product.items" :key="i">{{item}}</li>
                                     </ul>
@@ -34,7 +32,9 @@
                                 <md-card-actions>
                                     <md-button
                                         v-on:click="buy(p.product)"
-                                        class="card-link btn btn-block highlight-button-default">我要報名</md-button>
+                                        class="card-link btn btn-block highlight-button-default">{{
+                                            tags.indexOf('fn_only') >=0  ? 'Sign Up Now' : '我要報名'
+                                        }}</md-button>
                                 </md-card-actions>
                             </md-card>
                         </md-layout>
@@ -75,6 +75,7 @@
 export default {
     data() {
         return {
+            eventId: null,
             products: [],
             bannerUrl: null,
             name: '',
@@ -82,11 +83,13 @@ export default {
             gmap: null,
             introduction: '',
             note: '',
+            tags: [],
         };
     },
     mounted() {
         const { slug } = this.$route.params;
         this.api.events.getEvent(slug).then((event) => {
+            this.eventId = event._id;
             this.products = event.products;
             if (event.banner) {
                 this.bannerUrl = event.banner.url;
@@ -96,6 +99,7 @@ export default {
             this.gmap = event.place.gmap;
             this.introduction = event.introduction;
             this.note = event.note;
+            this.tags = event.tags;
         }, (err) => {
             console.error(err);
         });
@@ -105,6 +109,15 @@ export default {
             return p.featured ? 'card mt-3 border-select' : 'card';
         },
         async buy(product) {
+            const token = localStorage.getItem('_token');
+            const userId = localStorage.getItem('_id');
+            if (token && userId) {
+                const attendees = await this.api.events.getAttendees(userId, token, this.eventId);
+                if (attendees && attendees.length > 0) {
+                    alert('You have already signed up for this event!');
+                    return;
+                }
+            }
             this.$router.push(`/purchase/${product._id}`);
         },
     },
@@ -112,114 +125,125 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.mt-5 {
-    margin-top: 3rem;
-    padding-bottom: 5%;
-}
-hr {
-    margin-top: 1rem;
-    border: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-.container {
-    width: 100%;
-    padding-right: 25px;
-    padding-left: 25px;
-    margin-right: auto;
-    margin-left: auto;
-}
-.md-row {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-}
-
-.md-layout {
-    position: relative;
-    width: 100%;
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
-}
-
-.card {
-    position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 0.25rem;
-}
-.md-card-header {
-    margin-top: 5%;
-    padding: 0 16px;
-}
-.md-subhead {
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
-    font-weight: 700;
-}
-.text-center {
-    text-align: center;
-}
-.text-price {
-    color: #e45915;
-    font-weight: 600;
-    margin-bottom: 0.55rem;
-}
-.md-card-content {
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.1;
-
-    li {
-        text-align: left;
-    }
-}
-.md-card-actions {
-    margin-bottom: 5%;
-}
-.bg-default-green {
-    background: #60bc90;
-    color: #fff;
-    padding-top: 5%;
-    padding-bottom: 3%;
-}
 .page-header {
     height: 400px;
     background-position: center center;
     position: relative;
 }
-.border-select{
-    border:3px solid #60bc90;
-    margin-top: 1rem;
+
+.mt-5 {
+    margin-top: 3rem;
+    padding-bottom: 5%;
+
+    .container {
+        width: 100%;
+        padding-right: 25px;
+        padding-left: 25px;
+        margin-right: auto;
+        margin-left: auto;
+
+        .md-row {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        }
+
+        .md-layout {
+            position: relative;
+            width: 100%;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+
+            .md-card {
+                position: relative;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                min-width: 0;
+                word-wrap: break-word;
+                background-color: #fff;
+                background-clip: border-box;
+                border: 1px solid rgba(0, 0, 0, 0.125);
+                border-radius: 0.25rem;
+
+                .md-card-header {
+                    margin-top: 5%;
+                    padding: 0 16px;
+
+                    .text-price {
+                        color: #e45915;
+                        font-weight: 600;
+                        margin-bottom: 0.55rem;
+                    }
+
+                    .md-subhead {
+                        margin-bottom: 0.5rem;
+                        font-size: 1rem;
+                        font-weight: 700;
+                    }
+
+                    hr {
+                        margin-top: 1rem;
+                        border: 0;
+                        border-top: 1px solid rgba(0, 0, 0, 0.1);
+                    }
+                }
+
+                .md-card-content {
+                    font-size: 1rem;
+                    font-weight: 500;
+                    line-height: 1.1;
+
+                    li {
+                        text-align: left;
+                    }
+                }
+
+                .md-card-actions {
+                    margin-bottom: 5%;
+
+                    .highlight-button-default {
+                        display: block;
+                        font-size: 1rem;
+                        line-height: 1.5;
+                        border-radius: 0.25rem;
+                        width: 100%;
+                        border: 2px solid #f8b62c;
+                        background-color: #f8b62c;
+                        padding: 4px 20px;
+                        color: #fff !important;
+                        letter-spacing: 1px;
+                        margin-bottom: 3%;
+
+                        &:hover {
+                            text-decoration: none;
+                            background-color: #f8b62c;
+                        }
+                    }
+                }
+            }
+
+            .border-select{
+                border:3px solid #60bc90;
+                margin-top: 1rem;
+            }
+        }
+    }
 }
-.highlight-button-default {
-    display: block;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: 0.25rem;
-    width: 100%;
-    border: 2px solid #f8b62c;
-    background-color: #f8b62c;
-    padding: 4px 20px;
-    color: #fff !important;
-    letter-spacing: 1px;
-    margin-bottom: 5%;
-}
-.md-button:hover:not([disabled]):not(.md-raised) {
-    text-decoration: none;
-    background-color: #f8b62c;
+
+.pb-0 {
+    .container {
+        width: 90%;
+        margin: 0 auto;
+        margin-bottom: 4%;
+    }
 }
 
 .embed-responsive {
@@ -254,37 +278,16 @@ hr {
         padding-top: percentage(9 / 21);
     }
 }
-.embed-responsive {
-  position: relative;
-  display: block;
-  width: 100%;
-  padding: 0;
-  overflow: hidden;
 
-  &::before {
-    display: block;
-    content: "";
-  }
-
-  .embed-responsive-item,
-  iframe,
-  embed,
-  object,
-  video {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-  }
+.text-center {
+    text-align: center;
 }
 
-.embed-responsive-21by9 {
-  &::before {
-    padding-top: percentage(9 / 21);
-  }
+.bg-default-green {
+    background: #60bc90;
+    color: #fff;
+    padding-top: 5%;
+    padding-bottom: 3%;
 }
 </style>
 
@@ -314,17 +317,21 @@ hr {
     font-weight: 500;
     line-height: 1.2;
 }
-.row .mb-0 {
+.row p {
+    margin: 0;
+    font-size: 1.2rem;
+    /* margin-bottom: 3%; */
+    font-weight: 400;
+    line-height: 1.5;
+}
+.row h5 {
     margin: 0;
     font-size: 1.4rem;
     font-weight: 700;
 }
-.row p {
-    margin: 0;
-    font-size: 1.2rem;
-    margin-bottom: 3%;
-    font-weight: 400;
-    line-height: 1.5;
+.row ol {
+    display: inline-block;
+    text-align: left;
 }
 .row a {
     color: #fff;

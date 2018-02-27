@@ -1,9 +1,10 @@
 <template>
     <div class="form-wrapper">
         <div style="margin-bottom: 3%">Sign up to Glocal Click</div>
-        <md-button id="fb-signup" class="md-raised md-primary login-btn">
+        <fb-button button-id="fb-signup" button-text="Sign up with Facebook"></fb-button>
+        <!-- <md-button id="fb-signup" class="md-raised md-primary login-btn" @click="fbSignup">
             <i class="fa fa-facebook"></i> Sign up with Facebook
-        </md-button>
+        </md-button> -->
         <div class="or-separator">
             <hr><span>or</span>
         </div>
@@ -39,7 +40,10 @@
     </div>
 </template>
 <script>
+import FbButton from './FbButton';
+
 export default {
+    components: { FbButton },
     data() {
         return {
             firstName: '',

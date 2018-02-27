@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="productPurchase">
         <div v-if="product" class="d-flex flex-wrap">
             <div class="col-md col-sm-12 order-2 order-md-1">
                 <h6 class="mb-0"> {{product.name}} <span class="text-price">{{product.currency}}$. {{product.price}} </span></h6>
@@ -13,7 +13,7 @@
         </div>
         <template v-if="product && product.events">
             <template v-for="event in product.events">
-                <div v-if="event.sessions" class="form-group ml-md-5 ml-sm-0" :key="event._id">
+                <div v-if="event.sessions && event.sessions.length" class="form-group ml-md-5 ml-sm-0" :key="event._id">
                     <label>
                         <span class="fa fa-hand-o-right"></span>
                         Please choose your session of "{{ event.name }}"
@@ -46,6 +46,10 @@
 
 import jQuery from 'jquery';
 
+function checkMeta(meta, events) {
+    return events.filter(e => e.sessions && e.sessions.length).every(e => !!meta[e._id]);
+}
+
 export default {
     data() {
         return {
@@ -69,14 +73,17 @@ export default {
             return m && m.session === session.key;
         },
         async orderAndCheckout() {
-            const token = localStorage.getItem('_token');
-            const order = await this.api.products.createOrder(this.product._id, this.meta, token);
-            const formHtml = await this.api.products.checkoutOrder(order._id, token);
-            if (formHtml === 'done') {
-                this.$router.push('/controlpanel/account');
-            } else {
-                document.getElementById('gc-ecpay-checkout-form').appendChild(jQuery.parseHTML(formHtml)[0]);
-                document.getElementById('_allpayForm').submit();
+            const { product, meta } = this;
+            if (product && checkMeta(meta, product.events)) {
+                const token = localStorage.getItem('_token');
+                const order = await this.api.products.createOrder(product._id, meta, token);
+                const formHtml = await this.api.products.checkoutOrder(order._id, token);
+                if (formHtml === 'done') {
+                    this.$router.push('/controlpanel/account');
+                } else {
+                    document.getElementById('gc-ecpay-checkout-form').appendChild(jQuery.parseHTML(formHtml)[0]);
+                    document.getElementById('_allpayForm').submit();
+                }
             }
         },
     },
@@ -84,4 +91,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.productPurchase {
+    margin-bottom: 4%;
+
+    h6.mb-0 {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .highlight-button-default {
+        border: 2px solid #f8b62c;
+        background-color: #f8b62c;
+        padding: 10px 35px;
+        color: #fff !important;
+        margin: 0 auto;
+        margin-top: 4%;
+        white-space: unset;
+        display: inline-block;
+        font-weight: 600;
+        text-align: center;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: 0.25rem;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
 </style>

@@ -135,17 +135,8 @@ export default {
 </style>
 
 <style lang="scss">
-
 .md-steps-navigation{
     display: none;
-}
-
-.md-whiteframe {
-    box-shadow: none;
-}
-
-section {
-    margin-bottom: 5%;
 }
 
 .md-whiteframe-1dp {
@@ -156,51 +147,8 @@ section {
     border: solid 1px #60bc90;
 }
 
-.md-theme-default {
-.md-button:not([disabled]).md-primary.md-raised {
-    background-color: #f8b62c;
-    
-    &:hover {
-        background-color: #f8b62c;
-    }
-}
-
-.md-input-container.md-input-focused:after {
-    background-color: #60bc90;
-}
-
-.md-input-container.md-input-focused:after {
-    background-color: #60bc90;
-}
-
-.md-stepper {
-    .md-step-header.md-active .md-step-number {
-        background-color: #60bc90;
-    }
-
-    .md-step-header.md-primary .md-step-icon {
-        background-color: #60bc90;
-    }
-
-    .md-steps-navigation {
-        border-bottom: #B5B2B2 2.3px solid;
-    }
-}
-}
-
-.md-button[disabled] {
-    border: solid 1px #f8b62c;
-}
-
-</style>
-
-<style lang="scss">
 .md-whiteframe {
     box-shadow: none;
-}
-
-section {
-    margin-bottom: 5%;
 }
 
 .md-theme-default {

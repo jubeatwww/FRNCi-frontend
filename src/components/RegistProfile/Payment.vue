@@ -86,12 +86,16 @@ function findFeaturedProduct(products) {
     return featured;
 }
 
+function checkMeta(meta, events) {
+    return events.filter(e => e.sessions && e.sessions.length).every(e => !!meta[e._id]);
+}
+
 export default {
     props: ['mdDisabled', 'paymentInfo'],
     data() {
         return {
             meta: {},
-            productId: null,
+            product: null,
             coupon: '',
         };
     },
@@ -109,29 +113,32 @@ export default {
     methods: {
         selectProduct(product) {
             if (product && product.quantity > 0) {
-                this.productId = product._id;
+                this.product = product;
             }
         },
         selectSession(event, session) {
             this.meta[event._id] = { session: session.key };
         },
         isSelectedProduct(product) {
-            return this.productId === product._id;
+            return this.product === product;
         },
         isSelectedSession(event, session) {
             const m = this.meta[event._id];
             return m && m.session === session.key;
         },
         async orderAndCheckout() {
-            const token = localStorage.getItem('_token');
-            const order = await this.api.products.createOrder(this.productId,
-                this.meta, token, this.coupon);
-            const formHtml = await this.api.products.checkoutOrder(order._id, token);
-            if (formHtml === 'done') {
-                this.$router.push('/controlpanel/account');
-            } else {
-                document.getElementById('gc-ecpay-checkout-form').appendChild(jQuery.parseHTML(formHtml)[0]);
-                document.getElementById('_allpayForm').submit();
+            const { product, meta } = this;
+            if (product && checkMeta(meta, product.events)) {
+                const token = localStorage.getItem('_token');
+                const order = await this.api.products.createOrder(product._id,
+                    meta, token, this.coupon);
+                const formHtml = await this.api.products.checkoutOrder(order._id, token);
+                if (formHtml === 'done') {
+                    this.$router.push('/controlpanel/account');
+                } else {
+                    document.getElementById('gc-ecpay-checkout-form').appendChild(jQuery.parseHTML(formHtml)[0]);
+                    document.getElementById('_allpayForm').submit();
+                }
             }
         },
     },

@@ -28,5 +28,16 @@ section {
     padding: 48px 0;
     background-color: #f8b62c;
     color: white;
+
+    h3 {
+        font-size: 1.8rem;
+        margin: 0;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        font-size: 1.1rem;
+        line-height: 1.4;
+    }
 }
 </style>

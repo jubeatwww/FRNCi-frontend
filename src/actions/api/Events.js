@@ -18,11 +18,15 @@ export default {
             ...res,
         }));
     },
-    getAttendees(userId, token) {
-        return fetch(`${API_URL}/users/${userId}/attendees`, {
+    getAttendees(userId, token, events = null) {
+        let url = `${API_URL}/users/${userId}/attendees`;
+        if (events) {
+            url = `${url}?events=${events}`;
+        }
+        return fetch(url, {
             mode: 'cors',
             method: 'GET',
-            header: new Headers({
+            headers: new Headers({
                 'Content-Type': 'application/json',
                 Authorization: token,
             }),

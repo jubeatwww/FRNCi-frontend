@@ -3,7 +3,7 @@
         <div id="logo" @click="homeLink"></div>
         <nav>
             <md-theme md-name="orange">
-                <md-button class="md-raised md-primary">Find Buddies</md-button>
+                <!-- <md-button class="md-raised md-primary">Find Buddies</md-button> -->
                 <md-menu md-direction="bottom left" v-if="$route.meta.isLogin">
                     <md-avatar class="md-avatar-icon" md-menu-trigger>
                         <md-icon v-if="showDefaultAvatar">person</md-icon>

@@ -97,7 +97,7 @@ const router = new Router({
                             localStorage.getItem('_token'),
                         ];
 
-                        const result = await api.user.confirmEmailVerify(
+                        const result = await api.users.confirmEmailVerify(
                             userId,
                             authToken,
                             verifyToken,
@@ -194,13 +194,22 @@ router.beforeEach(async (to, from, next) => {
     ];
     if (userid && token) {
         if (to.meta.static) {
+            /* eslint-disable */
+            try {
+                const userInfo = await api.users.get(userid, token);
+                to.meta.isLogin = userInfo.ok;
+                to.meta.avatar = userInfo ? userInfo.photo : '';
+                to.meta.user = userInfo;
+                localStorage.setItem('_email', userInfo.email);
+            } catch (ignored) {}
+            /* eslint-enable */
             next();
         } else {
             const userInfo = await api.users.get(userid, token);
             const userIntegrity = await api.users.integrity(userid, token);
 
             if ((!userIntegrity.ok || !userInfo.ok) && to.meta.requireAuth) {
-                next({ path: 'login' });
+                next({ path: '/login' });
             } else {
                 /* eslint-disable */
                 to.meta.isLogin = userInfo.ok;
@@ -210,7 +219,9 @@ router.beforeEach(async (to, from, next) => {
 
                 localStorage.setItem('_email', userInfo.email);
 
-                if (to.name === 'EmailVerifyNotice') {
+                if (to.name === 'Email Verification') {
+                    next();
+                } else if (to.name === 'EmailVerifyNotice') {
                     if (userInfo.verification.email) {
                         next('/');
                     } else {
@@ -233,8 +244,12 @@ router.beforeEach(async (to, from, next) => {
             }
         }
     } else if (to.meta.requireAuth) {
+        // eslint-disable-next-line
+        to.meta.isLogin = false;
         next({ path: '/login' });
     } else {
+        // eslint-disable-next-line
+        to.meta.isLogin = false;
         next();
     }
 });

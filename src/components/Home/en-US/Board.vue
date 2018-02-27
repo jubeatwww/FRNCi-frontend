@@ -7,17 +7,17 @@
                 </md-layout>
                 <md-layout md-flex="50" md-align="center" md-column>
                     <p>New Platform Coming Soon!</p>
-                    <md-layout>
-                        <div>
+                    <md-layout md-align="center">
+                        <div class="col-4">
                             <span class="counter-num">134</span><br><span>days</span>
                         </div> 
-                        <div>
+                        <div class="col-4">
                             <span class="counter-num">12 </span><br><span>hours</span>
                         </div>
-                        <div>
+                        <div class="col-4">
                             <span class="counter-num">50 </span><br><span>minutes</span>
                         </div>
-                        <div>
+                        <div class="col-4">
                             <span class="counter-num">33 </span><br><span>seconds</span>
                         </div>
                     </md-layout>
@@ -54,13 +54,28 @@ section {
 
         h2 {
             font-weight: 600;
-            line-height: 1.2;
+            line-height: 1.6;
             margin-bottom: 1rem;
             font-size: 48px;
         }
 
         h5 {
             font-size: 30px;
+            margin: 0;
+            margin-bottom: 5%;
+        }
+
+        .md-flex-50 {
+            .col-4 {
+                margin: 0 6%;
+                margin-top: 5%;
+
+                .counter-num {
+                    font-size: 50px;
+                    font-weight: 600;
+                    color: #fff;
+                }
+            }
         }
     }
 }
