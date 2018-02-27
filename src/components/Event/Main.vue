@@ -131,7 +131,11 @@ export default {
     position: relative;
 }
 
-.mt-5 {
+section {
+    margin-bottom: 0;
+}
+
+section.mt-5 {
     margin-top: 3rem;
     padding-bottom: 5%;
 
@@ -287,7 +291,7 @@ export default {
     background: #60bc90;
     color: #fff;
     padding-top: 5%;
-    padding-bottom: 3%;
+    padding-bottom: 10%;
 }
 </style>
 
@@ -326,17 +330,96 @@ export default {
 }
 .row h5 {
     margin: 0;
-    font-size: 1.4rem;
-    font-weight: 700;
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.2;
 }
 .row ol {
     display: inline-block;
     text-align: left;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.row h6 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+.row h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding-top: 3%;
 }
 .row a {
     color: #fff;
 }
 .row a:hover {
     color: #fff;
+}
+
+.row .event-card {
+    margin-top: 2.2rem;
+    margin-left: 8%;
+    margin-right: 8%;
+    padding-right: 15px;
+    padding-left: 15px;
+    display: flex;
+}
+.row .event-card .card {
+    margin: 0 1rem;
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+}
+.row .mt-3 .card a {
+    text-decoration: none;
+    color: #6c757d;
+}
+.row .mt-3 .card a:hover {
+    color: #6c757d;
+}
+.card .card-img-top {
+    width: 100%;
+    border-top-left-radius: calc(0.25rem - 1px);
+    border-top-right-radius: calc(0.25rem - 1px);
+}
+.card .card-body {
+    padding-left: 1rem;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+.card h5.card-title {
+    margin-top: 5%;
+    font-size: 1.3rem;
+}
+.card h6 {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+}
+.card .card-footer{
+    text-align: right;
+    padding: 1rem 2rem;
+    margin-bottom: 3%;
+}
+.card .text-right {
+    color: #6c757d;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.card .text-price {
+    color: #e45915;
+    font-size: 2rem;
+    font-weight: 700;
 }
 </style>

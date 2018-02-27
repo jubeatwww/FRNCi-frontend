@@ -35,5 +35,7 @@ export default {
 </script>
 
 <style>
-
+section {
+    margin-bottom: 0;
+}
 </style>
