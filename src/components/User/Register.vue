@@ -11,30 +11,49 @@
         <div>
             <md-input-container>
                 <label>First name</label>
-                <md-input v-model="firstName" required></md-input>
+                <md-input :debounce="600" v-model="firstName" required></md-input>
             </md-input-container>
             <md-input-container>
                 <label>Last name</label>
-                <md-input v-model="lastName" required></md-input>
+                <md-input :debounce="600" v-model="lastName" required></md-input>
             </md-input-container>
             <md-input-container>
                 <label>Email address</label>
-                <md-input v-model="email" required></md-input>
+                <md-input :debounce="600" v-model="email" required></md-input>
             </md-input-container>
-            <md-input-container md-has-password>
+            <md-input-container
+                :class="{'md-input-invalid': !passwordFirst && !passwordValidation}"
+                md-has-password>
                 <label>Password</label>
-                <md-input v-model="password" type="password" required></md-input>
+                <md-input
+                    :debounce="600"
+                    @change="passwordChanged"
+                    v-model="password"
+                    type="password"
+                    required></md-input>
+                <span class="md-error">The length of password should be greater than 6</span>
             </md-input-container>
-            <md-input-container md-has-password>
+            <md-input-container
+                :class="{'md-input-invalid': !repeatPasswordFirst && !repeatPasswordValidation}"
+                md-has-password>
                 <label>Repeat Password</label>
-                <md-input v-model="repeatPassword" type="password" required></md-input>
+                <md-input
+                    :debounce="600"
+                    @change="repeatPasswordChanged"
+                    v-model="repeatPassword"
+                    type="password"
+                    required></md-input>
+                <span class="md-error">Password not same</span>
             </md-input-container>
-            <md-checkbox>I agree to the Glocal Click
+            <md-checkbox v-model="policy">I agree to the Glocal Click
                 <router-link to="termsofservice">terms of service</router-link>
                 and
                 <router-link to="privacypolicy">privacy policy</router-link>
             </md-checkbox>
-            <md-button class="md-raised md-primary" @click="signup">Sign up</md-button>
+            <md-button
+                class="md-raised md-primary"
+                :disabled="!submitValidation"
+                @click="signup">Sign up</md-button>
         </div>
         <p>Already have an Glocal Click account? <router-link to="login" class="loginLink">Log in.</router-link></p>
     </div>
@@ -51,7 +70,27 @@ export default {
             email: '',
             password: '',
             repeatPassword: '',
+            policy: false,
+            passwordFirst: true,
+            repeatPasswordFirst: true,
         };
+    },
+    computed: {
+        formValidation() {
+            return Object.values(this.$data).every(val => val !== '');
+        },
+        passwordValidation() {
+            return this.password.length > 6;
+        },
+        repeatPasswordValidation() {
+            return this.password === this.repeatPassword && this.repeatPassword !== '';
+        },
+        submitValidation() {
+            return this.formValidation
+                && this.passwordValidation
+                && this.repeatPasswordValidation
+                && this.policy;
+        },
     },
     methods: {
         async signup() {
@@ -66,6 +105,12 @@ export default {
                 localStorage.setItem('_email', result.email);
                 this.$router.push('/email-verify-notice');
             }
+        },
+        passwordChanged() {
+            this.passwordFirst = false;
+        },
+        repeatPasswordChanged() {
+            this.repeatPasswordFirst = false;
         },
     },
 };
