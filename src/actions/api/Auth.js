@@ -23,12 +23,19 @@ export default {
             if (res.ok) {
                 return res.json();
             }
-            throw res;
+            return res.json().then((err) => {
+                const error = {
+                    response: res,
+                    error: err,
+                };
+                throw error;
+            });
         }).then(res => ({
             ok: true,
             ...res,
         })).catch((err) => {
-            console.error(err);
+            console.log(err);
+            alert(err.error.message);
             return err;
         });
         return result;
@@ -45,12 +52,19 @@ export default {
             if (res.ok) {
                 return res.json();
             }
-            throw res;
+            return res.json().then((err) => {
+                const error = {
+                    response: res,
+                    error: err,
+                };
+                throw error;
+            });
         }).then(res => ({
             ok: true,
             ...res,
         })).catch((err) => {
             console.error(err);
+            alert(err.error.message);
             return err;
         });
         return result;
@@ -67,12 +81,19 @@ export default {
             if (res.ok) {
                 return res.json();
             }
-            throw res;
+            return res.json().then((err) => {
+                const error = {
+                    response: res,
+                    error: err,
+                };
+                throw error;
+            });
         }).then(res => ({
             ok: true,
             ...res,
         })).catch((err) => {
             console.error(err);
+            alert(err.error.message);
             return err;
         });
         return result;
@@ -92,12 +113,19 @@ export default {
             if (res.ok) {
                 return res.json();
             }
-            throw res;
+            return res.json().then((err) => {
+                const error = {
+                    response: res,
+                    error: err,
+                };
+                throw error;
+            });
         }).then(res => ({
             ok: true,
             ...res,
         })).catch((err) => {
             console.error(err);
+            alert(err.error.message);
             return err;
         });
     },

@@ -130,8 +130,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-
+.vdp-datepicker /deep/ {
+    > div:first-child {
+        width: 100%;
+        input {
+            font-size: 15px;
+        }
+    }
+}
 </style>
 
 <style lang="scss">
@@ -180,16 +186,6 @@ export default {
 
 .md-button[disabled] {
     border: solid 1px #f8b62c;
-}
-
-// fix input text not show problem on safari browser
-.vdp-datepicker {
-    > div:first-child {
-        width: 100%;
-        input {
-            font-size: 15px;
-        }
-    }
 }
 
 </style>
