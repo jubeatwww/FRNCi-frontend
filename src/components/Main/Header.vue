@@ -1,9 +1,9 @@
 <template>
-    <header :style="isHome">
+    <header>
         <div id="logo" @click="homeLink"></div>
         <nav>
             <md-theme md-name="orange">
-                <md-button class="md-raised md-primary">Find Buddies</md-button>
+                <!-- <md-button class="md-raised md-primary">Find Buddies</md-button> -->
                 <md-menu md-direction="bottom left" v-if="$route.meta.isLogin">
                     <md-avatar class="md-avatar-icon" md-menu-trigger>
                         <md-icon v-if="showDefaultAvatar">person</md-icon>
@@ -33,9 +33,6 @@ export default {
         return { avatar: '' };
     },
     computed: {
-        isHome() {
-            return this.$route.name === 'home' ? { position: 'fixed' } : { position: 'relative' };
-        },
         showDefaultAvatar() {
             return !this.$route.meta.avatar;
         },
@@ -63,7 +60,6 @@ export default {
 
 <style lang="scss" scoped>
 header{
-    position: fixed;
     display: flex;
     justify-content: space-between;
     z-index: 2;
@@ -87,19 +83,20 @@ header{
     nav{
         display: flex;
         align-items: center;
+        margin-right: 2%;
 
         button.md-theme-orange.md-button:not([disabled]).md-primary.md-raised {
             margin: 0 20px;
-            background: #e6af2a;
+            background: #f8b62c;
             padding: 0 10px;
-            border: 2px solid #e6af2a;
+            border: 2px solid #f8b62c;
             border-radius: 4px;
             color: white;
         }
 
         button.md-theme-orange.md-button:not([disabled]).md-primary.md-raised:hover {
-            background-color: transparent;
-            color: #e6af2a;
+            background-color: #f8b62c;
+            color: white;
         }
     }
 }

@@ -5,6 +5,7 @@
             md-flex-small="85"
             md-flex-medium="50"
             md-flex-large="50"
+            md-flex-xlarge="50"
             style="padding: 0 4%">
             <form :style="$route.name === 'ForgotPassword' ? 'padding: 0' : ''">
                 <component :is="contentView"></component>

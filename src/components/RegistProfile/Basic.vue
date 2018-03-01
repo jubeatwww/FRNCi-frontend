@@ -1,6 +1,11 @@
 <template>
     <md-step md-label="Basic Info" :md-disabled="mdDisabled">
-        <form-field title="Upload Your Profile Photo">
+        <form-field title="Upload Your Profile Photo" >
+            <span>
+                Please use a photo that clearly shows your face. Nobody is interested in meeting a landscape or an animal.
+                <br>
+                ( Image types allowed: JPG, PNG. Maximum image size: 4 MB. Suggested image ratio: 1:1. )
+            </span>
             <img :src="uploadImg">
             <md-input-container>
                 <md-file v-model="info.photo" accept="image/*"
@@ -127,5 +132,62 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.vdp-datepicker /deep/ {
+    > div:first-child {
+        width: 100%;
+        input {
+            font-size: 15px;
+        }
+    }
+}
+</style>
+
+<style lang="scss">
+.md-steps-navigation{
+    display: none;
+}
+
+.md-whiteframe-1dp {
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0);
+}
+
+.radio-group input[type="radio"] ~ button {
+    border: solid 1px #60bc90;
+}
+
+.md-whiteframe {
+    box-shadow: none;
+}
+
+.md-theme-default {
+    .md-button:not([disabled]).md-primary.md-raised {
+        background-color: #f8b62c;
+        &:hover {
+            background-color: #f8b62c;
+        }
+    }
+
+    .md-input-container.md-input-focused:after {
+        background-color: #60bc90;
+    }
+
+    .md-stepper {
+        .md-step-header.md-active .md-step-number {
+            background-color: #60bc90;
+        }
+
+        .md-step-header.md-primary .md-step-icon {
+            background-color: #60bc90;
+        }
+
+        .md-steps-navigation {
+            border-bottom: #B5B2B2 2.3px solid;
+        }
+    }
+}
+
+.md-button[disabled] {
+    border: solid 1px #f8b62c;
+}
 
 </style>

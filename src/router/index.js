@@ -11,6 +11,8 @@ import EmailVerification from '@/components/EmailVerification/Main';
 import ControlPanel from '@/components/ControlPanel/Main';
 import CtrlAccount from '@/components/ControlPanel/Account';
 import CtrlProfile from '@/components/ControlPanel/Profile';
+import CtrlOrders from '@/components/ControlPanel/Orders';
+import CtrlAttendees from '@/components/ControlPanel/Attendees';
 import EventPage from '@/components/Event/Main';
 import Purchase from '@/components/Product/Purchase';
 
@@ -95,7 +97,7 @@ const router = new Router({
                             localStorage.getItem('_token'),
                         ];
 
-                        const result = await api.user.confirmEmailVerify(
+                        const result = await api.users.confirmEmailVerify(
                             userId,
                             authToken,
                             verifyToken,
@@ -146,6 +148,22 @@ const router = new Router({
                                 requireAuth: true,
                             },
                         },
+                        {
+                            path: 'orders',
+                            component: CtrlOrders,
+                            name: 'ControlPanelOrders',
+                            meta: {
+                                requireAuth: true,
+                            },
+                        },
+                        {
+                            path: 'attendees',
+                            component: CtrlAttendees,
+                            name: 'ControlPanelAttendees',
+                            meta: {
+                                requireAuth: true,
+                            },
+                        },
                     ],
                 },
                 {
@@ -176,13 +194,22 @@ router.beforeEach(async (to, from, next) => {
     ];
     if (userid && token) {
         if (to.meta.static) {
+            /* eslint-disable */
+            try {
+                const userInfo = await api.users.get(userid, token);
+                to.meta.isLogin = userInfo.ok;
+                to.meta.avatar = userInfo ? userInfo.photo : '';
+                to.meta.user = userInfo;
+                localStorage.setItem('_email', userInfo.email);
+            } catch (ignored) {}
+            /* eslint-enable */
             next();
         } else {
             const userInfo = await api.users.get(userid, token);
             const userIntegrity = await api.users.integrity(userid, token);
 
             if ((!userIntegrity.ok || !userInfo.ok) && to.meta.requireAuth) {
-                next({ path: 'login' });
+                next({ path: '/login' });
             } else {
                 /* eslint-disable */
                 to.meta.isLogin = userInfo.ok;
@@ -192,25 +219,37 @@ router.beforeEach(async (to, from, next) => {
 
                 localStorage.setItem('_email', userInfo.email);
 
-                if (to.name === 'EmailVerifyNotice' || to.name === 'registprofile') {
-                    if (userInfo.verification.email && userIntegrity.integrity) {
+                if (to.name === 'Email Verification') {
+                    next();
+                } else if (to.name === 'EmailVerifyNotice') {
+                    if (userInfo.verification.email) {
                         next('/');
                     } else {
                         next();
                     }
-                } else {
-                    if (!(userInfo.verification.email || userInfo.verification.facebook)) {
-                        next({ path: '/email-verify-notice' });
-                    } else if (!userIntegrity.integrity) {
-                        next({ path: '/registprofile' });
-                    }
+                } else if (to.name === 'registprofile') {
                     next();
+                } else if (!(userInfo.verification.email || userInfo.verification.facebook)) {
+                    next({ path: '/email-verify-notice' });
+                } else if (!userIntegrity.integrity) {
+                    next({ path: '/registprofile' });
+                } else {
+                    const paid = await api.users.paid(userid, token);
+                    if (paid) {
+                        next();
+                    } else {
+                        next({ path: '/registprofile', query: { tab: 'payment' } });
+                    }
                 }
             }
         }
     } else if (to.meta.requireAuth) {
+        // eslint-disable-next-line
+        to.meta.isLogin = false;
         next({ path: '/login' });
     } else {
+        // eslint-disable-next-line
+        to.meta.isLogin = false;
         next();
     }
 });

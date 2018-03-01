@@ -18,4 +18,23 @@ export default {
             ...res,
         }));
     },
+    getAttendees(userId, token, events = null) {
+        let url = `${API_URL}/users/${userId}/attendees`;
+        if (events) {
+            url = `${url}?events=${events}`;
+        }
+        return fetch(url, {
+            mode: 'cors',
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                Authorization: token,
+            }),
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            throw res;
+        });
+    },
 };

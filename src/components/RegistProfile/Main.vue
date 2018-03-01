@@ -3,7 +3,7 @@
         <md-layout
             md-flex="75"
             style="padding: 5% 4%">
-            <md-stepper @change="stepChanged" ref="stepper">
+            <md-stepper @change="stepChanged" ref="stepper" :md-disable-header-nav="true">
                 <Basic
                     :completed.sync="basicCompleted"
                     :info.sync="basicInfo"></Basic>
@@ -74,6 +74,16 @@ export default {
             return errorMsg;
         },
     },
+    mounted() {
+        const { query } = this.$route;
+        if (query && query.tab === 'payment') {
+            this.$nextTick(() => {
+                const { stepper } = this.$refs;
+                stepper.setActiveStep(stepper.getStepByIndex(2), true);
+                this.loadProducts().then();
+            });
+        }
+    },
     methods: {
         async stepChanged(nextStep) {
             if (nextStep === 2) {
@@ -108,15 +118,27 @@ export default {
                     }
                 }
             }
+            window.scrollTo(0, 0);
+        },
+        async loadProducts() {
+            const nationality = this.basicInfo.nationality ||
+                this.$route.meta.user.nationality;
+            if (nationality) {
+                const products = await this.api.products.loadProducts(nationality);
+                this.paymentInfo.products = products;
+                this.paymentInfo.loading = false;
+            } else {
+                this.$refs.stepper.movePreviousStep();
+            }
         },
         parseUserInfo(info) {
             const userInfo = info;
             userInfo.studyLanguages = [{
-                language: userInfo.studyLanguages,
+                language: userInfo.studyLanguage,
                 level: userInfo.level,
             }];
             userInfo.nativeLanguages = [{
-                languages: userInfo.nativeLanguages,
+                language: userInfo.nativeLanguage,
                 level: 'native',
             }];
             delete userInfo.level;

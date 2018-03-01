@@ -65,12 +65,28 @@ export default {
             mode: 'cors',
             method: 'POST',
             headers: new Headers({
-                'Content-Type': 'text/html',
+                'Content-Type': 'text/plain',
                 Authorization: token,
             }),
         }).then((res) => {
             if (res.ok) {
                 return res.text();
+            }
+            throw res;
+        });
+    },
+
+    getOrders(userId, token) {
+        return fetch(`${API_URL}/users/${userId}/orders`, {
+            mode: 'cors',
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                Authorization: token,
+            }),
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
             }
             throw res;
         });

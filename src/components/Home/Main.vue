@@ -1,26 +1,26 @@
 <template>
     <div>
-        <OnBoard></OnBoard>
-        <SearchForm></SearchForm>
-        <HowTo></HowTo>
-        <Feedback></Feedback>
+        <tw v-if="region === 'zh-TW'"></tw>
+        <en v-else></en>
     </div>
 </template>
 <script>
-import OnBoard from './OnBoard';
-import SearchForm from './SearchForm';
-import Feedback from './Feedback';
-import HowTo from './HowTo';
+import tw from './zh-TW/Main';
+import en from './en-US/Main';
 
 export default {
     components: {
-        OnBoard,
-        SearchForm,
-        Feedback,
-        HowTo,
+        tw,
+        en,
+    },
+    data() {
+        return {
+            region: navigator.language,
+        };
     },
 };
 </script>
 
 <style>
+
 </style>

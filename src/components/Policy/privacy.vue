@@ -32,3 +32,18 @@
         <p>If you have any questions about this Privacy Policy, please contact us by emailing to contactus@frnci.com</p>
     </div>
 </template>
+
+<style lang="scss" scoped>
+section {
+    h4 {
+       margin-bottom: 2%;
+        margin-top: 5%;
+    }
+
+    p {
+        line-height: 30px;
+        letter-spacing: .3px;
+        text-align: left;
+    }
+}
+</style>
