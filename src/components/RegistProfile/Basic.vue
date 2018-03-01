@@ -19,8 +19,8 @@
             </md-input-container>
         </form-field>
         <form-field title="Gender">
-            <radio-group 
-                :options="genderOpt" 
+            <radio-group
+                :options="genderOpt"
                 :value.sync="info.gender"
                 name="gender">
             </radio-group>
@@ -70,7 +70,7 @@ export default {
         const { photo, email } = this.$route.meta.user;
         return {
             info: {
-                photo,
+                photo: '',
                 email,
                 gender: 'm',
                 birthday: '',
@@ -120,6 +120,8 @@ export default {
         jQuery('.location').geocomplete().bind('geocode:result', () => {
             this.info.localCity = this.$refs.localCity.$el.value;
         });
+
+        this.$emit('update:info', this.info);
     },
 };
 </script>
