@@ -288,8 +288,6 @@ section.mt-5 {
 }
 
 .bg-default-green {
-    background: #60bc90;
-    color: #fff;
     padding-top: 5%;
     padding-bottom: 10%;
 }
@@ -324,7 +322,6 @@ section.mt-5 {
 .row p {
     margin: 0;
     font-size: 1.2rem;
-    /* margin-bottom: 3%; */
     font-weight: 400;
     line-height: 1.5;
 }
@@ -349,6 +346,7 @@ section.mt-5 {
     font-size: 1.5rem;
     font-weight: 600;
     padding-top: 3%;
+    line-height: 1.2;
 }
 .row a {
     color: #fff;
@@ -389,7 +387,11 @@ section.mt-5 {
 .row .mt-3 .card a:hover {
     color: #6c757d;
 }
-.card .card-img-top {
+.text-white img.card-img-top {
+    width: 60%;
+    padding-bottom: 1.5rem;
+}
+.card img.card-img-top {
     width: 100%;
     border-top-left-radius: calc(0.25rem - 1px);
     border-top-right-radius: calc(0.25rem - 1px);

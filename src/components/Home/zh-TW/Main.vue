@@ -3,7 +3,7 @@
         <Board></Board>
         <Introduction></Introduction>
         <!-- <Schedule></Schedule> -->
-        <Timeline></Timeline>
+        <!-- <Timeline></Timeline> -->
         <Events></Events>
         <Products></Products>
         <Memories></Memories>
