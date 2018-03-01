@@ -39,7 +39,7 @@ export default {
     created() {
         setInterval(() => {
             this.now = new Date(Date.now()).getTime();
-        }, 1000);
+        }, 500);
     },
     computed: {
         diff() {
