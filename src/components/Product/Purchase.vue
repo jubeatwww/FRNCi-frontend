@@ -46,7 +46,7 @@
             <input v-model="coupon" type="text" id="payment-coupon" name="coupon" class="form-control" placeholder="enter your code to save up to NTD.500" />
             <!-- end input -->
         </div>
-        <a v-on:click="orderAndCheckout" class="btn highlight-button-default" href="javascript:void(0)">Confirm &amp; Pay</a>
+        <a v-if="product" v-on:click="orderAndCheckout" class="btn highlight-button-default" href="javascript:void(0)">Confirm &amp; Pay</a>
         <div id="gc-ecpay-checkout-form" style="display:none"></div>
     </div>
 </template>
@@ -84,15 +84,35 @@ export default {
         },
         async orderAndCheckout() {
             const { product, meta } = this;
-            if (product && checkMeta(meta, product.events)) {
+            if (!checkMeta(meta, product.events)) {
+                alert('Please check your session selection');
+            } else {
                 const token = localStorage.getItem('_token');
                 const userId = localStorage.getItem('_id');
-                const attendees = await this.api.events.getAttendees(userId, token,
-                    product.events.map(e => e._id).join(','));
-                if (attendees && attendees.length > 0) {
-                    this.alertify.notify('You have already signed up for this event!');
+
+                const { nationality } = this.$route.meta.user;
+                if (product.tags.indexOf('fn_only') >= 0 && nationality === 'tw') {
+                    alert('This event is ony for international.');
+                    return;
+                } else if (product.tags.indexOf('tw_only') >= 0 && nationality !== 'tw') {
+                    alert('This event is only for Taiwanese.');
                     return;
                 }
+
+                let attendees;
+                try {
+                    attendees = await this.api.events.getAttendees(userId, token,
+                        product.events.map(e => e._id).join(','));
+                } catch (e) {
+                    console.error(e);
+                    alert('Some errors occurred, please try again later');
+                    return;
+                }
+                if (attendees && attendees.length > 0) {
+                    alert('You have already signed up for this event.');
+                    return;
+                }
+
                 const order = await this.api.products.createOrder(product._id, meta, token,
                     this.coupon);
                 const formHtml = await this.api.products.checkoutOrder(order._id, token);

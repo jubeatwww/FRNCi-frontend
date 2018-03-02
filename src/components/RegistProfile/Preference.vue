@@ -80,7 +80,7 @@ export default {
         return {
             preferToMeet: [
                 { label: 'Find Language partners', value: 'language' },
-                { label: 'Find Cross-cultrual friends', value: 'cultrual' },
+                { label: 'Find Cross-cultural friends', value: 'cultural' },
             ],
             preferToInteract: [
                 { label: 'Face to face', value: 'f2f' },
