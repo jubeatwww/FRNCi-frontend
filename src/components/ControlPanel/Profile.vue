@@ -41,7 +41,8 @@
             <radio-group
                 :options="frequency"
                 :value.sync="info.meetFrequency"
-                name="meetFrequency">
+                name="meetFrequency"
+                :default="info.meetFrequency">
             </radio-group>
         </form-field>
         <form-field title="The Language You Speak Fluently">
