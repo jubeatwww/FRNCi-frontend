@@ -33,7 +33,8 @@
                 name="meetTimes"
                 :options="times"
                 :value.sync="info.meetTimes"
-                :columns="1">
+                :columns="1"
+                :default="info.meetTimes">
             </check-box-group>
         </form-field>
         <form-field title="How Frequent You Like to Meet">
