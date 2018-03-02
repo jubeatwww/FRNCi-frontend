@@ -36,14 +36,14 @@ export default {
                 loading: true,
             },
             basicErrorMsg: {
-                photo: 'Please upload your photo.',
+                photo: 'Please upload your profile photo.',
                 birthday: 'Please tell us your birthday.',
                 localCity: 'Please tell us the city you are living in',
             },
             preferErrorMsg: {
                 nativeLanguage: 'Please choose your native language.',
                 studyLanguage: 'Please choose the language you want to learn.',
-                interests: 'Please pick up some topic that interests in.',
+                interests: 'Please pick up some topics that interest you.',
                 introduction: 'Please tell us about yourself. (At least 5 words)',
             },
         };
