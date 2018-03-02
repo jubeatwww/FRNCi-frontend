@@ -33,14 +33,16 @@
                 name="meetTimes"
                 :options="times"
                 :value.sync="info.meetTimes"
-                :columns="1">
+                :columns="1"
+                :default="info.meetTimes">
             </check-box-group>
         </form-field>
         <form-field title="How Frequent You Like to Meet">
             <radio-group
                 :options="frequency"
                 :value.sync="info.meetFrequency"
-                name="meetFrequency">
+                name="meetFrequency"
+                :default="info.meetFrequency">
             </radio-group>
         </form-field>
         <form-field title="The Language You Speak Fluently">
@@ -150,17 +152,17 @@ export default {
                 { label: 'Less than once a month', value: 'month_lt' },
             ],
             info: {
-                photo: '',
+                photo: user.photo,
                 meet: user.meet,
                 nativeLanguages: user.nativeLanguages,
                 studyLanguages: user.studyLanguages,
                 interact: user.interact,
-                meetTimes: [],
-                meetFrequency: '',
-                interests: user.interests,
-                interestsDesc: '',
-                learningGoal: '',
-                idealBuddy: '',
+                meetTimes: user.meetTimes || [],
+                meetFrequency: user.meetFrequency || '',
+                interests: user.interests || '',
+                interestsDesc: user.interestsDesc || '',
+                learningGoal: user.learningGoal || '',
+                idealBuddy: user.idealBuddy || '',
                 introduction: user.introduction,
             },
             uploadImg: user.photo,

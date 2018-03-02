@@ -9,11 +9,9 @@
                     :info.sync="basicInfo"></Basic>
                 <Preference
                     :completed.sync="preferenceCompleted"
-                    :md-continue="continued"
                     :info.sync="preferInfo"></Preference>
                 <Payment
-                    :paymentInfo="paymentInfo"
-                    :md-disabled="!continued"></Payment>
+                    :paymentInfo="paymentInfo"></Payment>
             </md-stepper>
         </md-layout>
     </md-layout>
@@ -37,11 +35,47 @@ export default {
             paymentInfo: {
                 loading: true,
             },
+            basicErrorMsg: {
+                photo: 'Please upload your photo.',
+                birthday: 'Please tell us your birthday.',
+                localCity: 'Please tell us the city you are living in',
+            },
+            preferErrorMsg: {
+                nativeLanguage: 'Please choose your native language.',
+                studyLanguage: 'Please choose the language you want to learn.',
+                interests: 'Please pick up some topic that interests in.',
+                introduction: 'Please tell us about yourself. (At least 5 words)',
+            },
         };
     },
     computed: {
-        continued() {
-            return this.basicCompleted && this.preferenceCompleted;
+        infoValidation() {
+            if (this.basicInfo.studentId === '') {
+                this.basicInfo.studentId = 'N/A';
+            }
+            const errorMsg = [];
+            if (!this.basicCompleted) {
+                Object.keys(this.basicInfo).forEach((key) => {
+                    if (this.basicInfo[key] === '') {
+                        errorMsg.push(this.basicErrorMsg[key]);
+                    }
+                });
+            }
+            if (!this.preferenceCompleted) {
+                Object.keys(this.preferInfo).forEach((key) => {
+                    if (this.preferInfo[key] === '') {
+                        errorMsg.push(this.preferErrorMsg[key]);
+                    }
+                });
+            }
+            if (this.preferInfo.interests.length === 0) {
+                errorMsg.push(this.preferErrorMsg.interests);
+            }
+            if (this.preferInfo.introduction.length < 5 &&
+                this.preferInfo.introduction !== '') {
+                errorMsg.push(this.preferErrorMsg.introduction);
+            }
+            return errorMsg;
         },
     },
     mounted() {
@@ -57,26 +91,35 @@ export default {
     methods: {
         async stepChanged(nextStep) {
             if (nextStep === 2) {
-                const [userid, token] = [
-                    localStorage.getItem('_id'),
-                    localStorage.getItem('_token'),
-                ];
-                const userInfo = this.parseUserInfo({
-                    ...this.basicInfo,
-                    ...this.preferInfo,
-                });
-
-                const result = await this.api.users.update(userid, token, userInfo);
-                if (result.ok) {
-                    await this.loadProducts();
-                } else {
-                    /* Return to previous step when update user data failed from api.
-                    * We have to do this because vuematerial 0.8.2 doesn't provide the method
-                    * to prevent stepper from stepping forward,
-                    * and there is only a listener method that is able to know which step we are.
-                    * This should be fixed when vuematerial will have updated.
-                    */
+                if (this.infoValidation.length > 0) {
+                    let errors = '';
+                    this.infoValidation.forEach((msg) => {
+                        errors += `${msg}\n`;
+                    });
+                    alert(errors);
                     this.$refs.stepper.movePreviousStep();
+                } else {
+                    const [userid, token] = [
+                        localStorage.getItem('_id'),
+                        localStorage.getItem('_token'),
+                    ];
+                    const userInfo = this.parseUserInfo({
+                        ...this.basicInfo,
+                        ...this.preferInfo,
+                    });
+
+                    const result = await this.api.users.update(userid, token, userInfo);
+                    if (result.ok) {
+                        await this.loadProducts();
+                    } else {
+                        /* Return to previous step when update user data failed from api.
+                        * We have to do this because vuematerial 0.8.2 doesn't provide the method
+                        * to prevent stepper from stepping forward,
+                        * and there is only a listener method that is able to know which
+                        * step we are. This should be fixed when vuematerial will have updated.
+                        */
+                        this.$refs.stepper.movePreviousStep();
+                    }
                 }
             }
             window.scrollTo(0, 0);

@@ -80,13 +80,13 @@ export default {
         return {
             info: {
                 email: user.email,
-                phone: '',
+                phone: user.phone,
                 gender: user.gender,
                 birthday: user.birthday,
                 nationality: user.nationality.toUpperCase(),
                 localCity: user.localCity,
-                occupation: '',
-                major: '',
+                occupation: user.occupation || '',
+                major: user.major || '',
             },
             genderOpt: [{ label: 'male', value: 'm' }, { label: 'female', value: 'f' }],
             nationalities,
