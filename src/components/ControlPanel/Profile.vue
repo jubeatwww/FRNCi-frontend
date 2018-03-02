@@ -30,17 +30,17 @@
         </form-field>
         <form-field title="Time You Prefer to Meet">
             <check-box-group
-                name="time"
+                name="meetTimes"
                 :options="times"
-                :value.sync="info.time"
+                :value.sync="info.meetTimes"
                 :columns="1">
             </check-box-group>
         </form-field>
         <form-field title="How Frequent You Like to Meet">
             <radio-group
                 :options="frequency"
-                :value.sync="info.frequency"
-                name="frequency">
+                :value.sync="info.meetFrequency"
+                name="meetFrequency">
             </radio-group>
         </form-field>
         <form-field title="The Language You Speak Fluently">
@@ -77,21 +77,21 @@
             title="Your Interests / Hobbies"
             description="Tell anything you like to do in your free time.">
             <md-input-container>
-                <md-textarea v-model="info.hobbyDetail" maxlength="500"></md-textarea>
+                <md-textarea v-model="info.interestsDesc" maxlength="500"></md-textarea>
             </md-input-container>
         </form-field>
         <form-field
             title="Your Learning Language Goal"
             description="What are the specific outcomes you want to achieve in a limited time? Please tell specific things you plan to learn or to focus on. And share why you want to learn the language.">
             <md-input-container>
-                <md-textarea v-model="info.learningGoal" naxlength="500"></md-textarea>
+                <md-textarea v-model="info.learningGoal" maxlength="500"></md-textarea>
             </md-input-container>
         </form-field>
         <form-field
             title="The Expectation on Your Buddy"
             description="What are the things you expect him/her to share with you?">
             <md-input-container>
-                <md-textarea v-model="info.buddyExpectation" maxlength="500"></md-textarea>
+                <md-textarea v-model="info.idealBuddy" maxlength="500"></md-textarea>
             </md-input-container>
         </form-field>
         <form-field
@@ -155,12 +155,12 @@ export default {
                 nativeLanguages: user.nativeLanguages,
                 studyLanguages: user.studyLanguages,
                 interact: user.interact,
-                time: [],
-                frequency: '',
+                meetTimes: [],
+                meetFrequency: '',
                 interests: user.interests,
-                hobbyDetail: '',
+                interestsDesc: '',
                 learningGoal: '',
-                buddyExpectation: '',
+                idealBuddy: '',
                 introduction: user.introduction,
             },
             uploadImg: user.photo,
