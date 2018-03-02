@@ -7,14 +7,14 @@
             data-mp-text="Header"
             :style="`background-image:url('${bannerUrl}');background-size:auto 100%;`"></header>
         <!-- introduction -->
-        <section class="mt-5">
+        <section class="gc-events-content">
             <div class="container">
                 <md-layout md-row>
-                    <md-layout class="col-md-8 col-sm-12" md-flex="66" md-flex-small="100" md-flex-medium="66">
+                    <md-layout class="col-md-8 col-sm-12 event-dec" md-flex="66" md-flex-small="100" md-flex-medium="66">
                         <div v-if="introduction" v-html="introduction"></div>
                     </md-layout>
                     <!-- plan -->
-                    <md-layout class="col-md-4 col-sm-12" md-flex="33" md-flex-small="100" md-flex-medium="33">
+                    <md-layout class="col-md-4 col-sm-12 event-plan" md-flex="33" md-flex-small="100" md-flex-medium="33">
                         <md-layout md-column>
                             <md-card v-for="p in products" :key="p.product._id" :class="productClassName(p)">
                                 <md-card-header>
@@ -45,7 +45,7 @@
         </section>
         <!-- end introduction -->
         <!-- information -->
-        <section class="pb-0">
+        <section class="gc-events-local">
             <div v-if="placeDesc" class="container">
                 <div class="row justify-content-center">
                     <div v-html="placeDesc" class="col-md-10 text-center"></div>
@@ -59,7 +59,7 @@
         </section>
         <!-- end information -->
         <!-- other -->
-        <section v-if="note" class="bg-default-green pt-5">
+        <section v-if="note" class="bg-default-green gc-events-note">
             <div class="container">
                 <div class="row justify-content-center">
                     <div v-html="note" class="col-md-10 text-center text-white"></div>
@@ -131,18 +131,15 @@ export default {
     position: relative;
 }
 
-section {
-    margin-bottom: 0;
-}
-
-section.mt-5 {
+.gc-events-content {
     margin-top: 3rem;
+    margin-bottom: 0;
     padding-bottom: 5%;
 
     .container {
         width: 100%;
-        padding-right: 25px;
-        padding-left: 25px;
+        padding-right: 4rem;
+        padding-left: 4rem;
         margin-right: auto;
         margin-left: auto;
 
@@ -154,7 +151,7 @@ section.mt-5 {
             flex-wrap: wrap;
         }
 
-        .md-layout {
+        .event-plan {
             position: relative;
             width: 100%;
             min-height: 1px;
@@ -211,7 +208,7 @@ section.mt-5 {
                 }
 
                 .md-card-actions {
-                    margin-bottom: 5%;
+                    margin-bottom: 3%;
 
                     .highlight-button-default {
                         display: block;
@@ -242,11 +239,11 @@ section.mt-5 {
     }
 }
 
-.pb-0 {
+.gc-events-local {
     .container {
         width: 90%;
         margin: 0 auto;
-        margin-bottom: 4%;
+        margin-bottom: 1rem;
     }
 }
 
@@ -287,25 +284,64 @@ section.mt-5 {
     text-align: center;
 }
 
-.bg-default-green {
+.gc-events-note {
     padding-top: 5%;
     padding-bottom: 10%;
+}
+
+@media (max-width: 575.98px) {
+    .page-header {
+        height: 200px;
+    }
+    .gc-events-content {
+        .container {
+            padding-right: 1.5rem;
+            padding-left: 1.5rem;
+
+            .md-row {
+                display: grid;
+
+                .event-dec {
+                    line-height: 2rem;
+
+                    p {
+                        width: 100%;
+                    }
+                }
+                
+                .event-plan {
+                    margin-top: 2rem;
+                }
+            }
+        }
+    }
+
+    .gc-events-local {
+        margin-top: 2rem;
+    }
+
+    .gc-events-note {
+        padding: 5% 1rem 10%;
+        font-size: 1rem
+    }
 }
 </style>
 
 <style>
-.md-flex-66 {
+.event-dec {
     text-align: left;
     font-size: 1.2rem;
+    line-height: 1.5rem;
+    padding-right: 1rem;
 }
-.md-flex-66 .blockquote {
+.event-dec .blockquote {
     border-left: 5px solid #60bc90;
     font-size: 16px;
     line-height: 30px;
     margin: 0 0 20px;
     padding: 20px 40px;
 }
-.md-flex-66 p {
+.event-dec p {
     font-size: 1rem;
     line-height: 1.5;
 }
@@ -313,49 +349,56 @@ section.mt-5 {
     color: #60bc90 !important;
 }
 
-.row h3 {
+.gc-events-local h3, p {
+    margin: 1rem auto;
+    line-height: 1.5rem;
+}
+
+
+.gc-events-note h3 {
     margin-bottom: 1rem;
     font-size: 1.8rem;
     font-weight: 500;
     line-height: 1.2;
 }
-.row p {
+.gc-events-note p {
     margin: 0;
     font-size: 1.2rem;
     font-weight: 400;
     line-height: 1.5;
 }
-.row h5 {
+.gc-events-note h5.font-weight-600 {
     margin: 0;
     font-size: 1.2rem;
     font-weight: 500;
     line-height: 1.2;
 }
-.row ol {
+.gc-events-note ol {
     display: inline-block;
     text-align: left;
     margin-left: 10%;
     margin-right: 10%;
 }
-.row h6 {
+.gc-events-note h6 {
     font-size: 1.2rem;
     font-weight: 500;
     line-height: 1.2;
 }
-.row h4 {
+.gc-events-note h4 {
     font-size: 1.5rem;
     font-weight: 600;
     padding-top: 3%;
     line-height: 1.2;
 }
-.row a {
-    color: #fff;
+.gc-events-note .text-white .under-line {
+    color: #60bc90;
 }
-.row a:hover {
-    color: #fff;
+.gc-events-note .text-white .under-line:hover {
+    color: #60bc90;
+    text-decoration: none;
 }
 
-.row .event-card {
+.gc-events-note .event-card {
     margin-top: 2.2rem;
     margin-left: 8%;
     margin-right: 8%;
@@ -363,7 +406,7 @@ section.mt-5 {
     padding-left: 15px;
     display: flex;
 }
-.row .event-card .card {
+.gc-events-note .event-card .card {
     margin: 0 1rem;
     position: relative;
     display: -webkit-box;
@@ -380,11 +423,11 @@ section.mt-5 {
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;
 }
-.row .mt-3 .card a {
+.gc-events-note .mt-3 .card a {
     text-decoration: none;
     color: #6c757d;
 }
-.row .mt-3 .card a:hover {
+.gc-events-note .mt-3 .card a:hover {
     color: #6c757d;
 }
 .text-white img.card-img-top {
@@ -402,7 +445,7 @@ section.mt-5 {
     text-align: left;
 }
 .card h5.card-title {
-    margin-top: 5%;
+    margin: 0;
     font-size: 1.3rem;
 }
 .card h6 {
@@ -423,5 +466,20 @@ section.mt-5 {
     color: #e45915;
     font-size: 2rem;
     font-weight: 700;
+}
+
+@media (max-width: 575.98px) {
+    .gc-events-note .event-card {
+        display: grid;
+    }
+
+    .gc-events-note .event-card .card {
+        margin: 1rem 0;
+    }
+
+    .card .card-footer {
+        text-align: center;
+        padding: 1rem 0;
+    }
 }
 </style>

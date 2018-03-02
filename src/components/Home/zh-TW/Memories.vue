@@ -1,7 +1,7 @@
 <template>
     <section>
         <md-layout md-column md-align="center">
-            <md-layout md-column md-align="center">
+            <md-layout md-column md-align="center" class="gc-memories-title">
                 <h3>活動回顧</h3>
                 <h6>
                     我們辦過不同的交流活動，包含 SpeakEasy 麻將和桌遊、台灣熱炒夜、<br>
@@ -67,16 +67,18 @@ export default {
 section {
     padding-bottom: 10%;
 
-    h3 {
-        color: #343d3c;
-        font-size: 1.8rem;
-        margin: 0;
-    }
+    .gc-memories-title {
+        h3 {
+            color: #343d3c;
+            font-size: 1.8rem;
+            margin: 0;
+        }
 
-    h6 {
-        font-size: 1rem;
-        font-weight: 600;
-        line-height: 1.2;
+        h6 {
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.4rem;
+        }
     }
 
     .work-3col {
@@ -85,45 +87,20 @@ section {
 
         figure {
             margin: 0 1.5%;
-            -webkit-transition: opacity 0.2s;
-            transition: opacity 0.2s;
-            position: relative;
-
-            /* .gallery-img {
-                opacity: 1;
-                transition: all 0.3s ease 0s;
-                overflow: hidden;
-                border-radius: .25rem;
-
-                &:hover {
-                    background-color: #000;
-                }
-
-                a {
-                    position: relative;
-                    z-index: 2;
-                    display: block;
-                }
-
-                img {
-                    display: block;
-                    width: 100%;
-                    opacity: 1;
-                    cursor: pointer;
-                }
-            } */
         }
 
         figcaption {
             margin-top: 5%;
             
             h3 {
+                margin-bottom: 0.8rem;
                 font-size: 1.5rem;
                 line-height: 1rem;
+            }
 
-                p {
-                    font-size: 1rem;
-                }
+            p {
+                margin: 0;
+                font-size: 1rem;
             }
         }
     }
@@ -146,6 +123,28 @@ section {
 
         &:hover {
             text-decoration: none;
+        }
+    }
+}
+
+@media (max-width: 575.98px) {
+    section {
+        .gc-memories-title {
+            margin: 0 1rem;
+
+            h6 {
+                margin: 1rem 0;
+            }
+        }
+
+        .work-3col {
+            figure {
+                margin: 1rem 0;
+            }
+        }
+
+        .highlight-button-default-green {
+            margin: 0;
         }
     }
 }

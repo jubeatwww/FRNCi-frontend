@@ -1,7 +1,7 @@
 <template>
     <section>
         <md-layout md-column md-align="center">
-            <md-layout md-column md-align="center">
+            <md-layout md-column md-align="center" class="gc-events-title">
                 <h5>練習外語、走進世界，不用出國<br>你有更自在、有趣、有效的方法</h5> 
                 <h3>就從【Glocal Click 前導活動】開始！</h3>   
             </md-layout>
@@ -11,11 +11,11 @@
                         <img src="/static/img/a2.jpg" alt="Card image cap">
                     </router-link>
                     <div class="card-body">
-                        <h6 class="mb-2 font-weight-300">2018.03.03(六)</h6>
-                        <h5 class="card-title font-weight-600 mb-1">【語言交換零死角】<br>攻略分享會</h5>
+                        <h6 class="event-date">2018.03.03(六)</h6>
+                        <h5 class="card-title">【語言交換零死角】<br>攻略分享會</h5>
                         <h6 class="card-title">其實，語言交換跟你想的不一樣！</h6>
                         <p>
-                            <span class="badge badge-default-green med-text"># 誰適合參加?</span><br><br>
+                            <span class="badge badge-default-green"># 誰適合參加?</span><br><br>
                             不知道語言交換怎麼開始的你<br>
                             覺得語言交換對語言進步有限的你<br>
                             覺得語言交換好難持續的你<br>
@@ -31,11 +31,11 @@
                         <img src="/static/img/a3.jpg" alt="Card image cap">
                     </router-link>
                     <div class="card-body">
-                        <h6 class="mb-2 font-weight-300">2018.03.10(六)</h6>
-                        <h5 class="card-title font-weight-600 mb-1">【去膩的台北?】<br>與外國人的城市大冒險</h5>
+                        <h6 class="event-date">2018.03.10(六)</h6>
+                        <h5 class="card-title">【去膩的台北?】<br>與外國人的城市大冒險</h5>
                         <h6 class="card-title">拿掉考試，挑戰你的外語口說吧！</h6>
                         <p class="card-text small-text text-justify text-center">
-                            <span class="badge badge-default-green med-text"># 誰適合參加?</span><br><br>
+                            <span class="badge badge-default-green"># 誰適合參加?</span><br><br>
                             想挑戰在真實情境練習外語的你<br>
                             想認識外國朋友但擔心沒話題的你<br>
                             對於語言交換有點猶豫但心癢癢的你<br>
@@ -65,16 +65,19 @@ section {
     padding-left: 15px;
     padding-bottom: 10%;
 
-    h5 {
-        margin: 0;
-        font-size: 1.3rem;
-        line-height: 1.3;
+    .gc-events-title {
+        h5 {
+            margin: 0;
+            font-size: 1.3rem;
+            line-height: 1.3;
+        }
+
+        h3 {
+            color: #343d3c;
+            font-size: 1.7rem;
+        }
     }
 
-    h3 {
-        color: #343d3c;
-        font-size: 1.7rem;
-    }
 
     .card {
         margin-right: 15px;
@@ -89,7 +92,7 @@ section {
         padding-bottom: 1%;
 
         .card-body {
-            h6.font-weight-300 {
+            h6.event-date {
                 margin: 0;
                 padding-top: 20px;
                 font-size: 1.1rem;
@@ -97,14 +100,15 @@ section {
                 margin-bottom: 0.5rem;
             }
 
-            h5{
+            h5.card-title {
+                margin: 1rem 0;
                 font-size: 1.4rem;
                 font-weight: 600;
+                line-height: 1.5rem;
             }
 
             h6.card-title {
-                margin: 0;
-                margin-bottom: 0.75rem;
+                margin: 1rem 0;
                 font-size: 1rem;
                 font-weight: 600;
             }
@@ -130,7 +134,7 @@ section {
         }
 
         .card-footer {
-            a.highlight-button-default {
+            .highlight-button-default {
                 width: 95%;
                 display: inline-block;
                 border: 2px solid #f8b62c;
@@ -150,6 +154,23 @@ section {
                     text-decoration: none;
                 }
             }
+        }
+    }
+}
+
+@media (max-width: 575.98px) {
+    section {
+        .gc-events-title {
+            margin-top: 1rem;
+
+            h3 {
+                font-size: 1.5rem;
+                line-height: 1.6rem;
+            }
+        }
+
+        .card {
+            margin: 1rem 0;
         }
     }
 }
