@@ -49,10 +49,10 @@ export default {
         };
     },
     computed: {
-        continued() {
-            return this.basicCompleted && this.preferenceCompleted;
-        },
         infoValidation() {
+            if (this.basicInfo.studentId === '') {
+                this.basicInfo.studentId = 'N/A';
+            }
             const errorMsg = [];
             if (!this.basicCompleted) {
                 Object.keys(this.basicInfo).forEach((key) => {
@@ -70,6 +70,10 @@ export default {
             }
             if (this.preferInfo.interests.length === 0) {
                 errorMsg.push(this.preferErrorMsg.interests);
+            }
+            if (this.preferInfo.introduction.length < 5 &&
+                this.preferInfo.introduction !== '') {
+                errorMsg.push(this.preferErrorMsg.introduction);
             }
             return errorMsg;
         },
