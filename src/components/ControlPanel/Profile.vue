@@ -150,7 +150,7 @@ export default {
                 { label: 'Less than once a month', value: 'month_lt' },
             ],
             info: {
-                photo: '',
+                photo: user.photo,
                 meet: user.meet,
                 nativeLanguages: user.nativeLanguages,
                 studyLanguages: user.studyLanguages,

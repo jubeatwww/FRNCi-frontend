@@ -80,7 +80,7 @@ export default {
         return {
             info: {
                 email: user.email,
-                phone: '',
+                phone: user.phone,
                 gender: user.gender,
                 birthday: user.birthday,
                 nationality: user.nationality.toUpperCase(),
