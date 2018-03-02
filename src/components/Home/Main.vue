@@ -15,7 +15,7 @@ export default {
     },
     data() {
         return {
-            region: navigator.language,
+            region: localStorage.getItem('region') || navigator.language,
         };
     },
 };
