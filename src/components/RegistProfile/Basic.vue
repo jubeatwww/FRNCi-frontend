@@ -56,6 +56,15 @@
                     ref="localCity"></md-input>
             </md-input-container>
         </form-field>
+        <form-field
+            title="Student ID"
+            description="If you are studying in NCCU CLC, please enter your student ID here for our recognition.">
+              <md-input-container>
+                <md-input
+                    placeholder="If you are not, please enter N/A."
+                    v-model="info.studentId"></md-input>
+            </md-input-container>
+        </form-field>
     </md-step>
 </template>
 
@@ -75,12 +84,13 @@ export default {
         const { photo, email } = this.$route.meta.user;
         return {
             info: {
-                photo: '',
+                photo,
                 email,
                 gender: 'm',
                 birthday: '',
                 nationality: 'TW',
                 localCity: '',
+                studentId: '',
             },
             uploadImg: photo,
             genderOpt: [{ label: 'male', value: 'm' }, { label: 'female', value: 'f' }],
