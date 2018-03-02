@@ -14,8 +14,9 @@ export default {
         en,
     },
     data() {
+        console.log(this.$route);
         return {
-            region: localStorage.getItem('region') || navigator.language,
+            region: this.$route.meta.region || navigator.language,
         };
     },
 };

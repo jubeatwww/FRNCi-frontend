@@ -51,6 +51,7 @@ const router = new Router({
                     path: '',
                     component: Home,
                     name: 'home',
+                    meta: { region: localStorage.getItem('region') },
                 },
                 {
                     path: 'profile/:id',

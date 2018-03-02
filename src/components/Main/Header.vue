@@ -2,6 +2,12 @@
     <header>
         <div id="logo" @click="homeLink"></div>
         <nav>
+            <md-button @click="langInternational">
+                English (International)
+            </md-button>
+            <md-button @click="langTaiwan">
+                繁中(台灣人)
+            </md-button>
             <md-theme md-name="orange">
                 <!-- <md-button class="md-raised md-primary">Find Buddies</md-button> -->
                 <md-menu md-direction="bottom left" v-if="$route.meta.isLogin">
@@ -54,6 +60,14 @@ export default {
             localStorage.clear();
             this.$router.push({ path: '/login' });
         },
+        langInternational() {
+            localStorage.setItem('region', 'en-US');
+            this.$router.go(0);
+        },
+        langTaiwan() {
+            localStorage.setItem('region', 'zh-TW');
+            this.$router.go(0);
+        },
     },
 };
 </script>
@@ -97,6 +111,15 @@ header{
         button.md-theme-orange.md-button:not([disabled]).md-primary.md-raised:hover {
             background-color: #f8b62c;
             color: white;
+        }
+
+        button.md-theme-default {
+            padding: 0 8px;
+            margin: 0 8px 0 0;
+            font-size: 1rem;
+            font-weight: bold;
+            line-height: 1.5;
+            color: #707070;
         }
     }
 }
