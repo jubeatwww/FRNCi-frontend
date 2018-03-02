@@ -116,8 +116,8 @@ header{
         button.md-theme-default {
             padding: 0 8px;
             margin: 0 8px 0 0;
-            font-size: 1rem;
-            font-weight: bold;
+            font-size: .8rem;
+            font-weight: 400;
             line-height: 1.5;
             color: #707070;
         }
