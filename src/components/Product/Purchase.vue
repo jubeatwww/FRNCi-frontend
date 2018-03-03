@@ -101,8 +101,12 @@ export default {
 
                 let attendees;
                 try {
-                    attendees = await this.api.events.getAttendees(userId, token,
-                        product.events.map(e => e._id).join(','));
+                    attendees = await this.api.events.getAttendees({
+                        params: { userId },
+                        query: {
+                            events: product.events.map(e => e._id).join(','),
+                        },
+                    });
                 } catch (e) {
                     console.error(e);
                     alert('Some errors occurred, please try again later');

@@ -88,7 +88,7 @@ export default {
     },
     mounted() {
         const { slug } = this.$route.params;
-        this.api.events.getEvent(slug).then((event) => {
+        this.api.events.getEvent({ params: { eventId: slug } }).then((event) => {
             this.eventId = event._id;
             this.products = event.products;
             if (event.banner) {
@@ -109,10 +109,12 @@ export default {
             return p.featured ? 'card mt-3 border-select' : 'card';
         },
         async buy(product) {
-            const token = localStorage.getItem('_token');
             const userId = localStorage.getItem('_id');
-            if (token && userId) {
-                const attendees = await this.api.events.getAttendees(userId, token, this.eventId);
+            if (userId) {
+                const attendees = await this.api.events.getAttendees({
+                    params: { userId },
+                    query: { events: this.eventId },
+                });
                 if (attendees && attendees.length > 0) {
                     this.alertify.notify('You have already signed up for this event!');
                     return;

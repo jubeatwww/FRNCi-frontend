@@ -11,9 +11,9 @@ export default {
         async fbLogin() {
             window.FB.login(async (fbres) => {
                 if (fbres.status === 'connected') {
-                    const result = await this.api.auth.fbLogin({
+                    const result = await this.api.auth.fbLogin({ body: {
                         access_token: fbres.authResponse.accessToken,
-                    });
+                    } });
 
                     if (result.ok) {
                         if (result._no_email) {

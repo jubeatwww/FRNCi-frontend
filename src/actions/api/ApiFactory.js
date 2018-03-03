@@ -9,7 +9,8 @@ function parsePath(path, params) {
     }, path);
 }
 
-export default (path = '', method = 'GET', requireAuth = false) => async (body = undefined, params = undefined, otherHeaders = undefined) => {
+export default (path = '', method = 'GET', requireAuth = false) => async (args = {}) => {
+    const { body, params, query, headers: otherHeaders } = args;
     let headers = { 'Content-Type': 'application/json' };
     if (requireAuth) {
         const token = localStorage.getItem('_token');
@@ -37,9 +38,11 @@ export default (path = '', method = 'GET', requireAuth = false) => async (body =
 
     let parsedPath = parsePath(path, params);
 
-    if (method === 'GET' && body) {
-        parsedPath += `?${qs.stringify(body)}`;
-    } else if (body) {
+    if (query) {
+        parsedPath += `?${qs.stringify(query)}`;
+    }
+
+    if (body && (method === 'POST' || method === 'PUT')) {
         options.body = JSON.stringify(body);
     }
 
