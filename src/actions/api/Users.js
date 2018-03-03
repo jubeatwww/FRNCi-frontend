@@ -1,35 +1,8 @@
 import { API_URL } from '../../config';
+import APIFactory from './ApiFactory';
 
 export default {
-    async get(userId = '', token = '') {
-        const result = await fetch(`${API_URL}/users/${userId}`, {
-            mode: 'cors',
-            method: 'GET',
-            headers: new Headers({
-                'Content-Type': 'application/json',
-                Authorization: token,
-            }),
-        }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return res.json().then((err) => {
-                const error = {
-                    response: res,
-                    error: err,
-                };
-                throw error;
-            });
-        }).then(res => ({
-            ok: true,
-            ...res,
-        })).catch((err) => {
-            console.error(err);
-            alert(err.error.message);
-            return err;
-        });
-        return result;
-    },
+    get: APIFactory('users/:userId', 'GET', true),
     async update(userId = '', token = '', data = {}) {
         const result = await fetch(`${API_URL}/users/${userId}`, {
             mode: 'cors',
@@ -60,35 +33,7 @@ export default {
         });
         return result;
     },
-    async integrity(userId = '', token = '') {
-        const result = await fetch(`${API_URL}/users/${userId}/integrity`, {
-            mode: 'cors',
-            method: 'GET',
-            headers: new Headers({
-                'Content-Type': 'application/json',
-                Authorization: token,
-            }),
-        }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return res.json().then((err) => {
-                const error = {
-                    response: res,
-                    error: err,
-                };
-                throw error;
-            });
-        }).then(res => ({
-            ok: true,
-            ...res,
-        })).catch((err) => {
-            console.error(err);
-            alert(err.error.message);
-            return err;
-        });
-        return result;
-    },
+    integrity: APIFactory('users/:userId/integrity', 'GET', true),
     async uploadPhoto(userId = '', token = '', photo = undefined) {
         const formdata = new FormData();
         formdata.append('image', photo);

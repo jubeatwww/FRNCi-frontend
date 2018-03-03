@@ -1,14 +1,20 @@
+import qs from 'qs';
 import { API_URL } from '../../config';
 
-export default (path = '', method = 'GET', requireAuth = false) => async (body = {}, userid = undefined) => {
-    let headers = {};
+function parsePath(path, params) {
+    if (!params) return path;
+    return Object.keys(params).reduce((resolvedPath, key) => {
+        const value = params[key];
+        return resolvedPath.replace(`:${key}`, value);
+    }, path);
+}
+
+export default (path = '', method = 'GET', requireAuth = false) => async (body = undefined, params = undefined, otherHeaders = undefined) => {
+    let headers = { 'Content-Type': 'application/json' };
     if (requireAuth) {
         const token = localStorage.getItem('_token');
         if (token) {
-            headers = {
-                'Content-Type': 'application/json',
-                Authorization: token,
-            };
+            headers.Authorization = token;
         } else {
             return {
                 ok: false,
@@ -17,35 +23,48 @@ export default (path = '', method = 'GET', requireAuth = false) => async (body =
                 },
             };
         }
-    } else {
-        headers = { 'Content-Type': 'application/json' };
     }
 
-    const parsedPath = userid ? path.replace(':userid', userid) : path;
+    if (otherHeaders) {
+        headers = { ...headers, ...otherHeaders };
+    }
 
-    const result = await fetch(`${API_URL}/${parsedPath}`, {
-        mode: 'cors',
+    const options = {
         method,
-        body: JSON.stringify(body),
+        mode: 'cors',
         headers: new Headers(headers),
-    }).then((res) => {
+    };
+
+    let parsedPath = parsePath(path, params);
+
+    if (method === 'GET' && body) {
+        parsedPath += `?${qs.stringify(body)}`;
+    } else if (body) {
+        options.body = JSON.stringify(body);
+    }
+
+    const isTextResponse = headers['Content-Type'].indexOf('text') >= 0;
+
+    try {
+        const res = await fetch(`${API_URL}/${parsedPath}`, options);
         if (res.ok) {
-            return res.json();
-        }
-        return res.json().then((err) => {
-            const error = {
-                response: res,
-                error: err,
+            const responseData = await (isTextResponse ? res.text() : res.json());
+            return {
+                ok: true,
+                ...responseData,
             };
-            throw error;
-        });
-    }).then(res => ({
-        ok: true,
-        ...res,
-    })).catch((err) => {
+        }
+        const errorData = await res.json();
+        const err = {
+            response: res,
+            error: errorData,
+        };
+        throw err;
+    } catch (err) {
         console.error(err);
-        alert(err.error.message);
+        if (err.error && err.error.message) {
+            alert(err.error.message);
+        }
         return err;
-    });
-    return result;
+    }
 };
