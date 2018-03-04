@@ -1,15 +1,15 @@
 <template>
     <section>
         <md-layout md-align="center" md-column>
-            <md-layout class="text-dark-gray" md-align="center" md-column>
+            <md-layout class="gc-products-title" md-align="center" md-column>
                 <h3>現在報名 3/3, 3/10 Glocal Click 前導活動<br>還有超值限量加碼</h3>
                 <h6>讓你掌握訣竅、馬上行動，找到最合拍的國際學伴！</h6>
             </md-layout>
-            <md-layout class="mt-5" md-flex="33" md-align="center">
+            <md-layout class="gc-products-market" md-flex="33" md-align="center">
                 <!-- plan 1 -->
-                <div>
+                <div class="card">
                     <h6>給欠引導或需要突破盲點的你</h6>
-                    <div class="card">
+                    <div class="card-body">
                         <h5>NT$. 350</h5>
                         <h6>3/3 語言交換零死角攻略分享會</h6>
                         <hr>
@@ -22,9 +22,9 @@
                     </div>
                 </div>
                 <!-- plan 3 -->
-                <div>
+                <div class="card">
                     <h6>給期待一次到位全面進擊的你</h6>
-                    <div class="card border-select">
+                    <div class="card-body border-select">
                         <h5>NT$. 800</h5>
                         <h6 class="default-green-text">3/3 語言交換零死角攻略分享會 <br>+ 3/10 去膩的台北! 與外國人的城市冒險</h6>
                         <hr>
@@ -38,9 +38,9 @@
                     </div>
                 </div>
                 <!-- plan 2 -->
-                <div class="col-10 col-md-4 order-2 order-md-3">
+                <div class="card">
                     <h6>給還在猶豫不決卻心癢癢的你</h6>
-                    <div class="card">
+                    <div class="card-body">
                         <h5>NT$. 450</h5>
                         <h6>3/10 去膩的台北! <br>與外國人的城市冒險</h6>              
                         <hr>
@@ -71,7 +71,7 @@ export default {
 section {
     padding-bottom: 10%;
 
-    .text-dark-gray {
+    .gc-products-title {
         h3 {
             margin: 0;
             color: #343d3c;
@@ -91,26 +91,25 @@ section {
         }
     }
 
-    .mt-5 {
-        margin-top: 5rem;
-        margin-bottom: 3.8rem;
-
-        div {
-            margin-left: 5px;
-            margin-right: 5px;
-        }
-
-        h6 {
-            margin: 0;
-            margin-bottom: 1rem;
-            font-family: inherit;
-            font-size: 1rem;
-            font-weight: 700;
-            line-height: 1.2;
-            letter-spacing: 3px;
-        }
+    .gc-products-market {
+        margin: 3rem 0;
 
         .card {
+            margin-left: 10px;
+            margin-right: 10px;
+
+            h6 {
+                margin: 0;
+                margin-bottom: 1rem;
+                font-family: inherit;
+                font-size: 1rem;
+                font-weight: 700;
+                line-height: 1.2rem;
+                letter-spacing: 3px;
+            }
+        }
+
+        .card-body {
             position: relative;
             -webkit-box-orient: vertical;
             -webkit-box-direction: normal;
@@ -196,6 +195,29 @@ section {
 
     small {
         font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    section {
+        .gc-products-title {
+            margin: 0 1rem;
+
+            h3 {
+                font-size: 1.5rem;
+            }
+        }
+
+        .gc-products-market {
+            margin: 1rem 0;
+            .card {
+                margin: 1rem 0;
+
+                h6 {
+                    margin-bottom: 0.5rem;
+                }
+            }
+        }
     }
 }
 </style>

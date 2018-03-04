@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <div class="gc-attended">
         <h3>My Attended Events</h3>
         <md-progress v-if="loading" :md-indeterminate="true"></md-progress>
         <button v-if="error && !loading" v-on:click="loadAttendees">Try Again</button>
-        <table v-if="!loading && !error && attendees && attendees.length">
+        <table v-if="!loading && !error && attendees && attendees.length" class="gc-attended-table">
             <tr v-for="atendee in attendees" :key="atendee._id">
                 <td>
                     <strong>{{atendee.event.name}}</strong>
@@ -54,5 +54,29 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.gc-attended {
+    margin-bottom: 1rem;
+
+    .gc-attended-table {
+        border: 1px solid #666;
+        border-collapse: collapse;
+
+        tr:nth-child(even) {
+            background: #CCC
+        }
+
+        tr:nth-child(odd) {
+            background-color: #FAFAFA;
+        }
+
+        tr, td {
+            border: 1px solid #666;
+
+            &:hover {
+                background-color: #a3e9c7;
+            }
+        }
+    }
+}
 </style>

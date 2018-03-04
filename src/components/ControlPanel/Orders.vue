@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <div class="gc-order">
         <h3>My Orders</h3>
         <md-progress v-if="loading" :md-indeterminate="true"></md-progress>
         <button v-if="error && !loading" v-on:click="loadOrders">Try Again</button>
-        <table v-if="!loading && !error && orders && orders.length">
+        <table v-if="!loading && !error && orders && orders.length" class="gc-order-table">
             <tr v-for="order in orders" :key="order._id">
                 <td>{{order.tradeDate}}</td>
                 <td>{{resolveOrderPrice(order)}}</td>
@@ -79,5 +79,30 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.gc-order {
+    margin-bottom: 1rem;
+
+    .gc-order-table {
+        border: 1px solid #666;
+        border-collapse: collapse;
+
+        tr:nth-child(even) {
+            background: #fff;
+        }
+
+        // tr:nth-child(odd) {
+        //     background-color: #fff;
+        // }
+
+        tr, td {
+            border: 1px solid #666;
+            padding: 0.5rem 0.3rem;
+
+            &:hover {
+                background-color: #a3e9c7;
+            }
+        }
+    }
+}
 </style>

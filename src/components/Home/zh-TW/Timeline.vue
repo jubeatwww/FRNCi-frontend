@@ -1,7 +1,7 @@
 <template>
     <section>
         <md-layout md-column md-align="center">
-            <md-layout md-align="center">
+            <md-layout md-align="center" class="gc-timeline-title">
                 <h3>2018 年首場 Glocal Click 交流活動</h3>
             </md-layout>
             <md-layout class="timeline-section">
@@ -12,10 +12,10 @@
                         </a>
                     </div>
                 </md-layout>
-                <md-layout md-column md-align="start" class="timeline-waypoint col-2">
+                <md-layout md-column md-align="start" class="timeline-waypoint">
                     <h5>2/28 (三)【國際野餐趣】搶先體驗場</h5>
                     <h6>在台灣就能認識世界  與多元文化碰撞</h6>
-                    <p class="event-description med-text">
+                    <p class="event-description">
                         想體驗如同置身國外的全外語情境嗎?<br>
                         如果你還不知道怎麼開始或怕尷尬癌發作<br>
                         就先來參加我們舉辦的小型國際野餐吧！<br>
@@ -92,6 +92,8 @@ section {
             position: relative;
             padding-top: 30px;
             padding-bottom: 30px;
+            margin-left: 5%;
+            text-align: left;
 
             &::before {
                 content: "";
@@ -106,11 +108,6 @@ section {
                 border: 3px solid #3c2617;
                 background-color:#FFF;
             }
-        }
-
-        .col-2 {
-            margin-left: 5%;
-            text-align: left;
 
             h5 {
                 margin: 0;
@@ -125,17 +122,17 @@ section {
                 font-weight: 500;
             }
 
-            p {
+            .event-description {
                 margin: 0;
                 font-weight: 400;
                 line-height: 1.5;
                 margin-bottom: 1rem;
+            }
 
-                .text-price {
-                    color: #e45915;
-                    font-size: 2rem;
-                    font-weight: 600;
-                }
+            .text-price {
+                color: #e45915;
+                font-size: 2rem;
+                font-weight: 600;
             }
 
             .highlight-button-default {

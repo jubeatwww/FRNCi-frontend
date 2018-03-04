@@ -2,23 +2,23 @@
     <section>
        <div class="mask">
             <md-layout md-align="center">
-                <md-layout md-flex="70" md-align="center">
+                <md-layout class="gc-board-title" md-flex="70" md-align="center">
                     <h2>【Glocal Click 前導活動 】限量報名中！</h2>
                     <h5>自在說外語 x 跨文化交流 x 你的國際交友圈</h5>
                 </md-layout>
-                <md-layout md-flex="50" md-align="center" md-column>
+                <md-layout md-flex="50" md-align="center" md-column class="counterdown">
                     <p>截 止 倒 數</p>
                     <md-layout md-align="center">
-                        <div class="col-4">
+                        <div class="counter">
                             <span class="counter-num">{{date}}</span><br><span>days</span>
                         </div> 
-                        <div class="col-4">
+                        <div class="counter">
                             <span class="counter-num">{{hours}} </span><br><span>hours</span>
                         </div>
-                        <div class="col-4">
+                        <div class="counter">
                             <span class="counter-num">{{minutes}} </span><br><span>minutes</span>
                         </div>
-                        <div class="col-4">
+                        <div class="counter">
                             <span class="counter-num">{{seconds}} </span><br><span>seconds</span>
                         </div>
                     </md-layout>
@@ -77,28 +77,63 @@ section {
         color: #fff;
         z-index: 999;
 
-        h2 {
-            font-weight: 600;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-            font-size: 48px;
+        .gc-board-title {
+            h2 {
+                font-weight: 600;
+                line-height: 1.6;
+                margin-bottom: 1rem;
+                font-size: 2.8rem;
+            }
+
+            h5 {
+                font-size: 1.7rem;
+                margin: 0;
+                margin-bottom: 5%;
+            }
         }
 
-        h5 {
-            font-size: 30px;
-            margin: 0;
-            margin-bottom: 5%;
-        }
-
-        .md-flex-50 {
-            .col-4 {
+        .counterdown {
+            .counter {
                 margin: 0 6%;
-                margin-top: 5%;
 
                 .counter-num {
-                    font-size: 50px;
+                    font-size: 3rem;
                     font-weight: 600;
                     color: #fff;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 575.98px) {
+    .md-layout {
+        display: flex;
+    }
+
+    section {
+        .mask {
+            .gc-board-title {
+                min-width: 85%;
+
+                h2 {
+                    font-size: 2rem;
+                    line-height: 2.5rem;
+                }
+
+                h5 {
+                    font-size: 1.5rem;
+                    line-height: 1.7rem;
+                    margin-top: 1rem;
+                }
+            }
+
+            .counterdown {
+                min-width: 85%;
+                margin-top: 1rem;
+
+                .counter {
+                    margin: 5% 2% 0;
                 }
             }
         }

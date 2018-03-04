@@ -1,7 +1,7 @@
 <template>
     <section>
         <md-layout md-align="center">
-            <md-layout md-column md-align="center">
+            <md-layout md-column md-align="center" class="gc-introduction-title">
             <h3>Glocal Click 是什麼？</h3>
                 <p>
                     Glocal Click 是 FRNCi 將推出的全新平台，主打<b>「與跨文化朋友自在說外語」的全方位體驗</b><br>
@@ -31,16 +31,27 @@ section {
     padding: 48px 0;
     background-color: #f8b62c;
     color: white;
+    margin-bottom: 7%;
 
-    h3 {
-        font-size: 1.8rem;
-        margin: 0;
-        margin-bottom: 1rem;
+    .gc-introduction-title {
+        h3 {
+            font-size: 1.8rem;
+            margin: 0;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
     }
+}
 
-    p {
-        font-size: 1.1rem;
-        line-height: 1.4;
+@media (max-width: 575.98px) {
+    section {
+        .gc-introduction-title {
+            margin: 0 1rem 1rem;
+        }
     }
 }
 </style>
