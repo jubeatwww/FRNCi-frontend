@@ -95,7 +95,9 @@ export default {
     methods: {
         async signup() {
             const { firstName, lastName, email, password } = this;
-            const result = await this.api.auth.signup({ firstName, lastName, email, password });
+            const result = await this.api.auth.signup({
+                body: { firstName, lastName, email, password },
+            });
 
             if (result.ok) {
                 const { _id } = result.user;

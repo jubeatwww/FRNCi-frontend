@@ -26,10 +26,9 @@ export default {
     },
     methods: {
         loadAttendees() {
-            const token = localStorage.getItem('_token');
             const userId = localStorage.getItem('_id');
             this.loading = true;
-            this.api.events.getAttendees(userId, token).then((attendees) => {
+            this.api.events.getAttendees({ params: { userId } }).then((attendees) => {
                 this.error = false;
                 this.loading = false;
                 this.attendees = attendees;

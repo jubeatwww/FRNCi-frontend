@@ -194,10 +194,11 @@ router.beforeEach(async (to, from, next) => {
         localStorage.getItem('_token'),
     ];
     if (userid && token) {
+        const apiArgs = { params: { userId: userid } };
         if (to.meta.static) {
             /* eslint-disable */
             try {
-                const userInfo = await api.users.get(userid, token);
+                const userInfo = await api.users.get(apiArgs);
                 to.meta.isLogin = userInfo.ok;
                 to.meta.avatar = userInfo ? userInfo.photo : '';
                 to.meta.user = userInfo;
@@ -206,9 +207,8 @@ router.beforeEach(async (to, from, next) => {
             /* eslint-enable */
             next();
         } else {
-            const userInfo = await api.users.get(userid, token);
-            const userIntegrity = await api.users.integrity(userid, token);
-
+            const userInfo = await api.users.get(apiArgs);
+            const userIntegrity = await api.users.integrity(apiArgs);
             if ((!userIntegrity.ok || !userInfo.ok) && to.meta.requireAuth) {
                 next({ path: '/login' });
             } else {
