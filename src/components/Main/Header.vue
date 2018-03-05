@@ -79,7 +79,6 @@ header{
     z-index: 2;
     top: 0;
     height: 11vh;
-    width: 100vw;
     transition: all .2s linear;
     background-color: white;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);

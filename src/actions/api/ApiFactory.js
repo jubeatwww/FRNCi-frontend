@@ -65,7 +65,7 @@ export default (path = '', method = 'GET', requireAuth = false) => async (args =
         throw err;
     } catch (err) {
         console.error(err);
-        if (err.error && err.error.message) {
+        if (err.error && err.error.message && err.error.message !== 'Error') {
             alert(err.error.message);
         }
         return err;

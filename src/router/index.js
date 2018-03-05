@@ -93,13 +93,10 @@ const router = new Router({
                     },
                     async beforeEnter(to, from, next) {
                         const { token: verifyToken } = to.query;
-                        const [userId, authToken] = [
-                            localStorage.getItem('_id'),
-                            localStorage.getItem('_token'),
-                        ];
+                        const authToken = localStorage.getItem('_token');
 
                         const result = await api.users.confirmEmailVerify(
-                            userId,
+                            'me',
                             authToken,
                             verifyToken,
                         );
@@ -188,13 +185,19 @@ const router = new Router({
     ],
 });
 
+function logout(nextFn, redirectToLogin) {
+    localStorage.clear();
+    if (redirectToLogin) {
+        nextFn({ path: '/login' });
+    } else {
+        nextFn();
+    }
+}
+
 router.beforeEach(async (to, from, next) => {
-    const [userid, token] = [
-        localStorage.getItem('_id'),
-        localStorage.getItem('_token'),
-    ];
-    if (userid && token) {
-        const apiArgs = { params: { userId: userid } };
+    const token = localStorage.getItem('_token');
+    if (token) {
+        const apiArgs = { params: { userId: 'me' } };
         if (to.meta.static) {
             /* eslint-disable */
             try {
@@ -204,11 +207,9 @@ router.beforeEach(async (to, from, next) => {
                 to.meta.user = userInfo;
                 localStorage.setItem('_email', userInfo.email);
             } catch (e) {
-                // TODO logout
-                localStorage.removeItem('_id');
-                localStorage.removeItem('_token');
-                localStorage.removeItem('_email');
-                next({ path: '/login' });
+                to.meta.isLogin = false;
+                logout(next, false);
+                return;
             }
             /* eslint-enable */
             next();
@@ -242,7 +243,7 @@ router.beforeEach(async (to, from, next) => {
                     } else if (!userIntegrity.integrity) {
                         next({ path: '/registprofile' });
                     } else {
-                        const paid = await api.users.paid(userid, token);
+                        const paid = await api.users.paid('me', token);
                         if (paid) {
                             next();
                         } else {
@@ -251,10 +252,9 @@ router.beforeEach(async (to, from, next) => {
                     }
                 }
             } catch (ignored) {
-                localStorage.removeItem('_id');
-                localStorage.removeItem('_token');
-                localStorage.removeItem('_email');
-                next({ path: '/login' });
+                // eslint-disable-next-line
+                to.meta.isLogin = false;
+                logout(next, true);
             }
         }
     } else if (to.meta.requireAuth) {
