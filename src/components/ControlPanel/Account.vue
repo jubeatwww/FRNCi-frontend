@@ -6,7 +6,7 @@
             <md-input-container>
                 <md-input
                     placeholder="A valid e-mail address you check regularly"
-                    v-model="info.email"></md-input>
+                    v-model="info.contactEmail"></md-input>
             </md-input-container>
         </form-field>
         <form-field
@@ -79,7 +79,7 @@ export default {
         const { user } = this.$route.meta;
         return {
             info: {
-                email: user.email,
+                contactEmail: user.contactEmail || user.email,
                 phone: user.phone,
                 gender: user.gender,
                 birthday: user.birthday,
