@@ -1,6 +1,6 @@
-import ApiFactory from './ApiFactory';
+import APIFactory from './ApiFactory';
 
 export default {
-    getEvent: ApiFactory('events/:eventId', 'GET'),
-    getAttendees: ApiFactory('users/:userId/attendees', 'GET', true),
+    getEvent: APIFactory('events/:eventId', 'GET'),
+    getAttendees: APIFactory('users/:userId/attendees', 'GET', true),
 };

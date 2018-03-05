@@ -46,7 +46,7 @@
             <input v-model="coupon" type="text" id="payment-coupon" name="coupon" class="form-control" placeholder="enter your code to save up to NTD.500" />
             <!-- end input -->
         </div>
-        <a v-if="product" v-on:click="orderAndCheckout" class="btn highlight-button-default" href="javascript:void(0)">Confirm &amp; Pay</a>
+        <a v-if="product" @click="orderAndCheckout" :disabled="sending" class="btn highlight-button-default" href="javascript:void(0)">Confirm &amp; Pay</a>
         <div id="gc-ecpay-checkout-form" style="display:none"></div>
     </div>
 </template>
@@ -62,6 +62,7 @@ function checkMeta(meta, events) {
 export default {
     data() {
         return {
+            sending: false,
             product: null,
             meta: {},
             coupon: '',
@@ -86,7 +87,7 @@ export default {
             const { product, meta } = this;
             if (!checkMeta(meta, product.events)) {
                 alert('Please check your session selection');
-            } else {
+            } else if (!this.sending) {
                 const token = localStorage.getItem('_token');
                 const userId = localStorage.getItem('_id');
 
@@ -99,6 +100,8 @@ export default {
                     return;
                 }
 
+                this.sending = true;
+
                 let attendees;
                 try {
                     attendees = await this.api.events.getAttendees({
@@ -110,21 +113,28 @@ export default {
                 } catch (e) {
                     console.error(e);
                     alert('Some errors occurred, please try again later');
+                    this.sending = false;
                     return;
                 }
                 if (attendees && attendees.length > 0) {
                     alert('You have already signed up for this event.');
+                    this.sending = false;
                     return;
                 }
 
-                const order = await this.api.products.createOrder(product._id, meta, token,
-                    this.coupon);
-                const formHtml = await this.api.products.checkoutOrder(order._id, token);
-                if (formHtml === 'done') {
-                    this.$router.push('/controlpanel/account');
-                } else {
-                    document.getElementById('gc-ecpay-checkout-form').appendChild(jQuery.parseHTML(formHtml)[0]);
-                    document.getElementById('_allpayForm').submit();
+                try {
+                    const order = await this.api.products.createOrder(product._id, meta, token,
+                        this.coupon);
+                    const formHtml = await this.api.products.checkoutOrder(order._id, token);
+                    this.sending = false;
+                    if (formHtml === 'done') {
+                        this.$router.push('/controlpanel/account');
+                    } else {
+                        document.getElementById('gc-ecpay-checkout-form').appendChild(jQuery.parseHTML(formHtml)[0]);
+                        document.getElementById('_allpayForm').submit();
+                    }
+                } catch (ignored) {
+                    this.sending = false;
                 }
             }
         },
