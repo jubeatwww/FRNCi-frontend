@@ -203,45 +203,58 @@ router.beforeEach(async (to, from, next) => {
                 to.meta.avatar = userInfo ? userInfo.photo : '';
                 to.meta.user = userInfo;
                 localStorage.setItem('_email', userInfo.email);
-            } catch (ignored) {}
+            } catch (e) {
+                // TODO logout
+                localStorage.removeItem('_id');
+                localStorage.removeItem('_token');
+                localStorage.removeItem('_email');
+                next({ path: '/login' });
+            }
             /* eslint-enable */
             next();
         } else {
-            const userInfo = await api.users.get(apiArgs);
-            const userIntegrity = await api.users.integrity(apiArgs);
-            if ((!userIntegrity.ok || !userInfo.ok) && to.meta.requireAuth) {
-                next({ path: '/login' });
-            } else {
-                /* eslint-disable */
-                to.meta.isLogin = userInfo.ok;
-                to.meta.avatar = userInfo ? userInfo.photo : '';
-                to.meta.user = userInfo;
-                /* eslint-enable */
-
-                localStorage.setItem('_email', userInfo.email);
-
-                if (to.name === 'Email Verification') {
-                    next();
-                } else if (to.name === 'EmailVerifyNotice') {
-                    if (userInfo.verification.email) {
-                        next('/');
-                    } else {
-                        next();
-                    }
-                } else if (to.name === 'registprofile') {
-                    next();
-                } else if (!(userInfo.verification.email || userInfo.verification.facebook)) {
-                    next({ path: '/email-verify-notice' });
-                } else if (!userIntegrity.integrity) {
-                    next({ path: '/registprofile' });
+            try {
+                const userInfo = await api.users.get(apiArgs);
+                const userIntegrity = await api.users.integrity(apiArgs);
+                if ((!userIntegrity.ok || !userInfo.ok) && to.meta.requireAuth) {
+                    next({ path: '/login' });
                 } else {
-                    const paid = await api.users.paid(userid, token);
-                    if (paid) {
+                    /* eslint-disable */
+                    to.meta.isLogin = userInfo.ok;
+                    to.meta.avatar = userInfo ? userInfo.photo : '';
+                    to.meta.user = userInfo;
+                    /* eslint-enable */
+
+                    localStorage.setItem('_email', userInfo.email);
+
+                    if (to.name === 'Email Verification') {
                         next();
+                    } else if (to.name === 'EmailVerifyNotice') {
+                        if (userInfo.verification.email) {
+                            next('/');
+                        } else {
+                            next();
+                        }
+                    } else if (to.name === 'registprofile') {
+                        next();
+                    } else if (!(userInfo.verification.email || userInfo.verification.facebook)) {
+                        next({ path: '/email-verify-notice' });
+                    } else if (!userIntegrity.integrity) {
+                        next({ path: '/registprofile' });
                     } else {
-                        next({ path: '/registprofile', query: { tab: 'payment' } });
+                        const paid = await api.users.paid(userid, token);
+                        if (paid) {
+                            next();
+                        } else {
+                            next({ path: '/registprofile', query: { tab: 'payment' } });
+                        }
                     }
                 }
+            } catch (ignored) {
+                localStorage.removeItem('_id');
+                localStorage.removeItem('_token');
+                localStorage.removeItem('_email');
+                next({ path: '/login' });
             }
         }
     } else if (to.meta.requireAuth) {
