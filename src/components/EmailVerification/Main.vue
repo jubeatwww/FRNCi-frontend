@@ -15,7 +15,7 @@ export default {
                 },
             });
             if (result.ok) {
-                alert('Email has resent!');
+                this.alertify.alert('Success!', 'Email has resent!');
             } else {
                 this.$router.push('/login');
             }

@@ -1,4 +1,5 @@
 import qs from 'qs';
+import alertify from 'alertifyjs';
 import { API_URL } from '../../config';
 
 function parsePath(path, params) {
@@ -66,7 +67,7 @@ export default (path = '', method = 'GET', requireAuth = false) => async (args =
     } catch (err) {
         console.error(err);
         if (err.error && err.error.message && err.error.message !== 'Error') {
-            alert(err.error.message);
+            alertify.alert('Error', err.error.message);
         }
         return err;
     }

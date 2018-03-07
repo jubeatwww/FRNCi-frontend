@@ -139,7 +139,7 @@ export default {
                     const formHtml = await this.api.products.checkoutOrder(order._id, token);
                     this.sending = false;
                     if (formHtml === 'done') {
-                        alert('報名成功');
+                        this.alertify.alert('Success', '報名成功');
                         this.$router.push('/controlpanel/account');
                     } else {
                         document.getElementById('gc-ecpay-checkout-form').appendChild(jQuery.parseHTML(formHtml)[0]);

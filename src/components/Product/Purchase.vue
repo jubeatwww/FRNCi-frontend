@@ -86,17 +86,17 @@ export default {
         async orderAndCheckout() {
             const { product, meta } = this;
             if (!checkMeta(meta, product.events)) {
-                alert('Please check your session selection');
+                this.alertify.alert('Please check your session selection');
             } else if (!this.sending) {
                 const token = localStorage.getItem('_token');
                 const userId = localStorage.getItem('_id');
 
                 const { nationality } = this.$route.meta.user;
                 if (product.tags.indexOf('fn_only') >= 0 && nationality === 'tw') {
-                    alert('This event is ony for international.');
+                    this.alertify.alert('This event is ony for international.');
                     return;
                 } else if (product.tags.indexOf('tw_only') >= 0 && nationality !== 'tw') {
-                    alert('This event is only for Taiwanese.');
+                    this.alertify.alert('This event is only for Taiwanese.');
                     return;
                 }
 
@@ -112,12 +112,12 @@ export default {
                     });
                 } catch (e) {
                     console.error(e);
-                    alert('Some errors occurred, please try again later');
+                    this.alertify.alert('Some errors occurred, please try again later');
                     this.sending = false;
                     return;
                 }
                 if (attendees && attendees.length > 0) {
-                    alert('You have already signed up for this event.');
+                    this.alertify.alert('You have already signed up for this event.');
                     this.sending = false;
                     return;
                 }

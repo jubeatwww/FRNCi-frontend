@@ -69,7 +69,7 @@ export default {
                 },
             });
             if (result.ok) {
-                alert('Password reset successfully!');
+                this.alertify.alert('Success', 'Password reset successfully!');
                 this.$router.push('login');
             } else if (result.status === 400) {
                 this.$router.push('forgotpassword');
