@@ -180,6 +180,10 @@ const router = new Router({
                         requireAuth: true,
                     },
                 },
+                {
+                    path: '*',
+                    redirect: { path: '/' },
+                },
             ],
         },
     ],
