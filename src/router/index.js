@@ -51,7 +51,7 @@ const router = new Router({
                     path: '',
                     component: Home,
                     name: 'home',
-                    meta: { 
+                    meta: {
                         region: localStorage.getItem('region'),
                         static: true,
                     },
@@ -258,6 +258,8 @@ router.beforeEach(async (to, from, next) => {
                     } else {
                         const paid = await api.users.paid('me', token);
                         if (paid) {
+                            next();
+                        } else if (to.name === 'ControlPanelAccount' || to.name === 'ControlPanelProfile') {
                             next();
                         } else {
                             next({ path: '/registprofile', query: { tab: 'payment' } });
