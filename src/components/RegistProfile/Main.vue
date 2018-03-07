@@ -94,9 +94,9 @@ export default {
                 if (this.infoValidation.length > 0) {
                     let errors = '';
                     this.infoValidation.forEach((msg) => {
-                        errors += `${msg}\n`;
+                        errors += `${msg}<br>`;
                     });
-                    alert(errors);
+                    this.alertify.alert('Profile not completed', errors);
                     this.$refs.stepper.movePreviousStep();
                 } else {
                     const userInfo = this.parseUserInfo({

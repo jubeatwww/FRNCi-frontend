@@ -14,7 +14,9 @@ export default {
                     userId: localStorage.getItem('_id'),
                 },
             });
-            if (!result.ok) {
+            if (result.ok) {
+                this.alertify.alert('Success!', 'Email has resent!');
+            } else {
                 this.$router.push('/login');
             }
         },

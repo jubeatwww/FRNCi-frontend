@@ -22,6 +22,7 @@ import VueMaterial from 'vue-material';
 import alertify from 'alertifyjs';
 import 'vue-material/dist/vue-material.css';
 import 'alertifyjs/build/css/alertify.min.css';
+import 'alertifyjs/build/css/themes/default.min.css';
 
 Vue.use(VueMaterial);
 Vue.use(Router);
@@ -78,6 +79,11 @@ const router = new Router({
                     path: 'forgotpassword',
                     component: User,
                     name: 'ForgotPassword',
+                },
+                {
+                    path: 'forgot-pw',
+                    component: User,
+                    name: 'ResetPassword',
                 },
                 {
                     path: 'email-verify-notice',

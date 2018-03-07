@@ -7,6 +7,8 @@ export default {
     integrity: APIFactory('users/:userId/integrity', 'GET', true),
     resendVerifyEmail: APIFactory('users/:userId/resend-verify', 'POST', true),
     confirmEmailVerify: APIFactory('users/:userId/confirm-verify', 'POST', true),
+    forgotPassword: APIFactory('users/forgot-pw', 'POST', false),
+    resetPassword: APIFactory('users/reset-pw', 'POST', false),
     async uploadPhoto(userId = '', token = '', photo = undefined) {
         const formdata = new FormData();
         formdata.append('image', photo);

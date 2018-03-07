@@ -1,35 +1,18 @@
 <template>
     <md-layout md-column class="form-wrapper">
-        <md-stepper>
-            <md-step :md-continue="mailValid">
-                <h1>Reset Password By Email</h1>
-                <p>To reset your password, enter the email address that you used to sign in to Glocal Click.</p>
-                <md-input-container :class="{'md-input-invalid': !mailValid && !isFirstInput}">
-                    <md-input type="email" v-model="email" required/>
-                    <label>Email</label>
-                </md-input-container>
-            </md-step>
-            <md-step>
-                <h1>Reset Password By Email</h1>
-                <p>We just sent a verification code to your email address. Please enter the verification code here.</p>
-                <md-input-container :class="{'md-input-invalid': false}">
-                    <md-input type="number" v-model="verifyCode" required/>
-                    <label>Verification code</label>
-                </md-input-container>
-            </md-step>
-            <md-step>
-                <h1>Reset Password By Email</h1>
-                <p>We just sent a verification code to your email address. Please enter the verification code here.</p>
-                <md-input-container :class="{'md-input-invalid': false}">
-                    <md-input type="password" v-model="verifyCode" required/>
-                    <label>Enter your new password</label>
-                </md-input-container>
-                <md-input-container :class="{'md-input-invalid': false}">
-                    <md-input type="password" v-model="verifyCode" required/>
-                    <label>Enter your new password again</label>
-                </md-input-container>
-            </md-step>
-        </md-stepper>
+        <template v-if="!emailSent">
+            <h1>Reset Password By Email</h1>
+            <p>To reset your password, enter the email address that you used to sign in to Glocal Click.</p>
+            <md-input-container :class="{'md-input-invalid': !mailValid && !isFirstInput}">
+                <md-input type="email" v-model="email" required/>
+                <label>Email</label>
+            </md-input-container>
+            <md-button class="md-raised md-primary" @click="forgotPassword" :disabled="!mailValid">Submit</md-button>
+        </template>
+        <template v-else>
+            <h1>Reset Password By Email</h1>
+            <p>We just sent a verification link to your email address.</p>
+        </template>
     </md-layout>
 </template>
 <script>
@@ -39,7 +22,7 @@ export default {
             email: '',
             isFirstInput: true,
             mailValid: false,
-            verifyCode: '',
+            emailSent: false,
         };
     },
     watch: {
@@ -49,71 +32,56 @@ export default {
             this.mailValid = emailRegex.test(this.email);
         },
     },
+    methods: {
+        async forgotPassword() {
+            const result = await this.api.users.forgotPassword({ body: { email: this.email } });
+            if (result.ok) {
+                this.emailSent = true;
+            }
+        },
+    },
 };
 </script>
 
 <style lang="scss" scoped>
-.form-wrapper /deep/ {
-    .md-stepper {
-        .md-whiteframe-1dp {
-            box-shadow: 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0);
+.form-wrapper {
+    h1 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        line-height: 1.8rem;
+    }
+
+    p {
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.3rem;
+    }
+
+    .md-input-focused {
+        &::after {
+            background-color: #60bc90;
         }
-        
-        .md-steps-navigation {
-            border-bottom: #B5B2B2 1px solid;
-
-            .md-active, .md-primary  {
-                .md-step-number, .md-step-icon {
-                    background-color: #60bc90;
-                }
-            }
-        }
-
-        .md-step-content {
-            P {
-                text-align: left;
-                font-size: 16px;
-            }
-
-            .md-input-focused {
-                &::after {
-                    background-color: #60bc90;
-                }
-            }
-
-            .md-input-container {
-                label {
-                    &::after {
-                        font-size: 14px;
-                        color: red;
-                    }
-                }
-            }
-
-            .md-button:not(:disabled).md-primary {
-                background-color: #60bc90;
-
-                &:hover {
-                    background-color: #60bc90;
-                }
-            }
-
-            .md-button {
-                border: 1px solid #60bc90;
+    }
+    
+    .md-input-container {
+        label {
+            &::after {
+                font-size: 14px;
+                color: red;
             }
         }
     }
-}
 
-@media (max-width: 575.98px) {
-    .form-wrapper /deep/ {
-        .md-stepper {
-            .md-step-actions {
-                .md-button {
-                    padding: 0;
-                }
-            }
+    .md-button:not(:disabled).md-primary {
+        background-color: #60bc90;
+
+        &:hover {
+            background-color: #60bc90;
         }
+    }
+
+    .md-button {
+        border: 1px solid #60bc90;
     }
 }
 </style>

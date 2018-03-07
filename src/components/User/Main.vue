@@ -7,7 +7,7 @@
             md-flex-large="50"
             md-flex-xlarge="50"
             style="padding: 0 4%">
-            <form :style="$route.name === 'ForgotPassword' ? 'padding: 0' : ''">
+            <form :style="$route.name  ? '' : 'padding: 0'">
                 <component :is="contentView"></component>
             </form>
         </md-layout>
@@ -17,10 +17,11 @@
 import Login from './Login';
 import Register from './Register';
 import ForgotPassword from './ForgotPassword';
+import ResetPassword from './ResetPassword';
 import EmailVerifyNotice from './EmailVerifyNotice';
 
 export default {
-    components: { Login, Register, ForgotPassword, EmailVerifyNotice },
+    components: { Login, Register, ForgotPassword, ResetPassword, EmailVerifyNotice },
     data() {
         return {
             contentView: this.$route.name,
