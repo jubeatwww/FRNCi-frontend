@@ -14,7 +14,6 @@ export default {
         en,
     },
     data() {
-        console.log(this.$route);
         return {
             region: this.$route.meta.region || navigator.language,
         };
