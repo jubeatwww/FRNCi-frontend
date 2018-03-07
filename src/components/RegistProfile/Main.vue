@@ -99,16 +99,16 @@ export default {
                     alert(errors);
                     this.$refs.stepper.movePreviousStep();
                 } else {
-                    const [userid, token] = [
-                        localStorage.getItem('_id'),
-                        localStorage.getItem('_token'),
-                    ];
                     const userInfo = this.parseUserInfo({
                         ...this.basicInfo,
                         ...this.preferInfo,
                     });
 
-                    const result = await this.api.users.update(userid, token, userInfo);
+                    const args = {
+                        params: { userId: localStorage.getItem('_id') },
+                        body: userInfo,
+                    };
+                    const result = await this.api.users.update(args);
                     if (result.ok) {
                         await this.loadProducts();
                     } else {

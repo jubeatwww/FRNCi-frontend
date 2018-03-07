@@ -58,7 +58,7 @@
                   <!-- end input -->
                 </div>
             </div>
-            <a v-on:click="orderAndCheckout" class="btn highlight-button-default" href="javascript:void(0)">Next: Confirm &amp; Pay</a>
+            <a v-on:click="orderAndCheckout" :disabled="sending" class="btn highlight-button-default" href="javascript:void(0)">Next: Confirm &amp; Pay</a>
             <div id="gc-ecpay-checkout-form" style="display:none"></div>
             <div class="text-policy">
                 <h5>Refund Policy:</h5>
@@ -95,6 +95,7 @@ export default {
     props: ['mdDisabled', 'paymentInfo'],
     data() {
         return {
+            sending: false,
             meta: {},
             product: null,
             coupon: '',
@@ -129,16 +130,23 @@ export default {
         },
         async orderAndCheckout() {
             const { product, meta } = this;
-            if (product && checkMeta(meta, product.events)) {
-                const token = localStorage.getItem('_token');
-                const order = await this.api.products.createOrder(product._id,
-                    meta, token, this.coupon);
-                const formHtml = await this.api.products.checkoutOrder(order._id, token);
-                if (formHtml === 'done') {
-                    this.$router.push('/controlpanel/account');
-                } else {
-                    document.getElementById('gc-ecpay-checkout-form').appendChild(jQuery.parseHTML(formHtml)[0]);
-                    document.getElementById('_allpayForm').submit();
+            if (!this.sending && product && checkMeta(meta, product.events)) {
+                this.sending = true;
+                try {
+                    const token = localStorage.getItem('_token');
+                    const order = await this.api.products.createOrder(product._id,
+                        meta, token, this.coupon);
+                    const formHtml = await this.api.products.checkoutOrder(order._id, token);
+                    this.sending = false;
+                    if (formHtml === 'done') {
+                        alert('報名成功');
+                        this.$router.push('/controlpanel/account');
+                    } else {
+                        document.getElementById('gc-ecpay-checkout-form').appendChild(jQuery.parseHTML(formHtml)[0]);
+                        document.getElementById('_allpayForm').submit();
+                    }
+                } catch (ignored) {
+                    this.sending = false;
                 }
             }
         },

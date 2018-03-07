@@ -6,7 +6,7 @@
             <md-input-container>
                 <md-input
                     placeholder="A valid e-mail address you check regularly"
-                    v-model="info.email"></md-input>
+                    v-model="info.contactEmail"></md-input>
             </md-input-container>
         </form-field>
         <form-field
@@ -79,7 +79,7 @@ export default {
         const { user } = this.$route.meta;
         return {
             info: {
-                email: user.email,
+                contactEmail: user.contactEmail || user.email,
                 phone: user.phone,
                 gender: user.gender,
                 birthday: user.birthday,
@@ -94,12 +94,11 @@ export default {
     },
     methods: {
         async save() {
-            const [userid, token] = [
-                localStorage.getItem('_id'),
-                localStorage.getItem('_token'),
-            ];
-
-            const result = await this.api.users.update(userid, token, this.info);
+            const args = {
+                params: { userId: localStorage.getItem('_id') },
+                body: this.info,
+            };
+            const result = await this.api.users.update(args);
             if (!result.ok) {
                 console.error(result);
             }
