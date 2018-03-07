@@ -80,6 +80,11 @@ const router = new Router({
                     name: 'ForgotPassword',
                 },
                 {
+                    path: 'forgot-pw',
+                    component: User,
+                    name: 'ResetPassword',
+                },
+                {
                     path: 'email-verify-notice',
                     component: User,
                     name: 'EmailVerifyNotice',
