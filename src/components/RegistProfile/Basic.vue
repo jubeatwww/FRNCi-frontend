@@ -19,8 +19,7 @@
               <md-input-container>
                 <md-input 
                     placeholder="A valid e-mail address you check regularly"
-                    v-model="info.email"
-                    disabled></md-input>
+                    v-model="info.contactEmail"></md-input>
             </md-input-container>
         </form-field>
         <form-field title="Gender">
@@ -85,7 +84,7 @@ export default {
         return {
             info: {
                 photo,
-                email,
+                contactEmail: email,
                 gender: 'm',
                 birthday: '',
                 nationality: 'TW',
