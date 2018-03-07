@@ -95,14 +95,13 @@ const router = new Router({
                         requireAuth: true,
                     },
                     async beforeEnter(to, from, next) {
-                        const { token: verifyToken } = to.query;
-                        const authToken = localStorage.getItem('_token');
+                        const { token } = to.query;
+                        const userId = localStorage.getItem('_id');
 
-                        const result = await api.users.confirmEmailVerify(
-                            'me',
-                            authToken,
-                            verifyToken,
-                        );
+                        const result = await api.users.confirmEmailVerify({
+                            params: { userId: 'me' },
+                            body: { userId, token },
+                        });
                         if (result.ok) {
                             next('registprofile');
                         }
