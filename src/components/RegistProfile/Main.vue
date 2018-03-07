@@ -2,7 +2,7 @@
     <md-layout md-align="center">
         <md-layout
             md-flex="75"
-            style="padding: 5% 4%">
+            style="padding: 5% 4%" class="gc-regist-wrapper">
             <md-stepper @change="stepChanged" ref="stepper" :md-disable-header-nav="true">
                 <Basic
                     :completed.sync="basicCompleted"
@@ -156,10 +156,59 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.md-stepper {
-    border: 1px solid #B5B2B2;
-    border-radius: 40px;
-    box-shadow: none;
-    text-align: left;
+.gc-regist-wrapper /deep/ {
+    .md-stepper {
+        border: 1px solid #B5B2B2;
+        border-radius: 40px;
+        box-shadow: none;
+        text-align: left;
+
+        .md-whiteframe-1dp {
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0);
+        }
+
+        .md-steps-navigation {
+            border-bottom: #B5B2B2 1px solid;
+
+            .md-active, .md-primary  {
+                .md-step-number, .md-step-icon {
+                    background-color: #60bc90;
+                }
+            }
+        }
+
+        .md-step-content {
+            .md-input-focused {
+                &::after {
+                    background-color: #60bc90;
+                }
+            }
+
+            .md-button:not(:disabled).md-primary {
+                background-color: #f8b62c;
+
+                &:hover {
+                    background-color: #f8b62c;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 575.98px) {
+    .gc-regist-wrapper /deep/ {
+        .md-stepper {
+            .md-steps-container {
+                .md-step-content {
+                    padding: 0;
+                }
+            }
+        }
+        
+        .md-button {
+            margin: 6px 6px;
+            padding: 0 12px;
+        }
+    }
 }
 </style>

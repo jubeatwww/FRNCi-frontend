@@ -1,5 +1,5 @@
 <template>
-    <md-step md-label="Basic Info" :md-disabled="mdDisabled">
+    <md-step md-label="Basic Info" :md-disabled="mdDisabled" class="gc-regist-basic">
         <form-field title="Upload Your Profile Photo" >
             <span>
                 Please use a photo that clearly shows your face. Nobody is interested in meeting a landscape or an animal.
@@ -142,62 +142,36 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.vdp-datepicker /deep/ {
-    > div:first-child {
-        width: 100%;
-        input {
-            font-size: 15px;
-        }
-    }
-}
-</style>
-
-<style lang="scss">
-.md-steps-navigation{
-    display: none;
-}
-
-.md-whiteframe-1dp {
-    box-shadow: 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0);
-}
-
-.radio-group input[type="radio"] ~ button {
-    border: solid 1px #60bc90;
-}
-
-.md-whiteframe {
-    box-shadow: none;
-}
-
-.md-theme-default {
-    .md-button:not([disabled]).md-primary.md-raised {
-        background-color: #f8b62c;
-        &:hover {
-            background-color: #f8b62c;
-        }
-    }
-
-    .md-input-container.md-input-focused:after {
-        background-color: #60bc90;
-    }
-
-    .md-stepper {
-        .md-step-header.md-active .md-step-number {
-            background-color: #60bc90;
+.gc-regist-basic /deep/ {
+    .vdp-datepicker {
+        > div:first-child {
+            width: 100%;
+            input {
+                font-size: 15px;
+            }
         }
 
-        .md-step-header.md-primary .md-step-icon {
-            background-color: #60bc90;
-        }
+        .vdp-datepicker__calendar {
+            .selected {
+                background: #60bc90;
+            }
 
-        .md-steps-navigation {
-            border-bottom: #B5B2B2 2.3px solid;
+            .cell:not(.blank):not(.disabled).day {
+                &:hover {
+                    border: 1px solid #60bc90;
+                }
+            }
         }
     }
 }
 
-.md-button[disabled] {
-    border: solid 1px #f8b62c;
+@media (max-width: 575.98px) {
+    .gc-regist-basic /deep/ {
+        .vdp-datepicker {
+            .vdp-datepicker__calendar {
+                width: 100%;
+            }
+        }
+    }
 }
-
 </style>

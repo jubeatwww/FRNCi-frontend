@@ -1,5 +1,5 @@
 <template>
-    <md-step md-label="Payment" :md-disabled="false" :md-show-actions="false">
+    <md-step md-label="Payment" :md-disabled="false" :md-show-actions="false" class="gc-regist-payment">
         <h3>Choose Your Plan</h3>
         <md-progress
             v-if="paymentInfo.loading"
@@ -10,21 +10,21 @@
                     <input type="radio" :id="product._id" name="plan" :checked="isSelectedProduct(product)">
                     <label :for="product._id">
                         <div class="d-flex flex-wrap">
-                            <div class="col-md col-sm-12 order-2 order-md-1">
-                                <h6 class="mb-0"> {{product.name}} <span class="text-price">{{product.currency}}$. {{product.price}} </span></h6>
+                            <div class="gc-order">
+                                <h6 class="order-price"> {{product.name}} <span class="text-price">{{product.currency}}$. {{product.price}} </span></h6>
                                 <!-- <h6 class="small-text font-weight-400"> Mar.03 (Sat.) Language Exchange Tips Sharing</h6> -->
-                                <p class="small-text mb-0">{{product.description}}</p>
+                                <p class="order-dec">{{product.description}}</p>
                                 <!-- <p class="tiny-text">Bonus: 100 points for using Glocal Click website, E-Tips for language exchange</p> -->
                             </div>
-                            <div v-if="product.quantity === 0" class="col-md-3 col-sm-12 order-1">
-                                <img title="Sold out" src="images/soldout.png">
+                            <div v-if="product.quantity === 0" class="gc-order-soldout">
+                                <img title="Sold out" src="/static/img/soldout.png">
                             </div>
                         </div>
                     </label>
                 </div>
                 <template v-if="product.events && product.events.length && isSelectedProduct(product)">
                     <template v-for="event in product.events">
-                        <div v-if="event.sessions && event.sessions.length" class="form-group ml-md-5 ml-sm-0" :key="event._id">
+                        <div v-if="event.sessions && event.sessions.length" class="plan-session" :key="event._id">
                             <label>
                                 <span class="fa fa-hand-o-right"></span>
                                 Please choose your session of "{{ event.name }}"
@@ -49,7 +49,7 @@
                         </div>
                     </template>
                 </template>
-                <div v-if="product.use_coupon && isSelectedProduct(product)" class="form-group">
+                <div v-if="product.use_coupon && isSelectedProduct(product)" class="plan-coupon">
                   <!-- label -->
                   <label for="payment-coupon">Promotion / Coupon Code</label>
                   <!-- end label -->
@@ -155,99 +155,151 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.price-radio-group{
-    position:relative;
-}
+.gc-regist-payment {
+    .md-step-content {
+        h3 {
+            text-align: center;
+            font-size: 1.7rem;
+            margin-bottom: 5%;
+        }
 
-.plan-check {
-    label{
-        position: relative;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        min-width: 0;
-        word-wrap: break-word;
-        background-color: #fff;
-        background-clip: border-box;
-        border: 1px solid rgba(0, 0, 0, 0.125);
-        border-radius: 0.5rem;
-        padding:3% 6%;
-        color:#707070;
-        cursor: pointer;
-        margin: 2% 0;
-    }
-
-    h6, p {
-        font-size: 16px;
-        line-height: 5px;
-        font-weight: 600;
-        .text-price {
-            color: #e45915;
+        .price-radio-group{
+            position:relative;
         }
     }
 
-    input[type=radio] {
-        display: none;
+    .plan-check {
+        label{
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 0.5rem;
+            padding:3% 6%;
+            color:#707070;
+            cursor: pointer;
+            margin: 2% 0;
+        }
+
+        h6, p {
+            font-size: 1rem;
+            line-height: 1.3rem;
+            font-weight: 600;
+            margin: 1rem;
+
+            .text-price {
+                color: #e45915;
+            }
+        }
+
+        input[type=radio] {
+            display: none;
+        }
+
+        input[type=radio]:checked + label {
+            border: 2px solid #60bc90;
+            color: #000;
+            background: transparent;
+
+        }
+
+        input[type=radio]:disabled + label{
+            cursor: not-allowed;
+        }
+
+        input[type=radio]:checked + label::after {
+            color: #f8b62c;
+            font-family: FontAwesome;
+            border: 2px solid #f8b62c;
+            content: "\f00c";
+            font-size: 1.7rem;
+            position: absolute;
+            top: 35%;
+            left: 0%;
+            transform: translateX(-50%);
+            height: 3.2rem;
+            width: 3.2rem;
+            line-height: 3.2rem;
+            text-align: center;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0px 2px 5px -2px hsla(0, 0%, 0%, 0.25);
+            z-index: 100;
+        }
     }
 
-    input[type=radio]:checked + label {
-        border:2px solid #60bc90;
-        color:#000;
-        background:transparent;
-
+    .plan-session {
+        label {
+            font-size: 1rem;
+            line-height: 1.8rem;
+        }
     }
 
-    input[type=radio]:disabled + label{
-        cursor:not-allowed;
+    .plan-coupon {
+        label {
+            font-size: 1rem;
+            line-height: 1.8rem;
+        }
+
+        input[type="text"] {
+            padding: 10px 40px;
+            background: #fff;
+            border: 1px solid #f8b62c;
+            cursor: pointer;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            transform: translateY(0.2rem);
+        }
     }
 
-    input[type=radio]:checked + label::after {
-        color: #f8b62c;
-        font-family: FontAwesome;
+    .highlight-button-default {
+        padding: 10px 20px;
+        margin: 1.2rem 0;
+        color: #fff !important;
+        letter-spacing: 1px;
         border: 2px solid #f8b62c;
-        content: "\f00c";
-        font-size: 24px;
+        background-color: #f8b62c;
+        border-radius: 0.35rem;
         position: absolute;
-        top: 35%;
-        left: 0%;
-        transform: translateX(-50%);
-        height: 50px;
-        width: 50px;
-        line-height: 50px;
-        text-align: center;
-        border-radius: 50%;
-        background: white;
-        box-shadow: 0px 2px 5px -2px hsla(0, 0%, 0%, 0.25);
-        z-index: 100;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    .text-policy {
+        margin-top: 15%;
+
+        h5 {
+            font-size: 1rem;
+            line-height: 1rem;
+            margin-bottom: 3%;
+        }
     }
 }
 
-.md-step-content h3 {
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 5%;
+@media (max-width: 575.98px) {
+    .gc-regist-payment {
+        .text-policy {
+            margin-top: 38%;
+        }
+    }
 }
 
-.highlight-button-default {
-    padding: 10px 20px;
-    color: #fff !important;
-    letter-spacing: 1px;
-    border: 2px solid #f8b62c;
-    background-color: #f8b62c;
-    border-radius: 0.35rem;
-    position: absolute;
-}
-
-.text-policy {
-    margin-top: 15%;
-
-    h5 {
-        font-size: 16px;
-        line-height: 2px;
+@media (min-width: 576px) and (max-width: 991.98px) {
+    .gc-regist-payment  {
+        .text-policy {
+            margin-top: 20%;
+        }
     }
 }
 </style>

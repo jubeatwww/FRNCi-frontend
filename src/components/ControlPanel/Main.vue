@@ -27,8 +27,8 @@ export default {
 }
 
 section {
-        margin-bottom: 10;
-    }
+    margin-bottom: 10;
+}
 
 aside {
     text-align: left;

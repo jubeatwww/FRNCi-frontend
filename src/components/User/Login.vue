@@ -1,5 +1,5 @@
 <template>
-    <md-layout md-column>
+    <md-layout md-column class="form-wrapper">
         <div style="margin-bottom: 10%">Log in to Glocal Click</div>
         <fb-button button-id="fb-login" button-text="Log in with Facebook"></fb-button>
         <!--<md-button id="google-login" class="md-raised md-primary login-btn">
@@ -20,7 +20,7 @@
         </div>
         <router-link to="forgotpassword" id="forgot-pwd-btn">Forgot password?</router-link>
         <md-button class="md-raised md-primary" @click="login">Log in</md-button>
-        <p>Don't have an account? <router-link to="register">Sign up now!</router-link></p>
+        <p>Don't have an account? <router-link to="register" class="loginLink">Sign up now!</router-link></p>
     </md-layout>
 </template>
 <script>
@@ -65,69 +65,100 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#fb-login {
-    background-color: #3B5998;
-    height: 55px;
-}
+.form-wrapper {
+    #fb-login {
+        background-color: #3B5998;
+        height: 55px;
+    }
 
-#google-login {
-    background-color: #DD4B39;
-}
+    #google-login {
+        background-color: #DD4B39;
+    }
 
-.login-btn {
-    font-size: 20px;
-    text-transform: none;
-    i {
-        position: absolute;
-        left: 20%;
+    .login-btn {
+        font-size: 20px;
+        text-transform: none;
+        i {
+            position: absolute;
+            left: 20%;
 
-        &:before {
-            font-size: 30px;
+            &::before {
+                font-size: 30px;
+            }
         }
     }
-}
 
-.or-separator{
-    hr{
-        margin: 40px 0 30px 0;
-        line-height: 5px;
-        border-top: 1px solid #707070;
+    .or-separator {
+        hr {
+            margin: 40px 0 30px 0;
+            line-height: 5px;
+            border-top: 1px solid #707070;
+        }
+
+        span {
+            text-align: center;
+            top: -48px;
+            position: relative;
+            background: #FFFFFF;
+            padding: 2%;
+            color: #707070;
+        }
     }
 
-    span{
-        text-align: center;
-        top: -48px;
-        position: relative;
-        background: #FFFFFF;
-        padding: 2%;
+    .md-input-container {
+        label {
+            &::after {
+                font-size: 14px;
+                color: red;
+            }
+        }
+    }
+
+    #forgot-pwd-btn {
+        text-align: right;
         color: #707070;
+        margin: 1rem 0;
+
+        &:hover {
+            text-decoration: none;
+        }
     }
-}
 
-#forgot-pwd-btn {
-    text-align: right;
-}
-
-.md-theme-default {
-    .md-button:not([disabled]).md-primary.md-raised {
+    .md-button:not(:disabled).md-primary.md-raised {
         background-color: #f8b62c;
         border-radius: 3.6px;
+        margin-bottom: 1rem;
 
         &:hover {
             background-color: #f8b62c;
         }
     }
 
-    .md-input-container.md-input-focused:after {
-        background-color: #60bc90;
+    .md-input-focused {
+        &::after {
+            background-color: #60bc90;
+        }
     }
 
-    a:not(.md-button) {
+    .loginLink {
         color: #f8b62c;
+
+        &:hover {
+            color: #f8b62c;
+            text-decoration: none;
+        }
     }
 }
 
-#forgot-pwd-btn {
-    color: #707070;
+@media (max-width: 575.98px) {
+    .form-wrapper {
+        .login-btn {
+            font-size: 15px;
+        }
+
+        p {
+            line-height: 1.8rem;
+        }
+    }
 }
 </style>

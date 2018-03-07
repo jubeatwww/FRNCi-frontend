@@ -41,4 +41,10 @@ export default {
 section {
     margin-bottom: 0;
 }
+
+@media (max-width: 575.98px) {
+    .md-layout {
+        display: grid;
+    }
+}
 </style>

@@ -62,15 +62,12 @@ export default {
         border-collapse: collapse;
 
         tr:nth-child(even) {
-            background: #CCC
-        }
-
-        tr:nth-child(odd) {
-            background-color: #FAFAFA;
+            background: #fff;
         }
 
         tr, td {
             border: 1px solid #666;
+            padding: 0.5rem 0.3rem;
 
             &:hover {
                 background-color: #a3e9c7;

@@ -1,5 +1,5 @@
 <template>
-    <md-layout md-column>
+    <md-layout md-column class="form-wrapper">
         <md-stepper>
             <md-step :md-continue="mailValid">
                 <h1>Reset Password By Email</h1>
@@ -53,45 +53,67 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#forgot-form {
-    .md-steps-navigation{
-        display: none;
-    }
+.form-wrapper /deep/ {
+    .md-stepper {
+        .md-whiteframe-1dp {
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0);
+        }
+        
+        .md-steps-navigation {
+            border-bottom: #B5B2B2 1px solid;
 
-    .md-whiteframe {
-        box-shadow: none;
-    }
-}
+            .md-active, .md-primary  {
+                .md-step-number, .md-step-icon {
+                    background-color: #60bc90;
+                }
+            }
+        }
 
-.md-step-content > p {
-    text-align: left;
-    font-size: 16px;
-}
+        .md-step-content {
+            P {
+                text-align: left;
+                font-size: 16px;
+            }
 
-.md-stepper .md-steps-navigation {
-    border-bottom: #B5B2B2 2.3px solid;
-}
+            .md-input-focused {
+                &::after {
+                    background-color: #60bc90;
+                }
+            }
 
-.md-whiteframe-1dp {
-    box-shadow: 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0);
-}
-</style>
+            .md-input-container {
+                label {
+                    &::after {
+                        font-size: 14px;
+                        color: red;
+                    }
+                }
+            }
 
-<style lang="scss">
-.md-theme-default {
-    .md-stepper .md-step-header.md-active .md-step-number, .md-stepper .md-step-header.md-primary .md-step-icon {
-        background-color: #60bc90;
-    }
+            .md-button:not(:disabled).md-primary {
+                background-color: #60bc90;
 
-    .md-button:not([disabled]).md-primary.md-raised {
-        background-color: #60bc90;
-        &:hover {
-            background-color: #60bc90;
+                &:hover {
+                    background-color: #60bc90;
+                }
+            }
+
+            .md-button {
+                border: 1px solid #60bc90;
+            }
         }
     }
+}
 
-    .md-input-container.md-input-focused:after {
-        background-color: #60bc90;
+@media (max-width: 575.98px) {
+    .form-wrapper /deep/ {
+        .md-stepper {
+            .md-step-actions {
+                .md-button {
+                    padding: 0;
+                }
+            }
+        }
     }
 }
 </style>

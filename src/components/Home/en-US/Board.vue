@@ -2,7 +2,7 @@
     <section>
        <div class="mask">
             <md-layout md-align="center">
-                <md-layout md-flex="70" md-align="center">
+                <md-layout class="gc-board-title" md-flex="70" md-align="center">
                     <h2>Where Language Exchange <br> Meet Local Friends</h2>
                 </md-layout>
            </md-layout>
@@ -35,28 +35,39 @@ section {
         color: #fff;
         z-index: 999;
 
-        h2 {
-            font-weight: 600;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-            font-size: 48px;
+        .gc-board-title {
+            h2 {
+                font-weight: 600;
+                line-height: 1.6;
+                margin-bottom: 1rem;
+                font-size: 2.9rem;
+            }
+
+            h5 {
+                font-size: 1.9rem;
+                margin: 0;
+                margin-bottom: 1rem;
+            }
         }
+    }
+}
 
-        h5 {
-            font-size: 30px;
-            margin: 0;
-            margin-bottom: 5%;
-        }
+@media (max-width: 575.98px) {
+    .md-layout {
+        display: flex;
+    }
 
-        .md-flex-50 {
-            .col-4 {
-                margin: 0 6%;
-                margin-top: 5%;
+    section {
+        .mask {
+            height: 400px;
 
-                .counter-num {
-                    font-size: 50px;
-                    font-weight: 600;
-                    color: #fff;
+            .gc-board-title {
+                min-width: 85%;
+
+                h2 {
+                    font-size: 2rem;
+                    line-height: 2.5rem;
+                    margin: 6rem 0;
                 }
             }
         }

@@ -38,5 +38,6 @@ form {
     padding: 40px;
     border: 1px solid #B5B2B2;
     border-radius: 40px;
+    text-align: center;
 }
 </style>

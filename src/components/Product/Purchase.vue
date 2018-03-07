@@ -1,19 +1,19 @@
 <template>
-    <div class="productPurchase">
+    <div class="product-purchase">
         <div v-if="product" class="d-flex flex-wrap">
-            <div class="col-md col-sm-12 order-2 order-md-1">
-                <h6 class="mb-0"> {{product.name}} <span class="text-price">{{product.currency}}$. {{product.price}} </span></h6>
+            <div class="gc-purchase-order">
+                <h6 class="order-price"> {{product.name}} <span class="text-price">{{product.currency}}$. {{product.price}} </span></h6>
                 <!-- <h6 class="small-text font-weight-400"> Mar.03 (Sat.) Language Exchange Tips Sharing</h6> -->
-                <p class="small-text mb-0">{{product.description}}</p>
+                <p class="order-dec">{{product.description}}</p>
                 <!-- <p class="tiny-text">Bonus: 100 points for using Glocal Click website, E-Tips for language exchange</p> -->
             </div>
-            <div v-if="product.quantity === 0" class="col-md-3 col-sm-12 order-1">
-                <img title="Sold out" src="images/soldout.png">
+            <div v-if="product.quantity === 0" class="order-quantity">
+                <img title="Sold out" src="/static/img/soldout.png">
             </div>
         </div>
         <template v-if="product && product.events && product.events.length">
             <template v-for="event in product.events">
-                <div v-if="event.sessions && event.sessions.length" class="form-group ml-md-5 ml-sm-0" :key="event._id">
+                <div v-if="event.sessions && event.sessions.length" class="purchase-session" :key="event._id">
                     <label>
                         <span class="fa fa-hand-o-right"></span>
                         Please choose your session of "{{ event.name }}"
@@ -38,7 +38,7 @@
                 </div>
             </template>
         </template>
-        <div v-if="product && product.use_coupon" class="form-group">
+        <div v-if="product && product.use_coupon" class="purchase-coupon">
             <!-- label -->
             <label for="payment-coupon">Promotion / Coupon Code</label>
             <!-- end label -->
@@ -48,6 +48,13 @@
         </div>
         <a v-if="product" @click="orderAndCheckout" :disabled="sending" class="btn highlight-button-default" href="javascript:void(0)">Confirm &amp; Pay</a>
         <div id="gc-ecpay-checkout-form" style="display:none"></div>
+        <div class="text-policy">
+            <h5>Refund Policy:</h5>
+            <ol>
+                <li>Tickets for the March 03rd and March 10th events are fully refundable up to 5 days before the events, subject to conditions.</li>
+                <li>If the purchaser or user makes use of all or any portion of the special offer package (bonus offers) the ticket(s) for the event are non-refundable and the above condition (1) is no longer valid.</li>
+            </ol>
+        </div>
     </div>
 </template>
 
@@ -143,12 +150,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.productPurchase {
+.product-purchase {
     margin-bottom: 4%;
 
-    h6.mb-0 {
+    .order-price {
         font-size: 1.5rem;
         margin-bottom: 2rem;
+
+        .text-price {
+            color: red;
+        }
+    }
+
+    .purchase-coupon {
+        label {
+            font-size: 1rem;
+            line-height: 1.8rem;
+        }
+
+        input[type="text"] {
+            padding: 10px 40px;
+            background: #fff;
+            border: 1px solid #f8b62c;
+            cursor: pointer;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            transform: translateY(0.2rem);
+        }
     }
 
     .highlight-button-default {
@@ -157,7 +185,7 @@ export default {
         padding: 10px 35px;
         color: #fff !important;
         margin: 0 auto;
-        margin-top: 4%;
+        margin-top: 2rem;
         white-space: unset;
         display: inline-block;
         font-weight: 600;
@@ -169,6 +197,51 @@ export default {
 
         &:hover {
             text-decoration: none;
+        }
+    }
+
+    .text-policy {
+        margin: 0 12rem;
+
+        h5 {
+            font-size: 1.5rem;
+            line-height: 1rem;
+            margin-bottom: 3%;
+        }
+
+        ol {
+            text-align: left;
+            font-size: 1rem;
+            font-weight: 500;
+            line-height: 1.6rem;
+        }
+    }
+}
+
+@media (max-width: 575.98px) {
+    .product-purchase {
+        margin: 0 1rem;
+
+        .order-price {
+            line-height: 1.8rem;
+        }
+
+        .text-policy {
+            margin: 0 0.5rem;
+            margin-top: 10%;
+
+            ol {
+                line-height: 1.6rem;
+            }
+        }
+    }
+}
+
+@media (min-width: 576px) and (max-width: 991.98px) {
+    .product-purchase {
+        .text-policy {
+            margin: 0 2rem;
+            margin-top: 10%;
         }
     }
 }

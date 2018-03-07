@@ -134,4 +134,13 @@ footer{
         }
     }
 }
+
+@media (max-width: 980px) {
+    footer {
+        #frnci-info {
+            display: grid;
+            padding: 40px 30px 30px;
+        }
+    }
+}
 </style>
