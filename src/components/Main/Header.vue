@@ -2,10 +2,14 @@
     <header>
         <div id="logo" @click="homeLink"></div>
         <nav>
-            <md-button @click="langInternational">
+            <md-button
+                @click="langInternational"
+                v-if="$route.name === 'home'">
                 English (International)
             </md-button>
-            <md-button @click="langTaiwan">
+            <md-button
+                @click="langTaiwan"
+                v-if="$route.name === 'home'">
                 繁中(台灣人)
             </md-button>
             <md-theme md-name="orange">
