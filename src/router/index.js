@@ -51,7 +51,10 @@ const router = new Router({
                     path: '',
                     component: Home,
                     name: 'home',
-                    meta: { region: localStorage.getItem('region') },
+                    meta: { 
+                        region: localStorage.getItem('region'),
+                        static: true,
+                    },
                 },
                 {
                     path: 'profile/:id',
@@ -118,11 +121,17 @@ const router = new Router({
                     path: 'termsofservice',
                     component: Policy,
                     name: 'Terms of Service',
+                    meta: {
+                        static: true,
+                    },
                 },
                 {
                     path: 'privacypolicy',
                     component: Policy,
                     name: 'Privacy Policy',
+                    meta: {
+                        static: true,
+                    },
                 },
                 {
                     path: 'controlpanel',
