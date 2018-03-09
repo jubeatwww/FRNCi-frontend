@@ -91,10 +91,6 @@ export default {
             background: #fff;
         }
 
-        // tr:nth-child(odd) {
-        //     background-color: #fff;
-        // }
-
         tr, td {
             border: 1px solid #666;
             padding: 0.5rem 0.3rem;

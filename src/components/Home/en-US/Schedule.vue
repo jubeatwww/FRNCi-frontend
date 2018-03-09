@@ -1,7 +1,7 @@
 <template>
     <section>
         <md-layout md-align="center">
-            <md-layout md-column md-align="center">
+            <md-layout md-column md-align="center" class="gc-schedule-title">
                 <img src="/static/img/gc_schedule.jpg">
             </md-layout>
         </md-layout>
@@ -16,7 +16,6 @@ export default {
 
 <style lang="scss" scoped>
 section {
-    padding-top: 8%;
     padding-bottom: 10%;
 }
 </style>

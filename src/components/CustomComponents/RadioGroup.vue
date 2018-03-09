@@ -75,7 +75,7 @@ export default {
             border: solid 1px #60bc90;
         }
 
-        &:checked ~ button.md-button:not([disabled]):not(.md-raised) {
+        &:checked ~ button.md-button:not(:disabled):not(.md-raised) {
             color: white;
             background-color: #60bc90;
         }

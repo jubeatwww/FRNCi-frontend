@@ -81,20 +81,22 @@ section {
             h2 {
                 font-weight: 600;
                 line-height: 1.6;
-                margin-bottom: 1rem;
-                font-size: 2.8rem;
+                // margin-bottom: 1rem;
+                font-size: 2.9rem;
             }
 
             h5 {
-                font-size: 1.7rem;
+                font-size: 1.9rem;
                 margin: 0;
-                margin-bottom: 5%;
+                // margin-bottom: 1rem;
             }
         }
 
         .counterdown {
+            margin-top: 1.5rem;
+
             .counter {
-                margin: 0 6%;
+                margin: 1.5rem 6% 0;
 
                 .counter-num {
                     font-size: 3rem;
@@ -107,12 +109,12 @@ section {
 }
 
 @media (max-width: 575.98px) {
-    .md-layout {
-        display: flex;
-    }
-
     section {
         .mask {
+            .md-layout {
+                display: flex;
+            }
+
             .gc-board-title {
                 min-width: 85%;
 
