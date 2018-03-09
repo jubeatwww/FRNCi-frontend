@@ -27,13 +27,14 @@ export default {
 }
 
 section {
-    margin-bottom: 10;
+    margin: 0 1rem 1rem;
 }
 
 aside {
     text-align: left;
     display: flex;
     flex-direction: column;
+    margin: 0 1rem;
 
     a.nav-link {
         color: #413d3d;
@@ -62,4 +63,14 @@ aside {
     }
 }
 
+@media (max-width: 945px) {
+    .container {
+        margin: 3rem 1rem 5rem;
+    }
+
+    aside {
+        width: 100%;
+        margin: 0 0 1rem;
+    }
+}
 </style>
