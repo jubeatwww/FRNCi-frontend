@@ -46,10 +46,10 @@ export default {
             return this.dueDate - this.now > 0 ? new Date(this.dueDate - this.now) : new Date(0);
         },
         date() {
-            return this.diff.getDate();
+            return this.diff.getTime() === 0 ? 0 : this.diff.getDate();
         },
         hours() {
-            return this.diff.getHours();
+            return this.diff.getUTCHours();
         },
         minutes() {
             return this.diff.getMinutes();
