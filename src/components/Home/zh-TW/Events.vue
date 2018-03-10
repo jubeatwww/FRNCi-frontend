@@ -78,7 +78,6 @@ section {
         }
     }
 
-
     .card {
         margin-right: 15px;
         margin-bottom: 0;
@@ -92,6 +91,10 @@ section {
         padding-bottom: 1%;
 
         .card-body {
+            padding-left: 0;
+            margin-bottom: 0;
+            text-align: center;
+
             h6.event-date {
                 margin: 0;
                 padding-top: 20px;
@@ -134,6 +137,9 @@ section {
         }
 
         .card-footer {
+            text-align: center;
+            padding: 0;
+            
             .highlight-button-default {
                 width: 95%;
                 display: inline-block;

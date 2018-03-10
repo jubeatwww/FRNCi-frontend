@@ -1,7 +1,7 @@
 <template>
     <section>
         <md-layout md-column md-align="center">
-            <md-layout md-column md-align="center">
+            <md-layout md-column md-align="center" class="gc-memories-title">
                 <h3>Past Events</h3>
             </md-layout>
             <md-layout md-column md-align="center">
@@ -62,17 +62,19 @@ export default {
 section {
     padding-bottom: 10%;
 
-    h3 {
-        color: #343d3c;
-        font-size: 1.8rem;
-        margin: 0;
-        padding-bottom: 2rem;
-    }
+    .gc-memories-title {
+        h3 {
+            color: #343d3c;
+            font-size: 1.8rem;
+            margin: 0;
+            padding-bottom: 2rem;
+        }
 
-    h6 {
-        font-size: 1rem;
-        font-weight: 600;
-        line-height: 1.2;
+        h6 {
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
     }
 
     .work-3col {
@@ -120,6 +122,28 @@ section {
         &:hover {
             text-decoration: none;
         } 
+    }
+}
+
+@media (max-width: 575.98px) {
+    section {
+        .gc-memories-title {
+            margin: 0 1rem;
+
+            h6 {
+                margin: 1rem 0;
+            }
+        }
+
+        .work-3col {
+            figure {
+                margin: 1rem 0;
+            }
+        }
+
+        .highlight-button-default-green {
+            margin: 0;
+        }
     }
 }
 </style>

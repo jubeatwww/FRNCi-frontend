@@ -1,7 +1,7 @@
 <template>
     <section>
         <md-layout md-column md-align="center">
-            <md-layout md-column md-align="center">
+            <md-layout md-column md-align="center" class="gc-events-title">
                 <h3>Upcoming Events</h3> 
                 <h5>
                     In anticipation of the Glocal Click website launch, <br>
@@ -14,8 +14,8 @@
                         <img src="/static/img/a1.jpg" alt="Card image cap">
                     </a>
                     <div class="card-body">
-                        <h6 class="mb-2 font-weight-300">Feb.28 (Wed.)</h6>
-                        <h5 class="card-title font-weight-600 mb-1">International Picnic</h5>
+                        <h6 class="event-date">Feb.28 (Wed.)</h6>
+                        <h5 class="card-title">International Picnic</h5>
                         <p class="card-text small-text text-justify text-center">
                             Looking for a way to kick off the semester with a bang? Share food and culture with local friends! Perfect spot, picnic mats and soft drinks are all prepared!
                         </p>
@@ -30,8 +30,8 @@
                         <img src="/static/img/a3.jpg" alt="Card image cap">
                     </router-link>
                     <div class="card-body">
-                        <h6 class="mb-2 font-weight-300">Mar.10 (Sat.)</h6>
-                        <h5 class="card-title font-weight-600 mb-1">Taipei Exploration Scavenger Hunt</h5>
+                        <h6 class="event-date">Mar.10 (Sat.)</h6>
+                        <h5 class="card-title">Taipei Exploration Scavenger Hunt</h5>
                         <p class="card-text small-text text-justify text-center">
                             Want to explore Taipei with a fun twist? Don’t miss this thrilling adventure across Taipei City as well as the perfect chance to make new local friends!
                         </p>
@@ -46,8 +46,8 @@
                         <img src="/static/img/a2.jpg" alt="Card image cap">
                     </router-link>
                     <div class="card-body">
-                        <h6 class="mb-2 font-weight-300">Mar.17 (Sat.)</h6>
-                        <h5 class="card-title font-weight-600 mb-1">Top Tips for Mandarin Practice</h5>
+                        <h6 class="event-date">Mar.17 (Sat.)</h6>
+                        <h5 class="card-title">Top Tips for Mandarin Practice</h5>
                         <p>
                             Want to start language exchanges but find it difficult? Get tips from senior students and learn their experiences in gaining Mandarin fluency.
                         </p>
@@ -76,16 +76,18 @@ section {
     padding-left: 15px;
     padding-bottom: 10%;
 
-    h5 {
-        margin: 0;
-        font-size: 1.3rem;
-        line-height: 1.3;
-        margin-bottom: 1.2rem;
-    }
+    .gc-events-title {
+        h5 {
+            margin: 0;
+            font-size: 1.3rem;
+            line-height: 1.3;
+            margin-bottom: 1.2rem;
+        }
 
-    h3 {
-        color: #343d3c;
-        font-size: 1.7rem;
+        h3 {
+            color: #343d3c;
+            font-size: 1.7rem;
+        }
     }
 
     .card {
@@ -101,15 +103,20 @@ section {
         padding-bottom: 1%;
 
         .card-body {
-            h6.font-weight-300 {
+            padding-left: 0;
+            margin-bottom: 0;
+            text-align: center;
+
+            h6.event-date {
                 margin: 0;
+                margin-bottom: 1rem;
                 padding-top: 20px;
                 font-size: 1.1rem;
                 font-weight: 300;
-                margin-bottom: 0.5rem;
             }
 
-            h5{
+            h5.card-title {
+                margin: 0;
                 font-size: 1.4rem;
                 font-weight: 600;
             }
@@ -144,13 +151,16 @@ section {
 
         .card-footer {
             margin-top: 2rem;
+            text-align: center;
+            padding: 0;
 
             span {
                 color: #e45915;
                 font-size: 1.5rem;
                 font-weight: 600;
             }
-            a.highlight-button-default {
+
+            .highlight-button-default {
                 width: 95%;
                 display: inline-block;
                 border: 2px solid #f8b62c;
@@ -170,6 +180,14 @@ section {
                     text-decoration: none;
                 }
             }
+        }
+    }
+}
+
+@media (max-width: 575.98px) {
+    section {
+        .card {
+            margin: 1rem 0;
         }
     }
 }

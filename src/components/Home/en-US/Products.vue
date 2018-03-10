@@ -1,11 +1,11 @@
 <template>
     <section>
         <md-layout md-align="center" md-column>
-            <md-layout class="text-dark-gray" md-align="center" md-column>
+            <md-layout class="gc-products-title" md-align="center" md-column>
                 <h3>Limited Special Offer!</h3>
                 <h5>Along with the ticket, you’ll get early access to Glocal Click platform</h5>
             </md-layout>
-            <md-layout class="mt-5" md-align="center">
+            <md-layout class="gc-products-market" md-align="center">
                 <ul>
                     <li>An e-book on language exchange strategies</li>
                     <li>An additional 100 Glocal Click Points (250 if you sign up for both events) </li>
@@ -30,7 +30,7 @@ section {
     padding-bottom: 5%;
     background-color: #60bc90;
 
-    .text-dark-gray {
+    .gc-products-title {
         h3 {
             margin-top: 2.5rem;
             margin-bottom: 1rem;
@@ -50,7 +50,7 @@ section {
         }
     }
 
-    .mt-5 {
+    .gc-products-market {
         margin-top: 1rem;
         margin-bottom: 1.5rem;
 
@@ -68,6 +68,14 @@ section {
 
     small {
         font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    section {
+        small {
+            margin: 0 1rem;
+        }
     }
 }
 </style>

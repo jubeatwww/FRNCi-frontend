@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <form class="form-wrapper">
         <form-field
             title="Profile Photo"
             description="Please use a photo that clearly shows your face. Nobody is interested in meeting a landscape or an animal. ( Image types allowed: JPG, PNG. Maximum image size: 4 MB. Suggested image ratio: 1:1. )">
@@ -204,9 +204,44 @@ export default {
 };
 </script>
 
-<style lang="scss">
-form {
+<style lang="scss" scoped>
+.form-wrapper /deep/ {
     width: 100%;
     text-align: left;
+
+    section {
+        margin: 1rem 0;
+
+        .md-input-focused {
+            &::after {
+                background-color: #60bc90;
+            }
+        }
+
+        .vdp-datepicker__calendar {
+            .selected {
+                background: #60bc90;
+            }
+
+            .cell:not(.blank):not(.disabled).day {
+                &:hover {
+                    border: 1px solid #60bc90;
+                }
+            }
+        }
+    }
+
+    .md-button:not(:disabled).md-primary.md-raised {
+        font-size: 1.2rem;
+        font-weight: 600;
+        letter-spacing: 0.1rem;
+        background-color: #f8b62c;
+        border-radius: 3.6px;
+        padding: 8px 80px;
+
+        &:hover {
+            background-color: #f8b62c;
+        }
+    }
 }
 </style>

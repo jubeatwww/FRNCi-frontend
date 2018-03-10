@@ -99,20 +99,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.md-checkbox {
-    width: 100%;
-}
-</style>
+.checkbox-group /deep/ {
+    .md-checkbox {
+        width: 100%;
 
-<style lang="scss">
-.md-theme-default {
-    .md-checkbox.md-checked .md-checkbox-container  {
-        background-color: #60bc90;
-        border-color: #60bc90;
+        .md-ink-ripple {
+            color: #60bc90;
+        }
     }
 
-    .md-checkbox .md-ink-ripple {
-        color: #60bc90;
+    .md-checked {
+        .md-checkbox-container {
+            background-color: #60bc90;
+            border-color: #60bc90;
+        }
     }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <md-layout md-column>
+    <md-layout md-column class="form-wrapper">
         <template v-if="!emailSent">
             <h1>Reset Password By Email</h1>
             <p>To reset your password, enter the email address that you used to sign in to Glocal Click.</p>
@@ -44,45 +44,44 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#forgot-form {
-    .md-steps-navigation{
-        display: none;
+.form-wrapper {
+    h1 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        line-height: 1.8rem;
     }
 
-    .md-whiteframe {
-        box-shadow: none;
+    p {
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.3rem;
     }
-}
 
-.md-step-content > p {
-    text-align: left;
-    font-size: 16px;
-}
+    .md-input-focused {
+        &::after {
+            background-color: #60bc90;
+        }
+    }
+    
+    .md-input-container {
+        label {
+            &::after {
+                font-size: 14px;
+                color: red;
+            }
+        }
+    }
 
-.md-stepper .md-steps-navigation {
-    border-bottom: #B5B2B2 2.3px solid;
-}
-
-.md-whiteframe-1dp {
-    box-shadow: 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0);
-}
-</style>
-
-<style lang="scss">
-.md-theme-default {
-    .md-stepper .md-step-header.md-active .md-step-number, .md-stepper .md-step-header.md-primary .md-step-icon {
+    .md-button:not(:disabled).md-primary {
         background-color: #60bc90;
-    }
 
-    .md-button:not([disabled]).md-primary.md-raised {
-        background-color: #60bc90;
         &:hover {
             background-color: #60bc90;
         }
     }
 
-    .md-input-container.md-input-focused:after {
-        background-color: #60bc90;
+    .md-button {
+        border: 1px solid #60bc90;
     }
 }
 </style>

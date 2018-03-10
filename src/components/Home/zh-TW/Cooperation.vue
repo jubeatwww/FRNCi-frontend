@@ -9,7 +9,7 @@
                 </a> 
                 <a href="https://www.tcamandarin.com/" target="_blank"
                     title="TCA | Taiwan Chinese Academy - Learn Chinese in Taipei">
-                    <img src="/static/img/logo_TCA.png" style="width:180px;" alt="logo TCA">
+                    <img class="cooperation-img" src="/static/img/logo_TCA.png" style="width:180px;" alt="logo TCA">
                 </a>        
             </md-layout>
             <h3 class="cooperation-title">合作夥伴</h3>
@@ -24,7 +24,7 @@
                 </a> 
                 <a href="https://oudo.com/public/frontend/home" target="_blank"
                     title="歐都探索-輕鬆預訂戶外旅遊體驗，帶您看見台灣新視野">
-                    <img src="/static/img/logo_oudo.jpg" style="width:150px;" alt="logo oudo">
+                    <img class="cooperation-img" src="/static/img/logo_oudo.jpg" style="width:150px;" alt="logo oudo">
                 </a>        
             </md-layout>
         </md-layout>

@@ -122,6 +122,7 @@ section {
             border: 1px solid rgba(0, 0, 0, 0.125);
             border-radius: 0.25rem;
             padding: 1.25rem;
+            text-align: center;
 
             h5 {
                 margin: 0;
@@ -210,6 +211,7 @@ section {
 
         .gc-products-market {
             margin: 1rem 0;
+            
             .card {
                 margin: 1rem 0;
 
