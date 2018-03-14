@@ -1,5 +1,5 @@
 <template>
-    <md-step md-label="Payment" :md-disabled="false" :md-show-actions="false" class="gc-regist-payment">
+    <md-step md-label="Payment" :md-disabled="false" :md-show-actions="false" id="gc-regist-payment">
         <h3>Choose Your Plan</h3>
         <md-progress
             v-if="paymentInfo.loading"
@@ -63,7 +63,7 @@
             <div class="text-policy">
                 <h5>Refund Policy:</h5>
                 <ol>
-                    <li>Tickets for the March 03rd and March 10th events are fully refundable up to 5 days before the events, subject to conditions.</li>
+                    <li>Tickets for the events are fully refundable up to 5 days before the events, subject to conditions.</li>
                     <li>If the purchaser or user makes use of all or any portion of the special offer package (bonus offers) the ticket(s) for the event are non-refundable and the above condition (1) is no longer valid.</li>
                 </ol>
             </div>
@@ -155,7 +155,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.gc-regist-payment {
+#gc-regist-payment {
     .md-step-content {
         h3 {
             text-align: center;
@@ -288,7 +288,7 @@ export default {
 }
 
 @media (max-width: 575.98px) {
-    .gc-regist-payment {
+    #gc-regist-payment {
         .text-policy {
             margin-top: 38%;
         }
@@ -296,7 +296,7 @@ export default {
 }
 
 @media (min-width: 576px) and (max-width: 991.98px) {
-    .gc-regist-payment  {
+    #gc-regist-payment  {
         .text-policy {
             margin-top: 20%;
         }

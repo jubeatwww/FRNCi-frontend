@@ -43,7 +43,7 @@ section {
         p {
             font-size: 1.1rem;
             line-height: 1.4;
-            margin: 0 10%;
+            margin: 1rem 10%;
         }
     }
 }

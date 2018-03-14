@@ -2,12 +2,12 @@
     <div>
         <Board></Board>
         <Introduction></Introduction>
+        <Feature></Feature>
         <!-- <Schedule></Schedule> -->
         <!-- <Timeline></Timeline> -->
         <Events></Events>
-        <Products></Products>
+        <!-- <Products></Products> -->
         <Memories></Memories>
-        <Feature></Feature>
         <Cooperation></Cooperation>
     </div>
 </template>

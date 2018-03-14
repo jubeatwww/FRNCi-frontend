@@ -1,5 +1,5 @@
 <template>
-    <form class="form-wrapper">
+    <form id="form-wrapper">
         <form-field
             title="Contact Email"
             description="Your email address will not be displayed on the site and shared with other users.">
@@ -117,7 +117,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.form-wrapper /deep/ {
+#form-wrapper /deep/ {
     width: 100%;
     text-align: left;
 

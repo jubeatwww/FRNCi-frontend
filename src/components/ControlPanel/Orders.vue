@@ -1,5 +1,5 @@
 <template>
-    <div class="gc-order">
+    <div id="gc-order">
         <h3>My Orders</h3>
         <md-progress v-if="loading" :md-indeterminate="true"></md-progress>
         <button v-if="error && !loading" v-on:click="loadOrders">Try Again</button>
@@ -80,7 +80,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.gc-order {
+#gc-order {
     margin-bottom: 1rem;
 
     .gc-order-table {

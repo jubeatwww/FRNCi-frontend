@@ -3,28 +3,8 @@
         <md-layout md-column md-align="center">
             <md-layout md-column md-align="center" class="gc-events-title">
                 <h3>Upcoming Events</h3> 
-                <h5>
-                    In anticipation of the Glocal Click website launch, <br>
-                    we will be hosting 3 events in Taipei!
-                </h5>   
             </md-layout>
             <md-layout md-align="center" style="flex-wrap: nowrap">
-                <div class="card">
-                    <a href="https://www.frnci.com/glocalclick/international-picnic_en.html" target="_blank">
-                        <img src="/static/img/a1.jpg" alt="Card image cap">
-                    </a>
-                    <div class="card-body">
-                        <h6 class="event-date">Feb.28 (Wed.)</h6>
-                        <h5 class="card-title">International Picnic</h5>
-                        <p class="card-text small-text text-justify text-center">
-                            Looking for a way to kick off the semester with a bang? Share food and culture with local friends! Perfect spot, picnic mats and soft drinks are all prepared!
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <p><span>NT$. 50</span></p>
-                        <a href="https://www.frnci.com/glocalclick/international-picnic_en.html" target="_blank" class="highlight-button-default">Check More</a>
-                    </div>
-                </div>
                 <div class="card">
                     <router-link to="/events/2018-03-10-taipei-exploration-scavenger-hunt-en">
                         <img src="/static/img/a3.jpg" alt="Card image cap">
@@ -57,6 +37,22 @@
                         <router-link to="/events/2018-03-17-top-tips-for-mandarin-practice" class="highlight-button-default">Check More</router-link>
                     </div>
                 </div>
+                <div class="card">
+                    <a href="/events/2018-03-24-speakeasy-mahjong">
+                        <img src="/static/img/a4.jpg" alt="Card image cap">
+                    </a>
+                    <div class="card-body">
+                        <h6 class="event-date">Mar.24 (Sat.)</h6>
+                        <h5 class="card-title">SpeakEasy - Let’s Play Mahjong x Language Exchange</h5>
+                        <p class="card-text small-text text-justify text-center">
+                            Been learning Mandarin for a while and wanna try speaking in real life? Hesitate no more, come join us at SpeakEasy!Let’s play Chinese traditional board game - Mahjong together!
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <p><span>NT$. 250</span></p>
+                        <a href="/events/2018-03-24-speakeasy-mahjong" class="highlight-button-default">Check More</a>
+                    </div>
+                </div>
             </md-layout>
         </md-layout>
     </section>
@@ -77,16 +73,10 @@ section {
     padding-bottom: 10%;
 
     .gc-events-title {
-        h5 {
-            margin: 0;
-            font-size: 1.3rem;
-            line-height: 1.3;
-            margin-bottom: 1.2rem;
-        }
-
         h3 {
             color: #343d3c;
-            font-size: 1.7rem;
+            font-size: 1.9rem;
+            margin-bottom: 2rem;
         }
     }
 
@@ -95,6 +85,8 @@ section {
         margin-bottom: 0;
         margin-left: 15px;
         min-width: 0;
+        display: flex;
+        flex-direction: column;
         word-wrap: break-word;
         background-color: #fff;
         background-clip: border-box;
@@ -105,6 +97,7 @@ section {
         .card-body {
             padding-left: 0;
             margin-bottom: 0;
+            flex: 1 1 auto;
             text-align: center;
 
             h6.event-date {
@@ -156,8 +149,9 @@ section {
 
             span {
                 color: #e45915;
-                font-size: 1.5rem;
+                font-size: 1.9rem;
                 font-weight: 600;
+                text-align: right;
             }
 
             .highlight-button-default {

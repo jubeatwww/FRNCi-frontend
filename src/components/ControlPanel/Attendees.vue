@@ -1,5 +1,5 @@
 <template>
-    <div class="gc-attended">
+    <div id="gc-attended">
         <h3>My Attended Events</h3>
         <md-progress v-if="loading" :md-indeterminate="true"></md-progress>
         <button v-if="error && !loading" v-on:click="loadAttendees">Try Again</button>
@@ -54,7 +54,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.gc-attended {
+#gc-attended {
     margin-bottom: 1rem;
 
     .gc-attended-table {

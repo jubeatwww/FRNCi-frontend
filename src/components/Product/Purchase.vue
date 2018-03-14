@@ -1,5 +1,5 @@
 <template>
-    <div class="product-purchase">
+    <div id="product-purchase">
         <div v-if="product" class="d-flex flex-wrap">
             <div class="gc-purchase-order">
                 <h6 class="order-price"> {{product.name}} <span class="text-price">{{product.currency}}$. {{product.price}} </span></h6>
@@ -51,7 +51,7 @@
         <div class="text-policy">
             <h5>Refund Policy:</h5>
             <ol>
-                <li>Tickets for the March 03rd and March 10th events are fully refundable up to 5 days before the events, subject to conditions.</li>
+                <li>Tickets for the events are fully refundable up to 5 days before the events, subject to conditions.</li>
                 <li>If the purchaser or user makes use of all or any portion of the special offer package (bonus offers) the ticket(s) for the event are non-refundable and the above condition (1) is no longer valid.</li>
             </ol>
         </div>
@@ -150,7 +150,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.product-purchase {
+#product-purchase {
     margin-bottom: 4%;
 
     .order-price {
@@ -219,7 +219,7 @@ export default {
 }
 
 @media (max-width: 575.98px) {
-    .product-purchase {
+    #product-purchase {
         margin: 0 1rem;
 
         .order-price {
@@ -238,7 +238,7 @@ export default {
 }
 
 @media (min-width: 576px) and (max-width: 991.98px) {
-    .product-purchase {
+    #product-purchase {
         .text-policy {
             margin: 0 2rem;
             margin-top: 10%;

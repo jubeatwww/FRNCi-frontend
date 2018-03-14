@@ -1,5 +1,5 @@
 <template>
-    <md-step md-label="Preferences" :md-continue="mdContinue" :md-disabled="mdDisabled" class="gc-regist-preference">
+    <md-step md-label="Preferences" :md-continue="mdContinue" :md-disabled="mdDisabled" id="gc-regist-preference">
         <form-field title="Who You Prefer To Meet">
             <radio-group
                 :options="preferToMeet"

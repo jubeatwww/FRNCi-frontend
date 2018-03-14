@@ -1,5 +1,5 @@
 <template>
-    <md-layout md-column class="form-wrapper">
+    <md-layout md-column id="form-wrapper">
         <template v-if="!emailSent">
             <h1>Reset Password By Email</h1>
             <p>To reset your password, enter the email address that you used to sign in to Glocal Click.</p>
@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.form-wrapper {
+#form-wrapper {
     h1 {
         font-size: 1.8rem;
         font-weight: 600;

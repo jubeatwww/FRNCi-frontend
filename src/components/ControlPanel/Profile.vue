@@ -1,5 +1,5 @@
 <template>
-    <form class="form-wrapper">
+    <form id="form-wrapper">
         <form-field
             title="Profile Photo"
             description="Please use a photo that clearly shows your face. Nobody is interested in meeting a landscape or an animal. ( Image types allowed: JPG, PNG. Maximum image size: 4 MB. Suggested image ratio: 1:1. )">
@@ -205,7 +205,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.form-wrapper /deep/ {
+#form-wrapper /deep/ {
     width: 100%;
     text-align: left;
 

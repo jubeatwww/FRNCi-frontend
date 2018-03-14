@@ -1,5 +1,5 @@
 <template>
-    <md-layout md-column class="form-wrapper">
+    <md-layout md-column id="form-wrapper">
         <h1>Reset Password By Email</h1>
         <md-input-container
             :class="{'md-input-invalid': !passwordFirst && !passwordValidation}"
@@ -86,7 +86,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.form-wrapper {
+#form-wrapper {
     h1 {
         font-size: 1.8rem;
         font-weight: 600;
