@@ -99,7 +99,9 @@ export default {
                 body: this.info,
             };
             const result = await this.api.users.update(args);
-            if (!result.ok) {
+            if (result.ok) {
+                this.alertify.notify('Saved successfully');
+            } else {
                 console.error(result);
             }
         },
