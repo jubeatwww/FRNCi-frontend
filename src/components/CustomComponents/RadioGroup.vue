@@ -32,7 +32,7 @@ export default {
                 this.default === opt.value || this.default === opt.label
             ));
             return {
-                selected: this.options[i].value,
+                selected: i < 0 ? this.options[0].value : this.options[i].value,
             };
         } else if (this.default instanceof Number) {
             const d = this.default < this.options.length ? this.default : this.options.length - 1;
