@@ -3,10 +3,7 @@
         <Board></Board>
         <Introduction></Introduction>
         <Feature></Feature>
-        <!-- <Schedule></Schedule> -->
-        <!-- <Timeline></Timeline> -->
         <Events></Events>
-        <!-- <Products></Products> -->
         <Memories></Memories>
         <Cooperation></Cooperation>
     </div>
