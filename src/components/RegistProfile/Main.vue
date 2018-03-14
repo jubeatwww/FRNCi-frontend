@@ -2,7 +2,7 @@
     <md-layout md-align="center">
         <md-layout
             md-flex="75"
-            style="padding: 5% 4%" id="gc-regist-wrapper">
+            style="padding: 5% 4%" class="gc-regist-wrapper">
             <md-stepper @change="stepChanged" ref="stepper" :md-disable-header-nav="true">
                 <Basic
                     :completed.sync="basicCompleted"
@@ -156,7 +156,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#gc-regist-wrapper /deep/ {
+.gc-regist-wrapper /deep/ {
     .md-stepper {
         border: 1px solid #B5B2B2;
         border-radius: 40px;
@@ -196,7 +196,7 @@ export default {
 }
 
 @media (max-width: 575.98px) {
-    #gc-regist-wrapper /deep/ {
+    .gc-regist-wrapper /deep/ {
         .md-stepper {
             .md-steps-container {
                 .md-step-content {

@@ -1,5 +1,5 @@
 <template>
-    <md-step md-label="Basic Info" :md-disabled="mdDisabled" id="gc-regist-basic">
+    <md-step md-label="Basic Info" :md-disabled="mdDisabled" class="gc-regist-basic">
         <form-field title="Upload Your Profile Photo" >
             <span>
                 Please use a photo that clearly shows your face. Nobody is interested in meeting a landscape or an animal.
@@ -141,7 +141,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#gc-regist-basic /deep/ {
+.gc-regist-basic /deep/ {
     .vdp-datepicker {
         > div:first-child {
             width: 100%;
@@ -165,7 +165,7 @@ export default {
 }
 
 @media (max-width: 575.98px) {
-    #gc-regist-basic /deep/ {
+    .gc-regist-basic /deep/ {
         .vdp-datepicker {
             .vdp-datepicker__calendar {
                 width: 100%;

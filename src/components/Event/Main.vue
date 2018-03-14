@@ -7,7 +7,7 @@
             data-mp-text="Header"
             :style="`background-image:url('${bannerUrl}');background-size:auto 100%;`"></header>
         <!-- introduction -->
-        <section id="gc-events-content">
+        <section class="gc-events-content">
             <div class="container">
                 <md-layout md-row>
                     <md-layout class="col-md-8 col-sm-12 event-dec" md-flex="66" md-flex-small="100" md-flex-medium="66">
@@ -133,7 +133,7 @@ export default {
     position: relative;
 }
 
-#gc-events-content {
+.gc-events-content {
     margin-top: 3rem;
     margin-bottom: 0;
     padding-bottom: 5%;
@@ -295,7 +295,7 @@ export default {
     .page-header {
         height: 200px;
     }
-    #gc-events-content {
+    .gc-events-content {
         .container {
             padding-right: 1.5rem;
             padding-left: 1.5rem;

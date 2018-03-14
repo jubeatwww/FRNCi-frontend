@@ -1,5 +1,5 @@
 <template>
-    <md-step md-label="Payment" :md-disabled="false" :md-show-actions="false" id="gc-regist-payment">
+    <md-step md-label="Payment" :md-disabled="false" :md-show-actions="false" class="gc-regist-payment">
         <h3>Choose Your Plan</h3>
         <md-progress
             v-if="paymentInfo.loading"
@@ -155,7 +155,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#gc-regist-payment {
+.gc-regist-payment {
     .md-step-content {
         h3 {
             text-align: center;
@@ -288,7 +288,7 @@ export default {
 }
 
 @media (max-width: 575.98px) {
-    #gc-regist-payment {
+    .gc-regist-payment {
         .text-policy {
             margin-top: 38%;
         }
@@ -296,7 +296,7 @@ export default {
 }
 
 @media (min-width: 576px) and (max-width: 991.98px) {
-    #gc-regist-payment  {
+    .gc-regist-payment  {
         .text-policy {
             margin-top: 20%;
         }

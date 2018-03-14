@@ -1,5 +1,5 @@
 <template>
-    <div id="form-wrapper">
+    <div class="form-wrapper">
         <div style="margin-bottom: 3%">Sign up to Glocal Click</div>
         <fb-button button-id="fb-signup" button-text="Sign up with Facebook"></fb-button>
         <!-- <md-button id="fb-signup" class="md-raised md-primary login-btn" @click="fbSignup">
@@ -119,7 +119,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#form-wrapper /deep/ {
+.form-wrapper /deep/ {
     #fb-signup {
         background-color: #3B5998;
         width: 100%;
@@ -217,7 +217,7 @@ export default {
 }
 
 @media (max-width: 575.98px) {
-    #form-wrapper /deep/ {
+    .form-wrapper /deep/ {
         #fb-signup {
             font-size: 15px;
         }

@@ -1,5 +1,5 @@
 <template>
-    <div id="checkbox-group"
+    <div class="checkbox-group"
         style="display: flex">
         <div v-for="(optCol, colIdx) in _optionsColumns" 
             :key="`${name}-checkbox-group-col-${colIdx}`"
@@ -99,7 +99,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#checkbox-group /deep/ {
+.checkbox-group /deep/ {
     .md-checkbox {
         width: 100%;
 

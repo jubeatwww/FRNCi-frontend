@@ -1,5 +1,5 @@
 <template>
-    <md-layout md-column id="form-wrapper">
+    <md-layout md-column class="form-wrapper">
         <div style="margin-bottom: 10%">Log in to Glocal Click</div>
         <fb-button button-id="fb-login" button-text="Log in with Facebook"></fb-button>
         <!--<md-button id="google-login" class="md-raised md-primary login-btn">
@@ -65,7 +65,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#form-wrapper {
+.form-wrapper {
     #fb-login {
         background-color: #3B5998;
         height: 55px;
@@ -151,7 +151,7 @@ export default {
 }
 
 @media (max-width: 575.98px) {
-    #form-wrapper {
+    .form-wrapper {
         .login-btn {
             font-size: 15px;
         }
