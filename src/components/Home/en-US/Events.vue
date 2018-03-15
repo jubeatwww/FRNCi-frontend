@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <a href="/events/2018-03-24-speakeasy-mahjong">
+                    <a href="/events/2018-03-24-speakeasy-mahjong-en">
                         <img src="/static/img/a4.jpg" alt="Card image cap">
                     </a>
                     <div class="card-body">
@@ -50,7 +50,7 @@
                     </div>
                     <div class="card-footer">
                         <p><span>NT$. 250</span></p>
-                        <a href="/events/2018-03-24-speakeasy-mahjong" class="highlight-button-default">Check More</a>
+                        <a href="/events/2018-03-24-speakeasy-mahjong-en" class="highlight-button-default">Check More</a>
                     </div>
                 </div>
             </md-layout>
