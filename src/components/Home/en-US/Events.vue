@@ -38,9 +38,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <a href="/events/2018-03-24-speakeasy-mahjong-en">
+                    <router-link to="/events/2018-03-24-speakeasy-mahjong-en">
                         <img src="/static/img/a4.jpg" alt="Card image cap">
-                    </a>
+                    </router-link>
                     <div class="card-body">
                         <h6 class="event-date">Mar.24 (Sat.)</h6>
                         <h5 class="card-title">SpeakEasy - Let’s Play Mahjong x Language Exchange</h5>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="card-footer">
                         <p><span>NT$. 250</span></p>
-                        <a href="/events/2018-03-24-speakeasy-mahjong-en" class="highlight-button-default">Check More</a>
+                        <router-link to="/events/2018-03-24-speakeasy-mahjong-en" class="highlight-button-default">Check More</router-link>
                     </div>
                 </div>
             </md-layout>
