@@ -5,7 +5,7 @@
                 <md-layout class="gc-board-title" md-flex="70" md-align="center">
                     <h2>Glocal Click</h2>
                     <h5>自在說外語 x 跨文化交流 x 你的國際交友圈</h5>
-                    <h6>COMMING SOON</h6>
+                    <h6>COMING SOON</h6>
                 </md-layout>
            </md-layout>
        </div> 
