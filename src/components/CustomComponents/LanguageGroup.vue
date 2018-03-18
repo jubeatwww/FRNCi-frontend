@@ -16,7 +16,11 @@
                 :name="`${name}-level-${i}`">
             </radio-group>
         </div>
-        <div @click="addLanguage" v-if="languageSkills.length < limit" class="gc-add-language"><i class="fa fa-plus-square"></i> Add a language you speak fluently</div>
+        <div @click="addLanguage"
+            v-if="languageSkills.length < limit"
+            class="gc-add-language">
+            <i class="fa fa-plus-square"></i> Add a language you speak fluently
+        </div>
     </div>
 </template>
 
