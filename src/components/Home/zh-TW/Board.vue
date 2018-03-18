@@ -3,25 +3,9 @@
        <div class="mask">
             <md-layout md-align="center">
                 <md-layout class="gc-board-title" md-flex="70" md-align="center">
-                    <h2>【Glocal Click 前導活動 】限量報名中！</h2>
+                    <h2>Glocal Click</h2>
                     <h5>自在說外語 x 跨文化交流 x 你的國際交友圈</h5>
-                </md-layout>
-                <md-layout md-flex="50" md-align="center" md-column class="counterdown">
-                    <p>截 止 倒 數</p>
-                    <md-layout md-align="center">
-                        <div class="counter">
-                            <span class="counter-num">{{date}}</span><br><span>days</span>
-                        </div> 
-                        <div class="counter">
-                            <span class="counter-num">{{hours}} </span><br><span>hours</span>
-                        </div>
-                        <div class="counter">
-                            <span class="counter-num">{{minutes}} </span><br><span>minutes</span>
-                        </div>
-                        <div class="counter">
-                            <span class="counter-num">{{seconds}} </span><br><span>seconds</span>
-                        </div>
-                    </md-layout>
+                    <h6>COMING SOON</h6>
                 </md-layout>
            </md-layout>
        </div> 
@@ -32,31 +16,7 @@
 export default {
     data() {
         return {
-            dueDate: new Date('2018-03-08T00:00:00Z').getTime(),
-            now: new Date(Date.now()).getTime(),
         };
-    },
-    created() {
-        setInterval(() => {
-            this.now = new Date(Date.now()).getTime();
-        }, 500);
-    },
-    computed: {
-        diff() {
-            return this.dueDate - this.now > 0 ? new Date(this.dueDate - this.now) : new Date(0);
-        },
-        date() {
-            return this.diff.getTime() === 0 ? 0 : this.diff.getDate();
-        },
-        hours() {
-            return this.diff.getUTCHours();
-        },
-        minutes() {
-            return this.diff.getMinutes();
-        },
-        seconds() {
-            return this.diff.getSeconds();
-        },
     },
 };
 </script>
@@ -79,16 +39,21 @@ section {
 
         .gc-board-title {
             h2 {
+                margin: 2rem 0;
                 font-weight: 600;
                 line-height: 1.6;
-                // margin-bottom: 1rem;
-                font-size: 2.9rem;
+                font-size: 5.5rem;
             }
 
             h5 {
-                font-size: 1.9rem;
                 margin: 0;
-                // margin-bottom: 1rem;
+                font-size: 2rem;
+            }
+
+            h6 {
+                font-size: 1rem;
+                font-weight: 600;
+                letter-spacing: 1rem;
             }
         }
 

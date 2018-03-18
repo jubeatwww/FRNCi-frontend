@@ -63,7 +63,7 @@
             <div class="text-policy">
                 <h5>Refund Policy:</h5>
                 <ol>
-                    <li>Tickets for the March 03rd and March 10th events are fully refundable up to 5 days before the events, subject to conditions.</li>
+                    <li>Tickets for the events are fully refundable up to 5 days before the events, subject to conditions.</li>
                     <li>If the purchaser or user makes use of all or any portion of the special offer package (bonus offers) the ticket(s) for the event are non-refundable and the above condition (1) is no longer valid.</li>
                 </ol>
             </div>

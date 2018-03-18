@@ -3,9 +3,7 @@
         <Board></Board>
         <Introduction></Introduction>
         <Events></Events>
-        <Products></Products>
         <Feature></Feature>
-        <!-- <Schedule></Schedule> -->
         <Memories></Memories>
         <Cooperation></Cooperation>
     </div>

@@ -3,29 +3,9 @@
         <md-layout md-column md-align="center">
             <md-layout md-column md-align="center" class="gc-events-title">
                 <h5>練習外語、走進世界，不用出國<br>你有更自在、有趣、有效的方法</h5> 
-                <h3>就從【Glocal Click 前導活動】開始！</h3>   
+                <h3>就從【Glocal Click 系列活動】開始！</h3>   
             </md-layout>
             <md-layout md-align="center" style="flex-wrap: nowrap">
-                <div class="card">
-                    <router-link to="/events/2018-03-03-lex-tips-sharing">
-                        <img src="/static/img/a2.jpg" alt="Card image cap">
-                    </router-link>
-                    <div class="card-body">
-                        <h6 class="event-date">2018.03.03(六)</h6>
-                        <h5 class="card-title">【語言交換零死角】<br>攻略分享會</h5>
-                        <h6 class="card-title">其實，語言交換跟你想的不一樣！</h6>
-                        <p>
-                            <span class="badge badge-default-green"># 誰適合參加?</span><br><br>
-                            不知道語言交換怎麼開始的你<br>
-                            覺得語言交換對語言進步有限的你<br>
-                            覺得語言交換好難持續的你<br>
-                            好奇外語練習創新玩法的你<br>
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <router-link to="/events/2018-03-03-lex-tips-sharing" class="highlight-button-default">想看更多</router-link>
-                    </div>
-                </div>
                 <div class="card">
                     <router-link to="/events/2018-03-10-taipei-exploration-scavenger-hunt">
                         <img src="/static/img/a3.jpg" alt="Card image cap">
@@ -44,6 +24,26 @@
                     </div>
                     <div class="card-footer">
                         <router-link to="/events/2018-03-10-taipei-exploration-scavenger-hunt" class="highlight-button-default">想看更多</router-link>
+                    </div>
+                </div>
+                <div class="card">
+                    <router-link to="/events/2018-03-24-speakeasy-mahjong">
+                        <img src="/static/img/a4.jpg" alt="Card image cap">
+                    </router-link>
+                    <div class="card-body">
+                        <h6 class="event-date">2018.03.24(六)</h6>
+                        <h5 class="card-title">【SpeakEsy 語言輕鬆說】</h5>
+                        <h6 class="card-title">Let’s Play Mahjong x Language Exchange</h6>
+                        <p class="card-text small-text text-justify text-center">
+                            面對外國朋友常不知道要說什麼嗎？<br>
+                            那就用麻將開啟話題、邊玩邊聊吧！<br>
+                            來 SpeakEasy 認識外國朋友、共同提升外語能力<br>
+                            體驗國際化的多語言環境<br>
+                            走出教室和 Native Speaker 一起輕鬆開口說<br>
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <router-link to="/events/2018-03-24-speakeasy-mahjong" class="highlight-button-default">想看更多</router-link>
                     </div>
                 </div>
             </md-layout>
@@ -83,6 +83,8 @@ section {
         margin-bottom: 0;
         margin-left: 15px;
         min-width: 0;
+        display: flex;
+        flex-direction: column;
         word-wrap: break-word;
         background-color: #fff;
         background-clip: border-box;
@@ -93,6 +95,7 @@ section {
         .card-body {
             padding-left: 0;
             margin-bottom: 0;
+            flex: 1 1 auto;
             text-align: center;
 
             h6.event-date {
