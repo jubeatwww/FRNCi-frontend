@@ -10,7 +10,7 @@
                     ref="fileUploader"></md-file>
             </md-input-container>
         </form-field>
-        <form-field title="Your Main Intention on GlocalClick!">
+        <form-field title="I’m looking for ">
             <radio-group
                 :options="preferToMeet"
                 :value.sync="info.meet"
@@ -19,7 +19,7 @@
             </radio-group>
         </form-field>
         <form-field
-            title="How You Prefer to Interact"
+            title="I’d prefer to meet"
             description="You can change this setting anytime.">
             <radio-group
                 :options="preferToInteract"
@@ -28,7 +28,7 @@
                 :default="info.interact">
             </radio-group>
         </form-field>
-        <form-field title="Time You Prefer to Meet">
+        <form-field title="Availability for meetups">
             <check-box-group
                 name="meetTimes"
                 :options="times"
@@ -37,7 +37,7 @@
                 :default="info.meetTimes">
             </check-box-group>
         </form-field>
-        <form-field title="How Frequent You Like to Meet">
+        <form-field title="Frequency I’m expecting">
             <radio-group
                 :options="frequency"
                 :value.sync="info.meetFrequency"
@@ -45,7 +45,7 @@
                 :default="info.meetFrequency">
             </radio-group>
         </form-field>
-        <form-field title="The Language You Speak Fluently">
+        <form-field title="Languages you speak">
             <language-group
                 name="nativeLanguage"
                 :level="nativeLevel"
@@ -54,7 +54,7 @@
                 :value.sync="info.nativeLanguages">
             </language-group>
         </form-field>
-        <form-field title="Language You Are Learning">
+        <form-field title="Languages you are learning">
             <language-group
                 name="studyLanguage"
                 :level="studyLevel"
@@ -64,8 +64,8 @@
             </language-group>
         </form-field>
         <form-field
-            title="Your Favorite Topics (Select 5 at most)"
-            description="Pick a few topics you are interested in chatting with people so we can find the most matched buddies for you.">
+            title="Favourite Topics (Select up to 5)"
+            description="Choose a few topics you are interested in, so we can find buddies for you with similar interests.">
             <check-box-group
                 name="hobbies"
                 :options="hobbies"
@@ -83,22 +83,22 @@
             </md-input-container>
         </form-field>
         <form-field
-            title="Your Learning Language Goal"
-            description="What are the specific outcomes you want to achieve in a limited time? Please tell specific things you plan to learn or to focus on. And share why you want to learn the language.">
+            title="Language Learning Goals"
+            description="Describe any specific goals or outcomes you hope to achieve. Share what motivated you to want to learn the language.">
             <md-input-container>
                 <md-textarea v-model="info.learningGoal" maxlength="500"></md-textarea>
             </md-input-container>
         </form-field>
         <form-field
-            title="The Expectation on Your Buddy"
-            description="What are the things you expect him/her to share with you?">
+            title="Expectations of your buddy"
+            description="What are some things you hope him/her can share with you?">
             <md-input-container>
                 <md-textarea v-model="info.idealBuddy" maxlength="500"></md-textarea>
             </md-input-container>
         </form-field>
         <form-field
-            title="Share More About Yourself"
-            description="Tell something about your background and your passion! Help other members get to know you better!">
+            title="About Yourself"
+            description="Share some more about your background and passions! Help other members get to know you better!">
             <md-input-container>
                 <md-textarea v-model="info.introduction" maxlength="500"></md-textarea>
             </md-input-container>

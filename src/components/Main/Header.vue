@@ -22,7 +22,7 @@
                     <md-menu-content>
                         <md-menu-item @selected="account">My Account</md-menu-item>
                         <md-menu-item @selected="profile">My Profile Page</md-menu-item>
-                        <md-menu-item>Get Verfied</md-menu-item>
+                        <!-- <md-menu-item>Get Verfied</md-menu-item> -->
                         <md-menu-item @selected="logout">Log Out</md-menu-item>
                     </md-menu-content>
                 </md-menu>
