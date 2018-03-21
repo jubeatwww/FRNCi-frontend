@@ -15,7 +15,7 @@
         </form-field>
         <form-field
             title="Contact Email"
-            description="Your email address will not be displayed on the site and shared with other users.">
+            description="Your email address will not be displayed on the site or shared with other users.">
               <md-input-container>
                 <md-input 
                     placeholder="A valid e-mail address you check regularly"

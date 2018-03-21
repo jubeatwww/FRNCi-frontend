@@ -122,6 +122,7 @@ export default {
             preferToMeet: [
                 { label: 'Find Language partners', value: 'language' },
                 { label: 'Find Cross-cultrual friends', value: 'cultrual' },
+                { label: 'Both', value: 'both' },
             ],
             preferToInteract: [
                 { label: 'Face to face', value: 'f2f' },
