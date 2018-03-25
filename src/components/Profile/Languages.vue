@@ -1,12 +1,12 @@
 <template>
     <div>
-        <div>
+        <div class="language-group">
             <span>Speak</span>
-            <Language v-for="(lang, i) in speaking" :key="i" :lang="lang"></Language>   
+            <Language v-for="(lang, i) in native" :key="i" :language="lang"></Language>   
         </div>
-        <div>
+        <div class="language-group">
             <span>Learning</span>
-            <Language v-for="(lang, i) in learning" :key="i" :lang="lang"></Language>   
+            <Language v-for="(lang, i) in study" :key="i" :language="lang"></Language>   
         </div>
     </div>
 </template>
@@ -15,11 +15,21 @@
 import Language from './Language';
 
 export default {
-    props: ['speaking', 'learning'],
-    component: [Language],
+    props: ['native', 'study'],
+    components: { Language },
 };
 </script>
 
 <style lang="scss" scoped>
+.language-group {
+    display: flex;
+    span {
+        padding: 0 15px;
+        width: 25%;
+    }
 
+    > div {
+        padding: 0 15px;
+    }
+}
 </style>

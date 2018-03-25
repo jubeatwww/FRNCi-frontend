@@ -63,6 +63,7 @@ const router = new Router({
                     name: 'profile',
                     meta: {
                         requireAuth: true,
+                        static: true,
                     },
                 },
                 {
