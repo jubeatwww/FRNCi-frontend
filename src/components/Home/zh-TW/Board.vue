@@ -106,4 +106,14 @@ section {
         }
     }
 }
+
+@media (min-width: 1380px) {
+    section {
+        .mask {
+            .md-layout {
+                flex-direction: column;
+            }
+        }
+    }
+}
 </style>

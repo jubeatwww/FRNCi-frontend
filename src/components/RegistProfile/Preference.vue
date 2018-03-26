@@ -1,13 +1,13 @@
 <template>
     <md-step md-label="Preferences" :md-continue="mdContinue" :md-disabled="mdDisabled" class="gc-regist-preference">
-        <form-field title="Who You Prefer To Meet">
+        <form-field title="I’m looking for">
             <radio-group
                 :options="preferToMeet"
                 :value.sync="info.meet"
                 name="meet">
             </radio-group>
         </form-field>
-        <form-field title="How You Prefer to Interact" description="You can also change this setting anytime.">
+        <form-field title="I’d prefer to meet" description="You can change this setting anytime.">
             <radio-group
                 :options="preferToInteract"
                 :value.sync="info.interact"
@@ -15,7 +15,7 @@
             </radio-group>
         </form-field>
         <form-field
-            title="Your Native Language"
+            title="Languages you speak"
             description="You can add more languages you speak fluently later.">
             <md-input-container>
                 <label for="language">Language</label>
@@ -27,7 +27,7 @@
             </md-input-container>
         </form-field>
         <form-field
-            title="Language You Are Learning"
+            title="Languages you are learning"
             description="Please pick the main language you are learning now. You can add more languages later.">
             <md-input-container>
                 <label for="learning">Language</label>
@@ -47,8 +47,8 @@
             </radio-group>
         </form-field>
         <form-field
-            title="Your Favorite Topics (Select 5 at most)"
-            description="Pick a few topics you are interested in chatting with people so we can find the most matched buddies for you.">
+            title="Favourite Topics (Select up to 5)"
+            description="Choose a few topics you are interested in, so we can find buddies for you with similar interests.">
             <check-box-group
                 name="hobbies"
                 :options="hobbies"
@@ -58,8 +58,8 @@
             </check-box-group>
         </form-field>
         <form-field
-            title="Share More About Yourself"
-            description="Tell something about your background and your passion! Help other members get to know you better!">
+            title="About Yourself"
+            description="Share some more about your background and passions! Help other members get to know you better!">
             <md-input-container>
                 <md-textarea v-model="info.introduction" maxlength="500"></md-textarea>
             </md-input-container>
@@ -81,6 +81,7 @@ export default {
             preferToMeet: [
                 { label: 'Find Language partners', value: 'language' },
                 { label: 'Find Cross-cultural friends', value: 'cultural' },
+                { label: 'Both', value: 'both' },
             ],
             preferToInteract: [
                 { label: 'Face to face', value: 'f2f' },

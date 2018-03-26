@@ -19,7 +19,7 @@
         <div @click="addLanguage"
             v-if="languageSkills.length < limit"
             class="gc-add-language">
-            <i class="fa fa-plus-square"></i> Add a language you speak fluently
+            <i class="fa fa-plus-square"></i> Add a language you are learning
         </div>
     </div>
 </template>
@@ -81,5 +81,6 @@ export default {
     color: #60bc90;
     margin: 1rem 1rem 2rem;
     text-decoration: underline;
+    cursor: pointer;
 }
 </style>

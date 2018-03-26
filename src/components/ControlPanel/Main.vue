@@ -5,7 +5,7 @@
                 <router-link to="/controlpanel/account" class="nav-link">My Account</router-link>
                 <router-link to="/controlpanel/profile" class="nav-link">My Profile</router-link>
                 <router-link to="/controlpanel/orders" class="nav-link">My Orders</router-link>
-                <router-link to="/controlpanel/attendees" class="nav-link">My Attended Events</router-link>
+                <router-link to="/controlpanel/attendees" class="nav-link">Past Orders</router-link>
             </aside>
         </md-layout>
         <md-layout md-flex="66" md-align="center">
