@@ -87,7 +87,7 @@
                             Weekday
                         </span>
                         <span
-                            :class="{ active: meetTimesActive['weekday_evening'] }">
+                            :class="{ active: meetTimesActive['weekend_evening'] }">
                             Weekend
                         </span>
                     </div>
@@ -144,6 +144,7 @@ export default {
         },
         meetFrequency() {
             const feq = [
+                { label: '', value: '' },
                 { label: 'More than once a week', value: 'week_gt' },
                 { label: 'Around once a week', value: 'week_eq' },
                 { label: 'Around once a month', value: 'month_eq' },
