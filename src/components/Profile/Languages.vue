@@ -2,7 +2,7 @@
     <div>
         <div class="language-group">
             <span>Speak</span>
-            <Language v-for="(lang, i) in native" :key="i" :language="lang"></Language>   
+            <Language v-for="(lang, i) in native" :key="i" :language="lang" color="#f8b62c"></Language>
         </div>
         <div class="language-group">
             <span>Learning</span>

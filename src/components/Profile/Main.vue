@@ -37,35 +37,42 @@
                 </div>
             </div>
             <div id="status">
-                <field title="VERIFICATION">
+                <field title="VERIFICATION" class="verification-wrapper">
                     <div class="verification"
-                         :class="[user.verification.facebook ? 'verified' : 'unverified']">
+                         :class="[user.verification.email ? 'verified' : 'unverified']"
+                         :style="{ order: verifyItemOrder[0] }">
+                        <i class="fa big-text"
+                            :class="[user.verification.email ? 'fa-check-circle' : 'fa-times-circle']">
+                        </i>
+                        Email verified
+                    </div>
+                    <div class="verification"
+                         :class="[user.verification.facebook ? 'verified' : 'unverified']"
+                         :style="{ order: verifyItemOrder[1] }">
                         <i class="fa big-text"
                             :class="[user.verification.facebook ? 'fa-check-circle' : 'fa-times-circle']">
                         </i>
                         Facebook verified
                     </div>
                     <div class="verification"
-                         :class="[user.verification.email ? 'verified' : 'unverified']">
+                         :class="[paid ? 'verified' : 'unverified']"
+                         :style="{ order: verifyItemOrder[2] }">
                         <i class="fa big-text"
-                            :class="[user.verification.email ? 'fa-check-circle' : 'fa-times-circle']">
-                        </i>
-                        Email verified
-                    </div>
-                    <!--<div>
-                        <i class="fa fa-check-circle big-text"></i>
-                        Profile completed
-                    </div>
-                    <div>
-                        <i class="fa fa-check-circle big-text"></i>
-                        Partner School verified
-                    </div>-->
-                    <div class="verification"
-                         :class="[user.verification.paid ? 'verified' : 'unverified']">
-                        <i class="fa big-text"
-                            :class="[user.verification.paid ? 'fa-check-circle' : 'fa-times-circle']">
+                            :class="[paid ? 'fa-check-circle' : 'fa-times-circle']">
                         </i>
                         Payment verified
+                    </div>
+                    <div class="verification"
+                        :class="[userIntegrity ? 'verified' : 'unverified']"
+                         :style="{ order: verifyItemOrder[3] }">
+                        <i class="fa big-text"
+                            :class="[userIntegrity ? 'fa-check-circle' : 'fa-times-circle']">
+                        </i>
+                        Profile completed
+                    </div>
+                    <div class="verification verified" v-if="user.verification.school">
+                        <i class="fa big-text fa-check-circle"></i>
+                        Partner School verified
                     </div>
                 </field>
                 <field title="WHEN TO MEET" class="meet-times">
@@ -116,10 +123,25 @@ export default {
         Field,
     },
     data() {
-        const { params: { id }, meta: { user } } = this.$route;
+        const { params: { id }, meta: { user, userIntegrity, paid } } = this.$route;
+        const verifyItemOrder = [1, 2, 3, 4, 5];
+        [
+            user.verification.email,
+            user.verification.facebook,
+            paid,
+            userIntegrity,
+        ].forEach((ver, i) => {
+            if (!ver) {
+                verifyItemOrder[i] = 100;
+            }
+        });
+
         return {
             id,
             user,
+            userIntegrity,
+            paid,
+            verifyItemOrder,
         };
     },
     computed: {
@@ -178,6 +200,9 @@ section {
                     color: #fff;
                     background-color: #f8b62c;
                     font-size: 18px;
+                    border-radius: 0.25rem;
+                    font-size: 18px;
+                    font-weight: bold;
                 }
             }
         }
@@ -186,10 +211,14 @@ section {
             width: 25%;
             padding: 0 15px;
 
+            .verification-wrapper {
+                display: flex;
+                flex-direction: column;
+            }
+
             .verification {
                 font-size: 18px;
                 font-weight: 500;
-
             }
             .verified {
                 color: #60bc90;

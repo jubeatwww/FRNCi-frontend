@@ -63,6 +63,8 @@ export default {
         width: 100%;
         background-color: #e9ecef;
         height: 1rem;
+        border-radius: 0.25rem;
+        overflow: hidden;
 
         .bar {
             width: 80%;

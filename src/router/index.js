@@ -224,6 +224,10 @@ router.beforeEach(async (to, from, next) => {
                 to.meta.isLogin = userInfo.ok;
                 to.meta.avatar = userInfo ? userInfo.photo : '';
                 to.meta.user = userInfo;
+                if (to.name === 'profile') {
+                    to.meta.userIntegrity = await api.users.integrity(apiArgs);
+                    to.meta.paid = await api.users.paid('me', token);
+                }
                 localStorage.setItem('_email', userInfo.email);
             } catch (e) {
                 to.meta.isLogin = false;

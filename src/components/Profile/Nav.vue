@@ -7,18 +7,20 @@
                     <p class="profile-name">{{lastName}}</p>
                     <p><span class="fa fa-leaf"></span>{{genderStr[gender]}}</p>
                     <p><span class="fa fa fa-map-marker"></span>{{localCity}}</p>
-                    <p><span class="fa fa-globe"></span>{{nationality}}</p>
+                    <p><span class="fa fa-globe"></span>from {{nationDisplayName}}</p>
                     <p><span class="fa fa-bullhorn"></span>{{meetPreference}}</p>
                 </section>
                 <div class="links">
-                    <button>Edit Profile</button>
-                    <button>Get Verified</button>
+                    <router-link to="/controlpanel/profile"><i class="fa fa-pencil"></i>Edit Profile</router-link>
+                    <router-link to=""><i class="fa fa-star"></i>Get Verified</router-link>
                 </div>
             </div>
         </nav>
 </template>
 
 <script>
+import { nationalities } from '../../config';
+
 export default {
     props: {
         bg: {
@@ -78,6 +80,11 @@ export default {
         meetPreference() {
             return `${this.meetStr[this.meet]} / ${this.interactStr[this.interact]}`;
         },
+        nationDisplayName() {
+            return nationalities.find(nation => (
+                nation.value === this.nationality.toUpperCase()
+            )).label;
+        },
     },
 };
 </script>
@@ -133,6 +140,11 @@ nav {
         p {
             margin-top: 0;
             margin-bottom: 1rem;
+            letter-spacing: 2px;
+
+            span {
+                margin-right: 4px;
+            }
         }
 
         .profile-name {
@@ -145,6 +157,33 @@ nav {
 
     .links {
         padding: 0 15px;
+        display: flex;
+        flex-direction: column;
+        a {
+            cursor: pointer;
+            border: 2px solid white;
+            background-color: #ffffff3d;
+            padding: 4px 16px;
+            color: white;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            line-height: 1.5;
+            border-radius: 0.25rem;
+            font-size: 1rem;
+            font-weight: bold;
+
+            i {
+                margin-right: 4px;
+            }
+        }
+
+        a:hover {
+            color: white;
+            text-decoration: none;
+        }
     }
 }
 </style>
