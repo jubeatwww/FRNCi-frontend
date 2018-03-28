@@ -4,7 +4,7 @@
                 <figure><img :src="photo"/></figure>
                 <section>
                     <p class="profile-name">{{firstName}}</p>
-                    <p><span class="fa fa-leaf"></span>{{genderStr[gender]}}</p>
+                    <p><span class="fa fa-leaf"></span>{{age}}, {{genderStr[gender]}}</p>
                     <p><span class="fa fa fa-map-marker"></span>{{localCity}}</p>
                     <p><span class="fa fa-globe"></span>from {{nationDisplayName}}</p>
                     <p><span class="fa fa-bullhorn"></span>{{meetPreference}}</p>
@@ -58,6 +58,10 @@ export default {
             type: String,
             default: 'f2f',
         },
+        birthday: {
+            type: String,
+            default: new Date(Date.now()),
+        },
     },
     data() {
         return {
@@ -84,6 +88,10 @@ export default {
             return nationalities.find(nation => (
                 nation.value === this.nationality.toUpperCase()
             )).label;
+        },
+        age() {
+            const diff = Date.now() - new Date(this.birthday).getTime();
+            return Math.abs(new Date(diff).getUTCFullYear() - 1970);
         },
     },
 };
