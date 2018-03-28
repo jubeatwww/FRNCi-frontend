@@ -98,7 +98,7 @@ nav {
         display: flex;
         justify-content: center;
         background: rgba(0,0,0,0.4);
-        padding-top: 5%;
+        padding: 5% 0 2%;
     }
 
     figure {
