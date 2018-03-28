@@ -3,7 +3,7 @@
        <div class="mask">
             <md-layout md-align="center">
                 <md-layout class="gc-board-title" md-flex="70" md-align="center">
-                    <h2>Where Language Exchange <br> Meet Local Friends</h2>
+                    <h2>Where Language Exchange <br> Meets Local Friends</h2>
                 </md-layout>
            </md-layout>
        </div> 
