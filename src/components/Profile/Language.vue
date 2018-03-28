@@ -58,6 +58,7 @@ export default {
     display: flex;
     flex-direction: column;
     width: 25%;
+    margin-bottom: .5rem;
 
     .progress {
         width: 100%;
