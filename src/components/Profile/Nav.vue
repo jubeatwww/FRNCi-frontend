@@ -4,7 +4,6 @@
                 <figure><img :src="photo"/></figure>
                 <section>
                     <p class="profile-name">{{firstName}}</p>
-                    <p class="profile-name">{{lastName}}</p>
                     <p><span class="fa fa-leaf"></span>{{genderStr[gender]}}</p>
                     <p><span class="fa fa fa-map-marker"></span>{{localCity}}</p>
                     <p><span class="fa fa-globe"></span>from {{nationDisplayName}}</p>
@@ -138,8 +137,7 @@ nav {
         padding: 0 15px;
         letter-spacing: 2px;
         p {
-            margin-top: 0;
-            margin-bottom: 1rem;
+            margin: 0 0 1rem;
             letter-spacing: 2px;
 
             span {
