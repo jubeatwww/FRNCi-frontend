@@ -68,6 +68,7 @@ export default {
             meetStr: {
                 language: 'Looking for Language Patrners',
                 cultural: 'Looking for Cultural Friends',
+                both: 'Looking for language partners and cross-cultural friends',
             },
             genderStr: {
                 m: 'Male',
