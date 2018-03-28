@@ -144,13 +144,13 @@ export default {
         },
         meetFrequency() {
             const feq = [
-                { label: '', value: '' },
                 { label: 'More than once a week', value: 'week_gt' },
                 { label: 'Around once a week', value: 'week_eq' },
                 { label: 'Around once a month', value: 'month_eq' },
                 { label: 'Less than once a month', value: 'month_lt' },
             ];
-            return feq.find(f => f.value === this.user.meetFrequency).label;
+            const feqVal = feq.find(f => f.value === this.user.meetFrequency);
+            return feqVal ? feqVal.label : 'Less than once a month';
         },
     },
 };
