@@ -10,7 +10,7 @@
                 </field>
                 <field title="FAVORITE TOPICS">
                     <ul>
-                        <li v-for="interest in user.interests" :key="interest" class="tag">
+                        <li v-for="interest in interestsFullStr" :key="interest" class="tag">
                             # {{interest}}
                         </li>
                     </ul>
@@ -115,6 +115,7 @@
 import ProfileNav from './Nav';
 import Languages from './Languages';
 import Field from './Field';
+import { hobbies } from '../../config';
 
 export default {
     components: {
@@ -173,6 +174,11 @@ export default {
             ];
             const feqVal = feq.find(f => f.value === this.user.meetFrequency);
             return feqVal ? feqVal.label : 'Less than once a month';
+        },
+        interestsFullStr() {
+            return this.user.interests.map(interest => (
+                hobbies.find(hobby => hobby.value === interest).label
+            ));
         },
     },
 };

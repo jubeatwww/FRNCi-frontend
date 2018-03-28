@@ -25,7 +25,7 @@ export default {
     display: flex;
     span {
         padding: 0 15px;
-        width: 25%;
+        width: 20%;
     }
 
     > div {

@@ -108,7 +108,7 @@ nav {
         border: 3px solid gray;
         border-radius: 150%;
         overflow: hidden;
-        margin: 0;
+        margin: 0 5% 0 0;
         height: 240px;
         width: 240px;
         background-color: white;
