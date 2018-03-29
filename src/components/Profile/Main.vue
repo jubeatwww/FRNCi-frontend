@@ -27,11 +27,11 @@
                 <field title="INTERESTS / HOBBIES">
                     <p>{{user.interestsDesc}}</p>
                 </field>
-                <div style="display: flex;">
-                    <field title="OCCUPATION" style="width: 50%">
+                <div>
+                    <field title="OCCUPATION">
                         <p>{{user.occupation}}</p>
                     </field>
-                    <field title="MAJOR / SPECIALIZEED FIELD" style="width: 50%">
+                    <field title="MAJOR / SPECIALIZEED FIELD">
                         <p>{{user.major}}</p>
                     </field>
                 </div>
@@ -190,9 +190,34 @@ section {
         display: flex;
         justify-content: center;
 
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
+            align-items: center;
+        }
+
         #profile {
             width: 66.666667%;
             padding: 0 15px;
+            > div:last-child {
+                display: flex;
+                @media screen and (max-width: 768px) {
+                    flex-direction: column;
+                }
+
+                > div {
+                    width: 50%;
+                    @media screen and (max-width: 768px) {
+                        width: 100%;
+                    }
+                }
+            }
+
+            @media screen and (max-width: 768px) {
+                width: 75%;
+            }
+            @media screen and (max-width: 570px) {
+                width: 100%;
+            }
 
             ul {
                 display: flex;
@@ -216,6 +241,12 @@ section {
         #status {
             width: 25%;
             padding: 0 15px;
+            @media screen and (max-width: 768px) {
+                width: 75%;
+            }
+            @media screen and (max-width: 570px) {
+                width: 100%;
+            }
 
             .verification-wrapper {
                 display: flex;
@@ -270,6 +301,9 @@ section {
                     border-radius: 0.25rem;
                     font-size: 75%;
                     font-weight: bold;
+                    @media screen and (max-width: 768px) {
+                        width: 100%;
+                    }
                 }
             }
         }

@@ -108,6 +108,11 @@ nav {
         justify-content: center;
         background: rgba(0,0,0,0.4);
         padding: 5% 0 2%;
+
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
+            align-items: center;
+        }
     }
 
     figure {
@@ -124,6 +129,11 @@ nav {
         border: 3px solid white;
         border-radius: 150%;
         overflow: hidden;
+
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
+            margin: 0;
+        }
 
         img {
             position: absolute;
@@ -166,6 +176,9 @@ nav {
         padding: 0 15px;
         display: flex;
         flex-direction: column;
+        @media screen and (max-width: 768px) {
+            flex-direction: row;
+        }
         a {
             cursor: pointer;
             border: 2px solid white;
@@ -181,6 +194,9 @@ nav {
             border-radius: 0.25rem;
             font-size: 1rem;
             font-weight: bold;
+            @media screen and (max-width: 768px) {
+                margin: 0 4px;
+            }
 
             i {
                 margin-right: 4px;

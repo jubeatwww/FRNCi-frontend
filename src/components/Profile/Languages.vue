@@ -23,6 +23,10 @@ export default {
 <style lang="scss" scoped>
 .language-group {
     display: flex;
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+    }
+
     span {
         padding: 0 15px;
         width: 20%;

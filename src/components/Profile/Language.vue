@@ -59,6 +59,9 @@ export default {
     flex-direction: column;
     width: 25%;
     margin-bottom: .5rem;
+    @media screen and (max-width: 768px) {
+        width: 100%;
+    }
 
     .progress {
         width: 100%;
