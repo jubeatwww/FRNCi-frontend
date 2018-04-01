@@ -7,26 +7,6 @@
             </md-layout>
             <md-layout md-align="center" style="flex-wrap: nowrap">
                 <div class="card">
-                    <router-link to="/events/2018-03-10-taipei-exploration-scavenger-hunt">
-                        <img src="/static/img/a3.jpg" alt="Card image cap">
-                    </router-link>
-                    <div class="card-body">
-                        <h6 class="event-date">2018.03.10(六)</h6>
-                        <h5 class="card-title">【去膩的台北?】<br>與外國人的城市大冒險</h5>
-                        <h6 class="card-title">拿掉考試，挑戰你的外語口說吧！</h6>
-                        <p class="card-text small-text text-justify text-center">
-                            <span class="badge badge-default-green"># 誰適合參加?</span><br><br>
-                            想挑戰在真實情境練習外語的你<br>
-                            想認識外國朋友但擔心沒話題的你<br>
-                            對於語言交換有點猶豫但心癢癢的你<br>
-                            說很久要練外語但一直沒機會的你<br>
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <router-link to="/events/2018-03-10-taipei-exploration-scavenger-hunt" class="highlight-button-default">想看更多</router-link>
-                    </div>
-                </div>
-                <div class="card">
                     <router-link to="/events/2018-03-24-speakeasy-mahjong">
                         <img src="/static/img/a4.jpg" alt="Card image cap">
                     </router-link>
@@ -43,11 +23,30 @@
                         </p>
                     </div>
                     <div class="card-footer">
+                        <p class="text-right"><span class="text-price">NT$. 250</span></p>
                         <router-link to="/events/2018-03-24-speakeasy-mahjong" class="highlight-button-default">想看更多</router-link>
                     </div>
                 </div>
+                <div class="card">
+                    <router-link to="/events/2018-04-21-taiwan-craft-beer-night">
+                        <img src="/static/img/a5.jpg" alt="Card image cap">
+                    </router-link>
+                    <div class="card-body">
+                        <h6 class="event-date">2018.04.21(六)</h6>
+                        <h5 class="card-title">地下快閃！台灣精釀啤酒夜</h5>
+                        <h6 class="card-title"></h6>
+                        <p class="card-text small-text text-justify text-center">
+                            好久不見的台灣精釀啤酒夜回來啦！<br>
+                            和各國朋友一起品嚐在地鮮釀搭配經典台式下酒菜<br>
+                            還有各種遊戲競賽，自然互動不怕乾，盡情暢飲、暢聊吧！<br>
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <p class="text-right">單人早鳥票<span class="text-price"> NT$. 300</span></p>
+                        <router-link to="/events/2018-04-21-taiwan-craft-beer-night" class="highlight-button-default">想看更多</router-link>
+                    </div>
+                </div>
             </md-layout>
-            
         </md-layout>
     </section>
 </template>
@@ -94,7 +93,7 @@ section {
 
         .card-body {
             padding-left: 0;
-            margin-bottom: 0;
+            margin-bottom: 1rem;
             flex: 1 1 auto;
             text-align: center;
 
@@ -142,6 +141,17 @@ section {
         .card-footer {
             text-align: center;
             padding: 0;
+
+            .text-right {
+                margin-right: 1rem;
+                text-align: right;
+
+                .text-price {
+                    font-size: 2rem;
+                    font-weight: 600;
+                    color: #e45915;
+                }
+            }
             
             .highlight-button-default {
                 width: 95%;
@@ -180,6 +190,12 @@ section {
 
         .card {
             margin: 1rem 0;
+
+            .card-footer {
+                .text-right {
+                    text-align: center;
+                }
+            }
         }
     }
 }

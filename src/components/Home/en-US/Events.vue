@@ -6,34 +6,18 @@
             </md-layout>
             <md-layout md-align="center" style="flex-wrap: nowrap">
                 <div class="card">
-                    <router-link to="/events/2018-03-10-taipei-exploration-scavenger-hunt-en">
-                        <img src="/static/img/a3.jpg" alt="Card image cap">
-                    </router-link>
-                    <div class="card-body">
-                        <h6 class="event-date">Mar.10 (Sat.)</h6>
-                        <h5 class="card-title">Taipei Exploration Scavenger Hunt</h5>
-                        <p class="card-text small-text text-justify text-center">
-                            Want to explore Taipei with a fun twist? Don’t miss this thrilling adventure across Taipei City as well as the perfect chance to make new local friends!
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <p><span>NT$. 450</span></p>
-                        <router-link to="/events/2018-03-10-taipei-exploration-scavenger-hunt-en" class="highlight-button-default">Check More</router-link>
-                    </div>
-                </div>
-                <div class="card">
                     <router-link to="/events/2018-03-17-top-tips-for-mandarin-practice">
                         <img src="/static/img/a2.jpg" alt="Card image cap">
                     </router-link>
                     <div class="card-body">
                         <h6 class="event-date">Mar.17 (Sat.)</h6>
                         <h5 class="card-title">Top Tips for Mandarin Practice</h5>
-                        <p>
+                        <p class="card-text text-justify text-left">
                             Want to start language exchanges but find it difficult? Get tips from senior students and learn their experiences in gaining Mandarin fluency.
                         </p>
                     </div>
                     <div class="card-footer">
-                        <p><span>NT$. 350</span></p>
+                        <p class="text-right"><span class="text-price">NT$. 350</span></p>
                         <router-link to="/events/2018-03-17-top-tips-for-mandarin-practice" class="highlight-button-default">Check More</router-link>
                     </div>
                 </div>
@@ -44,13 +28,29 @@
                     <div class="card-body">
                         <h6 class="event-date">Mar.24 (Sat.)</h6>
                         <h5 class="card-title">SpeakEasy - Let’s Play Mahjong x Language Exchange</h5>
-                        <p class="card-text small-text text-justify text-center">
+                        <p class="card-text text-justify text-left">
                             Been learning Mandarin for a while and wanna try speaking in real life? Hesitate no more, come join us at SpeakEasy!Let’s play Chinese traditional board game - Mahjong together!
                         </p>
                     </div>
                     <div class="card-footer">
-                        <p><span>NT$. 250</span></p>
+                        <p class="text-right"><span class="text-price">NT$. 250</span></p>
                         <router-link to="/events/2018-03-24-speakeasy-mahjong-en" class="highlight-button-default">Check More</router-link>
+                    </div>
+                </div>
+                <div class="card">
+                    <router-link to="/events/2018-04-21-taiwan-craft-beer-night-en">
+                        <img src="/static/img/a5.jpg" alt="Card image cap">
+                    </router-link>
+                    <div class="card-body">
+                        <h6 class="event-date">Apr.21 (Sat.)</h6>
+                        <h5 class="card-title">Underground Pop-up! Taiwan Craft Beer Night</h5>
+                        <p class="card-text text-justify text-left">
+                            After a busy week, how about chilling out and having fun on Saturday night together in a local way?<br>We invite locals and people from around the world to ROCK this CRAFT BEER NIGHT!!!
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <p class="text-right">Early Bird<span class="text-price"> NT$. 300</span></p>
+                        <router-link to="/events/2018-04-21-taiwan-craft-beer-night-en" class="highlight-button-default">Check More</router-link>
                     </div>
                 </div>
             </md-layout>
@@ -122,9 +122,11 @@ section {
             }
 
             p {
-                font-size: 1rem;
-                line-height: 1.5;
                 padding: 0 5%;
+                font-size: 1rem;
+                font-weight: 500;
+                line-height: 1.5;
+                text-align: left;
 
                 .badge-default-green {
                     font-size: 18px;
@@ -147,12 +149,18 @@ section {
             text-align: center;
             padding: 0;
 
-            span {
-                color: #e45915;
-                font-size: 1.9rem;
-                font-weight: 600;
+            .text-right {
                 text-align: right;
+                margin-right: 1rem;
+            
+                span {
+                    color: #e45915;
+                    font-size: 1.9rem;
+                    font-weight: 600;
+                    text-align: right;
+                }
             }
+
 
             .highlight-button-default {
                 width: 95%;
@@ -182,6 +190,12 @@ section {
     section {
         .card {
             margin: 1rem 0;
+
+            .card-footer {
+                .text-right {
+                    text-align: center;
+                }
+            }
         }
     }
 }
