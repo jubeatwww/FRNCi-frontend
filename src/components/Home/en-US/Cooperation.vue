@@ -15,17 +15,29 @@
             <h3 class="text-dark-gray">Business Partners</h3>
             <md-layout md-align="center">
                 <a href="https://www.borderless-house-zh.com/tw/" target="_blank"
-                    title="Share house 臺北｜與外國人一起住的國際交流Share House BORDERLESS HOUSE">
+                    title="Share House BORDERLESS HOUSE">
                     <img class="cooperation-img" src="/static/img/logo_BH.jpg" style="width:180px;" alt="logo Share house">
                 </a>
+                <a href="https://asiayo.com/zh-tw/" target="_blank"
+                    title="AsiaYo: Best hotel &amp; vacation rental booking in Asia, up to 50% off!">
+                    <img class="cooperation-img" src="/static/img/logo_asiayo.png" style="width:180px;" alt="logo AsiaYo">
+                </a>
                 <a href="https://www.dingtaxi.com/zh_TW/c/taiwan" target="_blank"
-                    title="【DingTaxi叮叮包車】台灣機場接送・台灣包車旅遊・遊覽車巴士・高爾夫球團">
+                    title="【DingTaxi】Taiwan Airport Transfer・Driver-Guide・Bus Rental・Ski/Golf Tour Online Booking">
                     <img class="cooperation-img" src="/static/img/logo_Ding.png" style="width:180px;" alt="logo DingTaxi">
-                </a> 
+                </a>
                 <a href="https://oudo.com/public/frontend/home" target="_blank"
-                    title="歐都探索-輕鬆預訂戶外旅遊體驗，帶您看見台灣新視野">
+                    title="Oudo Explore Taiwan">
                     <img class="cooperation-img" src="/static/img/logo_oudo.jpg" style="width:150px;" alt="logo oudo">
-                </a>        
+                </a>
+                <a href="https://www.facebook.com/maroubracafe/" target="_blank"
+                    title="Maroubra Cafe">
+                    <img class="cooperation-img" src="/static/img/logo_mcafe.jpg" style="width:150px;" alt="logo Maroubra Cafe">
+                </a>
+                <a href="https://www.facebook.com/grace.anan/" target="_blank"
+                    title="Grace Anan Cafe&amp;Boutique">
+                    <img class="cooperation-img" src="/static/img/logo_grace.jpg" style="width:150px;" alt="logo grace anan">
+                </a>
             </md-layout>
         </md-layout>
     </section>
@@ -52,6 +64,11 @@ section {
 
         h3.text-dark-gray {
             margin-top: 5%;
+        }
+
+        .cooperation-img {
+            margin-right: 1rem;
+            vertical-align: middle;
         }
     }
 }
