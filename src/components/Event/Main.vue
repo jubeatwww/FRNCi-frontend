@@ -23,8 +23,6 @@
                                     <hr>
                                 </md-card-header>
                                 <md-card-content>
-                                    <p v-if="tags.indexOf('fn_only') >= 0" class="mb-0 text-center"><i class="em em-gift"></i> Bonus:</p>
-                                    <p v-else class="mb-0 text-center"><i class="em em-gift"></i> 加碼送：</p>
                                     <ul>
                                         <li v-for="(item, i) in p.product.items" :key="i">{{item}}</li>
                                     </ul>
