@@ -230,8 +230,9 @@ function logout(nextFn, redirectToLogin) {
 router.beforeEach(async (to, from, next) => {
     console.log('route before each');
     const token = localStorage.getItem('_token');
+    const userId = localStorage.getItem('_id');
     if (token) {
-        const apiArgs = { params: { userId: 'me' } };
+        const apiArgs = { params: { userId } };
         if (to.meta.static) {
             /* eslint-disable */
             try {
@@ -278,7 +279,7 @@ router.beforeEach(async (to, from, next) => {
                     } else if (!userIntegrity.integrity) {
                         next({ path: '/registprofile' });
                     } else {
-                        const paid = await api.users.paid('me', token);
+                        const paid = await api.users.paid(localStorage.getItem('_id'), token);
                         if (paid) {
                             next();
                         } else if (to.name === 'ControlPanelAccount' || to.name === 'ControlPanelProfile') {
