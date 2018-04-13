@@ -60,7 +60,7 @@ export default {
         },
         birthday: {
             type: String,
-            default: new Date(Date.now()),
+            default: new Date(Date.now()).toString(),
         },
     },
     data() {

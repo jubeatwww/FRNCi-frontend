@@ -65,6 +65,20 @@ const router = new Router({
                         requireAuth: true,
                         static: true,
                     },
+                    async beforeEnter(to, from, next) {
+                        console.log('route before profile enter');
+                        console.log(to.params.id);
+                        const apiArgs = { params: { userId: to.params.id } };
+                        /* eslint-disable */
+                        if (to.params.id !== 'me' && to.params.id !== localStorage.getItem('_id')) {
+                            to.meta.otherUser = {
+                                user: await api.users.profile(apiArgs),
+                                userIntegrity: await api.users.integrity(apiArgs),
+                            };
+                        }
+                        /* eslint-enable */
+                        next();
+                    },
                 },
                 {
                     path: 'login',
@@ -214,6 +228,7 @@ function logout(nextFn, redirectToLogin) {
 }
 
 router.beforeEach(async (to, from, next) => {
+    console.log('route before each');
     const token = localStorage.getItem('_token');
     if (token) {
         const apiArgs = { params: { userId: 'me' } };
@@ -221,13 +236,10 @@ router.beforeEach(async (to, from, next) => {
             /* eslint-disable */
             try {
                 const userInfo = await api.users.get(apiArgs);
+                const userIntegrity = await api.users.integrity(apiArgs);
                 to.meta.isLogin = userInfo.ok;
                 to.meta.avatar = userInfo ? userInfo.photo : '';
-                to.meta.user = userInfo;
-                if (to.name === 'profile') {
-                    to.meta.userIntegrity = await api.users.integrity(apiArgs);
-                    to.meta.paid = await api.users.paid('me', token);
-                }
+                to.meta.user = { user: userInfo, userIntegrity };
                 localStorage.setItem('_email', userInfo.email);
             } catch (e) {
                 to.meta.isLogin = false;
@@ -246,7 +258,7 @@ router.beforeEach(async (to, from, next) => {
                     /* eslint-disable */
                     to.meta.isLogin = userInfo.ok;
                     to.meta.avatar = userInfo ? userInfo.photo : '';
-                    to.meta.user = userInfo;
+                    to.meta.user = { user: userInfo, userIntegrity };
                     /* eslint-enable */
 
                     localStorage.setItem('_email', userInfo.email);

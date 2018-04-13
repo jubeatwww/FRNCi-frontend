@@ -124,12 +124,15 @@ export default {
         Field,
     },
     data() {
-        const { params: { id }, meta: { user, userIntegrity, paid } } = this.$route;
+        const { params: { id } } = this.$route;
+        const { user, userIntegrity } = this.$route.meta.otherUser ?
+            this.$route.meta.otherUser : this.$route.meta.user;
         const verifyItemOrder = [1, 2, 3, 4, 5];
+
         [
             user.verification.email,
             user.verification.facebook,
-            paid,
+            user.verification.paid,
             userIntegrity,
         ].forEach((ver, i) => {
             if (!ver) {
@@ -141,7 +144,7 @@ export default {
             id,
             user,
             userIntegrity,
-            paid,
+            paid: user.verification.paid,
             verifyItemOrder,
         };
     },
