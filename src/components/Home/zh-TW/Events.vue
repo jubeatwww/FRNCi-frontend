@@ -7,27 +7,6 @@
             </md-layout>
             <md-layout md-align="center" style="flex-wrap: nowrap">
                 <div class="card">
-                    <router-link to="/events/2018-03-24-speakeasy-mahjong">
-                        <img src="/static/img/a4.jpg" alt="Card image cap">
-                    </router-link>
-                    <div class="card-body">
-                        <h6 class="event-date">2018.03.24(六)</h6>
-                        <h5 class="card-title">【SpeakEsy 語言輕鬆說】</h5>
-                        <h6 class="card-title">Let’s Play Mahjong x Language Exchange</h6>
-                        <p class="card-text small-text text-justify text-center">
-                            面對外國朋友常不知道要說什麼嗎？<br>
-                            那就用麻將開啟話題、邊玩邊聊吧！<br>
-                            來 SpeakEasy 認識外國朋友、共同提升外語能力<br>
-                            體驗國際化的多語言環境<br>
-                            走出教室和 Native Speaker 一起輕鬆開口說<br>
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <p class="text-right"><span class="text-price">NT$. 250</span></p>
-                        <router-link to="/events/2018-03-24-speakeasy-mahjong" class="highlight-button-default">想看更多</router-link>
-                    </div>
-                </div>
-                <div class="card">
                     <router-link to="/events/2018-04-21-taiwan-craft-beer-night">
                         <img src="/static/img/a5.jpg" alt="Card image cap">
                     </router-link>
@@ -44,6 +23,25 @@
                     <div class="card-footer">
                         <p class="text-right">單人早鳥票<span class="text-price"> NT$. 300</span></p>
                         <router-link to="/events/2018-04-21-taiwan-craft-beer-night" class="highlight-button-default">想看更多</router-link>
+                    </div>
+                </div>
+                <div class="card">
+                    <router-link to="/events/2018-05-26-international-rooftop-party">
+                        <img src="/static/img/a6.jpg" alt="Card image cap">
+                    </router-link>
+                    <div class="card-body">
+                        <h6 class="event-date">2018.05.26(六)</h6>
+                        <h5 class="card-title">來趣嗨翻屋頂-國際派對</h5>
+                        <h6 class="card-title">露天烤肉 x 現場樂團 x 多國交流</h6>
+                        <p class="card-text small-text text-justify text-center">
+                            炎炎夏夜裡，在燭光搖曳的樓頂聽著現場演奏的異國樂曲<br>
+                            配上冰涼的啤酒，和新認識的各國朋友盡情吃喝、暢聊<br>
+                            獨特的異國情調體驗不用出國，就在臺北！
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <p class="text-right">單人早鳥票<span class="text-price"> NT$. 550</span></p>
+                        <router-link to="/events/2018-05-26-international-rooftop-party" class="highlight-button-default">想看更多</router-link>
                     </div>
                 </div>
             </md-layout>

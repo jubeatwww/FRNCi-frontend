@@ -6,22 +6,6 @@
             </md-layout>
             <md-layout md-align="center" style="flex-wrap: nowrap">
                 <div class="card">
-                    <router-link to="/events/2018-03-17-top-tips-for-mandarin-practice">
-                        <img src="/static/img/a2.jpg" alt="Card image cap">
-                    </router-link>
-                    <div class="card-body">
-                        <h6 class="event-date">Mar.17 (Sat.)</h6>
-                        <h5 class="card-title">Top Tips for Mandarin Practice</h5>
-                        <p class="card-text text-justify text-left">
-                            Want to start language exchanges but find it difficult? Get tips from senior students and learn their experiences in gaining Mandarin fluency.
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <p class="text-right"><span class="text-price">NT$. 350</span></p>
-                        <router-link to="/events/2018-03-17-top-tips-for-mandarin-practice" class="highlight-button-default">Check More</router-link>
-                    </div>
-                </div>
-                <div class="card">
                     <router-link to="/events/2018-03-24-speakeasy-mahjong-en">
                         <img src="/static/img/a4.jpg" alt="Card image cap">
                     </router-link>
@@ -51,6 +35,23 @@
                     <div class="card-footer">
                         <p class="text-right">Early Bird<span class="text-price"> NT$. 300</span></p>
                         <router-link to="/events/2018-04-21-taiwan-craft-beer-night-en" class="highlight-button-default">Check More</router-link>
+                    </div>
+                </div>
+                <div class="card">
+                    <router-link to="/events/2018-05-26-international-rooftop-party-en">
+                        <img src="/static/img/a6.jpg" alt="Card image cap">
+                    </router-link>
+                    <div class="card-body">
+                        <h6 class="event-date">May.26 (Sat.)</h6>
+                        <h5 class="card-title">International Rooftop Party</h5>
+                        <h6 class="card-subtitle">Live Band x Outdoor BBQ x Drinking Games</h6>
+                        <p class="card-text text-justify text-left">
+                            Let’s rock the roof off! Join us for an evening of live music, cold beers, tasty BBQ, fun games and of course memorable moments with new friends!
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <p class="text-right">Early Bird<span class="text-price"> NT$. 550</span></p>
+                        <router-link to="/events/2018-05-26-international-rooftop-party-en" class="highlight-button-default">Check More</router-link>
                     </div>
                 </div>
             </md-layout>
@@ -112,6 +113,14 @@ section {
                 margin: 0;
                 font-size: 1.4rem;
                 font-weight: 600;
+                line-height: 1.8rem;
+            }
+
+            h6.card-subtitle {
+                margin: 0;
+                font-size: 1.1rem;
+                font-weight: 600;
+                line-height: 1.5rem;
             }
 
             h6.card-title {

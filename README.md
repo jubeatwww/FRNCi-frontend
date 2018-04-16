@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# FRNCi
-
-=======
 # frnci
 
 >  A FRNCi official project
@@ -32,4 +28,3 @@ npm test
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
->>>>>>> a4cb40f6c9dfe474082a30ed4025799a4b27e892
