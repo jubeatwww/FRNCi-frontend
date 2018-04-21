@@ -3,6 +3,7 @@ import APIFactory from './ApiFactory';
 
 export default {
     get: APIFactory('users/:userId', 'GET', true),
+    profile: APIFactory('users/:userId/profile', 'GET', true),
     update: APIFactory('users/:userId', 'PUT', true),
     integrity: APIFactory('users/:userId/integrity', 'GET', true),
     resendVerifyEmail: APIFactory('users/:userId/resend-verify', 'POST', true),
