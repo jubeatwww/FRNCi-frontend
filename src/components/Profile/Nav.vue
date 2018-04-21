@@ -12,6 +12,9 @@
                 <div class="links">
                     <router-link to="/controlpanel/profile"><i class="fa fa-pencil"></i>Edit Profile</router-link>
                     <router-link to=""><i class="fa fa-star"></i>Get Verified</router-link>
+                    <a v-if="$route.meta.otherUser" @click="invite">
+                        <i class="fa fa-paper-plane"></i>Send Request
+                    </a>
                 </div>
             </div>
         </nav>
@@ -93,6 +96,25 @@ export default {
             const diff = Date.now() - new Date(this.birthday).getTime();
             return Math.abs(new Date(diff).getUTCFullYear() - 1970);
         },
+        isOtherUser() {
+            return !!this.$route.meta.otherUser;
+        },
+    },
+    methods: {
+        invite() {
+            if (!this.$route.meta.isLogin) {
+                this.$router.push('/login');
+            } else {
+                const { id } = this.$route.params;
+                console.log('send request');
+                this.alertify.AlertInvite('', '', (evt, val) => {
+                    this.api.invitations.send({
+                        params: { userId: id },
+                        body: { content: val },
+                    });
+                });
+            }
+        },
     },
 };
 </script>
@@ -140,6 +162,7 @@ nav {
             border-radius: 50%;
             top: 50%;
             left: 50%;
+            width: 100%;
             transform: translate(-50%, -50%);
         }
     }
@@ -210,3 +233,24 @@ nav {
     }
 }
 </style>
+
+<style lang="scss">
+.invitation {
+    &.invitation-dialog {
+        padding: 40px;
+        border: 1px solid #b5b2b2;
+        border-radius: 40px;
+        padding: 40px;
+    }
+
+    &.invitation-header {
+        margin: 0 0 1rem 0;
+        font-weight: bold;
+        line-height: 1.2;
+        text-align: center;
+        background-color: white;
+        padding: 0;
+    }
+}
+</style>
+

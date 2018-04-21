@@ -10,7 +10,7 @@ function parsePath(path, params) {
     }, path);
 }
 
-export default (path = '', method = 'GET', requireAuth = false) => async (args = {}) => {
+export default (path = '', method = 'GET', requireAuth = false, showAlert = true) => async (args = {}) => {
     const { body, params, query, headers: otherHeaders } = args;
     let headers = { 'Content-Type': 'application/json' };
     if (requireAuth) {
@@ -67,7 +67,9 @@ export default (path = '', method = 'GET', requireAuth = false) => async (args =
     } catch (err) {
         console.error(err);
         if (err.error && err.error.message && err.error.message !== 'Error') {
-            alertify.alert('Error', err.error.message);
+            if (showAlert) {
+                alertify.alert('Error', err.error.message);
+            }
         }
         return err;
     }

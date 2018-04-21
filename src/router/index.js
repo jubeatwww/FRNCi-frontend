@@ -23,9 +23,13 @@ import alertify from 'alertifyjs';
 import 'vue-material/dist/vue-material.css';
 import 'alertifyjs/build/css/alertify.min.css';
 import 'alertifyjs/build/css/themes/default.min.css';
+import customAlertify from '../lib/CustomAlertify';
 
 Vue.use(VueMaterial);
 Vue.use(Router);
+
+alertify.dialog('AlertInvite', customAlertify.InvitePrompt, true, 'prompt');
+
 Vue.mixin({
     data() {
         return { api, alertify };
@@ -66,14 +70,13 @@ const router = new Router({
                         static: true,
                     },
                     async beforeEnter(to, from, next) {
-                        console.log('route before profile enter');
-                        console.log(to.params.id);
                         const apiArgs = { params: { userId: to.params.id } };
                         /* eslint-disable */
                         if (to.params.id !== 'me' && to.params.id !== localStorage.getItem('_id')) {
                             to.meta.otherUser = {
                                 user: await api.users.profile(apiArgs),
                                 userIntegrity: await api.users.integrity(apiArgs),
+                                invitation: await api.invitations.get(apiArgs),
                             };
                         }
                         /* eslint-enable */
