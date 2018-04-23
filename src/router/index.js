@@ -15,6 +15,8 @@ import CtrlOrders from '@/components/ControlPanel/Orders';
 import CtrlAttendees from '@/components/ControlPanel/Attendees';
 import EventPage from '@/components/Event/Main';
 import Purchase from '@/components/Product/Purchase';
+import Chat from '@/components/Chat/Main';
+import ChatContent from '@/components/Chat/Content';
 
 import api from '@/actions/api/index';
 
@@ -210,6 +212,132 @@ const router = new Router({
                     name: 'Purchase',
                     meta: {
                         requireAuth: true,
+                    },
+                },
+                {
+                    path: 'chat',
+                    component: Chat,
+                    name: 'Chat',
+                    redirect: '/chat/a',
+                    children: [
+                        {
+                            path: 'a',
+                            name: 'Chat Redirect',
+                            component: ChatContent,
+                            async beforeEnter(to, from, next) {
+                                if (to.meta.accept.length > 0) {
+                                    next(`/chat/a/${to.meta.accept[0].otherUser._id}`);
+                                }
+                                next();
+                            },
+                            meta: {
+                                requireAuth: true,
+                                static: true,
+                            },
+                        },
+                        {
+                            path: 'a/:userId',
+                            component: ChatContent,
+                            name: 'ChatAccept',
+                            async beforeEnter(to, from, next) {
+                                /* eslint-disable */
+                                to.meta.chatrooms = to.meta.accept;
+                                const res = await api.messages.get({ params: to.params });
+                                if (res.ok) {
+                                    to.meta.messages = res;
+                                }
+                                console.log(to);
+                                /* eslint-enable */
+                                next();
+                            },
+                            meta: {
+                                requireAuth: true,
+                                static: true,
+                            },
+                        },
+                        {
+                            path: 's',
+                            name: 'Chat Redirect',
+                            component: ChatContent,
+                            async beforeEnter(to, from, next) {
+                                if (to.meta.inviteSend.length > 0) {
+                                    next(`/chat/a/${to.meta.inviteSend[0].to._id}`);
+                                }
+                                next();
+                            },
+                            meta: {
+                                requireAuth: true,
+                                static: true,
+                            },
+                        },
+                        {
+                            path: 's/:userId',
+                            component: ChatContent,
+                            name: 'ChatSend',
+                            async beforeEnter(to, from, next) {
+                                /* eslint-disable */
+                                to.meta.chatrooms = to.meta.inviteSend;
+                                const res = await api.invitations.get({ params: to.params });
+                                if (res.ok) {
+                                    to.meta.messages = res;
+                                }
+                                console.log(to);
+                                /* eslint-enable */
+                                next();
+                            },
+                            meta: {
+                                requireAuth: true,
+                                static: true,
+                            },
+                        },
+                        {
+                            path: 'r',
+                            name: 'Chat Redirect',
+                            component: ChatContent,
+                            async beforeEnter(to, from, next) {
+                                if (to.meta.inviteRecv.length > 0) {
+                                    next(`/chat/a/${to.meta.inviteRecv[0].from._id}`);
+                                }
+                                next();
+                            },
+                            meta: {
+                                requireAuth: true,
+                                static: true,
+                            },
+                        },
+                        {
+                            path: 's/:userId',
+                            component: ChatContent,
+                            name: 'ChatReceive',
+                            async beforeEnter(to, from, next) {
+                                /* eslint-disable */
+                                to.meta.chatrooms = to.meta.inviteRecv;
+                                const res = await api.invitations.get({ params: to.params });
+                                if (res.ok) {
+                                    to.meta.messages = res;
+                                }
+                                console.log(to);
+                                /* eslint-enable */
+                                next();
+                            },
+                            meta: {
+                                requireAuth: true,
+                                static: true,
+                            },
+                        },
+
+                    ],
+                    async beforeEnter(to, from, next) {
+                        /* eslint-disable */
+                        const accept = await api.messages.all();
+                        const inviteSend = await api.invitations.all({ params: { role: 'from' } });
+                        const inviteRecv = await api.invitations.all({ params: { role: 'to' } });
+                        to.meta.accept = accept.data || [];
+                        to.meta.inviteSend = inviteSend.data || [];
+                        to.meta.inviteRecv = inviteRecv.data || [];
+                        /* eslint-enable */
+                        console.log(to.meta);
+                        next();
                     },
                 },
                 {

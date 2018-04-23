@@ -53,7 +53,10 @@ export default (path = '', method = 'GET', requireAuth = false, showAlert = true
         const res = await fetch(`${API_URL}/${parsedPath}`, options);
         if (res.ok) {
             const responseData = await (isTextResponse ? res.text() : res.json());
-            return {
+            return responseData instanceof Array ? {
+                ok: true,
+                data: responseData,
+            } : {
                 ok: true,
                 ...responseData,
             };
