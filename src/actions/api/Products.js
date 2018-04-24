@@ -4,7 +4,7 @@ export default {
 
     loadProducts(nationality) {
         const n = `${nationality || 'tw'}`.toLowerCase();
-        const tags = n === 'tw' ? ['201803', 'tw_only'] : ['201803', 'fn_only'];
+        const tags = n === 'tw' ? ['201804', 'tw_only'] : ['201804', 'fn_only'];
         return fetch(`${API_URL}/products?tags=${tags}`, {
             mode: 'cors',
             method: 'GET',
