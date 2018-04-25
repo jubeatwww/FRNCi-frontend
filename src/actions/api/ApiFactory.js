@@ -47,11 +47,10 @@ export default (path = '', method = 'GET', requireAuth = false, showAlert = true
         options.body = JSON.stringify(body);
     }
 
-    const isTextResponse = headers['Content-Type'].indexOf('text') >= 0;
-
     try {
         const res = await fetch(`${API_URL}/${parsedPath}`, options);
         if (res.ok) {
+            const isTextResponse = res.headers.get('Content-Type').indexOf('text') >= 0;
             const responseData = await (isTextResponse ? res.text() : res.json());
             return responseData instanceof Array ? {
                 ok: true,

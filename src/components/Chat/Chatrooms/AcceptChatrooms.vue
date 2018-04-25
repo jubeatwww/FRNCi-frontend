@@ -1,14 +1,14 @@
 <template>
     <section class="chat-accept">
-        <ul v-if="$route.meta.chatrooms">
-            <li v-for="room in $route.meta.chatrooms" :key="room.latestMessage.who">
+        <ul v-if="chatrooms.length > 0">
+            <li v-for="room in chatrooms" :key="room.latestMessage.who" @click="changeRoom(room.otherUser._id)">
                 <div>
-                        <md-avatar class="md-avatar-icon" md-menu-trigger>
-                            <img :src="room.otherUser.photo" alt="Avatar">
-                        </md-avatar>
+                    <md-avatar class="md-avatar-icon" md-menu-trigger>
+                        <img :src="room.otherUser.photo" alt="Avatar">
+                    </md-avatar>
                 </div>
                 <div class="content">
-                        <span>{{name(room)}}</span>
+                        <span>{{room.otherUser.firstName}}</span>
                         <span>{{room.latestMessage.content}}</span>
                 </div>
                 <div>
@@ -20,21 +20,13 @@
 </template>
 
 <script>
+import { accept } from '../../../utils/mixins/Chatrooms';
+
 export default {
-    data() {
-        console.log(this.$route);
-        return {};
-    },
+    mixins: [accept],
     methods: {
-        name(room) {
-            if (this.$route.name === 'ChatAccept') {
-                return room.otherUser.firstName;
-            } else if (this.$route.name === 'ChatSend') {
-                return room.to.firstName;
-            } else if (this.$route.name === 'ChatReceive') {
-                return room.from.firstName;
-            }
-            return '';
+        changeRoom(id) {
+            this.$router.push({ path: `/chat/a/${id}` });
         },
     },
 };
@@ -54,6 +46,11 @@ section {
             list-style: none;
             display: flex;
             padding: 10px 0 20px;
+
+            &:hover {
+                background-color: #def5ea;
+            }
+
             .content {
                 display: flex;
                 flex-direction: column;

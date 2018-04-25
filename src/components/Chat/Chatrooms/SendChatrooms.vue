@@ -1,0 +1,62 @@
+<template>
+    <section class="chat-send">
+        <ul v-if="chatrooms.length > 0">
+            <li v-for="room in chatrooms" :key="room.to._id" @click="roomChange(room.to._id)">
+                <div>
+                    <md-avatar class="md-avatar-icon" md-menu-trigger>
+                        <img :src="room.to.photo" alt="Avatar">
+                    </md-avatar>
+                </div>
+                <div class="content">
+                        <span>{{room.to.firstName}}</span>
+                        <span>{{room.content}}</span>
+                </div>
+                <div>
+                        <span class="chat-time">15:34</span><!-- 最新訊息時間(當天) -->
+                </div>
+            </li>
+        </ul>
+    </section>
+</template>
+
+<script>
+
+import { send } from '../../../utils/mixins/Chatrooms';
+
+export default {
+    mixins: [send],
+    methods: {
+        roomChange(id) {
+            this.$router.push({ path: `/chat/s/${id}` });
+        },
+    },
+};
+</script>
+
+<style lang="scss" scoped>
+section {
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+    ul {
+        list-style-type: none;
+        padding: 20px 0 1rem;
+        margin: 0;
+        width: 100%;
+        li {
+            list-style: none;
+            display: flex;
+            padding: 10px 0 20px;
+            
+            &:hover {
+                background-color: #def5ea;
+            }
+
+            .content {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
+}
+</style>

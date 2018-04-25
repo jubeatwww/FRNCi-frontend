@@ -2,27 +2,32 @@
     <main>
         <div class="chatroom-wrapper">
             <nav>
-                <a>Accepted</a>
+                <router-link to="/chat/a">Accept</router-link>
                 <md-menu>
                     <md-button md-menu-trigger>Pending</md-button>
 
                     <md-menu-content>
-                        <md-menu-item>Send</md-menu-item>
-                        <md-menu-item>Received</md-menu-item>
+                        <md-menu-item @click="toChatSend">Send</md-menu-item>
+                        <md-menu-item @click="toChatRecv">Received</md-menu-item>
                     </md-menu-content>
                 </md-menu>
             </nav>
-            <Chatrooms></Chatrooms>
+            <router-view name="chatrooms"></router-view>
         </div>
-        <router-view></router-view>
+        <router-view name="content"></router-view>
     </main>
 </template>
 
 <script>
-import Chatrooms from './Chatrooms';
-
 export default {
-    components: { Chatrooms },
+    methods: {
+        toChatSend() {
+            this.$router.push('/chat/s');
+        },
+        toChatRecv() {
+            this.$router.push('/chat/r');
+        },
+    },
 };
 </script>
 

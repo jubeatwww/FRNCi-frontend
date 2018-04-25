@@ -1,6 +1,6 @@
 <template>
     <section>
-        <template v-if="$route.meta.messages">
+        <template v-if="messages.length > 0">
             <header>
                 <div class="chat-content-avatar">
                     <md-avatar class="md-avatar-icon" md-menu-trigger>
@@ -12,10 +12,10 @@
                     <div>from {{otherUser.nationality}}</div>
                 </div>
             </header>
-            <article>
+            <article @scroll="onScroll">
                 <li v-for="(msg, i) in messages" :key="`msg-${i}`" :class="msg.seq === 1 ? 'first-msg' : ''">
                     <div>
-                        {{ name(msg.who) }}
+                        {{ author(msg.who) }}
                     </div>
                     <div>
                         {{ msg.content }}
@@ -27,7 +27,7 @@
                 </div>
             </article>
             <footer>
-                <textarea name="message" id="" rows="3" v-model="postMsg"></textarea>
+                <textarea name="message" id="post-message" rows="3" v-model="postMsg"></textarea>
                 <button @click="send">Send</button>
             </footer>
         </template>
@@ -35,26 +35,20 @@
 </template>
 
 <script>
+import { accept } from '../../../utils/mixins/ChatContent';
+
 export default {
+    mixins: [accept],
     data() {
         return {
+            msgUpdating: false,
             postMsg: '',
             page: 1,
         };
     },
     computed: {
-        otherUser() {
-            if (this.$route.name === 'ChatAccept') {
-                return this.$route.meta.messages.otherUser;
-            } else if (this.$route.name === 'ChatSend') {
-                return this.$route.meta.messages.from;
-            } else if (this.$route.name === 'ChatReceive') {
-                return this.$route.meta.messages.to;
-            }
-            return null;
-        },
-        messages() {
-            return this.$route.meta.messages.messages;
+        isTop() {
+            return this.messages[this.messages.length - 1].seq === 1;
         },
         myName() {
             return this.$route.meta.user.user.firstName;
@@ -62,23 +56,49 @@ export default {
         othersName() {
             return this.otherUser.firstName;
         },
-        isTop() {
-            return this.messages[this.messages.length - 1].seq === 1;
-        },
     },
     methods: {
-        name(id) {
-            if (id === this.otherUser._id) {
+        author(uid) {
+            if (uid === this.otherUser._id) {
                 return this.othersName;
             }
             return this.myName;
         },
-        send() {
+        async send() {
             const apiArgs = {
                 params: { userId: this.otherUser._id },
                 body: { content: this.postMsg },
             };
-            this.api.messages.send(apiArgs);
+            const res = await this.api.messages.send(apiArgs);
+            if (res.ok) {
+                this.messages.splice(0, 0, {
+                    content: this.postMsg,
+                    seq: this.seq + 1,
+                    time: new Date(Date.now()).toISOString(),
+                    who: this.$route.meta.user.user._id,
+                });
+                this.postMsg = '';
+                this.seq += 1;
+            }
+        },
+        async onScroll(e) {
+            if (this.msgUpdating) {
+                return false;
+            }
+            if (e.target.scrollTop === 0) {
+                const apiArgs = {
+                    params: { userId: this.otherUser._id },
+                    query: { page: this.page + 1 },
+                };
+                this.msgUpdating = true;
+                const res = await this.api.messages.get(apiArgs);
+                if (res.ok) {
+                    this.page += 1;
+                    this.messages.push(...res.messages);
+                }
+                this.msgUpdating = false;
+            }
+            return true;
         },
     },
 };
