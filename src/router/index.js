@@ -321,6 +321,11 @@ function logout(nextFn, redirectToLogin) {
 }
 
 router.beforeEach(async (to, from, next) => {
+    if (to.path.indexOf('chat') >= 0) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = 'scroll';
+    }
     console.log('route before each', to);
     const token = localStorage.getItem('_token');
     const userId = localStorage.getItem('_id');

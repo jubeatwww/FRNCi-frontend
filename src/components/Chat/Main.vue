@@ -35,7 +35,7 @@ export default {
 main {
     display: flex;
     max-width: 960px;
-    height: calc(100vh - 170px);
+    height: calc(89vh - 70px);
     margin: 65px auto 2%;
     padding: 0 15px;
     

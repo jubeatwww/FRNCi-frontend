@@ -12,19 +12,29 @@
                     <div>from {{otherUser.nationality}}</div>
                 </div>
             </header>
-            <article @scroll="onScroll">
-                <li v-for="(msg, i) in messages" :key="`msg-${i}`" :class="msg.seq === 1 ? 'first-msg' : ''">
-                    <div>
-                        {{ author(msg.who) }}
+            <article>
+                <ul @scroll="onScroll">
+                    <li v-for="(msg, i) in messages"
+                        :key="`msg-${i}`"
+                        :class="[
+                            msg.seq === 1 ? 'first-msg' : '',
+                            msg.who === otherUser._id ? 'other-message' : 'my-message',
+                            'message',
+                        ]">
+                        <div class="detail">
+                            <i class="fa fa-circle"></i>
+                            <div class="author">{{ author(msg.who) }}</div>
+                            <div class="time">87:87</div>
+                        </div>
+                        <div class="content">
+                            {{ msg.content }}
+                        </div>
+                    </li>
+                    <div :class="[isTop ? 'show-hello' : 'hide-hello']">
+                        Hey {{myName}} and {{othersName}}!<br>You’re matched! So excited to introduce you two.
+                        Take a quick moment to break the ice.
                     </div>
-                    <div>
-                        {{ msg.content }}
-                    </div>
-                </li>
-                <div :class="[isTop ? 'show-hello' : 'hide-hello']">
-                    Hey {{myName}} and {{othersName}}! You’re matched! So excited to introduce you two.
-                    Take a quick moment to break the ice.
-                </div>
+                </ul>
             </article>
             <footer>
                 <textarea name="message" id="post-message" rows="3" v-model="postMsg"></textarea>
@@ -116,6 +126,7 @@ section {
     border: 1px solid rgba(112, 112, 112, .4);
     header {
         display: flex;
+        height: 120px;
         padding: 20px;
         border-bottom: 1px solid rgba(112, 112, 112, .4);
 
@@ -135,15 +146,74 @@ section {
         }
     }
     article {
-        height: 60%;
-        list-style: none;
-        display: flex;
-        flex-direction: column-reverse;
-        overflow: scroll;
+        height: calc(100% - 290px);
+        ul {
+            height: 100%;
+            list-style: none;
+            display: flex;
+            flex-direction: column-reverse;
+            overflow: scroll;
+            margin: 16px 0 0 0;
+            padding: 0;
 
-        li {
-            width: 66%;
+            li {
+                width: 66%;
+
+                &.my-message {
+                    align-self: flex-end;
+                    .detail {
+                        display: flex;
+                        flex-direction: row-reverse;
+                        i {
+                            color: #f8b62c;
+                        }
+                    }
+
+                    .content {
+                        display: block;
+                        background-color: #f8b62c;
+                        float: right;
+                        color: white;
+                        padding: 18px 20px;
+                        line-height: 26px;
+                        font-size: 16px;
+                        border-radius: 7px;
+                        margin-bottom: 30px;
+                        max-width: 90%;
+                        text-align: left;
+                        word-wrap: break-word;
+                        word-break: normal;
+                    }
+                }
+
+                &.other-message {
+                    align-self: flex-start;
+
+                    .detail {
+                        display: flex;
+                        i {
+                            color: #60bc90;
+                        }
+                    }
+                    .content {
+                        display: block;
+                        background-color: #60bc90;
+                        float: left;
+                        color: white;
+                        padding: 18px 20px;
+                        line-height: 26px;
+                        font-size: 16px;
+                        border-radius: 7px;
+                        margin-bottom: 30px;
+                        max-width: 90%;
+                        text-align: left;
+                        word-wrap: break-word;
+                        word-break: normal;
+                    }
+                }
+            }
         }
+
 
         .first-msg {
             order: 2;
@@ -160,6 +230,7 @@ section {
 
     footer {
         padding: 1.5rem;
+        height: 170px;
         textarea {
             width: 100%;
             padding: 10px 20px;
