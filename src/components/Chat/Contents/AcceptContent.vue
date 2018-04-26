@@ -31,13 +31,18 @@
                         </div>
                     </li>
                     <div :class="[isTop ? 'show-hello' : 'hide-hello']">
-                        Hey {{myName}} and {{othersName}}!<br>You’re matched! So excited to introduce you two.
+                        Hey {{myName}} and {{othersName}}! You’re matched!<br>So excited to introduce you two.
                         Take a quick moment to break the ice.
                     </div>
                 </ul>
             </article>
             <footer>
-                <textarea name="message" id="post-message" rows="3" v-model="postMsg"></textarea>
+                <textarea
+                    name="message"
+                    id="post-message"
+                    rows="3"
+                    placeholder="Type your message"
+                    v-model="postMsg"></textarea>
                 <button @click="send">Send</button>
             </footer>
         </template>
@@ -171,6 +176,7 @@ section {
 
                     .content {
                         display: block;
+                        position: relative;
                         background-color: #f8b62c;
                         float: right;
                         color: white;
@@ -178,11 +184,24 @@ section {
                         line-height: 26px;
                         font-size: 16px;
                         border-radius: 7px;
-                        margin-bottom: 30px;
+                        margin: 8px 0 30px;
                         max-width: 90%;
                         text-align: left;
                         word-wrap: break-word;
                         word-break: normal;
+                        &:after {
+                            bottom: 100%;
+                            right: 8%;
+                            border: solid transparent;
+                            content: " ";
+                            height: 0;
+                            width: 0;
+                            position: absolute;
+                            pointer-events: none;
+                            border-bottom-color: #f8b62c;
+                            border-width: 10px;
+                            margin-left: -10px;
+                        }
                     }
                 }
 
@@ -197,6 +216,7 @@ section {
                     }
                     .content {
                         display: block;
+                        position: relative;
                         background-color: #60bc90;
                         float: left;
                         color: white;
@@ -204,11 +224,27 @@ section {
                         line-height: 26px;
                         font-size: 16px;
                         border-radius: 7px;
-                        margin-bottom: 30px;
+                        margin: 8px 0 30px;
                         max-width: 90%;
                         text-align: left;
                         word-wrap: break-word;
                         word-break: normal;
+                        border-bottom-color: #60bc90;
+
+                        &:after {
+                       bottom: 100%;
+                            bottom: 100%;
+                            left: 25%;
+                            border: solid transparent;
+                            content: " ";
+                            height: 0;
+                            width: 0;
+                            position: absolute;
+                            pointer-events: none;
+                            border-width: 10px;
+                            border-bottom-color: #60bc90;
+                            margin-left: -10px;
+                        }
                     }
                 }
             }
@@ -230,7 +266,7 @@ section {
 
     footer {
         padding: 1.5rem;
-        height: 170px;
+        height: 180px;
         textarea {
             width: 100%;
             padding: 10px 20px;
@@ -238,6 +274,8 @@ section {
             border-radius: 5px;
             resize: none;
             border: 1px solid rgba(112, 112, 112, .4);
+            line-height: 26px;
+            font-size: 16px;
 
         }
 

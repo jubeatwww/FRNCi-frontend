@@ -9,7 +9,7 @@
                 </div>
                 <div class="content">
                         <span>{{room.from.firstName}}</span>
-                        <span>{{room.content}}</span>
+                        <span>{{ content(room.content) }}</span>
                 </div>
                 <div>
                         <span class="chat-time">15:34</span><!-- 最新訊息時間(當天) -->
@@ -27,6 +27,12 @@ export default {
     methods: {
         changeRoom(id) {
             this.$router.push({ path: `/chat/r/${id}` });
+        },
+        content(text) {
+            if (text.length > 20) {
+                return `${text.slice(0, 20)}...`;
+            }
+            return text;
         },
     },
 };
@@ -54,6 +60,7 @@ section {
             .content {
                 display: flex;
                 flex-direction: column;
+                text-align: left;
             }
         }
     }
