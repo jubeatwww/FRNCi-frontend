@@ -24,7 +24,7 @@
                         <div class="detail">
                             <i class="fa fa-circle"></i>
                             <div class="author">{{ author(msg.who) }}</div>
-                            <div class="time">87:87</div>
+                            <div class="time">{{toTimeString(msg.time)}}</div>
                         </div>
                         <div class="content">
                             {{ msg.content }}
@@ -54,6 +54,19 @@ import { accept } from '../../../utils/mixins/ChatContent';
 
 export default {
     mixins: [accept],
+    async beforeRouteUpdate(to, from, next) {
+        if (this.$route.params.userId) {
+            const apiArgs = {
+                params: { userId: to.params.userId },
+            };
+            const res = await this.api.messages.get(apiArgs);
+            if (res.ok) {
+                this.messages = res.messages;
+                this.otherUser = res.otherUser;
+            }
+        }
+        next();
+    },
     data() {
         return {
             msgUpdating: false,
@@ -100,6 +113,10 @@ export default {
             if (this.msgUpdating) {
                 return false;
             }
+
+            if (this.messages[this.messages.length - 1].seq === 1) {
+                return false;
+            }
             if (e.target.scrollTop === 0) {
                 const apiArgs = {
                     params: { userId: this.otherUser._id },
@@ -114,6 +131,21 @@ export default {
                 this.msgUpdating = false;
             }
             return true;
+        },
+        isToday(t) {
+            const today = new Date(Date.now());
+            const time = new Date(t);
+
+            return ['getFullYear', 'getMonth', 'getDate'].every(fn => (
+                today[fn]() === time[fn]()
+            ));
+        },
+        toTimeString(t) {
+            const time = new Date(t);
+            if (this.isToday(t)) {
+                return `${time.getHours()}:${time.getMinutes()}, Today`;
+            }
+            return `${time.getHours()}:${time.getMinutes()}, ${time.getMonth()}.${time.getDate()} ${time.getFullYear()}`;
         },
     },
 };
@@ -172,6 +204,10 @@ section {
                         i {
                             color: #f8b62c;
                         }
+                        
+                        .time {
+                            padding: 0 10px;
+                        }
                     }
 
                     .content {
@@ -213,6 +249,10 @@ section {
                         i {
                             color: #60bc90;
                         }
+
+                        .time {
+                            padding: 0 10px;
+                        }
                     }
                     .content {
                         display: block;
@@ -232,7 +272,6 @@ section {
                         border-bottom-color: #60bc90;
 
                         &:after {
-                       bottom: 100%;
                             bottom: 100%;
                             left: 25%;
                             border: solid transparent;

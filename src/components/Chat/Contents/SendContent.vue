@@ -8,16 +8,18 @@
                     </md-avatar>
                 </div>
                 <div class="chat-content-info">
-                    <div>{{otherUser.firstName}}</div>
-                    <div>from {{otherUser.nationality}}</div>
+                    <div>You get a new request from {{otherUser.firstName}}. He/She is looking forward to your reply!</div>
+                    <div class="invitation-ctrl">
+                        <button class="btn-accept" @click="cancel">Cancel</button>
+                    </div>
                 </div>
             </header>
             <article>
-                <li>
-                    <div>
+                <li class="my-message message">
+                    <div class="detail">
                         {{ otherUser.firstName }}
                     </div>
-                    <div>
+                    <div class="content">
                         {{ content }}
                     </div>
                 </li>
@@ -35,6 +37,31 @@ import { send } from '../../../utils/mixins/ChatContent';
 
 export default {
     mixins: [send],
+    async beforeRouteUpdate(to, from, next) {
+        if (this.$route.params.userId) {
+            const apiArgs = {
+                params: { userId: this.$route.params.userId },
+            };
+            const res = await this.api.invitations.get(apiArgs);
+            if (res.ok) {
+                this.content = res.content;
+                this.otherUser = res.to;
+            }
+        }
+        next();
+    },
+    methods: {
+        async cancel() {
+            this.alertify.confirm('Are you sure you want to cancel your request?', async () => {
+                const res = await this.api.invitations.cancel({
+                    params: { userId: this.$route.params.userId },
+                });
+                if (res.ok) {
+                    this.$router.push({ path: '/chat/s' });
+                }
+            });
+        },
+    },
 };
 </script>
 
@@ -69,14 +96,60 @@ section {
         }
     }
     article {
-        height: 60%;
-        list-style: none;
-        display: flex;
-        flex-direction: column-reverse;
-        overflow: scroll;
+        height: calc(100% - 290px);
+        ul {
+            height: 100%;
+            list-style: none;
+            display: flex;
+            flex-direction: column-reverse;
+            overflow: scroll;
+            margin: 16px 0 0 0;
+            padding: 0;
 
-        li {
-            width: 66%;
+            li {
+                width: 66%;
+
+                &.my-message {
+                    align-self: flex-end;
+                    .detail {
+                        display: flex;
+                        flex-direction: row-reverse;
+                        i {
+                            color: #f8b62c;
+                        }
+                    }
+
+                    .content {
+                        display: block;
+                        position: relative;
+                        background-color: #f8b62c;
+                        float: right;
+                        color: white;
+                        padding: 18px 20px;
+                        line-height: 26px;
+                        font-size: 16px;
+                        border-radius: 7px;
+                        margin: 8px 0 30px;
+                        max-width: 90%;
+                        text-align: left;
+                        word-wrap: break-word;
+                        word-break: normal;
+                        &:after {
+                            bottom: 100%;
+                            right: 8%;
+                            border: solid transparent;
+                            content: " ";
+                            height: 0;
+                            width: 0;
+                            position: absolute;
+                            pointer-events: none;
+                            border-bottom-color: #f8b62c;
+                            border-width: 10px;
+                            margin-left: -10px;
+                        }
+                    }
+                }
+            }
         }
 
         .first-msg {

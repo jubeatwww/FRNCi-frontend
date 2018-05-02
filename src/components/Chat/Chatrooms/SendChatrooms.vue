@@ -12,7 +12,6 @@
                         <span>{{content(room.content)}}</span>
                 </div>
                 <div>
-                        <span class="chat-time">15:34</span><!-- 最新訊息時間(當天) -->
                 </div>
             </li>
         </ul>
@@ -25,6 +24,13 @@ import { send } from '../../../utils/mixins/Chatrooms';
 
 export default {
     mixins: [send],
+    async beforeRouteUpdate(to, from, next) {
+        const res = await this.api.invitations.all({ query: { role: 'from' } });
+        if (res.ok) {
+            this.chatrooms = res.data;
+        }
+        next();
+    },
     methods: {
         roomChange(id) {
             this.$router.push({ path: `/chat/s/${id}` });
@@ -34,6 +40,21 @@ export default {
                 return `${text.slice(0, 20)}...`;
             }
             return text;
+        },
+        isToday(t) {
+            const today = new Date(Date.now());
+            const time = new Date(t);
+
+            return ['getFullYear', 'getMonth', 'getDate'].every(fn => (
+                today[fn]() === time[fn]()
+            ));
+        },
+        toTimeString(t) {
+            const time = new Date(t);
+            if (this.isToday(t)) {
+                return `${time.getHours()}:${time.getMinutes()}, Today`;
+            }
+            return `${time.getHours()}:${time.getMinutes()}, ${time.getMonth()}.${time.getDate()} ${time.getFullYear()}`;
         },
     },
 };
