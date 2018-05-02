@@ -10,7 +10,7 @@
                 <div class="chat-content-info">
                     <div>You get a new request from {{otherUser.firstName}}. He/She is looking forward to your reply!</div>
                     <div class="invitation-ctrl">
-                        <button class="btn-accept" @click="cancel">Cancel</button>
+                        <button class="btn-cancel" @click="cancel">Cancel</button>
                     </div>
                 </div>
             </header>
@@ -92,7 +92,27 @@ section {
         .chat-content-info {
             width: 83.333333%;
             text-align: left;
-            padding: 0 15px;
+            padding: 0 0 0 15px;
+            display: flex;
+
+            .invitation-ctrl {
+                width: 25%;
+                display: flex;
+                flex-direction: column;
+                .btn-cancel {
+                    border: 2px solid #60bc90;
+                    background-color: transparent;
+                    padding: 4px 20px;
+                    color: #60bc90;
+                    margin: 5% 0 5%;
+                    white-space: unset;
+                    font-size: 1rem;
+                    line-height: 1.5;
+                    border-radius: 0.25rem;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
+            }
         }
     }
     article {
