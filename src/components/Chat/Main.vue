@@ -2,12 +2,12 @@
     <main>
         <div class="chatroom-wrapper">
             <nav>
-                <router-link to="/chat/a">Accept</router-link>
+                <router-link to="/chat/a">Accepted</router-link>
                 <md-menu>
                     <md-button md-menu-trigger>Pending</md-button>
 
                     <md-menu-content>
-                        <md-menu-item @click="toChatSend">Send</md-menu-item>
+                        <md-menu-item @click="toChatSend">Sent</md-menu-item>
                         <md-menu-item @click="toChatRecv">Received</md-menu-item>
                     </md-menu-content>
                 </md-menu>
