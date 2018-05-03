@@ -12,6 +12,13 @@
                     <img class="cooperation-img" src="/static/img/logo_TCA.png" style="width:180px;" alt="logo TCA">
                 </a>        
             </md-layout>
+            <h3>Marketing Partners</h3>
+            <md-layout md-align="center">
+                <a href="https://tw.forumosa.com/" target="_blank"
+                    title="Forumosa">
+                    <img class="cooperation-img" src="https://s3-ap-northeast-1.amazonaws.com/glocalclick.frnci.events.webphotos/logo_forumosa.jpg" style="width:180px;" alt="logo Forumosa">
+                </a>       
+            </md-layout>
             <h3 class="text-dark-gray">Business Partners</h3>
             <md-layout md-align="center">
                 <a href="https://www.borderless-house-zh.com/tw/" target="_blank"
@@ -64,6 +71,10 @@ section {
 
         h3.text-dark-gray {
             margin-top: 5%;
+        }
+
+        .md-align-center {
+            margin-bottom: 2.5rem;
         }
 
         .cooperation-img {
