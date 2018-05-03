@@ -1,5 +1,14 @@
 <template>
     <section>
+        <div class="invitation" v-if="invitationFrom">
+            You get a request from {{invitation.from.firstName}}. He/She is waiting for your reply!
+            <a @click="invitationConfirm"><i class="fa fa-check"></i>Accept</a>
+            <a @click="invitationReject"><i class="fa fa-times"></i>Ignore</a>
+        </div>
+        <div class="invitation" v-if="invitationTo">
+            {{invitation.to.firstName}} has not replied your request. You can either cancel it or wait.
+            <a @click="invitationCancel"><i class="fa fa-times"></i>Cancel the request</a>
+        </div>
         <ProfileNav v-bind="user"></ProfileNav>
         <section>
             <div id="profile">
@@ -124,12 +133,15 @@ export default {
         Field,
     },
     data() {
-        const { params: { id }, meta: { user, userIntegrity, paid } } = this.$route;
+        const { params: { id } } = this.$route;
+        const { user, userIntegrity, invitation } = this.$route.meta.otherUser ?
+            this.$route.meta.otherUser : this.$route.meta.user;
         const verifyItemOrder = [1, 2, 3, 4, 5];
+
         [
             user.verification.email,
             user.verification.facebook,
-            paid,
+            user.verification.paid,
             userIntegrity,
         ].forEach((ver, i) => {
             if (!ver) {
@@ -141,8 +153,10 @@ export default {
             id,
             user,
             userIntegrity,
-            paid,
+            invitation,
+            paid: user.verification.paid,
             verifyItemOrder,
+            apiArgs: { params: { userId: id } },
         };
     },
     computed: {
@@ -179,6 +193,28 @@ export default {
             return this.user.interests.map(interest => (
                 hobbies.find(hobby => hobby.value === interest).label
             ));
+        },
+        invitationFrom() {
+            return !!(this.invitation && this.invitation.from);
+        },
+        invitationTo() {
+            return !!(this.invitation && this.invitation.to);
+        },
+    },
+    methods: {
+        invitationConfirm() {
+            this.api.invitations.confirm(this.apiArgs);
+        },
+        invitationReject() {
+            this.alertify.confirm('', 'Are you sure you want to ignore this request?', () => {
+                this.api.invitations.reject(this.apiArgs);
+            });
+        },
+        invitationCancel() {
+            console.log('cancel');
+            this.alertify.confirm('Are you sure you want to cancel your request?', () => {
+                this.api.invitations.cancel(this.apiArgs);
+            });
         },
     },
 };

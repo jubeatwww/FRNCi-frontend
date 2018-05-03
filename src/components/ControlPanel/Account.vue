@@ -76,7 +76,7 @@ import { nationalities } from '../../config';
 export default {
     components: { FormField, RadioGroup, DatePicker },
     data() {
-        const { user } = this.$route.meta;
+        const { user } = this.$route.meta.user;
         return {
             info: {
                 contactEmail: user.contactEmail || user.email,
