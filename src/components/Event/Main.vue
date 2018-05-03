@@ -468,6 +468,49 @@ export default {
     font-weight: 700;
 }
 
+.guest-intro {
+  padding-bottom: 5%;
+  text-align: center;
+}
+
+.gc-events-note .col-md-3 {
+    min-width: 25%;
+    flex: 0 1 75%;
+}
+
+.gc-events-note .col-md-8 {
+    min-width: 75%;
+    flex: 0 1 75%;
+}
+
+.guest-intro img {
+    width: 150px;
+    border-radius: 50%;
+}
+
+.guest-intro h5 {
+    margin-bottom: 1rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    color: inherit;
+}
+
+.guest-intro h5 span {
+    background-color: #f8b62c;
+    color: #fff;
+    font-size: 18PX;
+    padding: 3px 5px;
+    line-height: 20px;
+    letter-spacing: 2px;
+}
+
+.guest-intro p {
+    margin-bottom: 1rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
 @media (max-width: 575.98px) {
     .gc-events-note .event-card {
         display: grid;
