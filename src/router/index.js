@@ -16,6 +16,15 @@ import CtrlAttendees from '@/components/ControlPanel/Attendees';
 import EventPage from '@/components/Event/Main';
 import Purchase from '@/components/Product/Purchase';
 
+import Chat from '@/components/Chat/Main';
+import AcceptChatrooms from '@/components/Chat/Chatrooms/AcceptChatrooms';
+import SendChatrooms from '@/components/Chat/Chatrooms/SendChatrooms';
+import RecvChatrooms from '@/components/Chat/Chatrooms/RecvChatrooms';
+import AcceptContent from '@/components/Chat/Contents/AcceptContent';
+import SendContent from '@/components/Chat/Contents/SendContent';
+import RecvContent from '@/components/Chat/Contents/RecvContent';
+import DefaultContent from '@/components/Chat/Contents/DefaultContent';
+
 import api from '@/actions/api/index';
 
 import VueMaterial from 'vue-material';
@@ -213,6 +222,87 @@ const router = new Router({
                     },
                 },
                 {
+                    path: 'chat',
+                    component: Chat,
+                    name: 'Chat',
+                    redirect: '/chat/a',
+                    children: [
+                        {
+                            path: 'a',
+                            name: 'Chat Accept No Content',
+                            components: {
+                                chatrooms: AcceptChatrooms,
+                                content: DefaultContent,
+                            },
+                            meta: {
+                                requireAuth: true,
+                                static: true,
+                            },
+                        },
+                        {
+                            path: 's',
+                            name: 'Chat Send No Content',
+                            components: {
+                                chatrooms: SendChatrooms,
+                                content: DefaultContent,
+                            },
+                            meta: {
+                                requireAuth: true,
+                                static: true,
+                            },
+                        },
+                        {
+                            path: 'r',
+                            name: 'Chat Recv No Content',
+                            components: {
+                                chatrooms: RecvChatrooms,
+                                content: DefaultContent,
+                            },
+                            meta: {
+                                requireAuth: true,
+                                static: true,
+                            },
+                        },
+                        {
+                            path: 'a/:userId',
+                            name: 'ChatAccept',
+                            components: {
+                                chatrooms: AcceptChatrooms,
+                                content: AcceptContent,
+                            },
+                            meta: {
+                                requireAuth: true,
+                                static: true,
+                            },
+                        },
+                        {
+                            path: 's/:userId',
+                            name: 'ChatSend',
+                            components: {
+                                chatrooms: SendChatrooms,
+                                content: SendContent,
+                            },
+                            meta: {
+                                requireAuth: true,
+                                static: true,
+                            },
+                        },
+                        {
+                            path: 'r/:userId',
+                            name: 'ChatReceive',
+                            components: {
+                                chatrooms: RecvChatrooms,
+                                content: RecvContent,
+                            },
+                            meta: {
+                                requireAuth: true,
+                                static: true,
+                            },
+                        },
+
+                    ],
+                },
+                {
                     path: '*',
                     redirect: { path: '/' },
                 },
@@ -231,7 +321,12 @@ function logout(nextFn, redirectToLogin) {
 }
 
 router.beforeEach(async (to, from, next) => {
-    console.log('route before each');
+    if (to.path.indexOf('chat') >= 0) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = 'scroll';
+    }
+    console.log('route before each', to);
     const token = localStorage.getItem('_token');
     const userId = localStorage.getItem('_id');
     if (token) {
