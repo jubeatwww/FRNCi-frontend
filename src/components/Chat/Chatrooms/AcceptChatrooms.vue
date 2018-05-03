@@ -9,7 +9,7 @@
                 </div>
                 <div class="content">
                         <span>{{room.otherUser.firstName}}</span>
-                        <span>{{content(room.latestMessage.content)}}</span>
+                        <span :class="room.unRead ? 'unread' : ''">{{content(room.latestMessage.content)}}</span>
                 </div>
                 <div>
                     <span class="chat-time">{{toTimeString(room.latestMessage.time)}}</span><!-- 最新訊息時間(當天) -->
@@ -73,6 +73,7 @@ section {
         li {
             list-style: none;
             display: flex;
+            justify-content: space-between;
             padding: 10px 0 20px;
 
             &:hover {
@@ -83,6 +84,10 @@ section {
                 display: flex;
                 flex-direction: column;
                 text-align: left;
+
+                .unread {
+                    font-weight: bold;
+                }
             }
         }
     }

@@ -4,6 +4,7 @@ import products from './Products';
 import events from './Events';
 import invitations from './Invitations';
 import messages from './Messages';
+import notifications from './Notifications';
 
 export default {
     auth,
@@ -12,4 +13,5 @@ export default {
     events,
     invitations,
     messages,
+    notifications,
 };

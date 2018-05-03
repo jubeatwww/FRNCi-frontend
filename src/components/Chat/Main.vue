@@ -2,9 +2,13 @@
     <main>
         <div class="chatroom-wrapper">
             <nav>
-                <router-link to="/chat/a">Accepted</router-link>
+                <router-link to="/chat/a">Accepted
+                    <span class="red-notification" v-if="unread > 0">{{unread}}</span>
+                </router-link>
                 <md-menu>
-                    <md-button md-menu-trigger>Pending</md-button>
+                    <md-button md-menu-trigger>Pending
+                        <span class="red-notification" v-if="recv > 0">{{recv}}</span>
+                    </md-button>
 
                     <md-menu-content>
                         <md-menu-item @click="toChatSend">Sent</md-menu-item>
@@ -20,12 +24,33 @@
 
 <script>
 export default {
+    data() {
+        return {
+            unread: 0,
+            recv: 0,
+        };
+    },
+    async beforeRouteUpdate(to, from, next) {
+        this.updateMsgNotify();
+        next();
+    },
+    created() {
+        this.updateMsgNotify();
+    },
     methods: {
         toChatSend() {
             this.$router.push('/chat/s');
         },
         toChatRecv() {
             this.$router.push('/chat/r');
+        },
+        async updateMsgNotify() {
+            const resUnread = await this.api.messages.all();
+            const resRecv = await this.api.invitations.all({ query: { role: 'to' } });
+            if (resUnread.ok && resRecv.ok) {
+                this.unread = resUnread.data.filter(m => m.unRead).length;
+                this.recv = resRecv.data.length;
+            }
         },
     },
 };
@@ -53,6 +78,15 @@ main {
         nav {
             margin-top: 8px;
             display: flex;
+            .red-notification {
+                background-color: #ef210f;
+                text-align: center;
+                padding: 3px 8px;
+                border-radius: 50%;
+                color: white;
+                font-size: 12px;
+                margin-left: 3px;
+            }
 
             a {
                 padding: 0.5rem 1rem;

@@ -9,7 +9,7 @@
                 </div>
                 <div class="chat-content-info">
                     <div>{{otherUser.firstName}}</div>
-                    <div>from {{otherUser.nationality}}</div>
+                    <div>from {{nationality}}</div>
                 </div>
             </header>
             <article>
@@ -51,6 +51,7 @@
 
 <script>
 import { accept } from '../../../utils/mixins/ChatContent';
+import { nationalities } from '../../../config';
 
 export default {
     mixins: [accept],
@@ -83,6 +84,11 @@ export default {
         },
         othersName() {
             return this.otherUser.firstName;
+        },
+        nationality() {
+            return nationalities.find(n =>
+                (n.value === this.otherUser.nationality.toUpperCase()),
+            ).label;
         },
     },
     methods: {

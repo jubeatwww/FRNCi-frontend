@@ -8,13 +8,15 @@ import User from '@/components/User/Main';
 import Policy from '@/components/Policy/Main';
 import RegistProfile from '@/components/RegistProfile/Main';
 import EmailVerification from '@/components/EmailVerification/Main';
+import EventPage from '@/components/Event/Main';
+import Purchase from '@/components/Product/Purchase';
+import Search from '@/components/Search/Main';
+
 import ControlPanel from '@/components/ControlPanel/Main';
 import CtrlAccount from '@/components/ControlPanel/Account';
 import CtrlProfile from '@/components/ControlPanel/Profile';
 import CtrlOrders from '@/components/ControlPanel/Orders';
 import CtrlAttendees from '@/components/ControlPanel/Attendees';
-import EventPage from '@/components/Event/Main';
-import Purchase from '@/components/Product/Purchase';
 
 import Chat from '@/components/Chat/Main';
 import AcceptChatrooms from '@/components/Chat/Chatrooms/AcceptChatrooms';
@@ -301,6 +303,14 @@ const router = new Router({
                         },
 
                     ],
+                },
+                {
+                    path: 'search',
+                    name: 'Search',
+                    component: Search,
+                    meta: {
+                        static: true,
+                    },
                 },
                 {
                     path: '*',
