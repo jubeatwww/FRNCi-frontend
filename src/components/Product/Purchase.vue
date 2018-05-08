@@ -98,9 +98,7 @@ export default {
                 const token = localStorage.getItem('_token');
                 const userId = localStorage.getItem('_id');
 
-                const { nationality } = this.$route.meta.user;
-                console.log(nationality);
-                console.log(product.tags.indexOf('tw_only'));
+                const { nationality } = this.$route.meta.user.user;
                 if (product.tags.indexOf('fn_only') >= 0 && nationality === 'tw') {
                     this.alertify.alert('This event is ony for international.');
                     return;
