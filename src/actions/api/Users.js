@@ -2,6 +2,7 @@ import { API_URL } from '../../config';
 import APIFactory from './ApiFactory';
 
 export default {
+    all: APIFactory('users', 'GET', true),
     get: APIFactory('users/:userId', 'GET', true),
     profile: APIFactory('users/:userId/profile', 'GET', true),
     update: APIFactory('users/:userId', 'PUT', true),
@@ -10,6 +11,8 @@ export default {
     confirmEmailVerify: APIFactory('users/:userId/confirm-verify', 'POST', true),
     forgotPassword: APIFactory('users/forgot-pw', 'POST', false),
     resetPassword: APIFactory('users/reset-pw', 'POST', false),
+    nativeLanguages: APIFactory('users/languages/native', 'GET', true),
+    studyLanguages: APIFactory('users/languages/study', 'GET', true),
     async uploadPhoto(userId = '', token = '', photo = undefined) {
         const formdata = new FormData();
         formdata.append('image', photo);

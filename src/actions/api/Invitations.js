@@ -1,7 +1,7 @@
 import APIFactory from './ApiFactory';
 
 export default {
-    all: APIFactory('invivations', 'GET', true),
+    all: APIFactory('invitations', 'GET', true),
     get: APIFactory('invitations/:userId', 'GET', true, false),
     send: APIFactory('invitations/:userId', 'POST', true),
     confirm: APIFactory('invitations/:userId/confirm', 'POST', true),

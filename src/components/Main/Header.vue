@@ -13,6 +13,11 @@
                 繁中(台灣人)
             </md-button>
             <md-theme md-name="orange">
+                <md-button id="search" @click="search">
+                    Find Buddies
+                </md-button>
+            </md-theme>
+            <md-theme md-name="orange">
                 <!-- <md-button class="md-raised md-primary">Find Buddies</md-button> -->
                 <md-menu md-direction="bottom left" v-if="$route.meta.isLogin">
                     <md-avatar class="md-avatar-icon" md-menu-trigger>
@@ -59,6 +64,9 @@ export default {
         profile() {
             this.$router.push('/controlpanel/profile');
         },
+        search() {
+            this.$router.push('/search');
+        },
         logout() {
             localStorage.clear();
             this.$router.push({ path: '/login' });
@@ -100,6 +108,18 @@ header{
         display: flex;
         align-items: center;
         margin-right: 2%;
+
+        #search {
+            height: 35px;
+            border: 2px solid #f8b62c;
+            background-color: #f8b62c;
+            padding: 4px 20px;
+            color: white;
+            letter-spacing: 1px;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            border-radius: 0.2rem;
+        }
 
         button.md-theme-orange.md-button:not([disabled]).md-primary.md-raised {
             margin: 0 20px;
