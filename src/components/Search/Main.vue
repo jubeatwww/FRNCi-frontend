@@ -1,7 +1,7 @@
 <template>
     <section>
         <section class="search">
-            <md-input-container>
+            <md-input-container class="study-lang">
                 <label for="studyLanguage">Language to practice</label>
                 <md-select name="studyLanguages" v-model="nativeLanguage">
                     <md-option v-for="lang in nativeLanguages" :key="lang.value"
@@ -56,17 +56,17 @@
                         <div class="nationality">from {{nationaltyFullStr(user.nationality)}}</div>
                     </div>
                     <div class="detail">
-                        <h6>Speak: 
-                            <span v-for="lang in user.nativeLanguages" :key="lang.language">
-                                {{idToLanguage(lang.language)}}
+                        <h6 class="native-lang">Speak: 
+                            <span v-for="(lang, i) in user.nativeLanguages" :key="lang.language">
+                                <template v-if="i !== 0">,</template>{{idToLanguage(lang.language)}}
                             </span>
                         </h6>
-                        <h6>Learning: 
-                            <span v-for="lang in user.studyLanguages" :key="lang.language">
-                                {{idToLanguage(lang.language)}}
+                        <h6 class="study-lang">Learning: 
+                            <span v-for="(lang, i) in user.studyLanguages" :key="lang.language">
+                                <template v-if="i !== 0">,</template>{{idToLanguage(lang.language)}}
                             </span>
                         </h6>
-                        <p>{{user.introduction}}</p>
+                        <p class="intro">{{user.introduction}}</p>
                         <ul>
                             <li v-for="interest in user.interests" :key="interest" class="tag">
                                 # {{interestFullStr(interest)}}
@@ -171,12 +171,25 @@ export default {
 .search {
     display: flex;
     flex-direction: column;
-
+    align-items: center;
+    max-width: 960px;
+    margin: 65px auto 0;
+    .study-lang {
+        max-width: 50%;
+    }
     .adv-search {
         display: flex;
+        flex: 0 0 83.333333%;
+        max-width: 83.333333%;
+        justify-content: space-between;
+        margin: 24px 0 0 0;
+        padding: 0 15px;
     }
 }
 .search-result {
+    padding: 24px 0 0 0;
+    max-width: 960px;
+    margin: auto;
     ul {
         list-style-type: none;
         margin: 0;
@@ -184,6 +197,10 @@ export default {
         li {
             display: flex;
             list-style: none;
+            margin-bottom: 24px;
+            padding: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 0.25rem;
 
             .basic {
                 display: flex;
@@ -194,13 +211,55 @@ export default {
                     width: 120px;
                     height: 120px;
                     border-radius: 60px;
+                    margin-bottom: 1rem;
+                }
+
+                .name {
+                    font-size: 24px;
+                    font-weight: bold;
+                    letter-spacing: 2px;
+                    line-height: 1.5;
+                    color: #707070;
+                }
+
+                .nationality {
+                    font-size: 1rem;
+                    line-height: 1.5;
+                    font-weight: 600;
+                    color: #707070;
                 }
             }
 
             .detail {
+                display: flex;
+                flex-direction: column;
                 flex-basis: 0;
                 flex-grow: 1;
                 max-width: 100%;
+                text-align: left;
+                padding: 0 15px;
+
+                .native-lang {
+                    margin: 0;
+                    font-family: inherit;
+                    line-height: 1.2;
+                    color: inherit;
+                    font-size: 1rem;
+                }
+
+                .study-lang {
+                    margin: 0 0 16px;
+                    font-family: inherit;
+                    line-height: 1.2;
+                    color: inherit;
+                    font-size: 1rem;
+                }
+
+                .intro {
+                    margin: 0 0 1rem;
+                    font-size: 14px;
+                }
+
                 ul {
                     display: flex;
                     flex-wrap: wrap;

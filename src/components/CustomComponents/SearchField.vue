@@ -21,5 +21,22 @@ export default {
 section {
     display: flex;
     flex-direction: column;
+    max-width: 25%;
+    padding: 0 15px;
+
+    header {
+        padding: 8px 16px;
+        border-bottom: 2px solid #60bc90;
+        img {
+            width: 70px;
+        }
+
+        h6 {
+            margin: .5rem 0 .25rem;
+            line-height: 1.2;
+            font-size: 1rem;
+            color: inherit;
+        }
+    }
 }
 </style>
