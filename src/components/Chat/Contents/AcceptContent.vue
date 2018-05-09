@@ -55,7 +55,7 @@ import { accept } from '../../../utils/mixins/ChatContent';
 export default {
     mixins: [accept],
     async beforeRouteUpdate(to, from, next) {
-        if (this.$route.params.userId) {
+        if (to.params.userId) {
             const apiArgs = {
                 params: { userId: to.params.userId },
             };

@@ -206,15 +206,22 @@ export default {
             this.api.invitations.confirm(this.apiArgs);
         },
         invitationReject() {
-            this.alertify.confirm('', 'Are you sure you want to ignore this request?', () => {
-                this.api.invitations.reject(this.apiArgs);
-            });
+            this.alertify.InviteReject(
+                `Are you sure you want to ignore this request?
+                This chat box will be closed afterwards.`,
+                () => {
+                    this.api.invitations.reject(this.apiArgs);
+                },
+            );
         },
         invitationCancel() {
-            console.log('cancel');
-            this.alertify.confirm('Are you sure you want to cancel your request?', () => {
-                this.api.invitations.cancel(this.apiArgs);
-            });
+            this.alertify.InviteCancel(
+                `Are you sure you want to cancel your request?
+                This chat box will be closed afterwards.`,
+                () => {
+                    this.api.invitations.cancel(this.apiArgs);
+                },
+            );
         },
     },
 };

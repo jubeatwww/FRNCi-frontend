@@ -38,6 +38,8 @@ Vue.use(VueMaterial);
 Vue.use(Router);
 
 alertify.dialog('AlertInvite', customAlertify.InvitePrompt, true, 'prompt');
+alertify.dialog('InviteReject', customAlertify.InviteReject, true, 'confirm');
+alertify.dialog('InviteCancel', customAlertify.InviteCancel, true, 'confirm');
 
 Vue.mixin({
     data() {
