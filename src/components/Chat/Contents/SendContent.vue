@@ -15,14 +15,16 @@
                 </div>
             </header>
             <article>
-                <li class="my-message message">
-                    <div class="detail">
-                        {{ otherUser.firstName }}
-                    </div>
-                    <div class="content">
-                        {{ content }}
-                    </div>
-                </li>
+                <ul>
+                    <li class="my-message message">
+                        <div class="detail">
+                            {{ otherUser.firstName }}
+                        </div>
+                        <div class="content">
+                            {{ content }}
+                        </div>
+                    </li>
+                </ul>
             </article>
             <footer>
                 <textarea name="message" rows="3"></textarea>
@@ -38,9 +40,9 @@ import { send } from '../../../utils/mixins/ChatContent';
 export default {
     mixins: [send],
     async beforeRouteUpdate(to, from, next) {
-        if (this.$route.params.userId) {
+        if (to.params.userId) {
             const apiArgs = {
-                params: { userId: this.$route.params.userId },
+                params: { userId: to.params.userId },
             };
             const res = await this.api.invitations.get(apiArgs);
             if (res.ok) {
@@ -52,14 +54,18 @@ export default {
     },
     methods: {
         async cancel() {
-            this.alertify.confirm('Are you sure you want to cancel your request?', async () => {
-                const res = await this.api.invitations.cancel({
-                    params: { userId: this.$route.params.userId },
-                });
-                if (res.ok) {
-                    this.$router.push({ path: '/chat/s' });
-                }
-            });
+            this.alertify.InviteCancel(
+                `Are you sure you want to cancel your request?
+                This chat box will be closed afterwards.`,
+                async () => {
+                    const res = await this.api.invitations.cancel({
+                        params: { userId: this.$route.params.userId },
+                    });
+                    if (res.ok) {
+                        this.$router.push({ path: '/chat/s' });
+                    }
+                },
+            );
         },
     },
 };

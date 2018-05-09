@@ -163,4 +163,42 @@ export default {
             }
         };
     },
+    InviteReject: function() {
+        return {
+            setup: function() {
+                return {
+                    buttons: [
+                        {
+                            text: 'Yes, ignore',
+                            className: alertify.defaults.theme.ok,
+                        },
+                        {
+                            text: 'No, keep it',
+                            invokeOnClose: true,
+                            className: alertify.defaults.theme.cancel,
+                        }
+                    ],
+                };
+            },
+        };
+    },
+    InviteCancel: function() {
+        return {
+            setup: function() {
+                return {
+                    buttons: [
+                        {
+                            text: 'Yes, cancel',
+                            className: alertify.defaults.theme.ok,
+                        },
+                        {
+                            text: "No, don't cancel",
+                            invokeOnClose: true,
+                            className: alertify.defaults.theme.cancel,
+                        }
+                    ],
+                };
+            },
+        };
+    },
 };

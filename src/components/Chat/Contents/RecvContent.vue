@@ -41,9 +41,9 @@ import { recv } from '../../../utils/mixins/ChatContent';
 export default {
     mixins: [recv],
     async beforeRouteUpdate(to, from, next) {
-        if (this.$route.params.userId) {
+        if (to.params.userId) {
             const apiArgs = {
-                params: { userId: this.$route.params.userId },
+                params: { userId: to.params.userId },
             };
             const res = await this.api.invitations.get(apiArgs);
             if (res.ok) {
@@ -60,14 +60,18 @@ export default {
             });
         },
         async reject() {
-            this.alertify.confirm('Are you sure you want to cancel your request?', async () => {
-                const res = await this.api.invitations.reject({
-                    params: { userId: this.$route.params.userId },
-                });
-                if (res.ok) {
-                    this.$router.push({ path: '/chat/r' });
-                }
-            });
+            this.alertify.InviteReject(
+                `Are you sure you want to ignore this request?
+                This chat box will be closed afterwards.`,
+                async () => {
+                    const res = await this.api.invitations.reject({
+                        params: { userId: this.$route.params.userId },
+                    });
+                    if (res.ok) {
+                        this.$router.push({ path: '/chat/r' });
+                    }
+                },
+            );
         },
     },
 };

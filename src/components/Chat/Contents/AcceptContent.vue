@@ -56,7 +56,7 @@ import { nationalities } from '../../../config';
 export default {
     mixins: [accept],
     async beforeRouteUpdate(to, from, next) {
-        if (this.$route.params.userId) {
+        if (to.params.userId) {
             const apiArgs = {
                 params: { userId: to.params.userId },
             };
