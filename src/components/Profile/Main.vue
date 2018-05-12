@@ -134,7 +134,7 @@ export default {
     },
     data() {
         const { params: { id } } = this.$route;
-        const { user, userIntegrity, invitation } = this.$route.meta.otherUser ?
+        const { user, userIntegrity, invitation, isFriend } = this.$route.meta.otherUser ?
             this.$route.meta.otherUser : this.$route.meta.user;
         const verifyItemOrder = [1, 2, 3, 4, 5];
 
@@ -154,6 +154,7 @@ export default {
             user,
             userIntegrity,
             invitation,
+            isFriend,
             paid: user.verification.paid,
             verifyItemOrder,
             apiArgs: { params: { userId: id } },

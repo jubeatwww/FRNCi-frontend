@@ -90,6 +90,7 @@ const router = new Router({
                                 user: await api.users.profile(apiArgs),
                                 userIntegrity: await api.users.integrity(apiArgs),
                                 invitation: await api.invitations.get(apiArgs),
+                                isFriend: await api.users.isFriend(apiArgs),
                             };
                         }
                         /* eslint-enable */

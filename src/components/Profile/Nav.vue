@@ -10,11 +10,15 @@
                     <p><span class="fa fa-bullhorn"></span>{{meetPreference}}</p>
                 </section>
                 <div class="links">
-                    <router-link to="/controlpanel/profile"><i class="fa fa-pencil"></i>Edit Profile</router-link>
-                    <router-link to=""><i class="fa fa-star"></i>Get Verified</router-link>
-                    <a v-if="$route.meta.otherUser" @click="invite">
+                    <router-link to="/controlpanel/profile" v-if="!isOtherUser">
+                        <i class="fa fa-pencil"></i>Edit Profile
+                    </router-link>
+                    <a v-if="showSendRequestBtn" @click="invite">
                         <i class="fa fa-paper-plane"></i>Send Request
                     </a>
+                    <router-link  v-if="showSendMessageBtn" :to="`/chat/a/${$route.meta.otherUser.user._id}`">
+                        <i class="fa fa-comment"></i>Message
+                    </router-link>
                 </div>
             </div>
         </nav>
@@ -98,6 +102,12 @@ export default {
         },
         isOtherUser() {
             return !!this.$route.meta.otherUser;
+        },
+        showSendRequestBtn() {
+            return this.isOtherUser && !this.$route.meta.otherUser.isFriend.isFriend;
+        },
+        showSendMessageBtn() {
+            return this.isOtherUser && this.$route.meta.otherUser.isFriend.isFriend;
         },
     },
     methods: {

@@ -13,6 +13,9 @@ export default {
     resetPassword: APIFactory('users/reset-pw', 'POST', false),
     nativeLanguages: APIFactory('users/languages/native', 'GET', true),
     studyLanguages: APIFactory('users/languages/study', 'GET', true),
+    isFriend: APIFactory('users/:userId/is-friend', 'GET', true),
+    following: APIFactory('users/:userId/interested', 'GET', true),
+    follow: APIFactory('users/:userId/interested', 'PUT', true),
     async uploadPhoto(userId = '', token = '', photo = undefined) {
         const formdata = new FormData();
         formdata.append('image', photo);
