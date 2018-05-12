@@ -4,7 +4,9 @@
             <header>
                 <div class="chat-content-avatar">
                     <md-avatar class="md-avatar-icon" md-menu-trigger>
-                        <img :src="otherUser.photo" alt="Avatar">
+                        <router-link :to="`/profile/${otherUser._id}`">
+                            <img :src="otherUser.photo" alt="Avatar">
+                        </router-link>
                     </md-avatar>
                 </div>
                 <div class="chat-content-info">
