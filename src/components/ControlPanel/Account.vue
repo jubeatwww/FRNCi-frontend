@@ -88,21 +88,31 @@ export default {
                 occupation: user.occupation || '',
                 major: user.major || '',
             },
+            infoValidation: ['contactEmail', 'gender', 'birthday', 'nationality', 'localCity'],
             genderOpt: [{ label: 'male', value: 'm' }, { label: 'female', value: 'f' }],
             nationalities,
         };
     },
     methods: {
         async save() {
-            const args = {
-                params: { userId: localStorage.getItem('_id') },
-                body: this.info,
-            };
-            const result = await this.api.users.update(args);
-            if (result.ok) {
-                this.alertify.notify('Saved successfully');
+            const valid = this.infoValidation.every(key => !!this.info[key]);
+            if (valid) {
+                const args = {
+                    params: { userId: localStorage.getItem('_id') },
+                    body: this.info,
+                };
+                const result = await this.api.users.update(args);
+                if (result.ok) {
+                    this.alertify.notify('Saved successfully');
+                } else {
+                    console.error(result);
+                }
             } else {
-                console.error(result);
+                let error = '';
+                this.infoValidation.filter(key => !this.info[key]).forEach((key) => {
+                    error += `${key} can not be empty<br>`;
+                });
+                this.alertify.alert(error);
             }
         },
     },

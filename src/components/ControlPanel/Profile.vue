@@ -160,7 +160,7 @@ export default {
                 interact: user.interact,
                 meetTimes: user.meetTimes || [],
                 meetFrequency: user.meetFrequency || '',
-                interests: user.interests || '',
+                interests: user.interests || [],
                 interestsDesc: user.interestsDesc || '',
                 learningGoal: user.learningGoal || '',
                 idealBuddy: user.idealBuddy || '',
@@ -192,15 +192,27 @@ export default {
             }
         },
         async save() {
-            const args = {
-                params: { userId: localStorage.getItem('_id') },
-                body: this.info,
-            };
-            const result = await this.api.users.update(args);
-            if (result.ok) {
-                this.alertify.notify('Saved successfully');
+            let error = '';
+            if (this.info.interests.length === 0) {
+                error += 'Please pick up some topics that interest you.<br>';
+            }
+            if (this.info.introduction.length < 5) {
+                error += 'Please tell us about yourself. (At least 5 words)<br>';
+            }
+
+            if (!error) {
+                const args = {
+                    params: { userId: localStorage.getItem('_id') },
+                    body: this.info,
+                };
+                const result = await this.api.users.update(args);
+                if (result.ok) {
+                    this.alertify.notify('Saved successfully');
+                } else {
+                    console.error(result);
+                }
             } else {
-                console.error(result);
+                this.alertify.alert(error);
             }
         },
     },
