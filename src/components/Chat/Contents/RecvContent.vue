@@ -8,7 +8,7 @@
                     </md-avatar>
                 </div>
                 <div class="chat-content-info">
-                    <div>{{otherUser.firstName}} has not replied your request. You can either cancel the request or wait.</div>
+                    <div>You get a new request from {{otherUser.firstName}}. He/She is looking forward to your reply!</div>
                     <div class="invitation-ctrl">
                         <button class="btn-accept" @click="accept">Accept</button>
                         <button class="btn-ignore" @click="reject">Ignore</button>
