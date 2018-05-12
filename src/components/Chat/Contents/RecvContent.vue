@@ -28,7 +28,7 @@
                 </ul>
             </article>
             <footer>
-                <textarea name="message" rows="3"></textarea>
+                <textarea name="message" rows="3" disabled></textarea>
                 <button>Send</button>
             </footer>
         </template>
