@@ -50,7 +50,9 @@
                 <li v-for="user in searchResult" :key="user._id">
                     <div class="basic">
                         <md-avatar class="md-avatar-icon">
-                            <img :src="user.photo" alt="Avatar">
+                            <router-link :to="`/profile/${user._id}`">
+                                <img :src="user.photo" alt="Avatar">
+                            </router-link>
                         </md-avatar>
                         <div class="name">{{user.firstName}}</div>
                         <div class="nationality">from {{nationaltyFullStr(user.nationality)}}</div>
