@@ -11,7 +11,7 @@ function parsePath(path, params) {
 }
 
 export default (path = '', method = 'GET', requireAuth = false, showAlert = true) => async (args = {}) => {
-    const { body, params, query, headers: otherHeaders } = args;
+    const { body, params, query, headers: otherHeaders, alertMsg } = args;
     let headers = { 'Content-Type': 'application/json' };
     if (requireAuth) {
         const token = localStorage.getItem('_token');
@@ -68,6 +68,10 @@ export default (path = '', method = 'GET', requireAuth = false, showAlert = true
         throw err;
     } catch (err) {
         console.error(err);
+        if (alertMsg) {
+            alertify.alert('Error', alertMsg);
+        }
+
         if (err.error && err.error.message && err.error.message !== 'Error') {
             if (showAlert) {
                 alertify.alert('Error', err.error.message);

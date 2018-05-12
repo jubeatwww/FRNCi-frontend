@@ -36,10 +36,13 @@ export default {
     },
     methods: {
         async login() {
-            const result = await this.api.auth.login({ body: {
-                email: this.email,
-                password: this.password,
-            } });
+            const result = await this.api.auth.login({
+                body: {
+                    email: this.email,
+                    password: this.password,
+                },
+                alertMsg: 'Email not exists or wrong password! Please try again',
+            });
             if (result.ok) {
                 const { _id } = result.user;
                 localStorage.clear();
