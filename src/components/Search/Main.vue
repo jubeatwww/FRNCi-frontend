@@ -176,6 +176,12 @@ export default {
     align-items: center;
     max-width: 960px;
     margin: 65px auto 0;
+    @media screen and (max-width: 991px) {
+        max-width: 720px;
+    }
+    @media screen and (max-width: 767px) {
+        max-width: 540px;
+    }
 
     .md-input-container {
         label {
@@ -185,6 +191,9 @@ export default {
 
     .study-lang {
         max-width: 50%;
+        @media screen and (max-width: 767px) {
+            max-width: 100%;
+        }
     }
     .adv-search {
         display: flex;
@@ -193,11 +202,21 @@ export default {
         justify-content: space-between;
         margin: 24px 0 0 0;
         padding: 0 15px;
+        @media screen and (max-width: 767px) {
+            flex-direction: column;
+        }
     }
 }
 .search-result {
     padding: 24px 0 0 0;
     max-width: 960px;
+
+    @media screen and (max-width: 991px) {
+        max-width: 720px;
+    }
+    @media screen and (max-width: 767px) {
+        max-width: 540px;
+    }
     margin: auto;
     ul {
         list-style-type: none;
@@ -210,6 +229,9 @@ export default {
             padding: 20px;
             border: 1px solid rgba(0, 0, 0, 0.125);
             border-radius: 0.25rem;
+            @media screen and (max-width: 767px) {
+                display: block;
+            }
 
             .basic {
                 display: flex;
