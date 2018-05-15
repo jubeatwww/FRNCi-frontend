@@ -59,10 +59,10 @@ export default {
             this.$router.push({ path: '/login' });
         },
         account() {
-            this.$router.push('/profile/me');
+            this.$router.push('/controlpanel/account');
         },
         profile() {
-            this.$router.push('/controlpanel/profile');
+            this.$router.push('/profile/me');
         },
         search() {
             this.$router.push('/search');
