@@ -1,5 +1,5 @@
 <template>
-    <section class="chat-recv">
+    <section class="chat-recv" @scroll="onScroll">
         <ul v-if="chatrooms.length > 0">
             <li v-for="room in chatrooms" :key="room.from._id" @click="changeRoom(room.from._id)">
                 <div>
@@ -30,6 +30,13 @@ export default {
         }
         next();
     },
+    data() {
+        return {
+            page: 1,
+            roomEnd: false,
+            roomUpdating: false,
+        };
+    },
     methods: {
         changeRoom(id) {
             this.$router.push({ path: `/chat/r/${id}` });
@@ -54,6 +61,34 @@ export default {
                 return `${time.getHours()}:${time.getMinutes()}, Today`;
             }
             return `${time.getHours()}:${time.getMinutes()}, ${time.getMonth()}.${time.getDate()} ${time.getFullYear()}`;
+        },
+        async onScroll(e) {
+            if (this.roomUpdating) {
+                return false;
+            }
+            if (this.roomEnd) {
+                return false;
+            }
+
+            if (e.target.clientHeight + e.target.scrollTop + 5 >= e.target.scrollHeight) {
+                this.roomUpdating = true;
+                const res = await this.api.invitations.all({
+                    query: {
+                        role: 'to',
+                        page: this.page + 1,
+                    },
+                });
+                if (res.ok) {
+                    if (res.data.length === 0) {
+                        this.roomEnd = true;
+                    } else {
+                        this.chatrooms.push(...res.data);
+                        this.page += 1;
+                    }
+                }
+                this.roomUpdating = false;
+            }
+            return true;
         },
     },
 };
@@ -82,7 +117,18 @@ section {
                 display: flex;
                 flex-direction: column;
                 text-align: left;
+
+                @media screen and (max-width: 768px) {
+                    display: none;
+                }
             }
+
+            .chat-time {
+                @media screen and (max-width: 768px) {
+                    display: none;
+                }
+            }
+
         }
     }
 }

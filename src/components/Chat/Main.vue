@@ -74,10 +74,19 @@ main {
         padding: 0 15px;
         display: flex;
         flex-direction: column;
+        @media screen and (max-width: 768px) {
+            width: 20%;
+        }
 
         nav {
             margin-top: 8px;
             display: flex;
+
+            @media screen and (max-width: 768px) {
+                flex-direction: column;
+                align-items: center;
+            }
+
             .red-notification {
                 background-color: #ef210f;
                 text-align: center;

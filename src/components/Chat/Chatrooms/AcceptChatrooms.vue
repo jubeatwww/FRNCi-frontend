@@ -1,5 +1,5 @@
 <template>
-    <section class="chat-accept">
+    <section class="chat-accept" @scroll="onScroll">
         <ul v-if="chatrooms.length > 0">
             <li v-for="room in chatrooms" :key="room.otherUser._id" @click="changeRoom(room.otherUser._id)">
                 <div>
@@ -31,6 +31,13 @@ export default {
         }
         next();
     },
+    data() {
+        return {
+            page: 1,
+            roomEnd: false,
+            roomUpdating: false,
+        };
+    },
     methods: {
         changeRoom(id) {
             this.$router.push({ path: `/chat/a/${id}` });
@@ -55,6 +62,29 @@ export default {
                 return `${time.getHours()}:${time.getMinutes()}, Today`;
             }
             return `${time.getHours()}:${time.getMinutes()}, ${time.getMonth()}.${time.getDate()} ${time.getFullYear()}`;
+        },
+        async onScroll(e) {
+            if (this.roomUpdating) {
+                return false;
+            }
+            if (this.roomEnd) {
+                return false;
+            }
+
+            if (e.target.clientHeight + e.target.scrollTop + 5 >= e.target.scrollHeight) {
+                this.roomUpdating = true;
+                const res = await this.api.messages.all({ query: { page: this.page + 1 } });
+                if (res.ok) {
+                    if (res.data.length === 0) {
+                        this.roomEnd = true;
+                    } else {
+                        this.chatrooms.push(...res.data);
+                        this.page += 1;
+                    }
+                }
+                this.roomUpdating = false;
+            }
+            return true;
         },
     },
 };
@@ -85,8 +115,18 @@ section {
                 flex-direction: column;
                 text-align: left;
 
+                @media screen and (max-width: 768px) {
+                    display: none;
+                }
+
                 .unread {
                     font-weight: bold;
+                }
+            }
+
+            .chat-time {
+                @media screen and (max-width: 768px) {
+                    display: none;
                 }
             }
         }
