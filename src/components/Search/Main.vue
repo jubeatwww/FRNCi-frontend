@@ -104,7 +104,7 @@ export default {
             meet: [],
             gender: [],
             location: '',
-            nativeLanguages: [{ label: 'Language to practice', value: '' }],
+            nativeLanguages: [{ label: 'Language you want to practice', value: '' }],
             studyLanguages: [{ label: 'Any Language', value: '' }],
             buddyTypeOpt: [
                 { label: 'Language partners', value: 'language' },
@@ -176,6 +176,13 @@ export default {
     align-items: center;
     max-width: 960px;
     margin: 65px auto 0;
+
+    .md-input-container {
+        label {
+            display: none;
+        }
+    }
+
     .study-lang {
         max-width: 50%;
     }
