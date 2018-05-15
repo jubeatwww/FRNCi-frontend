@@ -23,6 +23,9 @@ section {
     flex-direction: column;
     max-width: 25%;
     padding: 0 15px;
+    @media screen and (max-width: 767px) {
+        max-width: 100%;
+    }
 
     header {
         padding: 8px 16px;
