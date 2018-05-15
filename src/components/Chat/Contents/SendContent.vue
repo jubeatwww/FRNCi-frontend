@@ -10,7 +10,7 @@
                     </md-avatar>
                 </div>
                 <div class="chat-content-info">
-                    <div>You get a new request from {{otherUser.firstName}}. He/She is looking forward to your reply!</div>
+                    <div>{{otherUser.firstName}} has not replied your request. You can either cancel the request or wait.</div>
                     <div class="invitation-ctrl">
                         <button class="btn-cancel" @click="cancel">Cancel</button>
                     </div>
