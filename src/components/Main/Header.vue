@@ -59,7 +59,7 @@ export default {
             this.$router.push({ path: '/login' });
         },
         account() {
-            this.$router.push('/controlpanel/account');
+            this.$router.push('/profile/me');
         },
         profile() {
             this.$router.push('/controlpanel/profile');
