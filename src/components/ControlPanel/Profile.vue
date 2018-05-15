@@ -48,6 +48,7 @@
         <form-field title="Languages you speak">
             <language-group
                 name="nativeLanguage"
+                addingStr="Add a language you speak fluently"
                 :level="nativeLevel"
                 :default="info.nativeLanguages"
                 :limit="3"
@@ -57,6 +58,7 @@
         <form-field title="Languages you are learning">
             <language-group
                 name="studyLanguage"
+                addingStr="Add a language you are learning"
                 :level="studyLevel"
                 :default="info.studyLanguages"
                 :limit="2"
