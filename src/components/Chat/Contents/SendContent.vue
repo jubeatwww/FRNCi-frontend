@@ -87,6 +87,9 @@ section {
         display: flex;
         padding: 20px;
         border-bottom: 1px solid rgba(112, 112, 112, .4);
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
+        }
 
         .chat-content-avatar {
             width: 16.666667%;
@@ -102,11 +105,23 @@ section {
             text-align: left;
             padding: 0 0 0 15px;
             display: flex;
+            @media screen and (max-width: 768px) {
+                flex-direction: column;
+                font-size: 14px;
+                width: 100%;
+            }
 
             .invitation-ctrl {
                 width: 25%;
                 display: flex;
                 flex-direction: column;
+                @media screen and (max-width: 768px) {
+                    flex-direction: row;
+                }
+                @media screen and (max-width: 400px) {
+                    flex-direction: column;
+                    width: 100%;
+                }
                 .btn-cancel {
                     border: 2px solid #60bc90;
                     background-color: transparent;
@@ -125,6 +140,15 @@ section {
     }
     article {
         height: calc(100% - 290px);
+        @media screen and (max-width: 768px) {
+            height: calc(100% - 360px);
+        }
+        @media screen and (max-width: 576px) {
+            height: calc(100% - 400px);
+        }
+        @media screen and (max-width: 400px) {
+            height: calc(100% - 460px);
+        }
         ul {
             height: 100%;
             list-style: none;
@@ -144,6 +168,11 @@ section {
                         flex-direction: row-reverse;
                         i {
                             color: #f8b62c;
+                        }
+                        .time {
+                            padding: 0 10px;
+                            font-size: 14px;
+                            color: #a8aab1;
                         }
                     }
 
@@ -195,6 +224,9 @@ section {
 
     footer {
         padding: 1.5rem;
+        @media screen and (max-width: 576px) {
+            padding: 1.5rem 0;
+        }
         textarea {
             width: 100%;
             padding: 10px 20px;

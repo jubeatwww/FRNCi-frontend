@@ -8,8 +8,8 @@
                     </md-avatar>
                 </div>
                 <div class="content">
-                        <span>{{room.otherUser.firstName}}</span>
-                        <span :class="room.unRead ? 'unread' : ''">{{content(room.latestMessage.content)}}</span>
+                    <span class="chatroom-name">{{room.otherUser.firstName}}</span>
+                    <span :class="room.unRead ? 'unread' : ''">{{content(room.latestMessage.content)}}</span>
                 </div>
                 <div>
                     <span class="chat-time">{{toTimeString(room.latestMessage.time)}}</span><!-- 最新訊息時間(當天) -->
@@ -105,6 +105,9 @@ section {
             display: flex;
             justify-content: space-between;
             padding: 10px 0 20px;
+            @media screen and (max-width: 768px) {
+                justify-content: center;
+            }
 
             &:hover {
                 background-color: #def5ea;
@@ -117,6 +120,11 @@ section {
 
                 @media screen and (max-width: 768px) {
                     display: none;
+                }
+
+                .chatroom-name {
+                    font-weight: bold;
+                    color: black;
                 }
 
                 .unread {

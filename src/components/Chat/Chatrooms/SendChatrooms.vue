@@ -8,8 +8,8 @@
                     </md-avatar>
                 </div>
                 <div class="content">
-                        <span>{{room.to.firstName}}</span>
-                        <span>{{content(room.content)}}</span>
+                    <span class="chatroom-name">{{room.to.firstName}}</span>
+                    <span>{{content(room.content)}}</span>
                 </div>
                 <div>
                 </div>
@@ -109,6 +109,10 @@ section {
             list-style: none;
             display: flex;
             padding: 10px 0 20px;
+            justify-content: space-between;
+            @media screen and (max-width: 768px) {
+                justify-content: center;
+            }
             
             &:hover {
                 background-color: #def5ea;
@@ -121,6 +125,10 @@ section {
 
                 @media screen and (max-width: 768px) {
                     display: none;
+                }
+                .chatroom-name {
+                    font-weight: bold;
+                    color: black;
                 }
             }
 
