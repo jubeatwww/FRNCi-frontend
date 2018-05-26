@@ -153,7 +153,7 @@ export default {
             if (this.isToday(t)) {
                 return `${time.getHours()}:${time.getMinutes()}, Today`;
             }
-            return `${time.getHours()}:${time.getMinutes()}, ${time.getMonth()}.${time.getDate()} ${time.getFullYear()}`;
+            return `${time.getHours()}:${time.getMinutes()}, ${time.getMonth() + 1}.${time.getDate()} ${time.getFullYear()}`;
         },
     },
 };
@@ -174,6 +174,10 @@ section {
         height: 120px;
         padding: 20px;
         border-bottom: 1px solid rgba(112, 112, 112, .4);
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
+            height: 190px;
+        }
 
         .chat-content-avatar {
             width: 16.666667%;
@@ -188,10 +192,22 @@ section {
             width: 83.333333%;
             text-align: left;
             padding: 0 15px;
+            line-height: 1.5;
+            font-size: 1rem;
+            color: #707070;
+
+            div:first-child {
+                font-size: 30px;
+                font-weight: bold;
+                color: black;
+            }
         }
     }
     article {
         height: calc(100% - 290px);
+        @media screen and (max-width: 768px) {
+            height: calc(100% - 360px);
+        }
         ul {
             height: 100%;
             list-style: none;
@@ -215,6 +231,8 @@ section {
                         
                         .time {
                             padding: 0 10px;
+                            font-size: 14px;
+                            color: #a8aab1;
                         }
                     }
 
@@ -260,6 +278,8 @@ section {
 
                         .time {
                             padding: 0 10px;
+                            font-size: 14px;
+                            color: #a8aab1;
                         }
                     }
                     .content {
@@ -314,6 +334,9 @@ section {
     footer {
         padding: 1.5rem;
         height: 180px;
+        @media screen and (max-width: 576px) {
+            padding: 1.5rem 0;
+        }
         textarea {
             width: 100%;
             padding: 10px 20px;
