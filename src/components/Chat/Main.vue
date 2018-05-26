@@ -2,11 +2,11 @@
     <main>
         <div class="chatroom-wrapper">
             <nav>
-                <router-link to="/chat/a">Accepted
-                    <span class="red-notification" v-if="unread > 0">{{unread}}</span>
+                <router-link to="/chat/a" :class="unread>0 ? 'shownote':''">Accepted
+                    <span class="red-notification"  v-if="unread > 0">{{unread}}</span>
                 </router-link>
                 <md-menu>
-                    <md-button md-menu-trigger>Pending
+                    <md-button :class="recv>0 ? 'shownote':''" md-menu-trigger>Pending
                         <span class="red-notification" v-if="recv > 0">{{recv}}</span>
                     </md-button>
 
@@ -59,6 +59,7 @@ export default {
 <style lang="scss" scoped>
 main {
     display: flex;
+    justify-content: center;
     max-width: 960px;
     height: calc(89vh - 70px);
     margin: 65px auto 2%;
@@ -74,45 +75,82 @@ main {
         padding: 0 15px;
         display: flex;
         flex-direction: column;
+        overflow-x: hidden;
+        overflow-y: scroll;
         @media screen and (max-width: 768px) {
             width: 20%;
+        }
+        @media screen and (max-width: 576px) {
+            width: 25%;
         }
 
         nav {
             margin-top: 8px;
             display: flex;
+            flex-wrap: wrap;
 
             @media screen and (max-width: 768px) {
-                flex-direction: column;
                 align-items: center;
+                flex-direction: column;
+                flex-wrap: nowrap;
             }
-
-            .red-notification {
-                background-color: #ef210f;
-                text-align: center;
-                padding: 3px 8px;
-                border-radius: 50%;
-                color: white;
-                font-size: 12px;
-                margin-left: 3px;
+            @mixin red-notification {
+                .red-notification {
+                    background-color: #ef210f;
+                    text-align: center;
+                    padding: 3px 8px;
+                    border-radius: 50%;
+                    color: white;
+                    font-size: 12px;
+                    margin-left: 3px;
+                    @media screen and (max-width: 768px) {
+                        position: absolute;
+                        left: 10%;
+                        top: 64%;
+                    }
+                }
+                &.shownote {
+                    @media screen and (max-width: 768px) {
+                        height: 80px;
+                    }
+                }
             }
 
             a {
                 padding: 0.5rem 1rem;
+                text-decoration: none;
                 font-size: 1rem;
                 font-weight: bold;
                 line-height: 1.5;
                 border-bottom: 2px solid #60bc90;
+                .red-notification {
+                    background-color: #ef210f;
+                    text-align: center;
+                    padding: 3px 8px;
+                    border-radius: 50%;
+                    color: white;
+                    font-size: 12px;
+                    margin-left: 3px;
+                }
+                @media screen and (max-width: 576px) {
+                    width: 170%;
+                    font-size: 14px;
+                }
             }
 
             .md-menu {
                 border-bottom: 2px solid #60bc90;
                 > button {
+                    width: 100%;
                     margin: 0;
                     padding: 0.5rem 1rem;
                     font-size: 1rem;
                     font-weight: bold;
                     line-height: 1.5;
+                    @include red-notification();
+                    @media screen and (max-width: 576px) {
+                        font-size: 14px;
+                    }
                 }
             }
         }
