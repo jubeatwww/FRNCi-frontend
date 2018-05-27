@@ -57,9 +57,15 @@ export default {
     },
     methods: {
         async accept() {
-            this.api.invitations.confirm({
+            const res = await this.api.invitations.confirm({
                 params: { userId: this.$route.params.userId },
             });
+
+            if (res.ok) {
+                this.alertify.alert('Success!', 'You can chat now!', () => {
+                    this.$router.push({ path: `/chat/a/${this.$route.params.userId}` });
+                });
+            }
         },
         async reject() {
             this.alertify.InviteReject(

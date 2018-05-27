@@ -117,15 +117,19 @@ export default {
             } else {
                 const { id } = this.$route.params;
                 console.log('send request');
-                this.alertify.AlertInvite('', '', async (evt, val) => {
-                    const res = await this.api.invitations.send({
-                        params: { userId: id },
-                        body: { content: val },
-                    });
-                    if (res.ok) {
-                        this.$router.push({ path: `/chat/s/${id}` });
-                    }
-                });
+                this.alertify.AlertInvite(
+                    `A greats start! <br>Take a quick moment to reach out to ${this.firstName}.`,
+                    '',
+                    async (evt, val) => {
+                        const res = await this.api.invitations.send({
+                            params: { userId: id },
+                            body: { content: val },
+                        });
+                        if (res.ok) {
+                            this.$router.push({ path: `/chat/s/${id}` });
+                        }
+                    },
+                );
             }
         },
     },

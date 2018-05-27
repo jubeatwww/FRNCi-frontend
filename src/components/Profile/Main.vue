@@ -203,8 +203,13 @@ export default {
         },
     },
     methods: {
-        invitationConfirm() {
-            this.api.invitations.confirm(this.apiArgs);
+        async invitationConfirm() {
+            const res = await this.api.invitations.confirm(this.apiArgs);
+            if (res.ok) {
+                this.alertify.alert('Success!', 'You can chat now!', () => {
+                    this.$router.push({ path: `/chat/a/${this.id}` });
+                });
+            }
         },
         invitationReject() {
             this.alertify.InviteReject(

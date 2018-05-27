@@ -45,13 +45,13 @@ export default {
                 return {
                     buttons: [
                         {
-                            text: alertify.defaults.glossary.ok,
-                            className: alertify.defaults.theme.ok,
+                            text: 'Send',
+                            className: `${alertify.defaults.theme.ok} invite-ok`,
                         },
                         {
                             text: alertify.defaults.glossary.cancel,
                             invokeOnClose: true,
-                            className: alertify.defaults.theme.cancel,
+                            className: `${alertify.defaults.theme.cancel} invite-cancel`,
                         }
                     ],
                     focus: {
@@ -65,10 +65,15 @@ export default {
                 };
             },
             build: function () {
-                textarea.className = 'ajs-textarea';
+                textarea.className = 'ajs-textarea invite-textarea';
                 textarea.value = this.get('value');
+                textarea.placeholder = 'Introduce yourself a little bit and talk about why you are sending this request or what you are expecting when becoming language partners.';
+                textarea.rows = 5;
                 this.elements.content.appendChild(p);
                 this.elements.content.appendChild(textarea);
+                Object.keys(this.elements).map(k => {
+                    this.elements[k].className += ' ajs-invite';
+                })
             },
             prepare: function () {
                 //nothing
@@ -171,14 +176,20 @@ export default {
                         {
                             text: 'Yes, ignore',
                             className: alertify.defaults.theme.ok,
+                            className: `${alertify.defaults.theme.ok} reject-ok`,
                         },
                         {
                             text: 'No, keep it',
                             invokeOnClose: true,
-                            className: alertify.defaults.theme.cancel,
+                            className: `${alertify.defaults.theme.cancel} reject-cancel`,
                         }
                     ],
                 };
+            },
+            build: function () {
+                Object.keys(this.elements).map(k => {
+                    this.elements[k].className += ' ajs-reject';
+                })
             },
         };
     },
@@ -189,15 +200,20 @@ export default {
                     buttons: [
                         {
                             text: 'Yes, cancel',
-                            className: alertify.defaults.theme.ok,
+                            className: `${alertify.defaults.theme.ok} cancel-ok`,
                         },
                         {
                             text: "No, don't cancel",
                             invokeOnClose: true,
-                            className: alertify.defaults.theme.cancel,
+                            className: `${alertify.defaults.theme.cancel} cancel-cancel`,
                         }
                     ],
                 };
+            },
+            build: function () {
+                Object.keys(this.elements).map(k => {
+                    this.elements[k].className += ' ajs-cancel';
+                })
             },
         };
     },

@@ -76,7 +76,6 @@ main {
         display: flex;
         flex-direction: column;
         overflow-x: hidden;
-        overflow-y: scroll;
         @media screen and (max-width: 768px) {
             width: 20%;
         }
